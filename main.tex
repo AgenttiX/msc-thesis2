@@ -1,0 +1,64 @@
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{biblatex}
+
+% Glossary
+% \loadglsentries[main]{tex/glossary.tex}
+% \makeglossaries
+
+% Citations
+\addbibresource{tex/references.bib}
+% \hypersetup{hidelinks}
+
+% Title page
+\title{Equations of state for phase transitions in the early universe}
+\author{Mika Mäki}
+% \examiner{prof. Mark Hindmarsh}
+
+% \finishdate{2022}{TODO}{TODO}
+% \thesistype{Pro Gradu TODO}{MSc thesis}
+% \facultyname{Faculty of Science}
+% \programmename{}
+% \keywords{}
+
+% Actual document starts here
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\input{tex/abstract.tex}
+
+\chapter{Introduction}
+\label{ch:introduction}
+\input{tex/introduction.tex}
+
+\chapter{Phase transitions in the early universe}
+\label{ch:pt}
+\input{tex/phase_transitions.tex}
+
+\chapter{Gravitational waves}
+\label{ch:gw}
+\input{tex/gravitational_waves.tex}
+
+\chapter{Simulation tools}
+\label{ch:simulation}
+\input{tex/simulation.tex}
+
+\chapter{Conclusion}
+\label{ch:conclusion}
+\input{tex/conclusion.tex}
+
+\printbibliography[heading=bibintoc]
+
+% \begin{appendices}
+
+% \end{appendices}
+
+
+\end{document}
