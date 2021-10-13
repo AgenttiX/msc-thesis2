@@ -1,0 +1,13 @@
+compile_pdf:
+  # image: blang/latex
+  # This image includes Inkscape but is old
+  # image: cwpearson/latex:full
+  # This image fails with Inkscape
+  # aergus/latex
+  image: agenttix/latex:latest
+  script:
+    - latexmk -pdf --shell-escape "tex/main.tex"
+    - mv "main.pdf" "MSc thesis 2 Mika Mäki.pdf"
+  artifacts:
+    paths:
+      - "MSc thesis 2 Mika Mäki.pdf"
