@@ -1,11 +1,14 @@
 *.aux
 *.bbl
+*.bcf
 *.blg
 *.fdb_latexmk
 *.fls
+*.gz
+*.lof
 *.log
 *.out
 *.pdf
-*.gz
+*.run.xml
 *.toc
 .idea
