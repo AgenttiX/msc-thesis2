@@ -1,6 +1,6 @@
 Equations of state
 \begin{itemize}
-    \item Bag model \cite[eq. 7.33]{hindmarsh_phase_2021}
+    \item Bag model \cite[eq. 7.33]{lecture_notes}
     \item Assumptions on speed of sound and constant parameters
     \item Giese's paper \cite{giese_model-independent_2020}
     \item Enqvist, old paper \cite{enqvist_nucleation_1992}
@@ -13,12 +13,12 @@ Employment?
     - ArXiv paper
 
 2 papers by Giese, second one is more complete
-Paper 1 \cite{giese_model-independent_2020}
-Paper 2 \cite{giese_model-independent_2021}
+Paper 1 \cite{giese_2020}
+Paper 2 \cite{giese_2021}
 
 TODO: understand these
 \begin{itemize}
-    \item Relativistic hydrodynamics from the review article (aka. lecture notes) \cite{hindmarsh_phase_2021}
+    \item Relativistic hydrodynamics from the review article (aka. lecture notes) \cite{lecture_notes}
     \item Reviews from other people (not just Hindmarsh)
     \item Article by Mazumdar \& White, especially section 7: relativistic combustion \cite{mazumdar_review_2019}
     \item The sound shell model paper
@@ -46,7 +46,171 @@ TODO: understand these
 
 "My job is to give the GWs the right energy-momentum tensor"
 
-\section{The bag model}
-The simplest model, from the lecture notes
+\section{Basics}
+Electroweak symmetry breaking at $10^{-11} s$, $100 -- 1000 GeV$.
+First-order phase transition
+-> bubbles just below the critical temperature
+-> gravitational waves
 
-\section{}
+Standard model has a crossover, but many extensions first-order.
+
+Matter-antimatter asymmetry -> net baryon number
+(But isn't B an accidental symmetry, whereas B-L is a fundamental one?
+How does this correspond to the neutrino content of the universe?)
+\cite{lecture_notes}
+
+The gravitational wave spectrum can be calculated from a few thermodynamic properties of ultrarelativistic matter, which can be computed from quantum field theory.
+These parameters can be measured by LISA.
+
+\section{Relativistic hydrodynamics}
+Ultrarelativistic particles
+Non-constant particle number
+
+Statistical mechanics \cite{huang_statistical_1987}
+\cite{schroeder_introduction_2000}
+\cite[ch. 4]{lecture_notes}
+
+Densities:
+Energy [density]
+\begin{equation}
+e = T \frac{\partial p}{\partial T} - p
+\end{equation}
+
+Enthalpy density
+\begin{align}
+w
+&= T \frac{\partial p}{\partial T} \\
+&= e+p \\
+&= Ts
+\end{align}
+
+Entropy density
+\begin{equation}
+s = \frac{dp}{dT}
+\end{equation}
+
+Entropy current
+\begin{equation}
+S^\mu = su^\mu
+\end{equation}
+\cite[p. 23]{lecture_notes}
+
+Energy-momentum tensor
+\cites[eq. 5.23]{lecture_notes}[eq. 3]{giese_2020}
+\begin{align}
+T^{\mu \nu}_f
+&= (e+p) u^\mu u^\nu + p g^{\mu \nu} \\
+&= w u^\mu u^\nu + p g^{\mu \nu}
+\end{align}
+
+\section{Relativistic combustion}
+The conservation of energy-momentum results in the bubble wall junction conditions
+\begin{align}
+w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+, \\
+w_- \tilde{\gamma}_+^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
+\end{align}
+These can be rearranged as
+\cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
+\begin{align}
+\tilde{v_+} \tilde{v_-} = \frac{p_+ - p_-}{e_+ - e_-} \\
+\frac{\tilde{v}_+}{\tilde{v}_-} = \frac{e_- + p_+}{e_+ + p_-}
+\end{align}
+And simplified to
+\begin{align}
+\frac{v_+}{v_-} &= \frac{1 - \frac{\Delta e}{w_+}}{1 - \frac{\Delta p}{w+}} \\
+v_+ v_- &= \frac{\frac{\Delta p}{w_+}}{\frac{\Delta e}{w_+}}
+\end{align}
+
+Speed of sound
+\cite[eq. 13]{giese_2020}
+\begin{equation}
+c_s^2 = \frac{dp}{de}
+\end{equation}
+
+Trace anomaly
+\begin{equation}
+\theta = \frac{1}{4}(e-3p)
+\end{equation}
+
+Difference of trace anomaly
+\begin{align}
+\Delta \theta
+&= \theta_+ - \theta_- \\
+&= \theta_s - \theta_b
+\end{align}
+
+Transition strength
+\begin{equation}
+\alpha_+ = \frac{4 \Delta \theta}{3 w_+}
+\end{equation}
+
+Enthalpy ratio
+\begin{equation}
+r = \frac{w_+}{w_-}
+\end{equation}
+
+
+\section{The bag model}
+The bag model is the simplest [TODO: REF] model for the equation of state.
+
+In general, the speed of sound is temperature-dependent.
+However, if both phases are assumed to be ultrarelativistic, the speed of sound simplifies to $c_s`2 = 1/3$.
+This is satisfied by the "bag" model, where
+\begin{align}
+p_s &= a_s T^4 - V_s \\
+p_b &= a_b T^4,
+\end{align}
+where $a_s$, $a_b$ and $V_s$ are positive constants with $a_s > a_b$.
+s=symmetric, b=broken.
+
+\section{Types of solutions}
+Subsonic deflagrations
+
+Detonations
+
+Supersonic deflagrations (hybrids)
+
+\section{Energy redistribution}
+Efficiency factor $\kappa$, which is the fraction of energy that is converted into fluid motion.
+\begin{equation}
+\kappa = \frac{3}{\chi_w^3 \Delta \theta} \int d\chi \chi^2 w \gamma^2 v^2
+\end{equation}
+From solving the hydrodynamic equations of state of a single expanding bubble.
+
+Kinetic energy fraction
+\cites[eq. 7.36]{lecture_notes}[eq. 5]{giese_2020}
+\begin{align}
+K
+&= \frac{\rho_\text{fl}}{\bar{e}}
+&= \frac{1}{\mathcal{v} \bar{e}} \int d^3 x w \gamma^2 v^2,
+\end{align}
+where $\mathcal{v}$ is the volume we average over, and $\bar{e}$ is the mean energy density.
+It should be noted that $0 < K < 1$.
+\cite{giese_2020}
+
+For a single bubble we have, using its volume and the energy density of the symmetric phase that the bubble replaces, the kinetic energy fraction
+\cites[eq. 7.37]{lecture_notes}[eq. 5]{giese_2020}
+\begin{equation}
+K_1 = \frac{3}{\chi_w^3 e_s} \int d\chi \chi^2 w \gamma^2 v^2.
+\end{equation}
+
+\section{More complex models}
+The bag model includes severe approximations, and for realistic simulations a more complex model is needed.
+The primary parameters for these models are
+\begin{itemize}
+    \item The phase transition parameters: percolation temperature, phase transition duration
+    \item Bubble wall velocity
+    \item Fraction of energy that is converted into fluid motion: $\kappa$
+    \item Numerical prefactor from lattice simulations
+\end{itemize}
+
+Speed of sound may not be ultrarelativistic, especially in the broken phase.
+
+
+\section{Extensions of the standard model}
+Extensions of the Standard model \cite{caprini_detecting_2020}
+(mentioned in \cite[p. 14]{lecture_notes})
+
+\section{Noise background}
+Non-thermal phenomena: GW production by preheating, when the inflaton decays to SM particles.
+\cite{lecture_notes}
