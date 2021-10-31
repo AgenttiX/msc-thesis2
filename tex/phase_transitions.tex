@@ -1,8 +1,10 @@
+\section{Todo notes}
+
 Equations of state
 \begin{itemize}
     \item Bag model \cite[eq. 7.33]{lecture_notes}
     \item Assumptions on speed of sound and constant parameters
-    \item Giese's paper \cite{giese_model-independent_2020}
+    \item Giese's paper \cite{giese_2020}
     \item Enqvist, old paper \cite{enqvist_nucleation_1992}
 \end{itemize}
 
@@ -67,49 +69,101 @@ Ultrarelativistic particles
 Non-constant particle number
 
 Statistical mechanics \cite{huang_statistical_1987}
-\cite{schroeder_introduction_2000}
+\cite{schroeder_thermal_2000}
 \cite[ch. 4]{lecture_notes}
+\todo{Is it OK to have references on the level of individual chapters and equations?}
 
-Densities:
-Energy [density]
+Let us start from the very basics of thermal physics.
+The
+\href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation}
+\todo{I have added some hyperlinks to Wikipedia to make further reading easier for the reader. Is this OK?}
+\cite[eq. 5.47, 5.48]{schroeder_thermal_2000}
 \begin{equation}
-e = T \frac{\partial p}{\partial T} - p
+\frac{dp}{dT} = \frac{L}{T \Delta V} = \frac{\Delta S}{\Delta V},
 \end{equation}
-
-Enthalpy density
+when taken to the differential limit, gives the entropy density
+\cite[p. 23]{lecture_notes}
+\begin{equation}
+s \equiv \frac{dp}{dT}.
+\end{equation}
+This can be inserted in the thermodynamic identity
+\cite[eq. 3.46]{schroeder_thermal_2000}
+\begin{equation}
+dU = TdS - pdV
+\end{equation}
+to get the energy density
+\begin{equation}
+e \equiv T \frac{\partial p}{\partial T} - p.
+\end{equation}
+This in turn can be inserted to the definition of enthalpy
+\cite[eq. 1.51]{schroeder_thermal_2000}
+\begin{equation}
+H \equiv E + pV
+\end{equation}
+to get the enthalpy density
 \begin{align}
 w
-&= T \frac{\partial p}{\partial T} \\
+&\equiv T \frac{\partial p}{\partial T} \\
 &= e+p \\
-&= Ts
+&= Ts.
 \end{align}
-
-Entropy density
-\begin{equation}
-s = \frac{dp}{dT}
-\end{equation}
-
-Entropy current
-\begin{equation}
-S^\mu = su^\mu
-\end{equation}
+Additionally we need to define the entropy current as
 \cite[p. 23]{lecture_notes}
+\begin{equation}
+S^\mu \equiv su^\mu
+\end{equation}
+It should be noted that the
+\href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
+% The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
 
-Energy-momentum tensor
-\cites[eq. 5.23]{lecture_notes}[eq. 3]{giese_2020}
+\href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{The energy-momentum tensor of a perfect fluid in thermodynamic equilibrium}
+is of the form
+\todo{The specifics of the energy-momentum tensor will vary by the model,
+so highlight how this affects the rest of the equations. Todo: derive this from the fluid equations.}
+\cites[eq. 5.11, 5.23]{lecture_notes}[eq. 3]{giese_2020}[eq. 4]{giese_2021}
 \begin{align}
 T^{\mu \nu}_f
-&= (e+p) u^\mu u^\nu + p g^{\mu \nu} \\
+&= (e+p) u^\mu u^\nu + p g^{\mu \nu}
+\label{eq:ep_tensor} \\
 &= w u^\mu u^\nu + p g^{\mu \nu}
 \end{align}
 
+
+\section{Field-fluid system}
+Based on \cite{moore_pt_1995}.
+
+In the electroweak phase transition the fluid is coupled to a scalar field with the energy-momentum tensor
+\cites[eq. 2.9]{hindmarsh_gw_pt_2019}
+\begin{equation}
+T_\phi^{\mu \nu}
+= \partial^\mu \partial^\nu \phi
+- g^{\mu \nu} \left(\frac{1}{2} (\partial \phi)^2 + V_0 (\phi) \right)
+\end{equation}
+
+The total energy-momentum is conserved,
+\cite[eq. 5.17]{lecture_notes}
+\begin{equation}
+\partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu} = 0.
+\label{eq:ep_conservation}
+\end{equation}
+This total energy-momentum tensor is conserved.
+
+
 \section{Relativistic combustion}
-The conservation of energy-momentum results in the bubble wall junction conditions
+This chapter of the lecture notes is largely based on
+\cites{hindmarsh_gw_pt_2019}{espinosa_energy_2010}
+
+The conservation of the energy-momentum of equation \ref{eq:ep_tensor} results in the bubble wall junction conditions
+\cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
 \begin{align}
 w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+, \\
-w_- \tilde{\gamma}_+^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
+w_- \tilde{\gamma}_-^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
 \end{align}
-These can be rearranged as
+The first one i
+\todo{Derive the first equation}
+The second one is derived by multiplying the conservation with $g^{\mu \nu}$. 
+
+The bubble wall junction conditions can be rearranged as
 \cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
 \begin{align}
 \tilde{v_+} \tilde{v_-} = \frac{p_+ - p_-}{e_+ - e_-} \\
@@ -122,15 +176,27 @@ v_+ v_- &= \frac{\frac{\Delta p}{w_+}}{\frac{\Delta e}{w_+}}
 \end{align}
 
 Speed of sound
-\cite[eq. 13]{giese_2020}
-\begin{equation}
-c_s^2 = \frac{dp}{de}
-\end{equation}
+\cites[eq. 13]{giese_2020}[eq. 3]{giese_2021}
+\begin{align}
+c_s^2
+&\equiv \frac{dp}{de} \\
+&= \frac{dp/dT}{de/dT}
+\end{align}
+For a relativistic plasma $c_s^2=\frac{1}{3}$.
 
-Trace anomaly
+The trace of the energy-momentum tensor of equation \ref{eq:ep_tensor} is
+\begin{align}
+\text{tr} (T^{\mu \nu})
+&= T^\mu_mu \\
+&= g_{\mu \nu} T^{\mu \nu} \\
+&=3p - e
+\end{align}
+We can quantify the deviation from this with the trace anomaly
+\cites[eq. 7.24]{lecture_notes}[eq. 28]{giese_2020}
 \begin{equation}
-\theta = \frac{1}{4}(e-3p)
+\theta = \frac{1}{4}(e-3p).
 \end{equation}
+\todo{Why is Hindmarsh using a 1/4 here, but Giese is not?}
 
 Difference of trace anomaly
 \begin{align}
@@ -149,26 +215,128 @@ Enthalpy ratio
 r = \frac{w_+}{w_-}
 \end{equation}
 
+We can obtain useful continuity equations from the conservation of energy-momentum.
+We start by defining two vectors, the fluid 4-velocity
+\begin{equation}
+u^\mu = \gamma(-1, \overrightarrow{v})^\mu
+\end{equation}
+and its orthonormal vector
+\begin{equation}
+\bar{u}^\mu = \gamma(-v, \frac{\overrightarrow{v}}{v})^\mu.
+\end{equation}
+These form an orthonormal basis.
+It should be noted, that for orthonormal vectors
+\begin{align}
+% Note that the lecture notes use ubar here.
+u_\mu u^\mu &= -1, \\
+u_\mu \bar{u}^\mu &= 0.
+\end{align}
+By projecting the conservation equation to this basis we get
+\begin{align}
+0 = u_\mu \partial_\nu T^{\mu \nu} = -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p \\
+0 = \bar{u} \partial_\nu T^{\mu \nu} = w \bar{u}^\nu u^\mu \partial_\mu u_\nu + \bar{u}^\mu \partial_\mu p
+\end{align}
+
+Dimensionless coordinate
+\begin{equation}
+\xi = \frac{r}{t}
+\end{equation}
+
+Hydrodynamic equations, aka. continuity equations
+\todo{Derive these}
+\cites[eq. 7.30-7.31]{lecture_notes}[eq. 5]{giese_2021}
+\begin{align}
+\frac{dv}{d\chi} &= \frac{2v(1-v^2)}{\chi(1-v\chi)} \left( \frac{\mu(\chi,v)^2}{c_s^2} - 1 \right)^{-1} \\
+\frac{dw}{d\chi} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\chi,v) \frac{dv}{d\chi}
+\end{align}
+
 
 \section{The bag model}
-The bag model is the simplest [TODO: REF] model for the equation of state.
+The bag model is the simplest model for the equation of state.
+\todo{Find references to confirm this.}
 
 In general, the speed of sound is temperature-dependent.
-However, if both phases are assumed to be ultrarelativistic, the speed of sound simplifies to $c_s`2 = 1/3$.
+However, if both phases are assumed to be ultrarelativistic, the speed of sound simplifies to $c_s^2 = \frac{dp}{de} = 1/3$.
 This is satisfied by the "bag" model, where
+\cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
 \begin{align}
-p_s &= a_s T^4 - V_s \\
+p_s &= a_s T^4 - V_s
+\label{eq:bag_ps} \\
 p_b &= a_b T^4,
+\label{eq:bag_pb}
 \end{align}
 where $a_s$, $a_b$ and $V_s$ are positive constants with $a_s > a_b$.
 s=symmetric, b=broken.
 
+
+\section{More complex models}
+The bag model includes severe approximations, and for realistic simulations a more complex model is needed.
+The primary parameters for these models are
+\begin{itemize}
+    \item The phase transition parameters: percolation temperature, phase transition duration
+    \item Bubble wall velocity
+    \item Fraction of energy that is converted into fluid motion: $\kappa$
+    \item Numerical prefactor from lattice simulations
+\end{itemize}
+
+Speed of sound may not be ultrarelativistic, especially in the broken phase.
+
+\subsection{The $\nu$-model}
+The $\nu$ model expands the bag model by allowing a change in the speed of sound of the broken phase.
+\cite[eq. 38]{giese_2020}
+\begin{align}
+p_s &= \frac{1}{3} a_+ T^4 - \epsilon \\
+p_b &= \frac{1}{3} a_- T^\nu \\
+e_s &= a_+ T^4 + \epsilon \\
+e_b &= \frac{1}{3} a_- (\nu - 1) T^\nu
+\end{align}
+The parameter $\nu$ can be written using the speed of sound of the broken phase as
+\cite[eq. 39]{giese_2020}
+\begin{equation}
+\nu = 1 + \frac{1}{c_s^2}.
+\end{equation}
+
+\subsection{Model with cubic thermal effects}
+Free energy
+\todo{Where does this come from? How to extract the thermal effects?}
+\cite[eq. 45]{giese_2020}
+\begin{align}
+\begin{split}
+\textsc{F}(\phi, T) =
+&- \frac{a_+}{3} T^4 \\
+&+ \lambda \left( \phi^4 - 2E\phi^3 T + \phi^2 \left( E^2 T_\text{cr}^2 + c \left( T^2 - T_\text{cr}^2 \right) \right) \right) \\
+&+ \frac{\lambda}{4} \left( c - E^2 \right)^2 T_\text{cr}^4
+\end{split}
+\end{align}
+1
+The minimum of the field potential is given by
+\cite[eq. 46]{giese_2020}
+\begin{equation}
+\phi_\text{min} = \frac{3}{4} ET + \sqrt{\frac{T^2}{2}(\frac{9}{8}E^2 - c) - \frac{T_\text{cr}^2}{2} (E^2 - c)}
+\end{equation}
+
+\subsection{Model with a two-step phase transition}
+Two scalar fields and two symmetry breakings. Examples: electroweak symmetry, $\mathbb{Z}_2$ symmetry.
+Cubic term is neglected.
+Pressures are of the form
+\cite[eq. 47-48]{giese_2020}
+\begin{align}
+p_s(T) = \frac{1}{3}a_+ T^4 + (b_+ - c_+ T^2)^2 - b_-^2 \\
+p_b(T) = \frac{1}{3}a_+ T^4 + (b_- - c_-T^2)^2 - b_-^2
+\end{align}
+Compare these to the equations \ref{eq:bag_ps}, \ref{eq:bag_pb}.
+
+
+
 \section{Types of solutions}
+\missingfigure{Figure of the three different types of relativistic combustion. \cite[fig. 14]{lecture_notes}}
+
 Subsonic deflagrations
 
 Detonations
 
 Supersonic deflagrations (hybrids)
+
 
 \section{Energy redistribution}
 Efficiency factor $\kappa$, which is the fraction of energy that is converted into fluid motion.
@@ -194,17 +362,25 @@ For a single bubble we have, using its volume and the energy density of the symm
 K_1 = \frac{3}{\chi_w^3 e_s} \int d\chi \chi^2 w \gamma^2 v^2.
 \end{equation}
 
-\section{More complex models}
-The bag model includes severe approximations, and for realistic simulations a more complex model is needed.
-The primary parameters for these models are
+The kinetic energy fraction can be determined from
 \begin{itemize}
-    \item The phase transition parameters: percolation temperature, phase transition duration
-    \item Bubble wall velocity
-    \item Fraction of energy that is converted into fluid motion: $\kappa$
-    \item Numerical prefactor from lattice simulations
+\item wall velocity $v_w$
+\item the speeds of sound
+\item strength parameter of the phase transition
 \end{itemize}
 
-Speed of sound may not be ultrarelativistic, especially in the broken phase.
+Let us define the pseudotrace as
+\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
+\begin{equation}
+\overline{\theta} \equiv e - \frac{p}{c_{s,b}^2}.
+\end{equation}
+
+For detonations, the optimal phase transition strength is
+\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
+\todo{Explain how this is defined}
+\begin{equation}
+\alpha_{\overline{\theta}} \equiv \frac{D \overline{\theta}(T_+)}{3w_+},
+\end{equation}
 
 
 \section{Extensions of the standard model}
