@@ -211,7 +211,7 @@ We can quantify the deviation from this with the trace anomaly
 \begin{equation}
 \theta = \frac{1}{4}(e-3p).
 \end{equation}
-\todo{Why is Hindmarsh using a 1/4 here, but Giese is not?}
+Please note that the definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
 
 Difference of trace anomaly
 \begin{align}
@@ -296,20 +296,23 @@ The primary parameters for these models are
 
 Speed of sound may not be ultrarelativistic, especially in the broken phase.
 
-\subsection{The $\nu$-model}
+\subsection{The $\mu,\nu$-model}
 The $\nu$ model expands the bag model by allowing a change in the speed of sound of the broken phase.
-\cite[eq. 38]{giese_2020}
+\cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}
 \begin{align}
-p_s &= \frac{1}{3} a_+ T^4 - \epsilon \\
+p_s &= \frac{1}{3} a_+ T^\mu - \epsilon \\
 p_b &= \frac{1}{3} a_- T^\nu \\
-e_s &= a_+ T^4 + \epsilon \\
+e_s &= a_+ T^\mu + \epsilon \\
 e_b &= \frac{1}{3} a_- (\nu - 1) T^\nu
 \end{align}
-The parameter $\nu$ can be written using the speed of sound of the broken phase as
-\cite[eq. 39]{giese_2020}
-\begin{equation}
-\nu = 1 + \frac{1}{c_s^2}.
-\end{equation}
+The parameters $a_+$ and $a_-$ are proportional to the number of relativistic degrees of freedom in the symmetric and broken phases, and $\epsilon$ is the temperature-independent vacuum energy that is released in the phase transition.
+The parameters $\mu$ and $\nu$ are determined by the sound speeds in the symmetric and broken phases:
+\cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
+\begin{align}
+\mu = 1 + \frac{1}{c_{s,s}^2}, \\
+\nu = 1 + \frac{1}{c_{s,b}^2}.
+\end{align}
+\footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
 
 \subsection{Model with cubic thermal effects}
 Free energy
