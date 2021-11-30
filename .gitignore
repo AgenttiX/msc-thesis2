@@ -13,4 +13,5 @@
 *.run.xml
 *.tdo
 *.toc
+__pycache__
 .idea
