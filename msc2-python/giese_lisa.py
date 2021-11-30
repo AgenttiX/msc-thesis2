@@ -7,6 +7,8 @@ https://arxiv.org/abs/2010.09744
 Commented for better readability.
 """
 
+import typing as tp
+
 import numpy as np
 from scipy.integrate import odeint
 from scipy.integrate import simps
@@ -18,23 +20,26 @@ def mu(a, b):
 
 
 def getwow(a, b):
-    """Ratio of enthalpies across the bubble wall"""
+    """Ratio of enthalpies across the bubble wall, "w over w" """
     return a/(1.-a**2)/b*(1.-b**2)
 
 
-def getvm(al, vw, cs2b: float):
-    """Fluid velocity behind the wall"""
+def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
+    """Fluid velocity behind the wall, $v_-$"""
     if vw**2 < cs2b:
         return vw, 0
     cc = 1. - 3. * al + vw**2 * (1./cs2b + 3.*al)
     disc = -4.*vw**2/cs2b + cc**2
     if disc < 0. or cc < 0.:
         return np.sqrt(cs2b), 1
-    return cc + np.sqrt(disc)
+    return cc + np.sqrt(disc), 2
 
 
-def dfdv(xiw, v, cs2: float):
-    """The differential equation that is solved in the shock/rarefactio wave and returns"""
+def dfdv(xiw: tp.Union[tp.Tuple[float, float], np.ndarray], v: float, cs2: float) -> tp.List[float]:
+    """The differential equation that is solved in the shock/rarefaction wave
+
+    Rarefaction = the opposite of compression
+    """
     xi, w = xiw
     dxidv = mu(xi, v)**2 / cs2 - 1.
     dxidv *= (1. - v*xi)*xi/2./v/(1.-v**2)
@@ -42,7 +47,7 @@ def dfdv(xiw, v, cs2: float):
     return [dxidv, dwdv]
 
 
-def getKandWow(vw, v0, cs2: float):
+def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[float, float]:
     """
     Returns two values
     - Enthalpy-weighted kinetic energy in the shock/rarefaction wave
@@ -51,8 +56,10 @@ def getKandWow(vw, v0, cs2: float):
         return 0, 1
     n = 8*1024  # change accuracy here
     vs = np.linspace(v0, 0, n)
+    # Get (xi, wow) for each v
     sol = odeint(dfdv, [vw, 1.], vs, args=(cs2, ))
     xis, wows = (sol[:, 0], sol[:, 1])
+    # If the wall moves at less than the sound speed = is subsonic
     if mu(vw, v0) * vw <= cs2:
         ll = max(int(sum(np.heaviside(cs2 - (mu(xis, vs)*xis), 0.0))), 1)
         vs = vs[:ll]
@@ -71,7 +78,7 @@ def alN(al, wow, cs2b, cs2s):
 def getalNwow(vp, vm, vw, cs2b, cs2s):
     r"""Get
     - $\alpha_{\bar{\theta}}n}$ in the nucleation phase
-    - Ration of the enthalpies for fixed boundary conditions at the wall
+    - Ratio of the enthalpies for fixed boundary conditions at the wall
     """
     Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
     al = (vp/vm-1.)*(vp*vm/cs2b - 1.)/(1-vp**2)/3.
@@ -83,6 +90,7 @@ def kappaNuMuModel(cs2b, cs2s, al, vw):
     This uses the other functions."""
     vm, mode = getvm(al, vw, cs2b)
     if mode < 2:
+        # Validate alpha
         almax, wow = getalNwow(0, vm, vw, cs2b, cs2s)
         if almax < al:
             print("alpha too large for shock")
@@ -92,20 +100,26 @@ def kappaNuMuModel(cs2b, cs2s, al, vw):
         if almin > al:
             print("alpha too small for shock")
             return 0
+        # Iterate to find v+ until the corresponding alpha matches the given value.
         iv = [[vp, almin], [0, almax]]
         while abs(iv[1][0] - iv[0][0]) > 1e-7:
+            # mean v
             vpm = (iv[1][0] + iv[0][0])/2.
             alm = getalNwow(vpm, vm, vw, cs2b, cs2s)[0]
             if alm > al:
+                # Update second component.
                 iv = [iv[0], [vpm, alm]]
             else:
+                # Update first component.
                 iv = [[vpm, alm], iv[1]]
+        # Use the mean as v+
         vp = (iv[1][0] + iv[0][0])/2.
-        Ksh, wow, vp = getKandWow(vw, mu(vw, vp), cs2s)
+        Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
     else:
         Ksh, wow, vp = 0, 1, vw
     if mode > 0:
-        Krf, wow3 = getKandWow(vw, mu(vw, vm), cs2b)
+        # Fixed a typo here: wow3 -> wow
+        Krf, wow = getKandWow(vw, mu(vw, vm), cs2b)
         Krf *= -wow*getwow(vp, vm)
     else:
         Krf = 0
