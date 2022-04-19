@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{biblatex}
+\usepackage{datetime}
+\usepackage{hyperref}
+
+\title{Equations of state for phase transitions in the early universe}
+\author{Mika Mäki}
+\newdate{date}{27}{4}{2022}
+\date{\displaydate{date}}
+
+\addbibresource{references.bib}
+
+\begin{document}
+\maketitle
+
+% \section*{Abstract}
+The cosmic microwave background from the era of recombination about 370 000 years after the Big Bang is the earliest time that we can directly investigate with telescopes based on electromagnetic radiation.
+Prior to this the universe consisted of non-transparent plasma,
+which makes direct measurements on the early universe difficult.
+However, gravitational waves interact so weakly with matter that the universe has been transparent to them from the very early moments of the Big Bang.
+Therefore gravitational waves are a highly useful source of information on the early evolution of the universe.
+\cite{caprini_detecting_2020}
+
+In the Standard Model the electroweak phase transition,
+also known as the Higgs transition,
+is a crossover instead of a true phase transition.
+However, various extensions of the Standard Model predict,
+that there would be first-order phase transitions around the electroweak scale.
+\cite{caprini_detecting_2020}
+In this case as the temperature decreased,
+the early universe transitioned from the high-temperature phase to the low-temperature phase through bubble nucleation, growth and merger.
+The collision and movement of the bubble boundaries through the plasma would produce sound waves,
+as predicted by the Sound Shell Model.
+\cite{gw_pt_ssm}
+These sound waves would be so intense that the gravitational waves they cause could still be detected with the upcoming LISA spacecraft, the Laser Interferometer Space Antenna.
+\cite{lecture_notes}
+
+The power spectrum of the gravitational waves depends on five key parameters:
+the nucleation temperature $T_n$, the phase transition strength parameter $\alpha_n$, the bubble wall speed $v_w$, the transition rate parameter $\beta$ and the sound speed $c_s$.
+Deriving these values, especially the sound speed $c_s$, from the underlying particle physics requires modelling the plasma and its flow through the bubble walls by an equation of state.
+The more realistic equation of state we can use in the simulations, the more accurate correspondence we will get between the five key parameters and the gravitational wave spectrum.
+By measuring the gravitational wave spectrum we can determine the values for these parameters and eventually distinguish between different extensions of the Standard Model.
+\cite{lecture_notes}
+
+
+\iffalse
+The cosmic microwave background from the era of recombination about 370 000 years after the Big Bang is the earliest time that we can investigate with telescopes based on electromagnetic radiation.
+Prior to this the universe consisted of plasma that was not transparent to electromagnetic radiation.
+This makes obtaining information on the early universe difficult,
+and much of our knowledge is based on indirect results from particle physics experiments and the composition of the matter in the universe.
+
+However, gravitational waves interact so weakly with matter that the universe has been transparent to them from the very early moments of the Big Bang.
+This makes them a highly useful source of information on the early evolution of the universe.
+
+Various extensions of the Standard Model predict,
+that the electroweak phase transition,
+also known as the Higgs transition,
+would be a first-order phase transition and would therefore have sharp boundaries.
+The low-temperature phase would would expand as bubbles, and the movement of their boundaries would produce sound waves in the plasma.
+These sound waves would be so intense that the gravitational waves they cause could be visible today.
+
+The LIGO and Virgo gravitational wave observatories have been highly successful in the detection of gravitational waves from astrophysical sources such as black hole and neutron star mergers.
+However, the frequency range they are sensitive to is much higher than that predicted for the electroweak phase transition.
+Therefore a detector for lower frequencies is needed.
+This would be provided by LISA, Laser Interferometer Space Antenna, a system of three spacecraft connected with lasers that is planned to be launched in 2037.
+
+To interpret the signals that LISA might eventually detect and
+to distinguish between the different models,
+we need to simulate the gravitational wave spectra they generate.
+For this we have developed the simulation framework PTtools.
+\fi
+
+\iffalse
+
+The simplest equation of state is the bag model.
+It has been in use to approximate high-temperature quark-gluon plasma for decades
+
+To get the most realistic results
+-> constant sound speed model
+-> full model
+\fi
+
+\clearpage
+\printbibliography[heading=bibintoc]
+
+\end{document}
