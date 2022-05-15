@@ -9,9 +9,9 @@
 *.lot
 *.log
 *.out
-*.pdf
 *.run.xml
 *.tdo
 *.toc
 __pycache__
 .idea
+main.pdf
