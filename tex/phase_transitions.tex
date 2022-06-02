@@ -70,7 +70,7 @@ Statistical mechanics \cite{huang_statistical_1987}
 \cite[ch. 4]{lecture_notes}
 % According to Hindmarsh it's OK to have references on the level of individual chapters and equations.
 
-Let us start from the very basics of thermal physics.
+Let us start from classical thermal physics.
 The
 \href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation}
 % According to Hindmarsh it's OK to have hyperlinks to unofficial sources such as Wikipedia.
@@ -112,16 +112,28 @@ S^\mu \equiv su^\mu
 \end{equation}
 It should be noted that the
 \href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
+Greek indices are used for four-vectors and latin indices for three-vectors.
 % The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
 
 Since our system of interest is composed of ultrarelativistic particles,
 and the number of particles is not constant, as the particles are annihilated an new ones are formed all the time,
-we need to analyze the behaviour of the system as a fluid within general relativity.
+we need to analyze the behaviour of the system as a fluid that obeys general relativity.
 \href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{
-In general relativity the hydrodynamic behaviour of a fluid is defined by the energy-momentum tensor, also known as the stress-energy tensor.}
-\todo{Should I introduce the reader to the basics of a stress-energy tensor here? At least I wasn't familiar with the concept beforehand.}
-\href{https://physics.stackexchange.com/a/412067/298623}{In these models we are assuming a perfect fluid in thermodynamic equilibrium.}
-As the fluid is in thermodynamic equilibrium, there is no energy transfer to or from the fluid.
+In general relativity matter and energy content of space is described by the energy-momentum tensor $T^{\mu \nu}$, also known as the stress-energy tensor.}
+In Minkowski space in Cartesian coordinates it's given as
+\cites[eq. 4.17]{rasanen_gr_2022}[fig. 3.3]{rezzolla_relativistic_2013}
+\begin{equation}
+T_{\mu \nu} =
+\begin{bmatrix}
+e & -q_1 & -q_2 & -q_3 \\
+-q_1 & p + \Pi_{11} & \Pi_{12} & \Pi_{13} \\
+-q_2 & \Pi_{12} & p + \Pi_{22} & \Pi_{23} \\
+-q_3 & \Pi_{13} & \Pi_{23} & p + \Pi_{33}
+\end{bmatrix},
+\end{equation}
+where $q$ is the energy flux or momentum density and $\Pi_{\mu \nu}$ is known as the anisotropic stress, anisotropic pressure or momentum flux.
+\href{https://physics.stackexchange.com/a/412067/298623}{In our case we assume the energy-matter content to be an ideal fluid in thermal equilibrium.}
+Therefore there is no energy transfer to or from the fluid.
 Therefore
 $\forall j=1,2,3: \quad T^{0j} = 0$.
 As the fluid has no viscosity, it does not experience any shear stress, and therefore
@@ -130,15 +142,15 @@ This does not depend on the reference frame, so the tensor is diagonal in all re
 Therefore $T^{ij} = p \delta^{ij}$.
 These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j T^{ij}=0$.
 This can be broken in two components as
-\todo{Derive this properly when taking reading the hydrodynamics book \cite{rezzolla_relativistic_2013} or taking the GR course.}
 \todo{The specifics of the energy-momentum tensor will vary by the model,
 so highlight how this affects the rest of the equations. Todo: derive this from the fluid equations.}
-\cites[eq. 5.11, 5.23]{lecture_notes}[eq. 3]{giese_2020}[eq. 4]{giese_2021}
+\cites[eq. 5.11, 5.23]{lecture_notes}[eq. 4.12]{rasanen_gr_2022}
+% [eq. 3]{giese_2020}[eq. 4]{giese_2021}
 \begin{align}
 T^{\mu \nu}_f
 &= (e+p) u^\mu u^\nu + p g^{\mu \nu}
 \label{eq:ep_tensor} \\
-&= w u^\mu u^\nu + p g^{\mu \nu}
+&= w u^\mu u^\nu + p g^{\mu \nu}.
 \end{align}
 
 
@@ -156,7 +168,7 @@ T_\phi^{\mu \nu}
 The total energy-momentum is conserved,
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
-\partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
+\partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
 \label{eq:ep_conservation}
 \end{equation}
 
@@ -167,36 +179,28 @@ This chapter of the lecture notes is largely based on the references
 \cites{hindmarsh_gw_pt_2019}{espinosa_energy_2010}.
 \todo{Add more content from \cite[ch. 6]{mazumdar_review_2019}.}
 
-The conservation of the energy-momentum of equation \ref{eq:ep_tensor} results in the bubble wall junction conditions
+If the wall velocity is constant, eq. \ref{eq:ep_conservation} also holds in the wall frame.
+Therefore for a wall moving in the z-direction
+\cite[eq. 7]{espinosa_energy_2010}
+\begin{equation}
+\partial_z T^{zz} = \partial_z T^{z0} = 0.
+\end{equation}
+Inserting eq. \ref{eq:ep_tensor} results in the bubble wall junction conditions
 \cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
 \begin{align}
 w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+, \\
 w_- \tilde{\gamma}_-^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
 \end{align}
-The first one is derived by TODO.
-\todo{Todo: Derive the first equation}
-The second one is derived by multiplying the conservation equation with $g^{\mu \nu}$. 
-
-The bubble wall junction conditions can be rearranged as
+These can be rearranged as
 \cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
+\todo{prove this step}
 \begin{align}
 \tilde{v_+} \tilde{v_-} = \frac{p_+ - p_-}{e_+ - e_-} \\
 \frac{\tilde{v}_+}{\tilde{v}_-} = \frac{e_- + p_+}{e_+ + p_-}
+\label{eq:junction_ep}
 \end{align}
-And simplified to
-\begin{align}
-\frac{v_+}{v_-} &= \frac{1 - \frac{\Delta e}{w_+}}{1 - \frac{\Delta p}{w+}} \\
-v_+ v_- &= \frac{\frac{\Delta p}{w_+}}{\frac{\Delta e}{w_+}}
-\end{align}
-
-Speed of sound
-\cites[eq. 13]{giese_2020}[eq. 3]{giese_2021}
-\begin{align}
-c_s^2
-&\equiv \frac{dp}{de} \\
-&= \frac{dp/dT}{de/dT}
-\end{align}
-For a relativistic plasma $c_s^2=\frac{1}{3}$.
+Further simplification of these requires additional definitions
+that we will now introduce.
 
 The trace of the energy-momentum tensor of equation \ref{eq:ep_tensor} is
 \begin{align}
@@ -205,29 +209,65 @@ The trace of the energy-momentum tensor of equation \ref{eq:ep_tensor} is
 &= g_{\mu \nu} T^{\mu \nu} \\
 &=3p - e
 \end{align}
-We can quantify the deviation from this with the trace anomaly
+We can quantify its difference from zero with the trace anomaly
 \cites[eq. 7.24]{lecture_notes}[eq. 28]{giese_2020}
 \begin{equation}
 \theta = \frac{1}{4}(e-3p).
 \end{equation}
-Please note that the definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
-
-Difference of trace anomaly
+The definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
+The difference of the trace anomalies just ahead and behind of the wall is denoted as
 \begin{align}
 \Delta \theta
 &\equiv \theta_+ - \theta_- \\
 &= \theta_s - \theta_b
 \end{align}
-
-Transition strength
+With this we can define the transition strength as
 \begin{equation}
-\alpha_+ = \frac{4 \Delta \theta}{3 w_+}
+\alpha_+ = \frac{4 \Delta \theta}{3 w_+}.
 \end{equation}
-
-Enthalpy ratio
+We can also define the enthalpy ratio
 \begin{equation}
-r = \frac{w_+}{w_-}
+r = \frac{w_+}{w_-}.
 \end{equation}
+With these definitions the junction conditions of eq. \ref{eq:junction_ep} can be simplified as
+\begin{equation}
+\tilde{v}_+ \tilde{v}_- = \frac{1-(1-3\alpha_+)r}{3-3(1+\alpha_+)r},
+\quad
+\frac{\tilde{v}_+}{\tilde{v}_-} = \frac{3+(1-3\alpha_+)r}{1+3(1+\alpha_+)r}.
+\end{equation}
+This is the easiest to prove in the reverse direction.
+To get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $r$ we can extract $r$ from both equations and mark those as equal, resulting in the equation
+\begin{equation}
+\left( \frac{1}{\tilde{v}_-} + 3 \tilde{v}_- \right) v_+ - 3(1+\alpha_+)v_+^2 = \alpha_+ - 1.
+\end{equation}
+% Derivation: Mathematica Eliminate[] and a bit of simplification.
+This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solved as \cite[eq. B.6, B.7]{hindmarsh_gw_pt_2019}
+\begin{align}
+\tilde{v}_+ &= \frac{1}{2(1+\alpha_+)}\left[ \left(\frac{1}{3\tilde{v}_-}+\tilde{v}_-\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_-} - \tilde{v}_- \right)^2 + 4\alpha_+^2 + \frac{8}{3} \alpha_+} \right]
+\\
+\tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right)
+\end{align}
+Both of these are basic second-order solutions, but in the first the discriminant has been simplified.
+
+\iffalse
+And simplified to
+\begin{align}
+\frac{v_+}{v_-} &= \frac{1 - \frac{\Delta e}{w_+}}{1 - \frac{\Delta p}{w+}} \\
+v_+ v_- &= \frac{\frac{\Delta p}{w_+}}{\frac{\Delta e}{w_+}}
+\end{align}
+\fi
+
+Speed of sound
+\cites[eq. 13]{giese_2020}[eq. 3]{giese_2021}
+\begin{align}
+c_s^2
+&\equiv \frac{dp}{de} \\
+&= \frac{dp/dT}{de/dT}
+\end{align}
+For an ultrarelativistic plasma $c_s^2=\frac{1}{3}$.
+\todo{Write here why}
+
+
 
 We can obtain useful continuity equations from the conservation of energy-momentum.
 We start by defining two vectors, the fluid 4-velocity
@@ -264,14 +304,12 @@ Hydrodynamic equations, aka. continuity equations
 \frac{dw}{d\xi} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\xi,v) \frac{dv}{d\xi}
 \end{align}
 
+It should be highlighted that everything in this chapter is independent of the equation of state introduced in the next chapter.
+
 
 \section{The bag model}
-The bag model is the simplest model for the equation of state.
-\todo{Find references to confirm this.}
-
-In general, the speed of sound is temperature-dependent.
-However, if both phases are assumed to be ultrarelativistic, the speed of sound simplifies to $c_s^2 = \frac{dp}{de} = 1/3$.
-This is satisfied by the "bag" model, where
+The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
+One of the simplest equations of state is the bag model, where
 \cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
 \begin{align}
 p_s &= a_s T^4 - V_s
@@ -281,6 +319,15 @@ p_b &= a_b T^4,
 \end{align}
 where $a_s$, $a_b$ and $V_s$ are positive constants with $a_s > a_b$.
 s=symmetric, b=broken.
+
+In this model the speed of sound simplifies as
+\begin{equation}
+c_s^2 = \frac{dp}{de} = 1/3,
+\end{equation}
+This corresponds to assuming the bth phases to be ultrarelativistic.
+
+The name of the bag model originates from quantum chromodynamics (QCD), where it's used to describe the proton as a bag of quarks.
+\todo{check this}
 
 
 \section{More complex models}
@@ -295,8 +342,8 @@ The primary parameters for these models are
 
 Speed of sound may not be ultrarelativistic, especially in the broken phase.
 
-\subsection{The $\mu,\nu$-model}
-The $\nu$ model expands the bag model by allowing a change in the speed of sound of the broken phase.
+\subsection{The constant sound speed model}
+The constant sound speed model, also known as the $\mu, \nu$ model, expands the bag model by allowing a change in the speed of sound of the broken phase.
 \cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}
 \begin{align}
 p_s &= \frac{1}{3} a_+ T^\mu - \epsilon \\
