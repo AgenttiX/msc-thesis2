@@ -65,51 +65,64 @@ The gravitational wave spectrum can be calculated from a few thermodynamic prope
 These parameters can be measured by LISA.
 
 \section{Relativistic hydrodynamics}
-Statistical mechanics \cite{huang_statistical_1987}
-\cite{schroeder_thermal_2000}
-\cite[ch. 4]{lecture_notes}
+% Statistical mechanics \cite{huang_statistical_1987}
+% \cite{schroeder_thermal_2000}
+% \cite[ch. 4]{lecture_notes}
 % According to Hindmarsh it's OK to have references on the level of individual chapters and equations.
 
-Let us start from classical thermal physics.
+\iffalse
 The
-\href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation}
+\href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation} states that
 % According to Hindmarsh it's OK to have hyperlinks to unofficial sources such as Wikipedia.
 \cite[eq. 5.47, 5.48]{schroeder_thermal_2000}
 \begin{equation}
-\frac{dp}{dT} = \frac{L}{T \Delta V} = \frac{\Delta S}{\Delta V},
+\frac{dp}{dT} = \frac{L}{T \Delta V} = \frac{\Delta S}{\Delta V}.
 \end{equation}
-when taken to the differential limit, gives the entropy density
-\todo{Read the book on relativistic hydrodynamics for a proper derivation}
+\fi
+
+Let us start from the thermodynamic identity of classical thermal physics
+\cites[eq. 2.136]{rezzolla_relativistic_2013}[eq. 3.68]{schroeder_thermal_2000}
+\begin{equation}
+dU = TdS - pdV + \mu dN,
+\end{equation}
+where $U$ is internal energy, $T$ is temperature, $p$ is pressure, $V$ is volume, $\mu$ is chemical potential and $N$ is the number of particles.
+The fluids in our case are ultrarelativistic, and therefore effectively $T >> \mu$,
+and we can neglect $dN$.
+Perturbing around a constant $U$ (effectively setting $dU=0$) gives the entropy density
+\todo{Is this the correct explanation?}
 \cite[p. 23]{lecture_notes}
 \begin{equation}
-s \equiv \frac{dp}{dT}.
+s \equiv \frac{dS}{dV} = \frac{dp}{dT}.
 \end{equation}
-This can be inserted in the thermodynamic identity
-\cite[eq. 3.46]{schroeder_thermal_2000}
+Inserting this back to the thermodynamic identity gives the \textbf{energy density}
 \begin{equation}
-dU = TdS - pdV
-\end{equation}
-to get the energy density
-\begin{equation}
-e \equiv T \frac{\partial p}{\partial T} - p.
+e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
 \end{equation}
 This in turn can be inserted to the definition of enthalpy
 \cite[eq. 1.51]{schroeder_thermal_2000}
 \begin{equation}
 H \equiv E + pV
 \end{equation}
-to get the enthalpy density
+to get the \textbf{enthalpy density}
 \begin{align}
 w
-&\equiv T \frac{\partial p}{\partial T} \\
+&\equiv \frac{dH}{dV} \\
 &= e+p \\
+&= T \frac{\partial p}{\partial T} \\
 &= Ts.
 \end{align}
-Additionally we need to define the entropy current as
+Additionally we need to define the \textbf{specific enthalpy} \cite[eq. 2.141]{rezzolla_relativistic_2013}
+\begin{equation}
+h = \frac{e+p}{\rho},
+\label{eq:specific_enthalpy}
+\end{equation}
+where $\rho$ is the rest-mass density, and the \textbf{entropy current}
+% Rest-mass density is defined in eq. 2.123
 \cite[p. 23]{lecture_notes}
 \begin{equation}
-S^\mu \equiv su^\mu
+S^\mu \equiv su^\mu,
 \end{equation}
+as we will need these later.
 It should be noted that the
 \href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
 Greek indices are used for four-vectors and latin indices for three-vectors.
@@ -119,7 +132,7 @@ Since our system of interest is composed of ultrarelativistic particles,
 and the number of particles is not constant, as the particles are annihilated an new ones are formed all the time,
 we need to analyze the behaviour of the system as a fluid that obeys general relativity.
 \href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{
-In general relativity matter and energy content of space is described by the energy-momentum tensor $T^{\mu \nu}$, also known as the stress-energy tensor.}
+In general relativity matter and energy content of space is described by the \textbf{energy-momentum tensor} $T^{\mu \nu}$, also known as the stress-energy tensor.}
 In Minkowski space in Cartesian coordinates it's given as
 \cites[eq. 4.17]{rasanen_gr_2022}[fig. 3.3]{rezzolla_relativistic_2013}
 \begin{equation}
@@ -140,10 +153,8 @@ As the fluid has no viscosity, it does not experience any shear stress, and ther
 $\forall i,j=1,2,3, \quad i \neq j: \quad T^{ij} = 0$.
 This does not depend on the reference frame, so the tensor is diagonal in all reference frames.
 Therefore $T^{ij} = p \delta^{ij}$.
-These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j T^{ij}=0$.
+These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j: T^{ij}=0$.
 This can be broken in two components as
-\todo{The specifics of the energy-momentum tensor will vary by the model,
-so highlight how this affects the rest of the equations. Todo: derive this from the fluid equations.}
 \cites[eq. 5.11, 5.23]{lecture_notes}[eq. 4.12]{rasanen_gr_2022}
 % [eq. 3]{giese_2020}[eq. 4]{giese_2021}
 \begin{align}
@@ -152,6 +163,77 @@ T^{\mu \nu}_f
 \label{eq:ep_tensor} \\
 &= w u^\mu u^\nu + p g^{\mu \nu}.
 \end{align}
+
+We are assuming the background space-time to be constant, and therefore the total \textbf{energy-momentum is conserved}.
+In the language of general relativity this is
+\begin{equation}
+\nabla_\mu T^{\mu\nu} = 0.
+\label{eq:ep_conservation}
+\end{equation}
+Here $\nabla_\mu$ is the covariant derivative, which in Minkowki space in Cartesian coordinates reduces to the partial derivative $\partial_\mu$.
+To expand this equation in a way consistent with \cite[ch. 3.3]{rezzolla_relativistic_2013} we need to define the projection tensor
+\cite[eq. 3.9]{rezzolla_relativistic_2013}
+\begin{equation}
+h_{\mu\nu} \equiv g_{\mu\nu} + u_\mu u_\nu,
+\label{eq:projection_tensor}
+\end{equation}
+and the expansion scalar
+\cite[eq. 3.13]{rezzolla_relativistic_2013}
+\begin{equation}
+\Theta \equiv h^{\mu\nu} \nabla_\nu u_\mu = \nabla_\mu u^\mu.
+\end{equation}
+Inserting these to eq. \ref{eq:ep_conservation} results in
+\begin{equation}
+\nabla_\mu T^{\mu \lambda} = u^\lambda u^\mu \nabla_\mu (\rho h) + \rho h u^\mu \nabla_\mu u^\lambda + \rho h \Theta u^\lambda + g^{\lambda\mu} \nabla_\mu p,
+\end{equation}
+where $h$ is the specific enthalpy of eq. \ref{eq:specific_enthalpy}.
+Relativistic acceleration is defined as
+\begin{equation}
+a_\nu = u^\mu \nabla_\mu u_\nu.
+\end{equation}
+It is orthogonal to the velocity, and therefore
+\begin{equation}
+a^\mu u_\mu = 0.
+\end{equation}
+Projecting using eq. \ref{eq:ep_conservation} and using these we get
+\cite[eq. 3.54]{rezzolla_relativistic_2013}
+\begin{equation}
+\bm{h} \cdot \bm{\nabla} \cdot \bm{T}
+= h^\nu_\lambda \nabla_\mu T^{\mu \lambda}
+= \rho h u^\mu \nabla_\mu u^\nu + h^\nu_\lambda g^{\lambda\mu} \nabla_\mu p
+= 0.
+\end{equation}
+Dividing by $\rho h$ we get the \textbf{relativistic Euler equations}
+\cite[eq. 3.55]{rezzolla_relativistic_2013}
+\begin{equation}
+u^\mu \nabla_\mu u_\nu + \frac{1}{\rho h} h^\mu_\nu \nabla_\mu p = 0.
+\end{equation}
+Similarly we can project along the direction of velocity,
+\begin{equation}
+\bm{u} \cdot \bm{\nabla} \cdot \bm{T} = u_\lambda \nabla_\mu T^{\mu\lambda} = 0.
+\end{equation}
+This results in the \textbf{energy-conservation equation}
+\cite[eq. 3.57]{rezzolla_relativistic_2013}
+\begin{equation}
+u^\mu \nabla_\mu e + \rho h \theta = 0.
+\end{equation}
+For a one-dimensional flow in Cartesian coordinates these can be rewritten as
+\cite[eq. 4.79-4.80]{rezzolla_relativistic_2013}
+\todo{Prove this}
+\begin{align}
+\partial_t \left[ (e+pv^2) \gamma^2 \right] + \partial_x \left[ (e+p) \gamma^2 v \right] &= 0 \\
+\partial_t \left[ (e+p) \gamma^2 v \right] + \partial_x \left[ (ev^2 + p) \gamma^2 \right] &= 0.
+\end{align}
+\todo{Perturb these to get the speed of sound}
+The speed of sound is defined as
+\cites[eq. 2.168]{rezzolla_relativistic_2013}[eq. 13]{giese_2020}[eq. 3]{giese_2021}
+\begin{align}
+c_s^2
+&\equiv \frac{dp}{de} \\
+&= \frac{dp/dT}{de/dT}
+\end{align}
+For an ultrarelativistic plasma $c_s^2=\frac{1}{3}$.
+\todo{Write here why}
 
 
 \section{Field-fluid system}
@@ -185,17 +267,18 @@ Therefore for a wall moving in the z-direction
 \begin{equation}
 \partial_z T^{zz} = \partial_z T^{z0} = 0.
 \end{equation}
-Inserting eq. \ref{eq:ep_tensor} results in the bubble wall junction conditions
+Inserting the definition of $T$ from eq. \ref{eq:ep_tensor} results in the bubble wall junction conditions
 \cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
+% This is almost trivial.
 \begin{align}
 w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+, \\
 w_- \tilde{\gamma}_-^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
 \end{align}
 These can be rearranged as
 \cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
-\todo{prove this step}
+\todo{How to prove this step? My attempts of manual proof have failed.}
 \begin{align}
-\tilde{v_+} \tilde{v_-} = \frac{p_+ - p_-}{e_+ - e_-} \\
+\tilde{v}_+ \tilde{v}_- = \frac{p_+ - p_-}{e_+ - e_-} \\
 \frac{\tilde{v}_+}{\tilde{v}_-} = \frac{e_- + p_+}{e_+ + p_-}
 \label{eq:junction_ep}
 \end{align}
@@ -221,7 +304,7 @@ The difference of the trace anomalies just ahead and behind of the wall is denot
 &\equiv \theta_+ - \theta_- \\
 &= \theta_s - \theta_b
 \end{align}
-With this we can define the transition strength as
+With this we can define the transition strength
 \begin{equation}
 \alpha_+ = \frac{4 \Delta \theta}{3 w_+}.
 \end{equation}
@@ -236,7 +319,7 @@ With these definitions the junction conditions of eq. \ref{eq:junction_ep} can b
 \frac{\tilde{v}_+}{\tilde{v}_-} = \frac{3+(1-3\alpha_+)r}{1+3(1+\alpha_+)r}.
 \end{equation}
 This is the easiest to prove in the reverse direction.
-To get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $r$ we can extract $r$ from both equations and mark those as equal, resulting in the equation
+To further get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $r$, we can extract $r$ from both equations and mark those as equal, resulting in the equation
 \begin{equation}
 \left( \frac{1}{\tilde{v}_-} + 3 \tilde{v}_- \right) v_+ - 3(1+\alpha_+)v_+^2 = \alpha_+ - 1.
 \end{equation}
@@ -244,28 +327,12 @@ To get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $
 This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solved as \cite[eq. B.6, B.7]{hindmarsh_gw_pt_2019}
 \begin{align}
 \tilde{v}_+ &= \frac{1}{2(1+\alpha_+)}\left[ \left(\frac{1}{3\tilde{v}_-}+\tilde{v}_-\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_-} - \tilde{v}_- \right)^2 + 4\alpha_+^2 + \frac{8}{3} \alpha_+} \right]
+\label{eq:v_tilde_plus}
 \\
 \tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right)
+\label{eq:v_tilde_minus}
 \end{align}
-Both of these are basic second-order solutions, but in the first the discriminant has been simplified.
-
-\iffalse
-And simplified to
-\begin{align}
-\frac{v_+}{v_-} &= \frac{1 - \frac{\Delta e}{w_+}}{1 - \frac{\Delta p}{w+}} \\
-v_+ v_- &= \frac{\frac{\Delta p}{w_+}}{\frac{\Delta e}{w_+}}
-\end{align}
-\fi
-
-Speed of sound
-\cites[eq. 13]{giese_2020}[eq. 3]{giese_2021}
-\begin{align}
-c_s^2
-&\equiv \frac{dp}{de} \\
-&= \frac{dp/dT}{de/dT}
-\end{align}
-For an ultrarelativistic plasma $c_s^2=\frac{1}{3}$.
-\todo{Write here why}
+Both of these are basic second-order solutions, but in \ref{eq:v_tilde_plus} the discriminant has been simplified.
 
 
 
