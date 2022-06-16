@@ -64,75 +64,22 @@ How does this correspond to the neutrino content of the universe?)
 The gravitational wave spectrum can be calculated from a few thermodynamic properties of ultrarelativistic matter, which can be computed from quantum field theory.
 These parameters can be measured by LISA.
 
+
+
 \section{Relativistic hydrodynamics}
 % Statistical mechanics \cite{huang_statistical_1987}
 % \cite{schroeder_thermal_2000}
 % \cite[ch. 4]{lecture_notes}
 % According to Hindmarsh it's OK to have references on the level of individual chapters and equations.
 
-\iffalse
-The
-\href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation} states that
-% According to Hindmarsh it's OK to have hyperlinks to unofficial sources such as Wikipedia.
-\cite[eq. 5.47, 5.48]{schroeder_thermal_2000}
-\begin{equation}
-\frac{dp}{dT} = \frac{L}{T \Delta V} = \frac{\Delta S}{\Delta V}.
-\end{equation}
-\fi
+Our system of interest is an ultrarelativistic plasma.
+This means, that the energy of the particles is much higher than their rest mass.
+Therefore there is sufficient energy for new particles to be created,
+and similarly existing particles will annihilate all the time.
+Treating this kind of a system as a classical fluid is not sufficient,
+and we need the mathematical machinery of general relativity.
 
-Let us start from the thermodynamic identity of classical thermal physics
-\cites[eq. 2.136]{rezzolla_relativistic_2013}[eq. 3.68]{schroeder_thermal_2000}
-\begin{equation}
-dU = TdS - pdV + \mu dN,
-\end{equation}
-where $U$ is internal energy, $T$ is temperature, $p$ is pressure, $V$ is volume, $\mu$ is chemical potential and $N$ is the number of particles.
-The fluids in our case are ultrarelativistic, and therefore effectively $T >> \mu$,
-and we can neglect $dN$.
-Perturbing around a constant $U$ (effectively setting $dU=0$) gives the entropy density
-\todo{Is this the correct explanation?}
-\cite[p. 23]{lecture_notes}
-\begin{equation}
-s \equiv \frac{dS}{dV} = \frac{dp}{dT}.
-\end{equation}
-Inserting this back to the thermodynamic identity gives the \textbf{energy density}
-\begin{equation}
-e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
-\end{equation}
-This in turn can be inserted to the definition of enthalpy
-\cite[eq. 1.51]{schroeder_thermal_2000}
-\begin{equation}
-H \equiv E + pV
-\end{equation}
-to get the \textbf{enthalpy density}
-\begin{align}
-w
-&\equiv \frac{dH}{dV} \\
-&= e+p \\
-&= T \frac{\partial p}{\partial T} \\
-&= Ts.
-\end{align}
-Additionally we need to define the \textbf{specific enthalpy} \cite[eq. 2.141]{rezzolla_relativistic_2013}
-\begin{equation}
-h = \frac{e+p}{\rho},
-\label{eq:specific_enthalpy}
-\end{equation}
-where $\rho$ is the rest-mass density, and the \textbf{entropy current}
-% Rest-mass density is defined in eq. 2.123
-\cite[p. 23]{lecture_notes}
-\begin{equation}
-S^\mu \equiv su^\mu,
-\end{equation}
-as we will need these later.
-It should be noted that the
-\href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
-Greek indices are used for four-vectors and latin indices for three-vectors.
-% The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
-
-Since our system of interest is composed of ultrarelativistic particles,
-and the number of particles is not constant, as the particles are annihilated an new ones are formed all the time,
-we need to analyze the behaviour of the system as a fluid that obeys general relativity.
-\href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{
-In general relativity matter and energy content of space is described by the \textbf{energy-momentum tensor} $T^{\mu \nu}$, also known as the stress-energy tensor.}
+In general relativity the matter and energy content of space are described by the \textbf{energy-momentum tensor} $T^{\mu \nu}$, also known as the stress-energy tensor.
 In Minkowski space in Cartesian coordinates it's given as
 \cites[eq. 4.17]{rasanen_gr_2022}[fig. 3.3]{rezzolla_relativistic_2013}
 \begin{equation}
@@ -146,15 +93,20 @@ e & -q_1 & -q_2 & -q_3 \\
 \end{equation}
 where $q$ is the energy flux or momentum density and $\Pi_{\mu \nu}$ is known as the anisotropic stress, anisotropic pressure or momentum flux.
 \href{https://physics.stackexchange.com/a/412067/298623}{In our case we assume the energy-matter content to be an ideal fluid in thermal equilibrium.}
-Therefore there is no energy transfer to or from the fluid.
-Therefore
+There is no energy transfer to or from the fluid, and therefore
 $\forall j=1,2,3: \quad T^{0j} = 0$.
 As the fluid has no viscosity, it does not experience any shear stress, and therefore
 $\forall i,j=1,2,3, \quad i \neq j: \quad T^{ij} = 0$.
 This does not depend on the reference frame, so the tensor is diagonal in all reference frames.
 Therefore $T^{ij} = p \delta^{ij}$.
 These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j: T^{ij}=0$.
-This can be broken in two components as
+It should be noted that the
+\href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
+Greek indices are used for four-vectors and latin indices for three-vectors.
+% The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
+This
+\href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{\textbf{energy-momentum tensor of an ideal fluid}}
+can be broken in two components as
 \cites[eq. 5.11, 5.23]{lecture_notes}[eq. 4.12]{rasanen_gr_2022}
 % [eq. 3]{giese_2020}[eq. 4]{giese_2021}
 \begin{align}
@@ -182,11 +134,12 @@ and the expansion scalar
 \begin{equation}
 \Theta \equiv h^{\mu\nu} \nabla_\nu u_\mu = \nabla_\mu u^\mu.
 \end{equation}
-Inserting these to eq. \ref{eq:ep_conservation} results in
+Inserting these to \eqref{eq:ep_conservation} results in
+% The specific enthalpy is not a meaningful quantity for an ultrarelativistic fluid, and is therefore not used here.
 \begin{equation}
-\nabla_\mu T^{\mu \lambda} = u^\lambda u^\mu \nabla_\mu (\rho h) + \rho h u^\mu \nabla_\mu u^\lambda + \rho h \Theta u^\lambda + g^{\lambda\mu} \nabla_\mu p,
+\nabla_\mu T^{\mu \lambda} = u^\lambda u^\mu \nabla_\mu (e+p) + (e+p) u^\mu \nabla_\mu u^\lambda + (e+p) \Theta u^\lambda + g^{\lambda\mu} \nabla_\mu p.
 \end{equation}
-where $h$ is the specific enthalpy of eq. \ref{eq:specific_enthalpy}.
+\todo{Should enthalpy be introduced before this? It would make the e+p terms simpler.}
 Relativistic acceleration is defined as
 \begin{equation}
 a_\nu = u^\mu \nabla_\mu u_\nu.
@@ -195,18 +148,19 @@ It is orthogonal to the velocity, and therefore
 \begin{equation}
 a^\mu u_\mu = 0.
 \end{equation}
-Projecting using eq. \ref{eq:ep_conservation} and using these we get
+Projecting using \eqref{eq:ep_conservation} and using these we get
 \cite[eq. 3.54]{rezzolla_relativistic_2013}
 \begin{equation}
 \bm{h} \cdot \bm{\nabla} \cdot \bm{T}
 = h^\nu_\lambda \nabla_\mu T^{\mu \lambda}
-= \rho h u^\mu \nabla_\mu u^\nu + h^\nu_\lambda g^{\lambda\mu} \nabla_\mu p
+= (e+p) u^\mu \nabla_\mu u^\nu + h^\nu_\lambda g^{\lambda\mu} \nabla_\mu p
 = 0.
 \end{equation}
-Dividing by $\rho h$ we get the \textbf{relativistic Euler equations}
+It should be noted that \cite{rezzolla_relativistic_2013} uses the specific enthalpy $h$ in their form these equations, but it is not a meaningful quantity for an ultrarelativistic plasma and is therefore not used here.
+Dividing by $e+p$ we get the \textbf{relativistic Euler equations}
 \cite[eq. 3.55]{rezzolla_relativistic_2013}
 \begin{equation}
-u^\mu \nabla_\mu u_\nu + \frac{1}{\rho h} h^\mu_\nu \nabla_\mu p = 0.
+u^\mu \nabla_\mu u_\nu + \frac{1}{e+p} h^\mu_\nu \nabla_\mu p = 0.
 \end{equation}
 Similarly we can project along the direction of velocity,
 \begin{equation}
@@ -215,25 +169,109 @@ Similarly we can project along the direction of velocity,
 This results in the \textbf{energy-conservation equation}
 \cite[eq. 3.57]{rezzolla_relativistic_2013}
 \begin{equation}
-u^\mu \nabla_\mu e + \rho h \theta = 0.
+u^\mu \nabla_\mu e + (e+p) \Theta = 0.
 \end{equation}
-For a one-dimensional flow in Cartesian coordinates these can be rewritten as
-\cite[eq. 4.79-4.80]{rezzolla_relativistic_2013}
-\todo{Prove this}
+
+For a one-dimensional flow in Cartesian coordinates the energy-momentum conservation of \eqref{eq:ep_conservation} can also be rewritten as
 \begin{align}
-\partial_t \left[ (e+pv^2) \gamma^2 \right] + \partial_x \left[ (e+p) \gamma^2 v \right] &= 0 \\
-\partial_t \left[ (e+p) \gamma^2 v \right] + \partial_x \left[ (ev^2 + p) \gamma^2 \right] &= 0.
+\partial_t \left[ (e+pv^2) \gamma^2 \right] + \partial_x \left[ (e+p) \gamma^2 v \right] &= 0,
+\label{eq:ep_conservation_1d_1} \\
+\partial_t \left[ (e+p) \gamma^2 v \right] + \partial_x \left[ (ev^2 + p) \gamma^2 \right] &= 0
+\label{eq:ep_conservation_1d_2}
 \end{align}
-\todo{Perturb these to get the speed of sound}
-The speed of sound is defined as
+by simply inserting \eqref{eq:ep_tensor} and using the normalisation of four-velocity $u_\mu u^\mu = -1$.
+Let's then analyse a perturbation on a fluid that is at rest with $e_0, p_0$ and $v_0 = 0$.
+To first order
+\begin{equation}
+e = e_0 + \delta e, \quad p=p_0 + \delta p, \quad v = v_0 + \delta v = \delta v.
+\end{equation}
+Substituting these into \eqref{eq:ep_conservation_1d_1} and \eqref{eq:ep_conservation_1d_2} and approximating to first order in the perturbation results in
+\begin{align}
+\partial_t (\delta e) + (e_0 + p_0) \partial_x (\delta v) = 0,
+\label{eq:ep_conservation_rewritten_1} \\
+\partial_t (\delta v) + \frac{1}{e_0 + p_0} \partial_x (\delta p) = 0.
+\label{eq:ep_conservation_rewritten_2}
+\end{align}
+Taking the time derivative of \eqref{eq:ep_conservation_rewritten_1} and a space derivative of \eqref{eq:ep_conservation_rewritten_2}, we can combine the equations to the form
+\begin{equation}
+\partial_t^2 (\delta e) - \frac{\delta p}{\delta e} \partial_x^2(\delta e) = 0.
+\end{equation}
+This is the familiar wave equation, so the motion of the fluid has wave solutions that we call sound.
+\cite[ch. 4.3]{rezzolla_relativistic_2013}
+The speed of sound is then defined as
 \cites[eq. 2.168]{rezzolla_relativistic_2013}[eq. 13]{giese_2020}[eq. 3]{giese_2021}
 \begin{align}
 c_s^2
 &\equiv \frac{dp}{de} \\
 &= \frac{dp/dT}{de/dT}
 \end{align}
-For an ultrarelativistic plasma $c_s^2=\frac{1}{3}$.
+At the ultrarelativistic limit $e=3p$ and therefore $c_s^2=\frac{1}{3}$.
 \todo{Write here why}
+
+\iffalse
+The
+\href{https://en.wikipedia.org/wiki/Clausius\%E2\%80\%93Clapeyron_relation}{Clausius-Clapeyron relation} states that
+% According to Hindmarsh it's OK to have hyperlinks to unofficial sources such as Wikipedia.
+\cite[eq. 5.47, 5.48]{schroeder_thermal_2000}
+\begin{equation}
+\frac{dp}{dT} = \frac{L}{T \Delta V} = \frac{\Delta S}{\Delta V}.
+\end{equation}
+\fi
+
+Proper discussion of relativistic fluids also requires various thermodynamic quantities.
+\todo{Derive entropy density properly}
+% Let us start from the thermodynamic identity of classical thermal physics
+
+Perturbing around a constant $U$ (effectively setting $dU=0$) gives the entropy density
+\todo{Is this the correct explanation?}
+\cite[p. 23]{lecture_notes}
+\begin{equation}
+s \equiv \frac{dS}{dV} = \frac{dp}{dT}.
+\label{eq:entropy_density}
+\end{equation}
+
+Useful formulas for other thermodynamic quantities can be obtained from the thermodynamic identity of classical thermal physics.
+\cites[eq. 2.136]{rezzolla_relativistic_2013}[eq. 3.68]{schroeder_thermal_2000}
+\begin{equation}
+dU = TdS - pdV + \mu dN,
+\label{eq:thermodynamic_identity}
+\end{equation}
+where $U$ is internal energy, $T$ is temperature, $p$ is pressure, $V$ is volume, $\mu$ is chemical potential and $N$ is the number of particles.
+The fluids in our case are ultrarelativistic, and therefore effectively $T >> \mu$,
+and we can neglect $dN$.
+
+Inserting \eqref{eq:entropy_density} to \eqref{eq:thermodynamic_identity} gives the \textbf{energy density}
+\begin{equation}
+e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
+\end{equation}
+This in turn can be inserted to the definition of enthalpy
+\cite[eq. 1.51]{schroeder_thermal_2000}
+\begin{equation}
+H \equiv E + pV
+\end{equation}
+to get the \textbf{enthalpy density}
+\begin{align}
+w
+&\equiv \frac{dH}{dV} \\
+&= e+p \\
+&= T \frac{\partial p}{\partial T} \\
+&= Ts.
+\end{align}
+\iffalse
+Additionally we need to define the \textbf{specific enthalpy} \cite[eq. 2.141]{rezzolla_relativistic_2013}
+\begin{equation}
+h = \frac{e+p}{\rho},
+\label{eq:specific_enthalpy}
+\end{equation}
+where $\rho$ is the rest-mass density, and the \textbf{entropy current}
+% Rest-mass density is defined in eq. 2.123
+\fi
+Additionally we need to define the \textbf{entropy current}
+\cite[p. 23]{lecture_notes}
+\begin{equation}
+S^\mu \equiv su^\mu.
+\end{equation}
+
 
 
 \section{Field-fluid system}
@@ -251,8 +289,8 @@ The total energy-momentum is conserved,
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
-\label{eq:ep_conservation}
 \end{equation}
+
 
 
 \section{Relativistic combustion}
@@ -261,13 +299,13 @@ This chapter of the lecture notes is largely based on the references
 \cites{hindmarsh_gw_pt_2019}{espinosa_energy_2010}.
 \todo{Add more content from \cite[ch. 6]{mazumdar_review_2019}.}
 
-If the wall velocity is constant, eq. \ref{eq:ep_conservation} also holds in the wall frame.
+If the wall velocity is constant, \eqref{eq:ep_conservation} also holds in the wall frame.
 Therefore for a wall moving in the z-direction
 \cite[eq. 7]{espinosa_energy_2010}
 \begin{equation}
 \partial_z T^{zz} = \partial_z T^{z0} = 0.
 \end{equation}
-Inserting the definition of $T$ from eq. \ref{eq:ep_tensor} results in the bubble wall junction conditions
+Inserting the definition of $T$ from \eqref{eq:ep_tensor} results in the bubble wall junction conditions
 \cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
 % This is almost trivial.
 \begin{align}
@@ -285,7 +323,7 @@ These can be rearranged as
 Further simplification of these requires additional definitions
 that we will now introduce.
 
-The trace of the energy-momentum tensor of equation \ref{eq:ep_tensor} is
+The trace of the energy-momentum tensor of \eqref{eq:ep_tensor} is
 \begin{align}
 \text{tr} (T^{\mu \nu})
 &= T^\mu_\mu \\
@@ -312,13 +350,14 @@ We can also define the enthalpy ratio
 \begin{equation}
 r = \frac{w_+}{w_-}.
 \end{equation}
-With these definitions the junction conditions of eq. \ref{eq:junction_ep} can be simplified as
+With these definitions the junction conditions of \eqref{eq:junction_ep} can be simplified as
 \begin{equation}
 \tilde{v}_+ \tilde{v}_- = \frac{1-(1-3\alpha_+)r}{3-3(1+\alpha_+)r},
 \quad
 \frac{\tilde{v}_+}{\tilde{v}_-} = \frac{3+(1-3\alpha_+)r}{1+3(1+\alpha_+)r}.
 \end{equation}
-This is the easiest to prove in the reverse direction.
+% If a superlative is without a noun, there is no "the".
+This is easiest to prove in the reverse direction.
 To further get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $r$, we can extract $r$ from both equations and mark those as equal, resulting in the equation
 \begin{equation}
 \left( \frac{1}{\tilde{v}_-} + 3 \tilde{v}_- \right) v_+ - 3(1+\alpha_+)v_+^2 = \alpha_+ - 1.
@@ -332,7 +371,7 @@ This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solve
 \tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right)
 \label{eq:v_tilde_minus}
 \end{align}
-Both of these are basic second-order solutions, but in \ref{eq:v_tilde_plus} the discriminant has been simplified.
+Both of these are basic second-order solutions, but in \eqref{eq:v_tilde_plus} the discriminant has been simplified.
 
 
 
@@ -455,7 +494,7 @@ Pressures are of the form
 p_s(T) = \frac{1}{3}a_+ T^4 + (b_+ - c_+ T^2)^2 - b_-^2 \\
 p_b(T) = \frac{1}{3}a_+ T^4 + (b_- - c_-T^2)^2 - b_-^2
 \end{align}
-Compare these to the equations \ref{eq:bag_ps}, \ref{eq:bag_pb}.
+Compare these to the \eqref{eq:bag_ps}, \eqref{eq:bag_pb}.
 
 
 
