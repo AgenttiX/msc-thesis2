@@ -288,6 +288,7 @@ The total energy-momentum is conserved,
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
+\label{eq:ep_conservation}
 \end{equation}
 
 
@@ -377,6 +378,12 @@ This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solve
 \end{align}
 Both of these are basic second-order solutions, but in \eqref{eq:v_tilde_plus} the discriminant has been simplified.
 
+\begin{figure}[h!]
+\centering
+\missingfigure{TODO}
+\caption{Relation between the fluid velocity just ahead of the wall $\tilde{v}_+$ and just behind the wall $\tilde{v}_-$ \cite[fig. 13]{lecture_notes}}
+\label{fig:vplus_vminus}
+\end{figure}
 
 We can obtain useful continuity equations from the conservation of energy-momentum.
 We start by defining two vectors, the fluid 4-velocity
@@ -394,32 +401,182 @@ It should be noted, that for orthonormal vectors
 u_\mu u^\mu &= -1, \\
 u_\mu \bar{u}^\mu &= 0.
 \end{align}
-By projecting the conservation equation to this basis we get
+By projecting the conservation equation (\ref{eq:ep_conservation}) to this basis we get
 \cite[eq. 7.28-7.29]{lecture_notes}
 \begin{align}
-0 = u_\mu \partial_\nu T^{\mu \nu} = -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p \\
-0 = \bar{u} \partial_\nu T^{\mu \nu} = w \bar{u}^\nu u^\mu \partial_\mu u_\nu + \bar{u}^\mu \partial_\mu p
+0 &= u_\mu \partial_\nu T^{\mu \nu}   &&= -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p, \\
+0 &= \bar{u} \partial_\nu T^{\mu \nu} &&= w \bar{u}^\nu u^\mu \partial_\mu u_\nu + \bar{u}^\mu \partial_\mu p.
 \end{align}
-
-Dimensionless coordinate
+These are known as the continuity equations, or the hydrodynamic equations. \todo{Where did I find the latter name from?}
+They have spherically symmetric self-similar solutions, and can therefore be expressed using the dimensionless coordinate
 \begin{equation}
-\xi = \frac{r}{t}
+\xi = \frac{r}{t}.
 \end{equation}
-
-Hydrodynamic equations, aka. continuity equations
+This results in the equations
 \todo{Todo: Derive these using Espinoza's article, and see the handwritten notes by Hidmarsh. It's longer than it looks.}
 \cites[eq. 7.30-7.31]{lecture_notes}[eq. 5]{giese_2021}
 \begin{align}
-\frac{dv}{d\xi} &= \frac{2v(1-v^2)}{\xi(1-v\xi)} \left( \frac{\mu(\xi,v)^2}{c_s^2} - 1 \right)^{-1} \\
-\frac{dw}{d\xi} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\xi,v) \frac{dv}{d\xi}
+\frac{dv}{d\xi} &= \frac{2v(1-v^2)}{\xi(1-v\xi)} \left( \frac{\mu(\xi,v)^2}{c_s^2} - 1 \right)^{-1},
+\label{eq:hydro1}
+\\
+\frac{dw}{d\xi} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\xi,v) \frac{dv}{d\xi},
+\label{eq:hydro2}
 \end{align}
+where
+\begin{equation}
+\mu(\xi,v) = \frac{\xi - v}{1 - \xi v}
+\end{equation}
+is the
+\href{https://en.wikipedia.org/wiki/Velocity-addition_formula#Standard_configuration}{Lorentz transformed fluid velocity}
+$\xi$ in a frame moving outward with the speed $v$.
 
-It should be highlighted that everything in this chapter is independent of the equation of state introduced in the next chapter.
+For easier integration these equations can be rearranged to the parametric form of
+\cite[eq. B.14-16]{hindmarsh_gw_pt_2019}
+\begin{align}
+\frac{d\xi}{d\tau} &= \xi \left[ (\xi - v)^2 - c_s^2 (1 - \xi v)^2 \right], \\
+\frac{dv}{d\tau} &= 2 v c_s^2 (1 - v^2) (1 - \xi v), \\
+\frac{dw}{d\tau} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu \frac{dv}{d\tau}.
+\end{align}
+It should be noted that in general $c_s^2 = c_s^2(w,\phi)$, which tightens the coupling between these equations.
+The parametric equations have fixed points at
+$(\xi,v) = (0,0)$ and
+$(\xi,v) = (1,1)$.
+When $c_s$ is a constant, the equations also have a fixed point at
+$(\xi,v) = (c_s,0)$.
+When $c_s$ is constant, the first two equations are not dependent on enthalpy, which simplifies the integration considerably.
+However, in the general case of $c_s(w,\phi)$ the equations have to be integrated together.
+\todo{Add $(\xi,v)$ plots to the models and refer to them here.}
 
+
+\section{Types of solutions}
+Solutions to the hydrodynamic equations (\ref{eq:hydro1}, \ref{eq:hydro2}) are obtained by integrating away from the position of the bubble wall, $\xi_w$.
+There are two relevant external boundary conditions.
+To maintain spherical symmetry
+\begin{equation}
+\lim_{\xi \rightarrow 0} v = 0.
+\end{equation}
+To maintain causality
+\begin{equation}
+\lim_{\xi \rightarrow 1} v = 0,
+\end{equation}
+as no information can propagate faster than light, and we assume the fluid to be stationary until a signal from the expanding bubble arrives.
+In addition to these there is one boundary condition for each side of the wall as
+\begin{equation}
+\lim_{\xi \rightarrow \xi_w^\pm = v_w \pm \delta, \delta \rightarrow 0} v = v_\pm = \mu (\xi_w, \tilde{v}_\pm),
+\end{equation}
+
+There are two ways to satisfy these conditions.
+We can either start at $v=0$, or from a region where $\xi > c_{s-}$ and $\mu(\xi,v) > c_{s-}(w)$, and therefore $\frac{dv}{d\xi} > 0$,
+and integrating backwards in $\xi$ over a route where $\mu(\xi,v) > c_{s-}(w)$ is satisfied.
+The other way to reach $v=0$ is by a discontinuity, i.e. a shock.
+This leads to two classes of solutions.
+Another way to see that there are two classes of solutions is by noting
+that the equations \ref{eq:v_tilde_plus} and \ref{eq:v_tilde_minus} have two branches.
+These solutions are classified in table \ref{table:solution_types}.
+
+The solutions with $\tilde{v}_+ > \tilde{v}_-$ are known as detonations.
+% In this case there is no way for the front to influence the fluid ahead,
+% and the outermost front is a shock.
+Detonations are further characterised by the scale of their $\tilde{v}_-$.
+In weak detonations $\tilde{v}_- > c_{s-}(w_-)$.
+However, weak detonations are not possible in an exothermic reaction such as a cosmological phase transition.
+\cite[p. 265]{rezzolla_relativistic_2013}
+\todo{How should we modify the $(\xi,v)$ plot for weak detonations to appear?}
+Correspondingly, detonations with $\tilde{v}_- < c_{s-}(w_-)$ are known as strong detonations.
+However, they are unstable and will naturally evolve into the third class of detonations,
+the Chapman-Jouguet detonations, for which $\tilde{v}_- = c_{s-}(w_-)$.
+\cite[p. 279]{rezzolla_relativistic_2013}
+Since we are investigating a self-similar bubble that has already evolved for some time,
+all our detonations of interest are Chapman-Jouguet detonations.
+\todo{What would a strong detonation look like in the $(\xi,v)$ plot?}
+In Chapman-Jouguet detonations the shock and phase boundary fronts are unified to a single front.
+
+The solutions where $\tilde{v}_+ < \tilde{v}_-$ are known as deflagrations.
+In them the phase front can influence the fluid ahead, and the wall is preceded by an accelerating fluid and a shock.
+Like with weak detonations, strong deflagrations are not possible in an exothermic reaction.
+\cite[p. 267]{rezzolla_relativistic_2013}
+Therefore only weak and Chapman-Jouguet deflagrations are possible.
+In weak detonations the fluid inside the phase boundary is still, and the preceding shock is weak and
+known as the precompression front.
+
+In several articles \cites[p. 37]{lecture_notes}[p. 35]{hindmarsh_gw_pt_2019}
+Chapman-Jouguet detonations are known as supersonic deflagrations or hybrids,
+\todo{Chapman-Jouguet detonations are the fastest, but the relation between hybrids and C-J is not one-to-one. Fix this}
+as in them the wall speed exceeds the speed of sound in the broken phase $c_{s-}$,
+and the fluid is moving inside the phase boundary as well, as in a detonation.
+\todo{Investigate what a strong detonation looks like.}
+
+\begin{table}[ht!]
+\small
+\begin{tabular}{r|c|c}
+                & Detonations            & Deflagrations \\
+                & $p_+ < p_-, \tilde{v}_+ > \tilde{v}_-$ & $p_+ > p_-, \tilde{v}_+ < \tilde{v}_-$ \\ \hline
+Weak            & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$ \\
+Chapman-Jouguet & $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ \\
+Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$} & {\color{gray} $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} \\
+\end{tabular}
+\label{table:solution_types}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\missingfigure{TODO}
+\caption{Three different types of relativistic combustion \cite[fig. 14]{lecture_notes}}
+\label{fig:solution_types}
+\end{figure}
+
+\clearpage
+\FloatBarrier
+\subsection{Speed limits}
+The observables of a physical system must be real, including $\tilde{v}_+$ and $\tilde{v}_-$.
+Therefore the expressions in the square roots of \ref{eq:v_tilde_plus} and \ref{eq:v_tilde_minus} must be real.
+By simplifying the expression in the square root of \ref{eq:v_tilde_minus} we see that the square root is real $\forall \alpha_+ \geq 0$,
+but setting the square root in \ref{eq:v_tilde_plus} to zero gives a limit for $\tilde{v}_+$ as
+\begin{equation}
+\tilde{v}_+ = \frac{1}{\sqrt{3}} \left( \frac{1 \pm \sqrt{2 \alpha_+ + 3 \alpha_+^2}}{1 + \alpha_+} \right).
+\label{eq:v_tilde_plus_limit}
+\end{equation}
+The positive sign is the lower limit for detonations, and the negative sign is the upper limit for deflagrations.
+This is the same equation as in \cites[eq. 7.34]{lecture_notes}[eq. B.19]{hindmarsh_gw_pt_2019},
+but in those articles there is a typo due to which a factor of 2 is missing from the expression.
+
+Inserting this value to the equation \ref{eq:v_tilde_minus} and simplifying the expression with the knowledge that the square root is now zero
+we get that
+\begin{equation}
+\tilde{v}_- = \frac{1}{\sqrt{3}}.
+\label{eq:v_tilde_minus_limit}
+\end{equation}
+This is the lower limit for detonations, and the upper limit for deflagrations.
+
+The Chapman-Jouguet speed is defined as
+\begin{equation}
+\tilde{v}_+=v_{CJ} \Leftrightarrow \tilde{v}_- = c_{s-}(w_-).
+\label{eq:chapman_jouguet}
+\end{equation}
+Starting from section \ref{bag_model} we will see that for some models the speed limit set by the Chapman-Jouguet speed of \ref{eq:chapman_jouguet}
+and the condition of \ref{eq:v_tilde_minus_limit} that the observables are real are equivalent,
+but in general this is not the case.
+
+Now we have the necessary knowledge to classify the different regions of fig. \ref{fig:vplus_vminus}.
+If the speeds of sound are equivalent to $\frac{1}{\sqrt{3}}$,
+we can have only weak and Chapman-Jouguet detonations and deflagrations.
+However, the weak detonations are ruled out for the aforementioned reason that they are not possible in an exothermic reaction.
+
+When the speed of sound in the broken phase $c_{s-}(w_-) < \frac{1}{\sqrt{3}}$,
+we can have a strong deflagration where $c_{s-}(w_-) < \tilde{v}_- < \frac{1}{\sqrt{3}}$.
+Correspondingly, when $c_{s-}(w_-) > \frac{1}{\sqrt{3}}$,
+we can have a strong detonation where $\frac{1}{\sqrt{3}} < \tilde{v}_-(w_-, \phi_-) < c_{s-}(w_-)$.
+However, as previously discussed, a strong detonation is unstable and will evolve into a Chapman-Jouguet detonation.
+Since for Chapman-Jouguet detonations $v_w = \tilde{v}_+ > \tilde{v}_-$,
+the Chapman-Jouguet speed is the lower speed limit for detonations that have been evolving for a sufficiently long time.
 
 
 \section{The bag model}
+\label{bag_model}
 The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
+It should be highlighted that everything up to this point has been independent of the equation of state,
+and we will now move forward to describing our first equation of state.
+
 One of the simplest equations of state is the bag model, where
 \cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
 \begin{align}
@@ -429,13 +586,15 @@ p_b &= a_b T^4,
 \label{eq:bag_pb}
 \end{align}
 where $a_s$, $a_b$ and $V_s$ are positive constants with $a_s > a_b$.
-s=symmetric, b=broken.
+The subscripts $s$ refers to the symmetric phase, and $b$ to the broken phase.
 
 In this model the speed of sound simplifies as
 \begin{equation}
 c_s^2 = \frac{dp}{de} = 1/3,
 \end{equation}
-This corresponds to assuming the bth phases to be ultrarelativistic.
+This corresponds to assuming both of the phases to be ultrarelativistic.
+It also happens to be the same as the $\tilde{v}_-$ limit of (\ref{eq:v_tilde_minus_limit}),
+and therefore the Chapman-Jouguet speed $v_{CJ}$ of the bag model is given by (\ref{eq:v_tilde_plus_limit}).
 
 The name of the bag model originates from quantum chromodynamics (QCD), where it's used to describe the proton as a bag of quarks.
 \todo{check this}
@@ -500,17 +659,6 @@ p_s(T) = \frac{1}{3}a_+ T^4 + (b_+ - c_+ T^2)^2 - b_-^2 \\
 p_b(T) = \frac{1}{3}a_+ T^4 + (b_- - c_-T^2)^2 - b_-^2
 \end{align}
 Compare these to the \eqref{eq:bag_ps}, \eqref{eq:bag_pb}.
-
-
-
-\section{Types of solutions}
-\missingfigure{Figure of the three different types of relativistic combustion. \cite[fig. 14]{lecture_notes}}
-
-Subsonic deflagrations
-
-Detonations
-
-Supersonic deflagrations (hybrids)
 
 
 \section{Energy redistribution}
