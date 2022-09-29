@@ -202,8 +202,10 @@ The speed of sound is then defined as
 \cites[eq. 2.168]{rezzolla_relativistic_2013}[eq. 13]{giese_2020}[eq. 3]{giese_2021}
 \begin{align}
 c_s^2
-&\equiv \frac{dp}{de} \\
+&\equiv \frac{dp}{de}
+\label{eq:cs2_compact} \\
 &= \frac{dp/dT}{de/dT}
+\label{eq:cs2_explicit}
 \end{align}
 At the ultrarelativistic limit $e=3p$ and therefore $c_s^2=\frac{1}{3}$.
 \todo{Write here why}
@@ -242,6 +244,7 @@ and we can neglect $dN$.
 Inserting \eqref{eq:entropy_density} to \eqref{eq:thermodynamic_identity} gives the \textbf{energy density}
 \begin{equation}
 e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
+\label{eq:energy_density}
 \end{equation}
 This in turn can be inserted to the definition of enthalpy
 \cite[eq. 1.51]{schroeder_thermal_2000}
@@ -252,8 +255,10 @@ to get the \textbf{enthalpy density}
 \begin{align}
 w
 &\equiv \frac{dH}{dV} \\
-&= e+p \\
-&= T \frac{\partial p}{\partial T} \\
+&= e+p
+\label{eq:enthalpy_sum} \\
+&= T \frac{\partial p}{\partial T}
+\label{eq:enthalpy_pressure}\\
 &= Ts.
 \end{align}
 \iffalse
@@ -290,7 +295,6 @@ The total energy-momentum is conserved,
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
 \label{eq:ep_conservation}
 \end{equation}
-
 
 
 \section{Relativistic combustion}
@@ -334,6 +338,7 @@ We can quantify its difference from zero with the trace anomaly
 \cites[eq. 7.24]{lecture_notes}[eq. 28]{giese_2020}
 \begin{equation}
 \theta = \frac{1}{4}(e-3p).
+\label{eq:theta}
 \end{equation}
 The definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
 The difference of the trace anomalies just ahead and behind of the wall is denoted as
@@ -350,6 +355,7 @@ The transition strength at nucleation temperature is defined slightly differentl
 \cite[eq. 2.11]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \alpha_n = \frac{4}{3} \frac{\theta_+(w_n) - \theta_-(w_n)}{w_n}.
+\label{eq:alpha_n}
 \end{equation}
 We can also define the enthalpy ratio
 \begin{equation}
