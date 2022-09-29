@@ -1,0 +1,142 @@
+\section{The bag model}
+\label{bag_model}
+The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
+It should be highlighted that everything up to this point has been independent of the equation of state,
+and we will now move forward to describing our first equation of state.
+
+One of the simplest equations of state is the bag model, where
+\cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
+\begin{align}
+p_s &= a_s T^4 - V_s
+\label{eq:bag_ps} \\
+p_b &= a_b T^4,
+\label{eq:bag_pb}
+\end{align}
+where $a_s$, $a_b$ and $V_s$ are positive constants with $a_s > a_b$.
+The subscripts $s$ refers to the symmetric phase, and $b$ to the broken phase.
+
+In this model the speed of sound simplifies as
+\begin{equation}
+c_s^2 = \frac{dp}{de} = 1/3,
+\end{equation}
+This corresponds to assuming both of the phases to be ultrarelativistic.
+It also happens to be the same as the $\tilde{v}_-$ limit of (\ref{eq:v_tilde_minus_limit}),
+and therefore the Chapman-Jouguet speed $v_{CJ}$ of the bag model is given by (\ref{eq:v_tilde_plus_limit}).
+
+The name of the bag model originates from quantum chromodynamics (QCD), where it's used to describe the proton as a bag of quarks.
+\todo{check this}
+
+
+\section{More complex models}
+The bag model includes severe approximations, and for realistic simulations a more complex model is needed.
+The primary parameters for these models are
+\begin{itemize}
+    \item The phase transition parameters: percolation temperature, phase transition duration
+    \item Bubble wall velocity
+    \item Fraction of energy that is converted into fluid motion: $\kappa$
+    \item Numerical prefactor from lattice simulations
+\end{itemize}
+
+Speed of sound may not be ultrarelativistic, especially in the broken phase.
+
+\subsection{The constant sound speed model}
+The constant sound speed model, also known as the $\mu, \nu$ model, expands the bag model by allowing a change in the speed of sound of the broken phase.
+\cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}
+\begin{align}
+p_s &= \frac{1}{3} a_+ T^\mu - \epsilon \\
+p_b &= \frac{1}{3} a_- T^\nu \\
+e_s &= a_+ T^\mu + \epsilon \\
+e_b &= \frac{1}{3} a_- (\nu - 1) T^\nu
+\end{align}
+The parameters $a_+$ and $a_-$ are proportional to the number of relativistic degrees of freedom in the symmetric and broken phases, and $\epsilon$ is the temperature-independent vacuum energy that is released in the phase transition.
+The parameters $\mu$ and $\nu$ are determined by the sound speeds in the symmetric and broken phases:
+\cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
+\begin{align}
+\mu = 1 + \frac{1}{c_{s,s}^2}, \\
+\nu = 1 + \frac{1}{c_{s,b}^2}.
+\end{align}
+\footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
+
+\subsection{Model with cubic thermal effects}
+Free energy
+\todo{Where does this come from? How to extract the thermal effects?}
+\cite[eq. 45]{giese_2020}
+\begin{align}
+\begin{split}
+\textsc{F}(\phi, T) =
+&- \frac{a_+}{3} T^4 \\
+&+ \lambda \left( \phi^4 - 2E\phi^3 T + \phi^2 \left( E^2 T_\text{cr}^2 + c \left( T^2 - T_\text{cr}^2 \right) \right) \right) \\
+&+ \frac{\lambda}{4} \left( c - E^2 \right)^2 T_\text{cr}^4
+\end{split}
+\end{align}
+
+The minimum of the field potential is given by
+\cite[eq. 46]{giese_2020}
+\begin{equation}
+\phi_\text{min} = \frac{3}{4} ET + \sqrt{\frac{T^2}{2}(\frac{9}{8}E^2 - c) - \frac{T_\text{cr}^2}{2} (E^2 - c)}
+\end{equation}
+
+\subsection{Model with a two-step phase transition}
+Two scalar fields and two symmetry breakings. Examples: electroweak symmetry, $\mathbb{Z}_2$ symmetry.
+Cubic term is neglected.
+Pressures are of the form
+\cite[eq. 47-48]{giese_2020}
+\begin{align}
+p_s(T) = \frac{1}{3}a_+ T^4 + (b_+ - c_+ T^2)^2 - b_-^2 \\
+p_b(T) = \frac{1}{3}a_+ T^4 + (b_- - c_-T^2)^2 - b_-^2
+\end{align}
+Compare these to the \eqref{eq:bag_ps}, \eqref{eq:bag_pb}.
+
+
+\section{Energy redistribution}
+Efficiency factor $\kappa$, which is the fraction of energy that is converted into fluid motion.
+\begin{equation}
+\kappa = \frac{3}{\xi_w^3 \Delta \theta} \int d\xi \xi^2 w \gamma^2 v^2
+\end{equation}
+From solving the hydrodynamic equations of state of a single expanding bubble.
+
+Kinetic energy fraction
+\cites[eq. 7.36]{lecture_notes}[eq. 5]{giese_2020}
+\begin{align}
+K
+&= \frac{\rho_\text{fl}}{\bar{e}}
+&= \frac{1}{\mathcal{v} \bar{e}} \int d^3 x w \gamma^2 v^2,
+\end{align}
+where $\mathcal{v}$ is the volume we average over, and $\bar{e}$ is the mean energy density.
+It should be noted that $0 < K < 1$.
+\cite{giese_2020}
+
+For a single bubble we have, using its volume and the energy density of the symmetric phase that the bubble replaces, the kinetic energy fraction
+\cites[eq. 7.37]{lecture_notes}[eq. 5]{giese_2020}
+\begin{equation}
+K_1 = \frac{3}{\xi_w^3 e_s} \int d\xi \xi^2 w \gamma^2 v^2.
+\end{equation}
+
+The kinetic energy fraction can be determined from
+\begin{itemize}
+\item wall velocity $v_w$
+\item the speeds of sound
+\item strength parameter of the phase transition
+\end{itemize}
+
+Let us define the pseudotrace as
+\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
+\begin{equation}
+\overline{\theta} \equiv e - \frac{p}{c_{s,b}^2}.
+\end{equation}
+
+For detonations, the optimal phase transition strength is
+\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
+\todo{Todo: Explain how this is defined}
+\begin{equation}
+\alpha_{\overline{\theta}} \equiv \frac{D \overline{\theta}(T_+)}{3w_+},
+\end{equation}
+
+
+\section{Extensions of the standard model}
+Extensions of the Standard model \cite{caprini_detecting_2020}
+(mentioned in \cite[p. 14]{lecture_notes})
+
+\section{Noise background}
+Non-thermal phenomena: GW production by preheating, when the inflaton decays to SM particles.
+\cite{lecture_notes}
