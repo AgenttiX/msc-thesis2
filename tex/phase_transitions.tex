@@ -365,7 +365,7 @@ With these definitions the junction conditions of \eqref{eq:junction_ep} can be 
 This is easiest to prove in the reverse direction.
 To further get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independent of $r$, we can extract $r$ from both equations and mark those as equal, resulting in the equation
 \begin{equation}
-\left( \frac{1}{\tilde{v}_-} + 3 \tilde{v}_- \right) \tilde{v}_+ - 3(1+\alpha_+)\tilde{v}_+^2 = \alpha_+ - 1.
+\left( \frac{1}{\tilde{v}_-} + 3 \tilde{v}_- \right) \tilde{v}_+ - 3(1+\alpha_+)\tilde{v}_+^2 = 1 - 3\alpha_+.
 \end{equation}
 % Derivation: Mathematica Eliminate[] and a bit of simplification.
 This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solved as \cite[eq. B.6, B.7]{hindmarsh_gw_pt_2019}
@@ -530,8 +530,8 @@ Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s
 \subsection{Speed limits}
 The observables of a physical system must be real, including $\tilde{v}_+$ and $\tilde{v}_-$.
 Therefore the expressions in the square roots of \ref{eq:v_tilde_plus} and \ref{eq:v_tilde_minus} must be real.
-By simplifying the expression in the square root of \ref{eq:v_tilde_minus} we see that the square root is real $\forall \alpha_+ \geq 0$,
-but setting the square root in \ref{eq:v_tilde_plus} to zero gives a limit for $\tilde{v}_+$ as
+By simplifying the expression in the square root of \ref{eq:v_tilde_plus} we see that the square root is real $\forall \alpha_+ \geq 0$,
+but setting the square root in \ref{eq:v_tilde_minus} to zero gives a limit for $\tilde{v}_+$ as
 \begin{equation}
 \tilde{v}_+ = \frac{1}{\sqrt{3}} \left( \frac{1 \pm \sqrt{2 \alpha_+ + 3 \alpha_+^2}}{1 + \alpha_+} \right).
 \label{eq:v_tilde_plus_limit}
