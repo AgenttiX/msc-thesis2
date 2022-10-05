@@ -407,7 +407,7 @@ It should be noted, that for orthonormal vectors
 u_\mu u^\mu &= -1, \\
 u_\mu \bar{u}^\mu &= 0.
 \end{align}
-By projecting the conservation equation (\ref{eq:ep_conservation}) to this basis we get
+By projecting the conservation equation \eqref{eq:ep_conservation} to this basis we get
 \cite[eq. 7.28-7.29]{lecture_notes}
 \begin{align}
 0 &= u_\mu \partial_\nu T^{\mu \nu}   &&= -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p, \\
@@ -455,7 +455,7 @@ However, in the general case of $c_s(w,\phi)$ the equations have to be integrate
 
 
 \section{Types of solutions}
-Solutions to the hydrodynamic equations (\ref{eq:hydro1}, \ref{eq:hydro2}) are obtained by integrating away from the position of the bubble wall, $\xi_w$.
+Solutions to the hydrodynamic equations \eqref{eq:hydro1}, \eqref{eq:hydro2} are obtained by integrating away from the position of the bubble wall, $\xi_w$.
 There are two relevant external boundary conditions.
 To maintain spherical symmetry
 \begin{equation}
@@ -477,7 +477,7 @@ and integrating backwards in $\xi$ over a route where $\mu(\xi,v) > c_{s-}(w)$ i
 The other way to reach $v=0$ is by a discontinuity, i.e. a shock.
 This leads to two classes of solutions.
 Another way to see that there are two classes of solutions is by noting
-that the equations \ref{eq:v_tilde_plus} and \ref{eq:v_tilde_minus} have two branches.
+that the equations \eqref{eq:v_tilde_plus} and \eqref{eq:v_tilde_minus} have two branches.
 These solutions are classified in table \ref{table:solution_types}.
 
 The solutions with $\tilde{v}_+ > \tilde{v}_-$ are known as detonations.
@@ -535,9 +535,9 @@ Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s
 \FloatBarrier
 \subsection{Speed limits}
 The observables of a physical system must be real, including $\tilde{v}_+$ and $\tilde{v}_-$.
-Therefore the expressions in the square roots of \ref{eq:v_tilde_plus} and \ref{eq:v_tilde_minus} must be real.
-By simplifying the expression in the square root of \ref{eq:v_tilde_plus} we see that the square root is real $\forall \alpha_+ \geq 0$,
-but setting the square root in \ref{eq:v_tilde_minus} to zero gives a limit for $\tilde{v}_+$ as
+Therefore the expressions in the square roots of \eqref{eq:v_tilde_plus} and \eqref{eq:v_tilde_minus} must be real.
+By simplifying the expression in the square root of \eqref{eq:v_tilde_plus} we see that the square root is real $\forall \alpha_+ \geq 0$,
+but setting the square root in \eqref{eq:v_tilde_minus} to zero gives a limit for $\tilde{v}_+$ as
 \begin{equation}
 \tilde{v}_+ = \frac{1}{\sqrt{3}} \left( \frac{1 \pm \sqrt{2 \alpha_+ + 3 \alpha_+^2}}{1 + \alpha_+} \right).
 \label{eq:v_tilde_plus_limit}
@@ -546,7 +546,7 @@ The positive sign is the lower limit for detonations, and the negative sign is t
 This is the same equation as in \cites[eq. 7.34]{lecture_notes}[eq. B.19]{hindmarsh_gw_pt_2019},
 but in those articles there is a typo due to which a factor of 2 is missing from the expression.
 
-Inserting this value to the equation \ref{eq:v_tilde_minus} and simplifying the expression with the knowledge that the square root is now zero
+Inserting this value to the equation \eqref{eq:v_tilde_minus} and simplifying the expression with the knowledge that the square root is now zero
 we get that
 \begin{equation}
 \tilde{v}_- = \frac{1}{\sqrt{3}}.
@@ -559,11 +559,11 @@ The Chapman-Jouguet speed is defined as
 \tilde{v}_+=v_{CJ} \Leftrightarrow \tilde{v}_- = c_{s-}(w_-).
 \label{eq:chapman_jouguet}
 \end{equation}
-Starting from section \ref{bag_model} we will see that for some models the speed limit set by the Chapman-Jouguet speed of \ref{eq:chapman_jouguet}
-and the condition of \ref{eq:v_tilde_minus_limit} that the observables are real are equivalent,
+Starting from section \eqref{bag_model} we will see that for some models the speed limit set by the Chapman-Jouguet speed of \eqref{eq:chapman_jouguet}
+and the condition of \eqref{eq:v_tilde_minus_limit} that the observables are real are equivalent,
 but in general this is not the case.
 
-Now we have the necessary knowledge to classify the different regions of fig. \ref{fig:vplus_vminus}.
+Now we have the necessary knowledge to classify the different regions of fig. \eqref{fig:vplus_vminus}.
 If the speeds of sound are equivalent to $\frac{1}{\sqrt{3}}$,
 we can have only weak and Chapman-Jouguet detonations and deflagrations.
 However, the weak detonations are ruled out for the aforementioned reason that they are not possible in an exothermic reaction.
