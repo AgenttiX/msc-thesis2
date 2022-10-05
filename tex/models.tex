@@ -42,16 +42,17 @@ c_s^2 = \frac{dp}{de} = \frac{dp/dT}{de/dT} = \frac{1}{3}.
 This corresponds to assuming both of the phases to be ultrarelativistic.
 It also happens to be the same as the $\tilde{v}_-$ that corresponds to \eqref{eq:v_tilde_plus_limit}, and therefore the Chapman-Jouguet speed $v_{CJ}$ of the bag model is given by \eqref{eq:v_tilde_plus_limit}.
 
+The trace anomaly of \eqref{eq:theta} simplifies to
 \begin{align}
 \theta_s = V_s, \\
-\theta_b = V_b,
+\theta_b = V_b.
 \end{align}
-and therefore the transition strength at nucleation temperature simplifies to
+Therefore the transition strengths of \eqref{eq:alpha_plus} and \eqref{eq:alpha_n} simplify to
 \begin{equation}
-\alpha_n = \frac{4}{3 w_n} (V_s - V_b),
+\alpha_+ = \alpha_n = \frac{4}{3 w_n} (V_s - V_b).
 \label{eq:alpha_n_bag}
 \end{equation}
-which is trivial to invert, giving enthalpy at the nucleation temperature $w_n$.
+This is trivial to invert, giving enthalpy at the nucleation temperature $w_n$.
 
 The name of the bag model originates from quantum chromodynamics (QCD), where it's used to describe the proton as a bag of quarks.
 \todo{check this}
@@ -84,11 +85,11 @@ The parameters $\mu$ and $\nu$ are determined by the sound speeds in the symmetr
 \cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
 \footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
 \begin{align}
-\mu = 1 + \frac{1}{c_{s,s}^2}, \\
-\nu = 1 + \frac{1}{c_{s,b}^2}.
+\mu = 1 + \frac{1}{c_{ss}^2}, \\
+\nu = 1 + \frac{1}{c_{sb}^2}.
 \end{align}
 This model reduces to the bag model,
-when $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$.
+when $c_{ss}^2 = c_{sb}^2 = \frac{1}{3}$.
 
 Similarly as for the bag model we can derive the energy density
 \begin{align}
@@ -122,8 +123,21 @@ With this the transition strength at nucleation temperature of \eqref{eq:alpha_n
 Inverting this gives the enthalpy at the nucleation temperature
 \begin{equation}
 w_n = \frac{V_s - V_b}{ \frac{3}{4} \alpha_n + \frac{1}{\mu} - \frac{1}{\nu} }.
+\label{eq:wn_const_cs}
 \end{equation}
-\todo{Fix this in PTtools and check that these are correct}
+We can rearrange the first junction condition \eqref{eq:junction_condition_1} to
+\begin{equation}
+w_- = w_+ \frac{\tilde{\gamma}_+^2 \tilde{v}_+}{\tilde{\gamma}_-^2 \tilde{v}_-}.
+\label{eq:wm_const_cs}
+\end{equation}
+\todo{Check that this is correct in PTtools}
+
+Now we have everything necessary to compute $\alpha_+$ and the Chapman-Jouguet speed $v_{CJ}$ analytically from $c_{ss}$, $c_{sb}$ and $\alpha_n$.
+From these we get $w_n$ with \eqref{eq:wn_const_cs}, and for a detonation $w_+=w_n$.
+This we can insert to \eqref{eq:wm_const_cs}, giving us $w_-$.
+Now we have all the variables necessary to compute $\alpha_+$ with \eqref{eq:alpha_plus}.
+Then we insert $\tilde{v}_- = c_{sb}$ to \eqref{eq:v_tilde_plus}, giving us the Chapman-Jouguet speed $v_{CJ} = v_+$.
+\todo{This is wrong! We have a circular dependency and must solve the equation group at once.}
 
 
 \subsection{Model with cubic thermal effects}
@@ -144,6 +158,7 @@ The minimum of the field potential is given by
 \begin{equation}
 \phi_\text{min} = \frac{3}{4} ET + \sqrt{\frac{T^2}{2}(\frac{9}{8}E^2 - c) - \frac{T_\text{cr}^2}{2} (E^2 - c)}
 \end{equation}
+
 
 \subsection{Model with a two-step phase transition}
 Two scalar fields and two symmetry breakings. Examples: electroweak symmetry, $\mathbb{Z}_2$ symmetry.
