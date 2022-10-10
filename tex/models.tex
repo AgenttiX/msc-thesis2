@@ -1,3 +1,62 @@
+\section{General model}
+\iffalse
+In general the pressure of the ultrarelativistic ASDF
+\begin{equation}
+p(T,\phi) = - \sum_B f_B (m(\phi),T) - \sum_F f_F (m(\phi),T)
+\end{equation}
+\fi
+
+Energy density can be obtained by integrating over the momentum space as
+\begin{equation}
+e = g \int \frac{d^3 p}{(2 \pi)^3} E(\vec{p}) f(\vec{p}).
+\end{equation}
+The particle distribution functions of statistical physics is
+\begin{equation}
+f(\vec{p}) = \frac{1}{e^{E-\mu}{T} \pm 1},
+\end{equation}
+where $+$ is for fermions and $-$ is for bosons.
+Let us assume that the fluid consists of bosons,
+and that they are ultrarelativistic: $E(\vec{p}) \approx p$, $\mu \approx 0$ and $E = \sqrt{p^2 + m^2} \approx p$.
+Let us also remember that we can convert the integral to 1D using the area of a sphere $A(r) = 4\pi r^2$.
+With these approximations we get
+\begin{equation}
+e = \frac{g}{2 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1}.
+\end{equation}
+This contains an integral of the form
+\cite[eq. B.36]{schroeder_thermal_2000}
+\begin{equation}
+\int_0^\infty \frac{x^n}{e^x - 1} = \Gamma(n+1) \zeta(n+1).
+\end{equation}
+It can be proven that $\zeta(4) = \frac{\pi^2}{90}$.
+\cite[prob. B.19]{schroeder_thermal_2000}
+We also need to add the potential $V$ of the field, resulting in
+\cite[eq. S12]{borsanyi_lattice_2016}
+\begin{equation}
+e(T,\phi) = \frac{\pi^2}{30} g_e(T,\phi) T^4.
+\end{equation}
+This is also known as the Stefan-Boltzmann limit of a single scalar field due to its reminiscence to the Stefan-Boltzmann law $j^* = \sigma T^4$,
+which relates the power radiated by a black body to its temperature with the Stefan-Boltzmann constant $\sigma$.
+
+The pressure is defined as
+\begin{equation}
+p = g \int \frac{d^3 p}{(2 \pi)^3} \frac{f(\vec{p}) |\vec{p}|^2}{3E}.
+\end{equation}
+With similar steps we get
+\begin{equation}
+p(T,\phi) = \frac{\pi^2}{90} g_p(T,\phi) T^4 - V(T,\phi).
+\end{equation}
+
+Entropy density
+\cite[eq. S12]{borsanyi_lattice_2016}
+\begin{equation}
+s(T,\phi) = \frac{2\pi^2}{45} g_s(T,\phi) T^3 = 4 \frac{\pi^2}{90} g_s(T,\phi)
+\end{equation}
+
+The equations of section \ref{rel_hydro} hold, when $g_e = g_p = g_s$.
+However, we can account for non-idealities by defining them separately.
+\todo{Check this}
+
+
 \section{The bag model}
 \label{bag_model}
 The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
@@ -5,6 +64,7 @@ It should be highlighted that everything up to this point has been independent o
 and we will now move forward to describing our first equation of state.
 
 One of the simplest equations of state is the bag model, where
+\todo{Check from Giese whether this is equivalent to "radiation fluid"}
 \cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
 \begin{align}
 p_s &= a_s T^4 - V_s,
@@ -108,8 +168,8 @@ T_b &= T_0 \left( \frac{w}{\nu a_s T_0^4} \right)^\frac{1}{\nu},
 \end{align}
 and the entropy density
 \begin{align}
-s_s &= \mu a_s \left( \frac{T}{T_0} \right)^\frac{1}{\mu-1} T_0^3, \\
-s_b &= \nu a_b \left( \frac{T}{T_0} \right)^\frac{1}{\nu-1} T_0^3.
+s_s &= \mu a_s \left( \frac{T}{T_0} \right)^{\mu-4} T_0^3, \\
+s_b &= \nu a_b \left( \frac{T}{T_0} \right)^{\mu-4} T_0^3.
 \end{align}
 The trace anomaly of \eqref{eq:theta} simplifies to
 \begin{align}
