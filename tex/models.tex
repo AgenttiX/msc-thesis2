@@ -1,4 +1,9 @@
-\section{General model}
+\section{General equation of state}
+The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
+It should be highlighted that everything up to this point has been independent of the equation of state.
+We will now first describe the derivation for the general equation of state of an ultrarelativistic plasma,
+and then introduce approximate models.
+
 \iffalse
 In general the pressure of the ultrarelativistic ASDF
 \begin{equation}
@@ -6,94 +11,113 @@ p(T,\phi) = - \sum_B f_B (m(\phi),T) - \sum_F f_F (m(\phi),T)
 \end{equation}
 \fi
 
-Energy density can be obtained by integrating over the momentum space as
+The energy density at a point is the sum of the energies of all particles at that point.
+Therefore the energy density in the position space can be obtained by integrating over the momentum space as
+\cite[eq. 4.10]{lecture_notes}
 \begin{equation}
-e = g \int \frac{d^3 p}{(2 \pi)^3} E(\vec{p}) f(\vec{p}).
+e(x) = g_e \int \frac{d^3 p}{(2 \pi)^3} E(p) f(\vec{p}, x).
 \end{equation}
-The particle distribution functions of statistical physics is
+This has been multiplied by the degrees of freedom $g_e$ to account for the various species of particles in the plasma, and
+\href{https://physics.stackexchange.com/a/141737/}{the factor $(2\pi)^3$ normalises the momentum space}.
+Similarly we can obtain the other components of the energy-momentum tensor in the position space as
+\todo{Is there an intuitive explanation on why all the components are defined the way they are?}
+\cite[eq. 4.13]{lecture_notes}
 \begin{equation}
-f(\vec{p}) = \frac{1}{e^{E-\mu}{T} \pm 1},
+T^{\mu \nu}(x) = \int \frac{d^3 p}{(2 \pi)^3} \frac{p^\mu p^\nu}{p^0} f(\vec{p},x).
 \end{equation}
-where $+$ is for fermions and $-$ is for bosons.
-Let us assume that the fluid consists of bosons,
-and that they are ultrarelativistic: $E(\vec{p}) \approx p$, $\mu \approx 0$ and $E = \sqrt{p^2 + m^2} \approx p$.
+By inserting this to the definition of pressure \eqref{eq:pressure_from_ep_tensor} and multiplying by the degrees of freedom $g_p$ we get
+\begin{equation}
+p(x) = \frac{g_p}{3} \int \frac{d^3 p}{(2 \pi)^3} \frac{|\vec{p}|^2}{E} f(\vec{p},x)
+\end{equation}
+This notation is rather confusing, as the $p$ on the left and $g_p$ refer to the pressure,
+and all other $p$ on the right refer to the momentum.
+
+The particle distribution functions for fermions and bosons are
+\cite[eq. 4.6]{lecture_notes}
+\begin{equation}
+f(\vec{p}) = \frac{1}{e^\frac{E-\mu}{T} \pm 1},
+\end{equation}
+where $+$ gives the Fermi-Dirac distribution for fermions and $-$ gives the Bose-Einstein distribution for bosons.
+Let us approximate that the fluid consists entirely of bosons,
+and that they are ultrarelativistic: $E(\vec{p}) = \sqrt{\vec{p}^2 + m^2} \approx p$.
+Particle number is not conserved in an ultrarelativistic plasma, and therefore $\mu = 0$.
 Let us also remember that we can convert the integral to 1D using the area of a sphere $A(r) = 4\pi r^2$.
-With these approximations we get
-\begin{equation}
-e = \frac{g}{2 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1}.
-\end{equation}
-This contains an integral of the form
+With these we get
+\begin{align}
+e &= \frac{g_e}{2 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1}, \\
+p &= \frac{g_p}{6 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1}.
+\end{align}
+These contain integrals of the form
 \cite[eq. B.36]{schroeder_thermal_2000}
 \begin{equation}
-\int_0^\infty \frac{x^n}{e^x - 1} = \Gamma(n+1) \zeta(n+1).
+\int_0^\infty \frac{x^n}{e^x - 1} = \Gamma(n+1) \zeta(n+1),
 \end{equation}
-It can be proven that $\zeta(4) = \frac{\pi^2}{90}$.
+where $\Gamma$ is the
+\href{https://en.wikipedia.org/wiki/Gamma_function}{gamma function}, which for integers is $\Gamma(n) = (n-1)!$.
+$\zeta$ is the
+\href{https://en.wikipedia.org/wiki/Riemann_zeta_function}{Riemann zeta function}.
+It can be shown that $\zeta(4) = \frac{\pi^4}{90}$.
 \cite[prob. B.19]{schroeder_thermal_2000}
-We also need to add the potential $V$ of the field, resulting in
+To also account for the field, we need to add its potential $V$ to the final result
+\cite[eq. S12]{borsanyi_lattice_2016}
+\begin{align}
+e(T,\phi) &= \frac{\pi^2}{30} g_e(T,\phi) T^4 + V(T,\phi),
+\label{eq:e_general} \\
+p(T,\phi) &= \frac{\pi^2}{90} g_p(T,\phi) T^4 - V(T,\phi).
+\label{eq:p_general}
+\end{align}
+
+With \eqref{eq:enthalpy_sum}, \eqref{eq:enthalpy_entropy}, \eqref{eq:e_general} and \eqref{eq:p_general} we can obtain the entropy density as
 \cite[eq. S12]{borsanyi_lattice_2016}
 \begin{equation}
-e(T,\phi) = \frac{\pi^2}{30} g_e(T,\phi) T^4.
+s(T,\phi) = \frac{2\pi^2}{45} g_s(T,\phi) T^3,
 \end{equation}
-This is also known as the Stefan-Boltzmann limit of a single scalar field due to its reminiscence to the Stefan-Boltzmann law $j^* = \sigma T^4$,
+where the degrees of freedom for the entropy density are
+\todo{These seem to be in different order than for $\theta$. Have I made a mistake somewhere?}
+\begin{equation}
+g_s = \frac{1}{4} (3g_p + g_e).
+\end{equation}
+Often only $g_e$ and $g_s$ are provided, and $g_p$ is obtained with
+\begin{equation}
+g_p = \frac{1}{3}(4g_s - g_e).
+\end{equation}
+The case of $g_e=g_p=g_s=1$ is known as the Stefan-Boltzmann limit of a single scalar field.
+\iffalse
+due to its reminiscence to the Stefan-Boltzmann law $j^* = \sigma T^4$,
 which relates the power radiated by a black body to its temperature with the Stefan-Boltzmann constant $\sigma$.
-
-The pressure is defined as
-\begin{equation}
-p = g \int \frac{d^3 p}{(2 \pi)^3} \frac{f(\vec{p}) |\vec{p}|^2}{3E}.
-\end{equation}
-With similar steps we get
-\begin{equation}
-p(T,\phi) = \frac{\pi^2}{90} g_p(T,\phi) T^4 - V(T,\phi).
-\end{equation}
-
-Entropy density
-\cite[eq. S12]{borsanyi_lattice_2016}
-\begin{equation}
-s(T,\phi) = \frac{2\pi^2}{45} g_s(T,\phi) T^3 = 4 \frac{\pi^2}{90} g_s(T,\phi)
-\end{equation}
-
-The equations of section \ref{rel_hydro} hold, when $g_e = g_p = g_s$.
-However, we can account for non-idealities by defining them separately.
-\todo{Check this}
+\fi
 
 
 \section{The bag model}
 \label{bag_model}
-The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
-It should be highlighted that everything up to this point has been independent of the equation of state,
-and we will now move forward to describing our first equation of state.
-
-One of the simplest equations of state is the bag model, where
+For phase transitions in the early universe,
+the most commonly used equation of state is the bag model, for which
+\begin{equation}
+g_{e\pm} = g_{p\pm} = g_{s\pm} = \frac{90}{\pi^2} a_\pm,
+\end{equation}
+where $a_\pm$ are constants with $a_+ > a_-$.
+$+$ refers to the symmetric phase, and $-$ refers to the broken phase.
+The potentials $V_\pm$ are also constants with $V_+ > V_-$.
+This results in the bag equation of state
 \todo{Check from Giese whether this is equivalent to "radiation fluid"}
 \cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
-\begin{align}
-p_s &= a_s T^4 - V_s,
-\label{eq:bag_ps} \\
-p_b &= a_b T^4 - V_b,
-\label{eq:bag_pb}
-\end{align}
-where $a_s$, $a_b$, $V_s$ and $V_b$ are positive constants with $a_s > a_b$ and $V_s > V_b$.
-The subscripts $s$ refers to the symmetric phase, and $b$ to the broken phase.
-The potential difference $V_s - V_b$ is the temperature-independent vacuum energy that is released in the phase transition.
+\begin{equation}
+p_\pm = a_\pm T^4 - V_\pm,
+\label{eq:bag_p}
+\end{equation}
+The potential difference $V_+ - V_-$ is the temperature-independent vacuum energy that is released in the phase transition.
 In some articles it's denoted with $\epsilon$.
 \todo{Add citation to Giese?}
 The potentials are usually shifted so that $V_b = 0$.
-The constants $a_s$ and $a_b$ are simplified from the relativistic degrees of freedom as
-\begin{align}
-a_s = \frac{\pi^2}{90} g_s, \\
-a_b = \frac{\pi^2}{90} g_b.
-\end{align}
 
 Using \eqref{eq:energy_density} we get the energy density
-\begin{align}
-e_s &= 4 a_s T^4 + V_s, \\
-e_b &= 4 a_b T^4 + V_b,
-\end{align}
+\begin{equation}
+e_\pm = 4 a_\pm T^4 + V_\pm
+\end{equation}
 and with \eqref{eq:enthalpy_sum} the enthalpy density
-\begin{align}
-w_s &= 4 a_s T^4, \\
-w_b &= 4 a_b T^4.
-\end{align}
+\begin{equation}
+w_\pm = 4 a_\pm T^4
+\end{equation}
 
 The speed of sound from \eqref{eq:cs2_explicit} simplifies to
 \begin{equation}
@@ -104,12 +128,11 @@ It also happens to be the same as the $\tilde{v}_-$ that corresponds to \eqref{e
 
 The trace anomaly of \eqref{eq:theta} simplifies to
 \begin{align}
-\theta_s = V_s, \\
-\theta_b = V_b.
+\theta_\pm = V_\pm.
 \end{align}
 Therefore the transition strengths of \eqref{eq:alpha_plus} and \eqref{eq:alpha_n} simplify to
 \begin{equation}
-\alpha_+ = \alpha_n = \frac{4}{3 w_n} (V_s - V_b).
+\alpha_\text{bag} = \alpha_+ = \alpha_n = \frac{4}{3 w_n} (V_+ - V_-).
 \label{eq:alpha_n_bag}
 \end{equation}
 This is trivial to invert, giving enthalpy at the nucleation temperature $w_n$.
@@ -131,73 +154,79 @@ The primary parameters for these models are
 Speed of sound may not be ultrarelativistic, especially in the broken phase.
 
 \subsection{The constant sound speed model}
-The constant sound speed model, also known as the $\mu, \nu$ model,
+The constant sound speed model, also known as the $\mu_\pm$ model or the $\mu, \nu$ model,
 expands the bag model by allowing a different speed of sound in each phase.
+It is obtained by setting
+\begin{equation}
+g_{e\pm} = g_{p\pm} = g_{s\pm} = \frac{90}{\pi^2} a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4},
+\end{equation}
+where $\mu_\pm$ are constants.
+This results in the equation of state
 \cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}
-\begin{align}
-p_s &= a_s \left( \frac{T}{T_0} \right)^{\mu-4} T^4 - V_s {\color{gray} \approx a_s T^\mu - V_s }, \\
-p_b &= a_b \left( \frac{T}{T_0} \right)^{\nu-4} T^4 - V_b {\color{gray} \approx a_b T^\nu - V_b}.
-\end{align}
+\begin{equation}
+p_\pm = a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 - V_\pm {\color{gray} \approx a_\pm T^{\mu_\pm} - V_\pm }, \\
+\end{equation}
 The reference temperature $T_0$ is introduce for the consistency of the units.
 For simplicity it can be set to 1 GeV, or whichever unit one is using for the temperature.
 The greyed-out versions are commonly seen in articles and useful, but have inconsistent units.
-The parameters $\mu$ and $\nu$ are determined by the sound speeds in the symmetric and broken phases:
+The parameters $\mu_\pm$ are determined by the sound speeds in the symmetric and broken phases:
 \cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
 \footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
-\begin{align}
-\mu = 1 + \frac{1}{c_{ss}^2}, \\
-\nu = 1 + \frac{1}{c_{sb}^2}.
-\end{align}
+\begin{equation}
+\mu_\pm = 1 + \frac{1}{c_{s\pm}^2},
+\end{equation}
 This model reduces to the bag model,
-when $c_{ss}^2 = c_{sb}^2 = \frac{1}{3}$.
+when $c_{s+}^2 = c_{s-}^2 = \frac{1}{3}$
+and equivalently
+$\mu_+ = \mu_- = 4$.
 
 Similarly as for the bag model we can derive the energy density
-\begin{align}
-e_s &= (\mu - 1) a_s \left( \frac{T}{T_0} \right)^{\mu-4} T^4 + V_s, \\
-e_b &= (\nu - 1) a_b \left( \frac{T}{T_0} \right)^{\mu-4} T^4 + V_b.
-\end{align}
-The enthalpy density is given by
-\begin{align}
-w_s &= \mu a_s \left( \frac{T}{T_0} \right)^{\mu-4} T^4, \\
-w_b &= \nu a_b \left( \frac{T}{T_0} \right)^{\nu-4} T^4.
-\end{align}
-This can be inverted to give the temperature as a function of enthalpy
-\begin{align}
-T_s &= T_0 \left( \frac{w}{\mu a_s T_0^4} \right)^\frac{1}{\mu}, \\
-T_b &= T_0 \left( \frac{w}{\nu a_s T_0^4} \right)^\frac{1}{\nu},
-\end{align}
-and the entropy density
-\begin{align}
-s_s &= \mu a_s \left( \frac{T}{T_0} \right)^{\mu-4} T_0^3, \\
-s_b &= \nu a_b \left( \frac{T}{T_0} \right)^{\mu-4} T_0^3.
-\end{align}
-The trace anomaly of \eqref{eq:theta} simplifies to
-\begin{align}
-\theta_s(w) = \left( \frac{1}{4} - \frac{1}{\mu} \right) w + V_s, \\
-\theta_b(w) = \left( \frac{1}{4} - \frac{1}{\nu} \right) w + V_b
-\end{align}
-With this the transition strength at nucleation temperature of \eqref{eq:alpha_n} simplifies to
 \begin{equation}
-\alpha_n = \frac{4}{3} \left( \frac{1}{\nu} - \frac{1}{\mu} + \frac{1}{w_n} (V_s - V_b) \right)
+e_\pm = (\mu_\pm - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\pm.
+\end{equation}
+The enthalpy density is given by
+\begin{equation}
+w_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4.
+\end{equation}
+This can be inverted to give the temperature as a function of enthalpy
+\begin{equation}
+T_\pm = T_0 \left( \frac{w}{\mu_\pm a_\pm T_0^4} \right)^\frac{1}{\mu_\pm},
+\end{equation}
+and the entropy density
+\begin{equation}
+s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T_0^3.
+\end{equation}
+The trace anomaly of \eqref{eq:theta} simplifies to
+\begin{equation}
+\theta_\pm(w) = \left( \frac{1}{4} - \frac{1}{\mu_\pm} \right) w + V_\pm.
+\end{equation}
+The transition strength of \eqref{eq:alpha_plus} simplifies to
+\begin{equation}
+\alpha_+ = \frac{1}{3} \left( 1 - \frac{4}{\mu_+} \right) - \frac{1}{3} \left(1 - \frac{4}{\mu_-} \right) \frac{w_-}{w_+} + \alpha_\text{bag}.
+\label{eq:alpha_plus_const_cs}
+\end{equation}
+The transition strength at nucleation temperature of \eqref{eq:alpha_n} simplifies further to
+\begin{equation}
+\alpha_n = \frac{4}{3} \left( \frac{1}{\mu_-} - \frac{1}{\mu_+} \right) + \alpha_\text{bag}.
 \end{equation}
 Inverting this gives the enthalpy at the nucleation temperature
 \begin{equation}
-w_n = \frac{V_s - V_b}{ \frac{3}{4} \alpha_n + \frac{1}{\mu} - \frac{1}{\nu} }.
+w_n = \frac{V_+ - V_-}{ \frac{3}{4} \alpha_n + \frac{1}{\mu_+} - \frac{1}{\mu_-} }.
 \label{eq:wn_const_cs}
 \end{equation}
-We can rearrange the first junction condition \eqref{eq:junction_condition_1} to
-\begin{equation}
-w_- = w_+ \frac{\tilde{\gamma}_+^2 \tilde{v}_+}{\tilde{\gamma}_-^2 \tilde{v}_-}.
-\label{eq:wm_const_cs}
-\end{equation}
 \todo{Check that this is correct in PTtools}
+When $\mu_- = 4$, $\alpha_+$ of \eqref{eq:alpha_plus_const_cs} becomes independent of $w_-$.
+In this case we can obtain $v_{CJ}(\alpha_n, c_{s+})$ analytically by first inserting $\alpha_n$ to \eqref{eq:wn_const_cs} to get $w_n$,
+then inserting $w_n$ to \eqref{eq:alpha_plus_const_cs} to get $\alpha_+$, and then $c_{s-}$ and $\alpha_+$ to \eqref{eq:v_tilde_plus} to get $\tilde{v}_+ = v_{CJ}$.
 
-Now we have everything necessary to compute $\alpha_+$ and the Chapman-Jouguet speed $v_{CJ}$ analytically from $c_{ss}$, $c_{sb}$ and $\alpha_n$.
+\iffalse
+Now we have everything necessary to compute $\alpha_+$ and the Chapman-Jouguet speed $v_{CJ}$ analytically from $c_{s+}$, $c_{s-}$ and $\alpha_n$.
 From these we get $w_n$ with \eqref{eq:wn_const_cs}, and for a detonation $w_+=w_n$.
 This we can insert to \eqref{eq:wm_const_cs}, giving us $w_-$.
 Now we have all the variables necessary to compute $\alpha_+$ with \eqref{eq:alpha_plus}.
-Then we insert $\tilde{v}_- = c_{sb}$ to \eqref{eq:v_tilde_plus}, giving us the Chapman-Jouguet speed $v_{CJ} = v_+$.
+Then we insert $\tilde{v}_- = c_{s-}$ to \eqref{eq:v_tilde_plus}, giving us the Chapman-Jouguet speed $v_{CJ} = v_+$.
 \todo{This is wrong! We have a circular dependency and must solve the equation group at once.}
+\fi
 
 
 \subsection{Model with cubic thermal effects}
@@ -230,6 +259,13 @@ p_s(T) = \frac{1}{3}a_+ T^4 + (b_+ - c_+ T^2)^2 - b_-^2 \\
 p_b(T) = \frac{1}{3}a_+ T^4 + (b_- - c_-T^2)^2 - b_-^2
 \end{align}
 Compare these to the \eqref{eq:bag_ps}, \eqref{eq:bag_pb}.
+
+
+\subsection{Standard Model}
+In the Standard Model the electroweak phase transition is not of first order but a crossover,
+and therefore there is no bubble nucleation.
+However, it serves as an important baseline.
+The $g_e$ and $g_s$ data for the Standard Model is given by \cite{borsanyi_lattice_2016}.
 
 
 \section{Energy redistribution}

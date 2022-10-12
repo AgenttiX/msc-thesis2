@@ -79,9 +79,22 @@ Therefore there is sufficient energy for new particles to be created,
 and similarly existing particles will annihilate all the time.
 Treating this kind of a system as a classical fluid is not sufficient,
 and we need the mathematical machinery of general relativity.
+It should be noted that the
+\href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
+Greek indices are used for four-vectors and latin indices for three-vectors.
+% The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
 
-In general relativity the matter and energy content of space are described by the \textbf{energy-momentum tensor} $T^{\mu \nu}$, also known as the stress-energy tensor.
-In Minkowski space in Cartesian coordinates it's given as
+In general relativity the matter and energy content of space are described by the \textbf{energy-momentum tensor} $T_{\mu \nu}$, also known as the stress-energy tensor.
+\iffalse
+Without loss of generality it can be decomposed as
+\begin{equation}
+T_{\mu \nu} = e u_\mu u_\nu + p h_{\mu \nu} + 2 q_{(\mu} u_{\beta)} + \Pi_{\mu \mu},
+\end{equation}
+where $h_{\mu \nu} = g_{\mu \nu} + u_\alpha u_\beta$ projects orthogonally to the time direction given by $u^\alpha$, $e$ is the \textbf{energy density}, p is the \textbf{pressure}, $q_\alpha$ is the \textbf{energy flux} or \textbf{momentum density}, and $\Pi_{\mu \nu}$ is the \textbf{anisotropic stress} or \textbf{anisotropic pressure}.
+\fi
+In Minkowski space in Cartesian coordinates can be expressed nicely as a matrix,
+if we take the time direction to be the coordinate time, $u^\mu = \delta^{\mu 0}$.
+Then it's given as
 \cites[eq. 4.17]{rasanen_gr_2022}[fig. 3.3]{rezzolla_relativistic_2013}
 \begin{equation}
 T_{\mu \nu} =
@@ -91,20 +104,35 @@ e & -q_1 & -q_2 & -q_3 \\
 -q_2 & \Pi_{12} & p + \Pi_{22} & \Pi_{23} \\
 -q_3 & \Pi_{13} & \Pi_{23} & p + \Pi_{33}
 \end{bmatrix},
+\label{eq:ep_tensor_general_matrix}
 \end{equation}
-where $q$ is the energy flux or momentum density and $\Pi_{\mu \nu}$ is known as the anisotropic stress, anisotropic pressure or momentum flux.
+where $e$ is the \textbf{energy density}, $p$ is the \textbf{isotropic pressure}, $q$ is the \textbf{energy flux} or \textbf{momentum density} and
+$\Pi_{ij}$ is known as the \textbf{anisotropic stress}, \textbf{anisotropic pressure} or \textbf{momentum flux},
+for which $\delta^{ij} \Pi_{ij} = 0$.
+Therefore the pressure can be extracted as
+\begin{equation}
+p = \frac{1}{3} T^i_i.
+\label{eq:pressure_from_ep_tensor}
+\end{equation}
+
 \href{https://physics.stackexchange.com/a/412067/298623}{In our case we assume the energy-matter content to be an ideal fluid in thermal equilibrium.}
 There is no energy transfer to or from the fluid, and therefore
 $\forall j=1,2,3: \quad T^{0j} = 0$.
 As the fluid has no viscosity, it does not experience any shear stress, and therefore
 $\forall i,j=1,2,3, \quad i \neq j: \quad T^{ij} = 0$.
 This does not depend on the reference frame, so the tensor is diagonal in all reference frames.
-Therefore $T^{ij} = p \delta^{ij}$.
-These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j: T^{ij}=0$.
-It should be noted that the
-\href{https://en.wikipedia.org/wiki/Einstein_notation}{Einstein notation} will be used for the indices throughout the thesis.
-Greek indices are used for four-vectors and latin indices for three-vectors.
-% The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
+Therefore $T^{ij} = p \delta^{ij}$, which means that
+$\forall i,j: \Pi_{ij} = 0$.
+These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j: T^{ij}=0$, which in matrix form is
+\begin{equation}
+T_{\mu \nu} =
+\begin{bmatrix}
+e & 0 & 0 & 0 \\
+0 & p & 0 & 0 \\
+0 & 0 & p & 0 \\
+0 & 0 & 0 & p
+\end{bmatrix}.
+\end{equation}
 This
 \href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{\textbf{energy-momentum tensor of an ideal fluid}}
 can be broken in two components as
@@ -116,6 +144,9 @@ T^{\mu \nu}_f
 \label{eq:ep_tensor} \\
 &= w u^\mu u^\nu + p g^{\mu \nu}.
 \end{align}
+This expression is independent of our choice of a coordinate system.
+We have also defined the enthalpy density $w = e+p$ to simplify the expression.
+The enthalpy density will be defined more thoroughly later in \eqref{eq:enthalpy_sum}.
 
 We are assuming the background space-time to be constant, and therefore the total \textbf{energy-momentum is conserved}.
 In the language of general relativity this is
@@ -197,7 +228,7 @@ Taking the time derivative of \eqref{eq:ep_conservation_rewritten_1} and a space
 \begin{equation}
 \partial_t^2 (\delta e) - \frac{\delta p}{\delta e} \partial_x^2(\delta e) = 0.
 \end{equation}
-This is the familiar wave equation, so the motion of the fluid has wave solutions that we call sound.
+This is the familiar \textbf{wave equation}, so the motion of the fluid has wave solutions that we call sound.
 \cites[ch. 4.3]{rezzolla_relativistic_2013}[ch. 7.4]{lecture_notes}
 The speed of sound is then defined as
 \cites[eq. 2.168]{rezzolla_relativistic_2013}[eq. 13]{giese_2020}[eq. 3]{giese_2021}
@@ -261,6 +292,7 @@ w
 &= T \frac{\partial p}{\partial T}
 \label{eq:enthalpy_pressure}\\
 &= Ts.
+\label{eq:enthalpy_entropy}
 \end{align}
 \iffalse
 Additionally we need to define the \textbf{specific enthalpy} \cite[eq. 2.141]{rezzolla_relativistic_2013}
@@ -314,10 +346,19 @@ Inserting the definition of $T$ from \eqref{eq:ep_tensor} results in the bubble 
 \cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
 % This is almost trivial.
 \begin{align}
-w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+, \\
+w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+,
+\label{eq:junction_condition_1} \\
 w_- \tilde{\gamma}_-^2 \tilde{v}_-^2 + p_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+^2 + p_+
+\label{eq:junction_condition_2}
 \end{align}
-These can be rearranged as
+The first junction condition can be trivially rearranged to
+\begin{equation}
+w_- = w_+ \frac{\tilde{\gamma}_+^2 \tilde{v}_+}{\tilde{\gamma}_-^2 \tilde{v}_-}.
+\label{eq:wm_junction}
+\end{equation},
+which we will need later.
+
+The junction conditions can be rearranged as
 \cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
 \todo{How to prove this step? My attempts of manual proof have failed.}
 \begin{align}
@@ -532,6 +573,7 @@ Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s
 \caption{Three different types of relativistic combustion \cite[fig. 14]{lecture_notes}}
 \label{fig:solution_types}
 \end{figure}
+
 
 \clearpage
 \FloatBarrier
