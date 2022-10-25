@@ -110,13 +110,17 @@ In some articles it's denoted with $\epsilon$.
 \todo{Add citation to Giese?}
 The potentials are usually shifted so that $V_b = 0$.
 
-Using \eqref{eq:energy_density} we get the energy density
+Using \eqref{eq:entropy_density} we get the entropy density
 \begin{equation}
-e_\pm = 4 a_\pm T^4 + V_\pm
+s_\pm = 4 a_\pm T^3,
 \end{equation}
-and with \eqref{eq:enthalpy_sum} the enthalpy density
+and with \eqref{eq:enthalpy_entropy} the enthalpy density
 \begin{equation}
-w_\pm = 4 a_\pm T^4
+w_\pm = 4 a_\pm T^4.
+\end{equation}
+Finally with \eqref{eq:enthalpy_sum} we get the energy density
+\begin{equation}
+w_\pm = 3 a_\pm T^4
 \end{equation}
 
 The speed of sound from \eqref{eq:cs2_explicit} simplifies to
@@ -158,7 +162,7 @@ The constant sound speed model, also known as the $\mu_\pm$ model or the $\mu, \
 expands the bag model by allowing a different speed of sound in each phase.
 It is obtained by setting
 \begin{equation}
-g_{e\pm} = g_{p\pm} = g_{s\pm} = \frac{90}{\pi^2} a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4},
+g_{p\pm} = \frac{90}{\pi^2} a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4},
 \end{equation}
 where $\mu_\pm$ are constants.
 This results in the equation of state
@@ -166,10 +170,10 @@ This results in the equation of state
 \begin{equation}
 p_\pm = a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 - V_\pm {\color{gray} \approx a_\pm T^{\mu_\pm} - V_\pm }, \\
 \end{equation}
-The reference temperature $T_0$ is introduce for the consistency of the units.
+The reference temperature $T_0$ is introduced for the consistency of the units.
 For simplicity it can be set to 1 GeV, or whichever unit one is using for the temperature.
-The greyed-out versions are commonly seen in articles and useful, but have inconsistent units.
-The parameters $\mu_\pm$ are determined by the sound speeds in the symmetric and broken phases:
+The greyed-out version is commonly seen in articles and useful, but has inconsistent units.
+The parameters $\mu_\pm$ are determined by the sound speeds in the symmetric and broken phases with
 \cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
 \footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
 \begin{equation}
@@ -180,22 +184,31 @@ when $c_{s+}^2 = c_{s-}^2 = \frac{1}{3}$
 and equivalently
 $\mu_+ = \mu_- = 4$.
 
-Similarly as for the bag model we can derive the energy density
+Similarly as for the bag model we can derive the entropy density
+\begin{equation}
+s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T_0^3,
+\end{equation}
+and from it the enthalpy density
+\begin{equation}
+w_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4
+\label{eq:w_const_cs}
+\end{equation}
+and finally the energy density
 \begin{equation}
 e_\pm = (\mu_\pm - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\pm.
 \end{equation}
-The enthalpy density is given by
-\begin{equation}
-w_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4.
-\end{equation}
-This can be inverted to give the temperature as a function of enthalpy
+The equation for enthalpy density \eqref{eq:w_const_cs} can be inverted to give the temperature as a function of enthalpy
 \begin{equation}
 T_\pm = T_0 \left( \frac{w}{\mu_\pm a_\pm T_0^4} \right)^\frac{1}{\mu_\pm},
 \end{equation}
-and the entropy density
-\begin{equation}
-s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T_0^3.
-\end{equation}
+Therefore the effective degrees of freedom are
+\begin{align}
+g_{p\pm} &= \frac{90}{\pi^2} a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4}, \\
+g_{s\pm} &= \frac{45}{2\pi^2} \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4}, \\
+g_{e\pm} &= \frac{30}{\pi^2} (\mu - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4}.
+\end{align}
+
+
 The trace anomaly of \eqref{eq:theta} simplifies to
 \begin{equation}
 \theta_\pm(w) = \left( \frac{1}{4} - \frac{1}{\mu_\pm} \right) w + V_\pm.
