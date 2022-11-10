@@ -419,13 +419,28 @@ To further get expressions for $\tilde{v}_+$ and $\tilde{v}_-$ that are independ
 % Derivation: Mathematica Eliminate[] and a bit of simplification.
 This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solved as \cite[eq. B.6, B.7]{hindmarsh_gw_pt_2019}
 \begin{align}
-\tilde{v}_+ &= \frac{1}{2(1+\alpha_+)}\left[ \left(\frac{1}{3\tilde{v}_-}+\tilde{v}_-\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_-} - \tilde{v}_- \right)^2 + 4\alpha_+^2 + \frac{8}{3} \alpha_+} \right]
+\tilde{v}_+ &= \frac{1}{2(1+\alpha_+)}\left[ \left(\frac{1}{3\tilde{v}_-}+\tilde{v}_-\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_-} - \tilde{v}_- \right)^2 + 4\alpha_+^2 + \frac{8}{3} \alpha_+} \right],
 \label{eq:v_tilde_plus}
 \\
-\tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right)
+\tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right).
 \label{eq:v_tilde_minus}
 \end{align}
 Both of these are basic second-order solutions, but in \eqref{eq:v_tilde_plus} the discriminant has been simplified.
+
+It should be noted that the equations \ref{eq:junction_condition_1} and \ref{eq:junction_condition_2} are symmetric with respect to the indices $+$ and $-$.
+We can define another transition strength by inverting the indices of $\alpha_+$ in \ref{eq:alpha_plus} as
+\begin{equation}
+\alpha_- = - \frac{4 \Delta \theta}{3 w_-}.
+\end{equation}
+With this we can solve the junction conditions as above, but with opposite indices, resulting in
+\begin{align}
+\tilde{v}_+ &= \frac{1}{2} \left[ \left( (1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right) \pm \sqrt{\left((1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right)^2 - \frac{4}{3}} \right),
+\label{eq:v_tilde_plus_reverse}
+\\
+\tilde{v}_- &= \frac{1}{2(1+\alpha_-)}\left[ \left(\frac{1}{3\tilde{v}_+}+\tilde{v}_+\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_+} - \tilde{v}_+ \right)^2 + 4\alpha_-^2 + \frac{8}{3} \alpha_-} \right].
+\label{eq:v_tilde_minus_reverse}
+\end{align}
+These versions of the equations are useful when computing $\tilde{v}_+(\alpha_+)$ in a model where $\alpha_-$ is independent of $w_+$, as then $\tilde{v}_+ = \tilde{v}_+(w_-)$.´
 
 \begin{figure}[h!]
 \centering
