@@ -13,7 +13,12 @@ from scipy.integrate import simps
 
 
 def kappaNuModel(cs2: float, al: float, vp: float):
-    r"""Calculate the efficiency factor $\kappa_\bar{\theta}$"""
+    r"""Calculate the efficiency factor $\kappa_\bar{\theta}$
+
+    :param cs2: speed of sound squared
+    :param al: strength parameter $\alpha$
+    :param vp:
+    """
     nu = 1./cs2 + 1.
     tmp = 1. - 3.*al + vp**2 * (1./cs2 + 3.*al)
     disc = 4*vp**2 * (1. - nu) + tmp**2
