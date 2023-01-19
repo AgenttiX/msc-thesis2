@@ -14,18 +14,18 @@ from scipy.integrate import odeint
 from scipy.integrate import simps
 
 
-def mu(a, b):
+def mu(xi, v):
     """Relative velocity (special relativistic)"""
-    return (a-b)/(1.-a*b)
+    return (xi - v)/(1. - xi*v)
 
 
-def getwow(a, b):
+def getwow(v1, v2):
     """Ratio of enthalpies across the bubble wall, "w over w"
     from the junction conditions
-    :param a: $v_a$
-    :param b: $v_b$
+    :param v1: $v_a$
+    :param v2: $v_b$
     """
-    return a/(1.-a**2)/b*(1.-b**2)
+    return v1/(1. - v1 ** 2)/v2*(1. - v2 ** 2)
 
 
 def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
