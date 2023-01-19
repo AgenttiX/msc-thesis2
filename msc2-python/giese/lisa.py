@@ -151,8 +151,7 @@ def kappaNuMuModel(cs2b: float, cs2s: float, al: float, vw: float) -> float:
         Ksh, wow, vp = 0, 1, vw
     # If the model is a detonation or a hybrid
     if mode > 0:
-        # Fixed a typo here: wow3 -> wow
-        Krf, wow = getKandWow(vw=vw, v0=mu(vw, vm), cs2=cs2b)
+        Krf, wow3 = getKandWow(vw=vw, v0=mu(vw, vm), cs2=cs2b)
         Krf *= -wow * getwow(vp, vm)
     else:
         Krf = 0
