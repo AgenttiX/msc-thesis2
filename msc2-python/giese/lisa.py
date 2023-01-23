@@ -7,11 +7,14 @@ https://arxiv.org/abs/2010.09744
 Commented for better readability.
 """
 
+import logging
 import typing as tp
 
 import numpy as np
 from scipy.integrate import odeint
-from scipy.integrate import simps
+from scipy.integrate import simps, trapz
+
+logger = logging.getLogger(__name__)
 
 
 def mu(xi, v):
@@ -40,13 +43,14 @@ def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
     if vw**2 < cs2b:
         return vw, 0
     cc = 1. - 3. * al + vw**2 * (1./cs2b + 3.*al)
+    # Discriminant
     disc = -4.*vw**2/cs2b + cc**2
     if disc < 0. or cc < 0.:
         return np.sqrt(cs2b), 1
     return cc + np.sqrt(disc), 2
 
 
-def dfdv(xiw: tp.Union[tp.Tuple[float, float], np.ndarray], v: float, cs2: float) -> tp.List[float]:
+def dfdv(xiw: tp.Union[tp.Tuple[float, float], np.ndarray], v: float, cs2: float) -> tp.Tuple[float, float]:
     """The differential equation that is solved in the shock/rarefaction wave
 
     Rarefaction = the opposite of compression
@@ -55,10 +59,10 @@ def dfdv(xiw: tp.Union[tp.Tuple[float, float], np.ndarray], v: float, cs2: float
     dxidv = mu(xi, v)**2 / cs2 - 1.
     dxidv *= (1. - v*xi)*xi/2./v/(1.-v**2)
     dwdv = (1.+1./cs2) * mu(xi, v) * w/(1.-v**2)
-    return [dxidv, dwdv]
+    return dxidv, dwdv
 
 
-def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[float, float]:
+def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[np.ndarray, np.ndarray, np.ndarray, float, float]:
     """
     Returns two values
     - Enthalpy-weighted kinetic energy in the shock/rarefaction wave
@@ -68,11 +72,13 @@ def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[float, float]:
     For the rarefaction wave, the enthalpy density is normalized to 1 behind the wall and has to be rescaled in the other part of the code.
     """
     if v0 == 0:
-        return 0, 1
+        arr = np.array([])
+        return arr, arr, arr, 0, 1
     n = 8*1024  # change accuracy here
+    # n = 32*1024
     vs = np.linspace(v0, 0, n)
     # Get (xi, wow) for each v
-    sol = odeint(dfdv, [vw, 1.], vs, args=(cs2, ))
+    sol = odeint(dfdv, y0=[vw, 1.], t=vs, args=(cs2, ))
     xis, wows = (sol[:, 0], sol[:, 1])
     # If the wall moves at less than the sound speed = is subsonic
     if mu(vw, v0) * vw <= cs2:
@@ -89,7 +95,9 @@ def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[float, float]:
         # (This is also done in PTtools in
         wows = wows[:ll] / wows[ll-1] * getwow(xis[-1], mu(xis[-1], vs[-1]))
     Kint = simps(wows*(xis*vs)**2/(1.-vs**2), xis)
-    return Kint*4./vw**3, wows[0]
+    # Alternative trapezoidal integration
+    # Kint = trapz(wows * (xis * vs) ** 2 / (1. - vs ** 2), xis)
+    return vs, wows, xis, Kint*4./vw**3, wows[0]
 
 
 def alN(al, wow, cs2b, cs2s):
@@ -103,12 +111,14 @@ def getalNwow(vp, vm, vw, cs2b, cs2s):
     - $\alpha_{\bar{\theta}}n}$ in the nucleation phase
     - Ratio of the enthalpies for fixed boundary conditions at the wall
     """
-    Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
+    _, _, _, Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
     al = (vp/vm-1.)*(vp*vm/cs2b - 1.)/(1-vp**2)/3.
     return alN(al, wow, cs2b, cs2s), wow
 
 
-def kappaNuMuModel(cs2b: float, cs2s: float, al: float, vw: float) -> float:
+def kappaNuMuModel(
+        cs2b: float, cs2s: float,
+        al: float, vw: float) -> tp.Tuple[float, np.ndarray, np.ndarray, np.ndarray, int]:
     r"""Calculate the efficiency factor $\kappa$.
     This uses the other functions.
 
@@ -119,17 +129,21 @@ def kappaNuMuModel(cs2b: float, cs2s: float, al: float, vw: float) -> float:
     """
     vm, mode = getvm(al, vw, cs2b)
     # If solving for a sub- or supersonic deflagration
-    if mode < 2:
+    if mode in (0, 1):
         # Validate alpha
         almax, wow = getalNwow(0, vm, vw, cs2b, cs2s)
         if almax < al:
-            print("alpha too large for shock")
-            return 0
+            logger.error(
+                "alpha too large for shock, alpha=%s, max=%s",
+                al, almax
+            )
         vp = min(cs2s/vw, vw)
         almin, wow = getalNwow(vp, vm, vw, cs2b, cs2s)
         if almin > al:
-            print("alpha too small for shock")
-            return 0
+            logger.error(
+                "alpha too small for shock, alpha=%s, min=%s",
+                al, almin
+            )
         # Iterate to find v+ using binary search until the corresponding alpha matches the given value.
         # Set binary search limits.
         iv = [[vp, almin], [0, almax]]
@@ -145,14 +159,41 @@ def kappaNuMuModel(cs2b: float, cs2s: float, al: float, vw: float) -> float:
                 iv = [[vpm, alm], iv[1]]
         # Use the mean as v+
         vp = (iv[1][0] + iv[0][0])/2.
-        Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
-    else:
+        v_out, wow_out, xi_out, Ksh, wow = getKandWow(vw, mu(vw, vp), cs2s)
+    elif mode == 2:
         # For detonations no shooting is needed.
         Ksh, wow, vp = 0, 1, vw
+        v_out = wow_out = xi_out = np.array([])
+    else:
+        raise ValueError("Invalid mode")
+
     # If the model is a detonation or a hybrid
     if mode > 0:
-        Krf, wow3 = getKandWow(vw=vw, v0=mu(vw, vm), cs2=cs2b)
+        v_in, wow_in, xi_in, Krf, wow3 = getKandWow(vw=vw, v0=mu(vw, vm), cs2=cs2b)
+        v_in = np.flip(v_in)
+        wow_in = np.flip(wow_in)
+        xi_in = np.flip(xi_in)
         Krf *= -wow * getwow(vp, vm)
     else:
         Krf = 0
-    return (Ksh + Krf)/al
+        v_in = wow_in = xi_in = np.array([])
+
+    v_f = v_b = np.array([0, 0])
+    v_arr = np.concatenate((v_b, v_in, v_out, v_f))
+
+    wow_arr = np.concatenate((wow_in, wow_out))
+    wow_b = np.array([wow_arr[0], wow_arr[0]])
+    wow_f = np.array([wow_arr[-1], wow_arr[-1]])
+    wow_arr = np.concatenate((wow_b, wow_arr, wow_f))
+
+    xi_arr = np.concatenate((xi_in, xi_out))
+    xi_b = np.array([0, xi_arr[0]])
+    xi_f = np.array([xi_arr[-1], 1])
+    xi_arr = np.concatenate((xi_b, xi_arr, xi_f))
+
+    if np.any(xi_arr < 0) or np.any(xi_arr > 1):
+        logger.error("Invalid xi values")
+    if np.any(v_arr < 0) or np.any(v_arr > 1):
+        logger.error("Invalid v values")
+
+    return (Ksh + Krf)/al, v_arr, wow_arr, xi_arr, mode
