@@ -77,7 +77,7 @@ class GieseComparison:
                         bubble, kappa_old, giese_params = futs[i_model, i_v_wall, i_alpha_n].result()
 
                         # Plotly plot
-                        if bubble.failed or bubble.invalid:
+                        if bubble.no_solution_found or bubble.numerical_error or bubble.unphysical:
                             data_new[i_v_wall, i_alpha_n] = np.nan
                         else:
                             data_new[i_v_wall, i_alpha_n] = bubble.kappa
