@@ -14,4 +14,6 @@
 *.toc
 __pycache__
 .idea
+msc2-python/**/*.html
+msc2-python/**/*.png
 main.pdf
