@@ -47,7 +47,7 @@ def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
     disc = -4.*vw**2/cs2b + cc**2
     if disc < 0. or cc < 0.:
         return np.sqrt(cs2b), 1
-    return cc + np.sqrt(disc), 2
+    return (cc + np.sqrt(disc))/2.*cs2b/vw, 2
 
 
 def dfdv(xiw: tp.Union[tp.Tuple[float, float], np.ndarray], v: float, cs2: float) -> tp.Tuple[float, float]:
