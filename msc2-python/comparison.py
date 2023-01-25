@@ -14,7 +14,7 @@ from pttools.bubble.quantities import get_kappa
 from pttools.bubble.bubble import Bubble
 from pttools.logging import setup_logging
 from pttools.models import BagModel, ConstCSModel, Model
-from giese import alpha, lisa
+from giese import lisa
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class GieseComparison:
     def compute_bubble(self, model: ConstCSModel, v_wall: float, alpha_n: float):
         bubble = Bubble(model, v_wall, alpha_n) # , n_points=100000)
         bubble.solve()
-        alpha_n_bar = alpha.alpha_n_bar(model, alpha_n)
+        alpha_n_bar = model.alpha_n_bar(alpha_n)
         # kappa_old = get_kappa(v_wall, alpha_n) if model.css2 == 1/3 and model.csb2 == 1/3 else None
         kappa_old = None
         giese_params = lisa.kappaNuMuModel(model.csb2, model.css2, alpha_n_bar, v_wall)
