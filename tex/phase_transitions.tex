@@ -322,11 +322,11 @@ T_\phi^{\mu \nu}
 - g^{\mu \nu} \left(\frac{1}{2} (\partial \phi)^2 + V_0 (\phi) \right)
 \end{equation}
 
-The total energy-momentum is conserved,
+The total energy-momentum is conserved, and \ref{eq:ep_conservation} can therefore be decomposed as
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
-\label{eq:ep_conservation}
+\label{eq:ep_conservation_total}
 \end{equation}
 
 
@@ -336,7 +336,7 @@ This chapter of the lecture notes is largely based on the references
 \cites{hindmarsh_gw_pt_2019}{espinosa_energy_2010}.
 \todo{Add more content from \cite[ch. 6]{mazumdar_review_2019}.}
 
-If the wall velocity is constant, \eqref{eq:ep_conservation} also holds in the wall frame.
+If the wall velocity is constant, \eqref{eq:ep_conservation_total} also holds in the wall frame.
 Therefore for a wall moving in the z-direction
 \cite[eq. 7]{espinosa_energy_2010}
 \begin{equation}
@@ -389,6 +389,7 @@ The difference of the trace anomalies just ahead and behind of the wall is denot
 &\equiv \theta_+(w_+) - \theta_-(w_-) % \\
 % &= \theta_s(w_s) - \theta_b(w_b)
 \end{align}
+\todo{Use $\equiv$ for the rest of the definitions as well}
 With this we can define the transition strength
 \begin{equation}
 \alpha_+ = \frac{4 \Delta \theta}{3 w_+}.
