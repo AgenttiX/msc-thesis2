@@ -8,8 +8,10 @@
 *.lof
 *.lot
 *.log
+*.nav
 *.out
 *.run.xml
+*.snm
 *.tdo
 *.toc
 __pycache__
