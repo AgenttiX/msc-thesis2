@@ -18,4 +18,5 @@ __pycache__
 .idea
 msc2-python/**/*.html
 msc2-python/**/*.png
+msc2-python/logs
 main.pdf

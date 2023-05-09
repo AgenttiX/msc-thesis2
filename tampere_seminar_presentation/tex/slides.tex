@@ -14,8 +14,8 @@
     \begin{columns}
     \begin{column}{0.5\textwidth}
         \begin{itemize}
-            \item If there is a potential barrier between the local and global minima, the phase transition is of first order
-            \item Standard Model Higgs transition is of second order, but various extensions convert it to first order
+            \item If there is a potential barrier between the local and the global minimum, the phase transition is of first order
+            \item The Standard Model Higgs transition is a cross-over, but various extensions convert it to first order
             \item Klein-Gordon equation with a friction term
             \begin{equation}
                 \Box \phi - V_T'(\phi) = - \eta_T(\phi) u^\mu \partial_\mu \phi
@@ -27,6 +27,8 @@
         \includegraphics[width=0.45\textwidth]{../fig/smPhaseDiag2}%
         \hfill%
         \includegraphics[width=0.45\textwidth]{../fig/ThermalHiggsPotential}
+        \\
+        \center{\scriptsize Hindmarsh et al., 2021}
     \end{column}
     \end{columns}
 \end{frame}
@@ -166,27 +168,35 @@
             0 &= u_\mu \partial_\nu T^{\mu \nu} = -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p, \\
             0 &= \bar{u}_\mu \partial_\nu T^{\mu \nu} = w \bar{u}^\nu u^\mu \partial_\mu u_\nu + \bar{u}^\mu \partial_\mu p.
         \end{align}
-        \item Using self-similarity $\xi = \frac{r}{t}$
+        \item Using self-similarity $\xi = \frac{r}{t}$ and parametrising
         \begin{align}
             \frac{d\xi}{d\tau} &= \xi \left[ (\xi - v)^2 - c_s^2 (1 - \xi v)^2 \right], \\
             \frac{dv}{d\tau} &= 2 v c_s^2 (1 - v^2) (1 - \xi v), \\
             \frac{dw}{d\tau} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu \frac{dv}{d\tau}.
         \end{align}
+        \item Note that $c_s^2$ is computed using user-provided functions
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Fluid shells}
-    \begin{itemize}
-        \item Three types of solutions, determined by
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
         \begin{itemize}
-            \item Wall velocity $v_\text{wall}$
-            \item Transition strength $\alpha_n$
-            \item Speed of sound $c_s(T,\phi)$
+            \item Three types of solutions, determined by
+            \begin{itemize}
+                \item Wall velocity $v_\text{wall}$
+                \item Transition strength $\alpha_n$
+                \item Speed of sound $c_s(T,\phi)$
+            \end{itemize}
         \end{itemize}
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{../fig/all_circle.pdf} \\
-    {\footnotesize Black = bubble wall / phase boundary}
+        \includegraphics[width=\textwidth]{../fig/all_circle} \\
+        {\footnotesize Black = bubble wall / phase boundary}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../fig/vplusvminus}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \section{Equations of state}
@@ -215,7 +225,7 @@
             \item Entropy density $s = \frac{dp}{dT}$
             \item Enthalpy density $w = Ts$
             \item Energy density $e = w - p$
-            \item Sound speed $c_s = \frac{\partial p}{\partial e}$
+            \item Sound speed $c_s = \frac{dp}{de}$
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -226,7 +236,7 @@
         \item Bag model: equation of state with constant degrees of freedom
         \begin{equation}
             g_\pm = \frac{90}{\pi^2} a_\pm \quad \Rightarrow \quad p_\pm = a_\pm T^4 - V_\pm, \quad
-            c_s^2 \equiv \frac{\partial p}{\partial e} = \frac{1}{3}
+            c_s^2 \equiv \frac{dp}{de} = \frac{1}{3}
         \end{equation}
         \item Constant sound speed model
         \begin{align}
@@ -258,10 +268,17 @@
     \frametitle{PTtools}
     \begin{itemize}
         \item Python-based simulation framework for GW power spectra of first-order phase transitions
+        \begin{itemize}
+            \item Based on Numpy, SciPy (solvers \& ODE integration) \& Numba
+        \end{itemize}
         \item Input
         \begin{itemize}
             \item Equation of state, either directly as $p(T,\phi)$ (and $e(T,\phi)$ or $s(T,\phi)$),
-                or as degrees of freedom: two of $g_e(T,\phi), g_p(T,\phi), g_s(T,\phi)$, and potential $V(T, \phi)$
+                or as degrees of freedom: $g_p(T,\phi)$ (and $g_e(T,\phi)$ or $g_s(T,\phi)$), and potential $V_0(\phi)$
+            \begin{itemize}
+                \item Bag model, constant sound speed model and the Standard Model with adjustable phases are already included
+                \item User provides the model as a Python class. The $g_\text{eff}$ functions can be arbitrary, e.g. interpolated from data.
+            \end{itemize}
             \item Bubble wall speed $v_\text{wall}$
             \item Transition strength parameter $\alpha_n$
             \item Transition rate parameter $\beta$
@@ -272,34 +289,115 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Fluid shell algorithm}
-    \begin{minipage}[t]{0.48\linewidth}%
+    \frametitle{Fluid shell algorithm: detonations}
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
         \begin{itemize}
-            \item Detonations
+            \item Solve boundary conditions at the wall for known $w_+=w_n, v_+=0$
             \begin{itemize}
-                \item Solve boundary conditions at the wall, integrate from the wall to $v=0$
+                \item Using user-provided $p(T,\phi)$ \textrightarrow \ numerical solving
             \end{itemize}
-            \item Deflagrations \& hybrids
+            \item Integrate from the wall to the fixed point at $v=0$
             \begin{itemize}
-                \item Guess an enthalpy behind the wall
-                \item Solve boundary conditions at the wall
-                \item Integrate to the shock
-                \item Solve boundary conditions at the shock
-                \item Check if $w=w_n$
-                \item If not, change enthalpy guess
-                \item If hybrid, integrate from the wall to $v=0$
-            \end{itemize}%
-        \end{itemize}%
-    \end{minipage}%
-    \hfill%
-    \begin{minipage}[t]{0.48\linewidth}%
-        % \includegraphics[width=0.2\textwidth]{../fig/shell_plot_vw_07_alphan_01_review.pdf}%
-        TODO figure here
-    \end{minipage}
+                \item Using $c_s^2(w,\phi)$ based on user-provided functions \textrightarrow \ numerical ODE integration
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../fig/shell_plot_vw_08_alphan_01_review}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Example result: entropy conservation}
+    \frametitle{Fluid shell algorithm: deflagrations}
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
+        \begin{itemize}
+                \item Guess $w_-$, the enthalpy behind the wall
+                \item Solve boundary conditions at the wall for $w_+, v_+$
+                \item Integrate to the shock
+                \begin{itemize}
+                    \item $v_{sh}(\xi)$ is computed from the boundary conditions \textrightarrow \ has to be found numerically
+                \end{itemize}
+                \item Solve boundary conditions at the shock
+                \item Check if $w=w_n$
+                \item If not, change the enthalpy guess and try again
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../fig/shell_plot_vw_04_alphan_01_review}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fluid shell algorithm: hybrids}
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
+        \begin{itemize}
+                \item The same as for subsonic deflagrations, but with an additional integration behind the wall
+                { \color{gray}
+                \item Guess $w_-$, the enthalpy behind the wall
+                \item Solve boundary conditions at the wall for $w_+, v_+$
+                \item Integrate to the shock
+                \item Solve boundary conditions at the shock
+                \item Check if $w=w_n$
+                \item If not, change the enthalpy guess and try again
+                }
+                \item Once the correct enthalpy has been found, integrate from the wall to the fixed point at $v=0$
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../fig/shell_plot_vw_07_alphan_01_review}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gravitational wave production}
+    \begin{columns}
+    \begin{column}{0.4\textwidth}
+        \begin{itemize}
+            % \footnotesize
+            \item Sound Shell Model (Hindmarsh, 2018)
+            \item Velocity profile of a single bubble $v_\text{ip}(\xi)$ + sine transform \\
+                \textrightarrow \ velocity power spectrum
+            \item Convolution with the nucleation rate function \\
+                \textrightarrow \ Overall velocity power spectrum
+            \item Convolution with a Green's function \textrightarrow \ GW power spectrum
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{../fig/shell_plot_vw_04_alphan_01_review}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../fig/one_bub_vw0.44alpha0.05_nz5k_nx10k-final3}
+        \includegraphics[width=\textwidth]{../fig/pow_gw_vw0.44alpha0.05_sim_1.0_exp_1.0_nz5k_nx10k_nT1000-final3}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\iffalse
+\begin{align}
+    \lambda(x) &= \frac{e(x) - \bar{e}}{\bar{w}} \\
+    f(z) &= \frac{4 \pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi) \\
+    l(z) &= \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \xi \sin(z\xi) \\
+    |A(z)|^2 &= \frac{1}{4} \left[ (f'(z))^2 + (c_s l(z))^2 \right]
+\end{align}
+\begin{equation}
+    \mathcal{P}_\text{gw} = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_{\dot{h}}
+\end{equation}
+\fi
+
+\iffalse
+\begin{frame}
+    \frametitle{Energy redistribution}
+    TODO kinetic energy fraction figures here
+\end{frame}
+
+\begin{frame}
+    \frametitle{Entropy conservation}
     \begin{minipage}[t]{0.48\linewidth}
         \begin{itemize}
             \item 10 000 bubbles with varying $v_\text{wall}, \alpha_n$
@@ -312,44 +410,25 @@
         TODO figure here
     \end{minipage}
 \end{frame}
-
-\begin{frame}
-    \frametitle{Gravitational wave production}
-    \begin{itemize}
-        \footnotesize
-        \item Sound Shell Model (Hindmarsh, 2018)
-        \item Velocity profile of a single bubble $v_\text{ip}(\xi)$ + sine transform \\ \textrightarrow \ velocity power spectrum
-        \begin{align}
-            \lambda(x) &= \frac{e(x) - \bar{e}}{\bar{w}} \\
-            f(z) &= \frac{4 \pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi) \\
-            l(z) &= \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \xi \sin(z\xi) \\
-            |A(z)|^2 &= \frac{1}{4} \left[ (f'(z))^2 + (c_s l(z))^2 \right]
-        \end{align}
-        \item Convolution with the nucleation rate function \\
-            \textrightarrow Overall velocity power spectrum
-        \item Convolution with a Green's function \textrightarrow \ GW power spectrum
-        \begin{equation}
-            \mathcal{P}_\text{gw} = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_{\dot{h}}
-        \end{equation}
-    \end{itemize}
-\end{frame}
+\fi
 
 \section{Conclusion}
 
 \begin{frame}
     \frametitle{Summary}
     \begin{itemize}
-        \item A phase transition converts energy from the scalar field to kinetic and thermal energy \textrightarrow Gravitational wave production
+        \item A phase transition converts energy from the scalar field to kinetic and thermal energy
+            \textrightarrow \ Gravitational wave production
         \item The phase transition proceeds by bubble nucleation
         \item The hydrodynamics is based on energy-momentum conservation
         \item Solving a bubble starts with the equation of state
         \begin{itemize}
-            \item Equation solving \& ODE integration \textrightarrow fluid velocity profile
-            \item Sine transform \& convolutions \textrightarrow GW power spectrum
+            \item Equation solving \& ODE integration \textrightarrow \ fluid velocity profile
+            \item Sine transform \& convolutions \textrightarrow \ GW power spectrum
         \end{itemize}
         \item Sound shell model converts the velocity profile to GW power spectrum
-        \item PTtools has been updated to deal with arbitrary equations of state
-        \item PTtools will be published soon with support for arbitrary equations of state
+        \item PTtools has been updated to support arbitrary equations of state
+        \item PTtools will be published soon
     \end{itemize}
 \end{frame}
 
@@ -368,7 +447,7 @@
 
 \begin{frame}
     % \frametitle{Thank you!}
-    Thank you!
+    \center{Thank you!}
 \end{frame}
 
 \section{Extra slides}
@@ -382,7 +461,7 @@
         \item (Restructure the function to make the possible parallelism explicit)
     \end{itemize}
     {
-        \footnotesize
+        \scriptsize
         \lstset{escapeinside={<@}{@>}}
         \lstinputlisting[language=Python]{sin_transform_core.py}
     }
