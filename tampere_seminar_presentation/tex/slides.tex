@@ -7,7 +7,7 @@
     \tableofcontents
 \end{frame}
 
-\section{Introduction}
+\section{Introduction to first-order phase transitions}
 
 \begin{frame}
     \frametitle{First-order phase transitions}
@@ -39,7 +39,7 @@
     \begin{column}{0.6\textwidth}
         \begin{itemize}
             \item Spontaneous tunneling to the new phase \textrightarrow \ bubble nucleation and expansion
-            \item Bubble expansion is governed by relativistic hydrodynamics
+            \item Bubble expansion is governed by relativistic hydrodynamics \textrightarrow \ sound \textrightarrow \ GWs
             \item "Trying to determine the properties of a fluid in a water kettle based on the sound of boiling"
             \begin{itemize}
                 \item Listening to the sound indirectly through GWs
@@ -141,7 +141,7 @@
             \quad \Rightarrow \quad
             \partial_z T^{zz} = \partial_z T^{z0} = 0
         \end{equation}
-        \item Inserting ideal fluid $T^{\mu \nu}_f = (e+p) u^\mu u^\nu + p g^{\mu \nu}$ \textrightarrow \ Junction conditions
+        \item Inserting ideal fluid $T^{\mu \nu}_f = (e+p) u^\mu u^\nu + p g^{\mu \nu}$ \textrightarrow \ junction conditions
         \begin{align}
             w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+
             \label{eq:junction_condition_1} \\
@@ -225,7 +225,7 @@
             \item Entropy density $s = \frac{dp}{dT}$
             \item Enthalpy density $w = Ts$
             \item Energy density $e = w - p$
-            \item Sound speed $c_s = \frac{dp}{de}$
+            \item Sound speed $c_s = \sqrt{\frac{dp}{de}}$
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -257,7 +257,7 @@
             g_p &= 4g_s - 3g_e \\
             e(T,\phi) &= \frac{\pi^2}{30} g_e(T,\phi) T^4 + V_0(\phi) \\
             p(T,\phi) &= \frac{\pi^2}{90} g_p(T,\phi) T^4 - V_0(\phi) \\
-            s(T,\phi) &= \frac{2\pi^2}{45} g_s(T,\phi) T^3 \\
+            s(T,\phi) &= \frac{2\pi^2}{45} g_s(T,\phi) T^3
         \end{align}
     \end{itemize}
 \end{frame}
@@ -390,27 +390,24 @@
 \end{equation}
 \fi
 
-\iffalse
-\begin{frame}
-    \frametitle{Energy redistribution}
-    TODO kinetic energy fraction figures here
-\end{frame}
-
 \begin{frame}
     \frametitle{Entropy conservation}
-    \begin{minipage}[t]{0.48\linewidth}
+    \begin{columns}
+    \begin{column}{0.3\textwidth}
         \begin{itemize}
             \item 10 000 bubbles with varying $v_\text{wall}, \alpha_n$
             \item Top-left region ruled out by $\alpha_+ > \frac{1}{3}$
             \item Unphysical region (blue): decrease in total entropy
         \end{itemize}%
-    \end{minipage}%
-    \hfill%
-    \begin{minipage}[t]{0.48\linewidth}%
-        TODO figure here
-    \end{minipage}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+        \includegraphics[width=\textwidth]{../msc2-python/fig/entropy_bag}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+        \includegraphics[width=\textwidth]{../msc2-python/fig/entropy_const_cs}
+    \end{column}
+    \end{columns}
 \end{frame}
-\fi
 
 \section{Conclusion}
 
@@ -424,12 +421,15 @@
         \item Solving a bubble starts with the equation of state
         \begin{itemize}
             \item Equation solving \& ODE integration \textrightarrow \ fluid velocity profile
-            \item Sine transform \& convolutions \textrightarrow \ GW power spectrum
         \end{itemize}
         \item Sound shell model converts the velocity profile to GW power spectrum
+        \begin{itemize}
+            \item Sine transform \& convolutions \textrightarrow \ GW power spectrum
+        \end{itemize}
         \item PTtools has been updated to support arbitrary equations of state
         \item PTtools will be published soon
     \end{itemize}
+    Thank you!
 \end{frame}
 
 \begin{frame}
@@ -445,12 +445,37 @@
     \end{itemize}
 \end{frame}
 
+\iffalse
 \begin{frame}
     % \frametitle{Thank you!}
     \center{Thank you!}
 \end{frame}
+\fi
 
-\section{Extra slides}
+\section*{Extra slides}
+
+\begin{frame}
+    \frametitle{Energy redistribution}
+    % \begin{columns}
+    % \begin{column}{0.3\textwidth}
+    \begin{itemize}
+        \item Efficiency factor $\kappa$: ratio of kinetic energy to total energy released
+        \begin{align}
+            \kappa &= \frac{e_K}{|\Delta e_\theta|} \\
+            e_K &= 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 w \gamma^2 v^2 \\
+            \Delta e_{\theta} &= 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n)
+        \end{align}
+    \end{itemize}
+    % \end{column}
+    \begin{columns}
+    \begin{column}{0.35\textwidth}
+        \includegraphics[width=\textwidth]{../msc2-python/fig/kappa_bag}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+        \includegraphics[width=\textwidth]{../msc2-python/fig/kappa_const_cs}
+    \end{column}
+    \end{columns}
+\end{frame}
 
 % Extra backup slides
 \begin{frame}
