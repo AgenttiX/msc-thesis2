@@ -343,7 +343,7 @@ Therefore for a wall moving in the z-direction
 \partial_z T^{zz} = \partial_z T^{z0} = 0.
 \end{equation}
 Inserting the definition of $T$ from \eqref{eq:ep_tensor} results in the bubble wall junction conditions
-\cites[eq. 7.22]{lecture_notes}[eq. B.2-3]{hindmarsh_gw_pt_2019}
+\cites[eq. 7.22]{lecture_notes}[eq. 135.2, 135.3]{landau_fluid_1987}
 % This is almost trivial.
 \begin{align}
 w_- \tilde{\gamma}_-^2 \tilde{v}_- &= w_+ \tilde{\gamma}_+^2 \tilde{v}_+,
@@ -359,7 +359,8 @@ w_- = w_+ \frac{\tilde{\gamma}_+^2 \tilde{v}_+}{\tilde{\gamma}_-^2 \tilde{v}_-},
 which we will need later.
 
 The junction conditions can be rearranged as
-\cites[eq. 7.32]{lecture_notes}[eq. 6-7]{giese_2020}
+\cites[eq. 7.32]{lecture_notes}[eq. 4.134]{rezzolla_relativistic_2013}
+\todo{According to Giese these are from Landau \& Lifschitz, Fluid Mechanics}
 \todo{How to prove this step? My attempts of manual proof have failed.}
 \begin{align}
 \tilde{v}_+ \tilde{v}_- = \frac{p_+ - p_-}{e_+ - e_-} \\
@@ -423,7 +424,7 @@ This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solve
 \tilde{v}_+ &= \frac{1}{2(1+\alpha_+)}\left[ \left(\frac{1}{3\tilde{v}_-}+\tilde{v}_-\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_-} - \tilde{v}_- \right)^2 + 4\alpha_+^2 + \frac{8}{3} \alpha_+} \right],
 \label{eq:v_tilde_plus}
 \\
-\tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right).
+\tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right].
 \label{eq:v_tilde_minus}
 \end{align}
 Both of these are basic second-order solutions, but in \eqref{eq:v_tilde_plus} the discriminant has been simplified.
@@ -435,7 +436,7 @@ We can define another transition strength by inverting the indices of $\alpha_+$
 \end{equation}
 With this we can solve the junction conditions as above, but with opposite indices, resulting in
 \begin{align}
-\tilde{v}_+ &= \frac{1}{2} \left[ \left( (1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right) \pm \sqrt{\left((1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right)^2 - \frac{4}{3}} \right),
+\tilde{v}_+ &= \frac{1}{2} \left[ \left( (1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right) \pm \sqrt{\left((1+\alpha_-)\tilde{v}_- + \frac{1-3\alpha_-}{3\tilde{v}_-} \right)^2 - \frac{4}{3}} \right],
 \label{eq:v_tilde_plus_reverse}
 \\
 \tilde{v}_- &= \frac{1}{2(1+\alpha_-)}\left[ \left(\frac{1}{3\tilde{v}_+}+\tilde{v}_+\right) \pm \sqrt{\left(\frac{1}{3\tilde{v}_+} - \tilde{v}_+ \right)^2 + 4\alpha_-^2 + \frac{8}{3} \alpha_-} \right].
@@ -454,54 +455,103 @@ We can obtain useful continuity equations from the conservation of energy-moment
 We start by defining two vectors, the fluid 4-velocity
 \begin{equation}
 u^\mu = \gamma(-1, \overrightarrow{v})^\mu
+\label{eq:u_mu}
 \end{equation}
 and its orthonormal vector
 \begin{equation}
 \bar{u}^\mu = \gamma(-v, \frac{\overrightarrow{v}}{v})^\mu.
 \end{equation}
-These form an orthonormal basis.
+\todo{Check the signs of the time components.}
+Please note that the way these vectors are defined and the convention for the signature of the metric vary
+from article to article.
+These vectors form an orthonormal basis.
 It should be noted, that for orthonormal vectors
 \begin{align}
 % Note that the lecture notes use ubar here.
 u_\mu u^\mu &= -1, \\
 u_\mu \bar{u}^\mu &= 0.
 \end{align}
-By projecting the conservation equation \eqref{eq:ep_conservation} to this basis we get
+By projecting the conservation equation~\eqref{eq:ep_conservation} to this basis and noting that
+$\nabla_\nu (u_\mu u^\mu) = 0$ and therefore $u_\mu \nabla_\nu u^\mu = 0$, we get
 \cite[eq. 7.28-7.29]{lecture_notes}
 \begin{align}
-0 &= u_\mu \partial_\nu T^{\mu \nu} = -\partial_\mu (w u^\mu) + u^\mu \partial_\mu p, \\
-0 &= \bar{u}_\mu \partial_\nu T^{\mu \nu} = w \bar{u}^\nu u^\mu \partial_\mu u_\nu + \bar{u}^\mu \partial_\mu p.
+0 &= u_\mu \nabla_\nu T^{\mu \nu} = -\nabla_\mu (w u^\mu) + u^\mu \nabla_\mu p,
+\label{eq:continuity1} \\
+0 &= \bar{u}_\mu \gradient_\nu T^{\mu \nu} = w \bar{u}^\nu u^\mu \nabla_\mu u_\nu + \bar{u}^\mu \nabla_\mu p.
+\label{eq:continuity2}
 \end{align}
-These are known as the continuity equations, or the hydrodynamic equations. \todo{Where did I find the latter name from?}
-They have spherically symmetric self-similar solutions, and can therefore be expressed using the dimensionless coordinate
+These are known as the continuity equations, or the hydrodynamic equations.
+It should be noted that many articles use the symbol of a partial derivative $\partial$ in these equations,
+even though it's actually a covariant derivative $\nabla$.
+Since we are operating in spherical coordinates,
+the divergence of a vector $A$ is given by
+\begin{align}
+\nabla \cdot A
+% &= \partial_r A^r + \partial_\theta A^\theta + \partial_\phi A^\phi \\
+&= \frac{1}{r^2} \frac{\partial (r^2 A^r)}{\partial r}
++ \frac{1}{r \sin \theta} \frac{\partial A^\theta}{\partial \theta}
++ \frac{1}{r \sin \theta} \frac{\partial A^\phi}{\partial \phi}.
+\label{eq:divergence}
+\end{align}
+Let us look for a spherically symmetric self-similar solution using the dimensionless coordinate
 \begin{equation}
 \xi = \frac{r}{t}.
 \end{equation}
-This results in the equations
-\todo{Todo: Derive these using Espinoza's article, and see the handwritten notes by Hidmarsh. It's longer than it looks.}
-\cites[eq. 7.30-7.31]{lecture_notes}[eq. 5]{giese_2021}
+In a spherically symmetric case for $u^\mu$ of eq.~\eqref{eq:u_mu},
+the latter two terms of~\eqref{eq:divergence} are zero, and therefore
+\begin{equation}
+\nabla_\mu u^\mu = \frac{\gamma}{t} \left[ 2\frac{v}{\xi} + \left[1 - \gamma^2 v (\xi - v) \right] \partial_\xi v \right]
+\end{equation}
+The gradients in~\eqref{eq:continuity1} and~\eqref{eq:continuity2} can also be expressed as~\cite[eq. 25]{espinosa_energy_2010}.
 \begin{align}
-\frac{dv}{d\xi} &= \frac{2v(1-v^2)}{\xi(1-v\xi)} \left( \frac{\mu(\xi,v)^2}{c_s^2} - 1 \right)^{-1},
-\label{eq:hydro1}
-\\
-\frac{dw}{d\xi} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\xi,v) \frac{dv}{d\xi},
-\label{eq:hydro2}
+u_\mu \nabla^\mu &= - \frac{\gamma}{t} (\xi - v) \partial_\xi, \\
+\bar{u}_\mu \nabla^\mu &= \frac{\gamma}{t} (1 - \xi v) \partial_\xi.
 \end{align}
+With these eq.~\eqref{eq:continuity1} and~\eqref{eq:continuity2} can be expressed as
+\begin{align}
+(\xi - v) \frac{d_\xi e}{w} &= 2 \frac{v}{\xi} + \left[ 1 - \gamma^2 v (\xi - v) \right] d_\xi v, \\
+(1 - v\xi) \frac{d_\xi p}{w} &= \gamma^2 (\xi - v) d_\xi v.
+\end{align}
+These are dependent only on $\xi$ instead of $r$,
+and therefore a spherically symmetric self-similar solution exists.
+Here the derivatives are now total derivatives, as $e$ and $p$ are functions of a single variable.
+By dividing one equation by the other and using eq.~\eqref{eq:cs2_compact}, we can combine these to
+\begin{equation}
+2 \frac{v}{\xi} = \gamma^2 (1 - v\xi) \left[ \frac{\mu^2}{c_s^2} - 1 \right] d_\xi v,
+\label{eq:continuity_combined}
+\end{equation}
 where
 \begin{equation}
 \mu(\xi,v) = \frac{\xi - v}{1 - \xi v}
+\label{eq:mu}
 \end{equation}
 is the
 \href{https://en.wikipedia.org/wiki/Velocity-addition_formula#Standard_configuration}{Lorentz transformed fluid velocity}
 $\xi$ in a frame moving outward with the speed $v$.
+This can be rearranged to give
+\cites[eq. 7.30-7.31]{lecture_notes}[eq. 5]{giese_2021}
+\begin{equation}
+\frac{dv}{d\xi} = \frac{2v(1-v^2)}{\xi(1-v\xi)} \left( \frac{\mu(\xi,v)^2}{c_s^2} - 1 \right)^{-1}.
+\label{eq:hydro_diff1}
+\end{equation}
+From eq.~\eqref{eq:continuity2} using eq.~\eqref{eq:cs2_compact} and~\eqref{eq:enthalpy_sum} we also get
+\begin{equation}
+\frac{dw}{d\xi} = w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu(\xi,v) \frac{dv}{d\xi}.
+\label{eq:hydro_diff2}
+\end{equation}
 
-For easier integration these equations can be rearranged to the parametric form of
+Equation~\eqref{eq:hydro_diff1} can be split in two using an auxiliary quantity $\tau$,
+resulting in the equation group
 \cite[eq. B.14-16]{hindmarsh_gw_pt_2019}
 \begin{align}
-\frac{d\xi}{d\tau} &= \xi \left[ (\xi - v)^2 - c_s^2 (1 - \xi v)^2 \right], \\
-\frac{dv}{d\tau} &= 2 v c_s^2 (1 - v^2) (1 - \xi v), \\
+\frac{d\xi}{d\tau} &= \xi \left[ (\xi - v)^2 - c_s^2 (1 - \xi v)^2 \right],
+\label{eq:hydro_param1} \\
+\frac{dv}{d\tau} &= 2 v c_s^2 (1 - v^2) (1 - \xi v),
+\label{eq:hydro_param2} \\
 \frac{dw}{d\tau} &= w \left( 1 + \frac{1}{c_s^2} \right) \gamma^2 \mu \frac{dv}{d\tau}.
+\label{eq:hydro_param3}
 \end{align}
+This is easier to prove in the reverse direction by dividing one equation by the other.
 It should be noted that in general $c_s^2 = c_s^2(w,\phi)$, which tightens the coupling between these equations.
 The parametric equations have fixed points at
 $(\xi,v) = (0,0)$ and
@@ -514,7 +564,7 @@ However, in the general case of $c_s(w,\phi)$ the equations have to be integrate
 
 
 \section{Types of solutions}
-Solutions to the hydrodynamic equations \eqref{eq:hydro1}, \eqref{eq:hydro2} are obtained by integrating away from the position of the bubble wall, $\xi_w$.
+Solutions to the hydrodynamic equations~\eqref{eq:hydro_param1},~\eqref{eq:hydro_param2} are obtained by integrating away from the position of the bubble wall, $\xi_w$.
 There are two relevant external boundary conditions.
 To maintain spherical symmetry
 \begin{equation}

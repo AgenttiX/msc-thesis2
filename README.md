@@ -2,4 +2,4 @@
 
 My second master's thesis.
 
-Mika Mäki, 2021-2022
+Mika Mäki, 2021-2023
