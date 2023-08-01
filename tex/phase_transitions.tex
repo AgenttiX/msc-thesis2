@@ -379,7 +379,7 @@ The trace of the energy-momentum tensor of \eqref{eq:ep_tensor} is
 We can quantify its difference from zero with the trace anomaly
 \cites[eq. 7.24]{lecture_notes}[eq. 28]{giese_2020}
 \begin{equation}
-\theta = \frac{1}{4}(e-3p).
+\theta \equiv \frac{1}{4}(e-3p).
 \label{eq:theta}
 \end{equation}
 The definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
@@ -389,21 +389,20 @@ The difference of the trace anomalies just ahead and behind of the wall is denot
 &\equiv \theta_+(w_+) - \theta_-(w_-) % \\
 % &= \theta_s(w_s) - \theta_b(w_b)
 \end{align}
-\todo{Use $\equiv$ for the rest of the definitions as well}
 With this we can define the transition strength
 \begin{equation}
-\alpha_+ = \frac{4 \Delta \theta}{3 w_+}.
+\alpha_+ \equiv \frac{4 \Delta \theta}{3 w_+}.
 \label{eq:alpha_plus}
 \end{equation}
 The transition strength at nucleation temperature is defined slightly differently as
 \cite[eq. 2.11]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\alpha_n = \frac{4}{3} \frac{\theta_+(w_n) - \theta_-(w_n)}{w_n}.
+\alpha_n \equiv \frac{4}{3} \frac{\theta_+(w_n) - \theta_-(w_n)}{w_n}.
 \label{eq:alpha_n}
 \end{equation}
 We can also define the enthalpy ratio
 \begin{equation}
-r = \frac{w_+}{w_-}.
+r \equiv \frac{w_+}{w_-}.
 \end{equation}
 With these definitions the junction conditions of \eqref{eq:junction_ep} can be simplified as
 \begin{equation}
@@ -431,7 +430,7 @@ Both of these are basic second-order solutions, but in \eqref{eq:v_tilde_plus} t
 It should be noted that the equations \ref{eq:junction_condition_1} and \ref{eq:junction_condition_2} are symmetric with respect to the indices $+$ and $-$.
 We can define another transition strength by inverting the indices of $\alpha_+$ in \ref{eq:alpha_plus} as
 \begin{equation}
-\alpha_- = - \frac{4 \Delta \theta}{3 w_-}.
+\alpha_- \equiv - \frac{4 \Delta \theta}{3 w_-}.
 \end{equation}
 With this we can solve the junction conditions as above, but with opposite indices, resulting in
 \begin{align}
@@ -453,12 +452,12 @@ These versions of the equations are useful when computing $\tilde{v}_+(\alpha_+)
 We can obtain useful continuity equations from the conservation of energy-momentum.
 We start by defining two vectors, the fluid 4-velocity
 \begin{equation}
-u^\mu = \gamma(-1, \overrightarrow{v})^\mu
+u^\mu \equiv \gamma(-1, \overrightarrow{v})^\mu
 \label{eq:u_mu}
 \end{equation}
 and its orthonormal vector
 \begin{equation}
-\bar{u}^\mu = \gamma(-v, \frac{\overrightarrow{v}}{v})^\mu.
+\bar{u}^\mu \equiv \gamma(-v, \frac{\overrightarrow{v}}{v})^\mu.
 \end{equation}
 \todo{Check the signs of the time components.}
 Please note that the way these vectors are defined and the convention for the signature of the metric vary
@@ -494,7 +493,7 @@ the divergence of a vector $A$ is given by
 \end{align}
 Let us look for a spherically symmetric self-similar solution using the dimensionless coordinate
 \begin{equation}
-\xi = \frac{r}{t}.
+\xi \equiv \frac{r}{t}.
 \end{equation}
 In a spherically symmetric case for $u^\mu$ of eq.~\eqref{eq:u_mu},
 the latter two terms of~\eqref{eq:divergence} are zero, and therefore
@@ -521,7 +520,7 @@ By dividing one equation by the other and using eq.~\eqref{eq:cs2_compact}, we c
 \end{equation}
 where
 \begin{equation}
-\mu(\xi,v) = \frac{\xi - v}{1 - \xi v}
+\mu(\xi,v) \equiv \frac{\xi - v}{1 - \xi v}
 \label{eq:mu}
 \end{equation}
 is the
