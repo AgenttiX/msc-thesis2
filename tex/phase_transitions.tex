@@ -121,6 +121,7 @@ $\forall j=1,2,3: \quad T^{0j} = 0$.
 As the fluid has no viscosity, it does not experience any shear stress, and therefore
 $\forall i,j=1,2,3, \quad i \neq j: \quad T^{ij} = 0$.
 This does not depend on the reference frame, so the tensor is diagonal in all reference frames.
+\todo{Is this really the case, or only when $u$ is in the direction of a principal axis? Shouldn't this refer to the rest frame of the plasma instead?}
 Therefore $T^{ij} = p \delta^{ij}$, which means that
 $\forall i,j: \Pi_{ij} = 0$.
 These are satisfied only by the tensor $T^{00}=e, T^{jj}=p, \forall i \neq j: T^{ij}=0$, which in matrix form is
@@ -169,9 +170,8 @@ and the expansion scalar
 Inserting these to \eqref{eq:ep_conservation} results in
 % The specific enthalpy is not a meaningful quantity for an ultrarelativistic fluid, and is therefore not used here.
 \begin{equation}
-\nabla_\mu T^{\mu \lambda} = u^\lambda u^\mu \nabla_\mu (e+p) + (e+p) u^\mu \nabla_\mu u^\lambda + (e+p) \Theta u^\lambda + g^{\lambda\mu} \nabla_\mu p.
+\nabla_\mu T^{\mu \lambda} = u^\lambda u^\mu \nabla_\mu w + w u^\mu \nabla_\mu u^\lambda + w \Theta u^\lambda + g^{\lambda\mu} \nabla_\mu p.
 \end{equation}
-\todo{Should enthalpy be introduced before this? It would make the e+p terms simpler.}
 Relativistic acceleration is defined as
 \begin{equation}
 a_\nu = u^\mu \nabla_\mu u_\nu.
@@ -185,14 +185,14 @@ Projecting using \eqref{eq:ep_conservation} and using these we get
 \begin{equation}
 \bm{h} \cdot \bm{\nabla} \cdot \bm{T}
 = h^\nu_\lambda \nabla_\mu T^{\mu \lambda}
-= (e+p) u^\mu \nabla_\mu u^\nu + h^\nu_\lambda g^{\lambda\mu} \nabla_\mu p
+= w u^\mu \nabla_\mu u^\nu + h^\nu_\lambda g^{\lambda\mu} \nabla_\mu p
 = 0.
 \end{equation}
 It should be noted that \cite{rezzolla_relativistic_2013} uses the specific enthalpy $h$ in their form these equations, but it is not a meaningful quantity for an ultrarelativistic plasma and is therefore not used here.
-Dividing by $e+p$ we get the \textbf{relativistic Euler equations}
+Dividing by $w$ we get the \textbf{relativistic Euler equations}
 \cite[eq. 3.55]{rezzolla_relativistic_2013}
 \begin{equation}
-u^\mu \nabla_\mu u_\nu + \frac{1}{e+p} h^\mu_\nu \nabla_\mu p = 0.
+u^\mu \nabla_\mu u_\nu + \frac{1}{w} h^\mu_\nu \nabla_\mu p = 0.
 \end{equation}
 Similarly we can project along the direction of velocity,
 \begin{equation}
@@ -201,7 +201,7 @@ Similarly we can project along the direction of velocity,
 This results in the \textbf{energy-conservation equation}
 \cite[eq. 3.57]{rezzolla_relativistic_2013}
 \begin{equation}
-u^\mu \nabla_\mu e + (e+p) \Theta = 0.
+u^\mu \nabla_\mu e + w \Theta = 0.
 \end{equation}
 
 For a one-dimensional flow in Cartesian coordinates the energy-momentum conservation of \eqref{eq:ep_conservation} can also be rewritten as
