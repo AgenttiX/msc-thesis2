@@ -108,16 +108,14 @@ where $a_\pm$ are constants with $a_+ > a_-$.
 $+$ refers to the symmetric phase, and $-$ refers to the broken phase.
 The potentials $V_\pm$ are also constants with $V_+ > V_-$.
 This results in the bag equation of state
-\todo{Check from Giese whether this is equivalent to "radiation fluid"}
 \cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
 \begin{equation}
 p_\pm = a_\pm T^4 - V_\pm,
 \label{eq:bag_p}
 \end{equation}
-The potential difference $V_+ - V_-$ is the temperature-independent vacuum energy that is released in the phase transition.
-In some articles it's denoted with $\epsilon$.
-\todo{Add citation to Giese?}
+The potential difference $\epsilon = V_+ - V_-$ is the temperature-independent vacuum energy that is released in the phase transition.
 The potentials are usually shifted so that $V_b = 0$.
+\cite{giese_2020}
 
 Using \eqref{eq:entropy_density} we get the entropy density
 \begin{equation}
@@ -136,7 +134,7 @@ The speed of sound from \eqref{eq:cs2_explicit} simplifies to
 \begin{equation}
 c_s^2 = \frac{dp}{de} = \frac{dp/dT}{de/dT} = \frac{1}{3}.
 \end{equation}
-This corresponds to assuming both of the phases to be ultrarelativistic.
+As in section \ref{general_eq}, this corresponds to assuming both of the phases to be ultrarelativistic.
 It also happens to be the same as the $\tilde{v}_-$ that corresponds to \eqref{eq:v_tilde_plus_limit}, and therefore the Chapman-Jouguet speed $v_{CJ}$ of the bag model is given by \eqref{eq:v_tilde_plus_limit}.
 
 The trace anomaly of \eqref{eq:theta} simplifies to
@@ -161,18 +159,24 @@ The name of the bag model originates from quantum chromodynamics (QCD), where it
 
 \section{More complex models}
 The bag model is a rather crude approximation, and for realistic simulations a more complex model is needed.
-The primary parameters for these models are
-\begin{itemize}
-    \item The phase transition parameters: percolation temperature, phase transition duration
-    \item Bubble wall velocity $v_w$
-    \item Fraction of energy that is converted into fluid motion: $\kappa$
-    \item Numerical prefactor from lattice simulations
-\end{itemize}
+In general, the model for an equation of state is constructed by providing two of $g_e, g_p$ and $g_s$,
+or equivalently two of $e, p$ and $s$, and the potential $V(T,\phi)$.
+The rest of the model properties can be computed from these.
 
-Speed of sound may not be ultrarelativistic, especially in the broken phase.
+\iffalse
+\begin{itemize}
+    \item Bubble wall velocity $v_w$
+    \item Nucleation temperature $T_n$, or equivalently nucleation enthalpy $w_n$ or transition strength $\alpha_n$
+    \item Phase transition duration $\frac{1}{\beta}$ \todo{Check this}
+    \item Equation of state
+    \item Fraction of energy that is converted into fluid motion: $\kappa$ (???)
+    \item Numerical prefactor from lattice simulations (???)
+\end{itemize}
+\fi
 
 \subsection{The constant sound speed model}
-The constant sound speed model, also known as the $\mu_\pm$ model or the $\mu, \nu$ model,
+The constant sound speed model, also known as the $\mu_\pm$ model, the $\mu, \nu$ model,
+or in some sources as the template model,
 expands the bag model by allowing a different speed of sound in each phase.
 It is obtained by setting
 \begin{equation}
@@ -200,7 +204,7 @@ $\mu_+ = \mu_- = 4$.
 
 Similarly as for the bag model we can derive the entropy density
 \begin{equation}
-s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T_0^3,
+s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^3,
 \end{equation}
 and from it the enthalpy density
 \begin{equation}
@@ -296,6 +300,93 @@ The $g_e$ and $g_s$ data for the Standard Model is given by \cite{borsanyi_latti
 
 
 \section{Energy redistribution}
+Once the velocity profile of a bubble is known, it can be used to compute various thermodynamic quantities.
+
+We have assumed that the background spacetime is Minkowski.
+Therefore, energy is conserved, and the average energy density $\bar{e}$ over the bubble is the same as outside it,
+\begin{equation}
+\bar{e} = 4 \pi \int_0^R dr r^2 T^{00} = e(w_n, \phi_s),
+\end{equation}
+for $R$ larger than the fluid velocity profile.
+
+For an ideal fluid of eq. \eqref{eq:ep_tensor}
+\begin{equation}
+T^{00} = w\gamma^2 - p = w\gamma^2 v^2 + e = w\gamma^2 v^2 + \frac{3}{4}w + \theta.
+\end{equation}
+\todo{Prove these steps}
+This can be written as
+\begin{equation}
+e_K = \Delta e_Q = - \Delta e_\theta
+\end{equation}
+
+Kinetic energy density
+\begin{equation}
+e_K \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 w \gamma^2 v^2
+\end{equation}
+The upper integration limit can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble $v=0$.
+
+Thermal energy density
+\begin{equation}
+\Delta e_Q = 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 \frac{3}{4} (w - w_n)
+\end{equation}
+
+The trace anomaly is given by
+\begin{equation}
+\Delta e_\theta = 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n).
+\end{equation}
+It can be considered as the potential energy available for transformation.
+
+In these equations $\xi_\text{max} = \max (v_w, \xi_sh)$.
+However, one can choose $\xi_\text{max}$ to be arbitrarily larger without affecting the results,
+as all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
+\cite[ch. B.2]{hindmarsh_gw_pt_2019}
+
+
+Kinetic energy fraction
+\begin{equation}
+K \equiv \frac{e_K}{\bar{e}}
+\end{equation}
+
+Kappa
+\begin{equation}
+\kappa \equiv \frac{e_K}{| \Delta e_\theta |}
+\end{equation}
+
+Kappa approximation
+\begin{equation}
+TODO
+\end{equation}
+
+Omega
+\begin{equation}
+\omega = \frac{\Delta e_Q}{\Delta e_\theta}
+\end{equation}
+
+
+Volume-averaged entropy density
+\begin{equation}
+s_\text{avg} = \frac{1}{v_w^3} \int (s(w,\phi) - s(w_n, \phi_s) \xi^3
+\end{equation}
+
+Relative volume-averaged entropy density
+\begin{equation}
+TODO = \frac{s_\text{avg}}{s_n}
+\end{equation}
+
+Mean adiabatic index
+\begin{equation}
+\Gamma = \frac{\bar{w}}{\bar{e}}
+\end{equation}
+\todo{Define wbar. In PTtools code it's untested and therefore unreliable.}
+
+Enthalpy-weighted mean square fluid 4-velocity around the bubble
+\begin{equation}
+\bar{U}_f^2 = \frac{\Delta e_Q}{w_n}
+\end{equation}
+
+
+
+
 Efficiency factor $\kappa$, which is the fraction of energy that is converted into fluid motion.
 \begin{equation}
 \kappa \equiv \frac{3}{\xi_w^3 \Delta \theta} \int d\xi \xi^2 w \gamma^2 v^2
