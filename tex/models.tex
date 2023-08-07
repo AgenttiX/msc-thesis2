@@ -306,67 +306,65 @@ We have assumed that the background spacetime is Minkowski.
 Therefore, energy is conserved, and the average energy density $\bar{e}$ over the bubble is the same as outside it,
 \begin{equation}
 \bar{e} = 4 \pi \int_0^R dr r^2 T^{00} = e(w_n, \phi_s),
+\label{eq:e_conservation}
 \end{equation}
 for $R$ larger than the fluid velocity profile.
+\todo{Energy-momentum of the fluid is not conserved, but for the total system it is. See lecture notes p. 21.}
 
 For an ideal fluid of eq. \eqref{eq:ep_tensor}
+% This is easy to prove by hand.
 \begin{equation}
 T^{00} = w\gamma^2 - p = w\gamma^2 v^2 + e = w\gamma^2 v^2 + \frac{3}{4}w + \theta.
 \end{equation}
-\todo{Prove these steps}
-This can be written as
-\begin{equation}
-e_K = \Delta e_Q = - \Delta e_\theta
-\end{equation}
 
-Kinetic energy density
+Inserting this to \eqref{eq:e_conservation} results in the equation
 \begin{equation}
-e_K \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 w \gamma^2 v^2
+e_K + \Delta e_Q = - \Delta e_\theta,
 \end{equation}
-The upper integration limit can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble $v=0$.
-
-Thermal energy density
+which consists of the terms defined below.
+The kinetic energy density is given by
 \begin{equation}
-\Delta e_Q = 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 \frac{3}{4} (w - w_n)
+e_K \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 w \gamma^2 v^2.
 \end{equation}
-
+It denotes the energy that is converted to macroscopic fluid movement.
+The thermal energy density is given by
+\begin{equation}
+\Delta e_Q \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 \frac{3}{4} (w - w_n).
+\end{equation}
+It denotes the energy that is converted to microscopic fluid movement.
 The trace anomaly is given by
 \begin{equation}
 \Delta e_\theta = 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n).
 \end{equation}
 It can be considered as the potential energy available for transformation.
+The upper integration limit $\xi_\text{max}$ can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
+A convenient choice is $\xi_\text{max} = \max (v_w, \xi_{sh})$.
 
-In these equations $\xi_\text{max} = \max (v_w, \xi_sh)$.
-However, one can choose $\xi_\text{max}$ to be arbitrarily larger without affecting the results,
-as all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
+It should be noted that the trace anomaly is not quite equivalent to the thermal potential energy density $V_T(T,\phi)$, as using eq. \eqref{eq:enthalpy_pressure}, \eqref{eq:enthalpy_sum} and \eqref{eq:p_general} we can see that for the case of temperature-independent $g$,
+\begin{equation}
+\theta = V_T - \frac{1}{4} T \frac{\partial V_T}{\partial T}.
+\end{equation}
+Therefore, not all of the potential energy difference can be turned into kinetic and thermal energy.
 \cite[ch. B.2]{hindmarsh_gw_pt_2019}
 
-
-Kinetic energy fraction
+The fraction of total energy that is converted to kinetic energy is known as the kinetic energy fraction,
 \begin{equation}
-K \equiv \frac{e_K}{\bar{e}}
+K \equiv \frac{e_K}{\bar{e}}.
 \end{equation}
 
-Kappa
+Kinetic and thermal efficiency factors quantify the fraction of the available energy $\Delta e_\theta$ that is converted to kinetic and thermal energy.
+They can be defined as
 \begin{equation}
-\kappa \equiv \frac{e_K}{| \Delta e_\theta |}
+\kappa \equiv \frac{e_K}{| \Delta e_\theta |}, \quad
+\omega = \frac{\Delta e_Q}{\Delta e_\theta}.
 \end{equation}
+They have the property that $\kappa + \omega = 1$.
 
-Kappa approximation
+We can obtain the volume-average entropy density similarly as the energy density, with
 \begin{equation}
-TODO
+s_\text{avg} = \frac{1}{v_w^3} \int \left( s(w,\phi) - s(w_n, \phi_s) \right) d\xi^3
 \end{equation}
-
-Omega
-\begin{equation}
-\omega = \frac{\Delta e_Q}{\Delta e_\theta}
-\end{equation}
-
-
-Volume-averaged entropy density
-\begin{equation}
-s_\text{avg} = \frac{1}{v_w^3} \int (s(w,\phi) - s(w_n, \phi_s) \xi^3
-\end{equation}
+\todo{Should there be a delta here? And change the integral to 1D.}
 
 Relative volume-averaged entropy density
 \begin{equation}
@@ -374,6 +372,10 @@ TODO = \frac{s_\text{avg}}{s_n}
 \end{equation}
 
 Mean adiabatic index
+\begin{equation}
+\Gamma = \frac{c_P}{c_V}.
+\end{equation}
+\todo{Define what the adiabatic index is. Is it defined like this in our case?}
 \begin{equation}
 \Gamma = \frac{\bar{w}}{\bar{e}}
 \end{equation}
