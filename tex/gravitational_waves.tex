@@ -1,3 +1,56 @@
-This section will be filled after Christmas, when I'm taking the necessary courses.
+Energy density of gravitational waves is given by
+\begin{equation}
+e_{gw} = \frac{1}{32 \pi G} \langle \dot{h}_{ij}^{TT} \dot{h}_{ij}^{TT} \rangle.
+\end{equation}
+\cites[eq. 3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
+The critical energy density corresponding to a flat universe is given by
+\begin{equation}
+e_c = \frac{3 H^2}{8 \pi G}.
+\label{eq:e_crit}
+\end{equation}
+Let us define the dimensionless quantity
+\begin{equation}
+\Omega_{gw} \equiv \frac{\rho_{gw}}{\rho_c}.
+\end{equation}
+The spectral density of the time derivative of the perturbations $P_{\dot{h}}$ is defined by
+\begin{equation}
+e_{gw} = \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
+\end{equation}
+\todo{Why a factor of $k^2$ and not $k$?}
+The gravitational wave power spectrum is given by
+\begin{equation}
+\mathcal{P}_{gw}(k)
+\equiv \frac{d \Omega_{gw}}{d \ln (k)}
+= \frac{1}{\bar{\rho}} \frac{1}{32 \pi G} \mathcal{P}_{\dot{h}}(k)
+= \frac{1}{12 H^2} \mathcal{P}_{\dot{h}}(k),
+\end{equation}
+where in the first step we have used eq. TODO and in the second step eq. \eqref{eq:e_crit}.
+\todo{How to define $\mathcal{P}_{\dot{h}}(k)$?}
 
-Primary source: \cite[ch. 8]{lecture_notes}
+A spectral density can be converted to a power spectrum with
+\begin{equation}
+\mathcal{P}(k) = 2 \frac{k^3}{2 \pi^2} P(k).
+\label{eq:pow_spec}
+\end{equation}
+The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
+
+Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+\begin{equation}
+P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\end{equation}
+The velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_v(q)
+\end{equation}
+
+Spectral density of the gravitational waves \cite[eq. 3.47]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\tilde{P}_{gw}(y)
+= \frac{1}{4 \pi y c_s}
+\left( \frac{1 - c_s^2}{c_s^2} \right)^2
+\int_{z_-}^{z_+} \frac{dz}{z}
+\frac{(z-z_+)^2(z-z_-)^2}{z_+ + z_- - z}
+\tilde{P}_v (z) \tilde{P}_v (z_+ + z_- - z).
+\end{equation}
+
+\cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}

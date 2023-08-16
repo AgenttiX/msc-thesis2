@@ -175,6 +175,7 @@ The rest of the model properties can be computed from these.
 \fi
 
 \subsection{The constant sound speed model}
+\label{const_cs}
 The constant sound speed model, also known as the $\mu_\pm$ model, the $\mu, \nu$ model,
 or in some sources as the template model,
 expands the bag model by allowing a different speed of sound in each phase.
@@ -302,8 +303,8 @@ The $g_e$ and $g_s$ data for the Standard Model is given by \cite{borsanyi_latti
 \section{Energy redistribution}
 Once the velocity profile of a bubble is known, it can be used to compute various thermodynamic quantities.
 
-We have assumed that the background spacetime is Minkowski.
-Therefore, energy is conserved, and the average energy density $\bar{e}$ over the bubble is the same as outside it,
+We have assumed that the background spacetime is Minkowski, and that the spacetime does not expand significantly during the phase transition.
+Therefore, the total energy of the system is conserved, and the average energy density $\bar{e}$ over the bubble is the same as outside it,
 \begin{equation}
 \bar{e} = 4 \pi \int_0^R dr r^2 T^{00} = e(w_n, \phi_s),
 \label{eq:e_conservation}
@@ -371,24 +372,34 @@ Relative volume-averaged entropy density
 TODO = \frac{s_\text{avg}}{s_n}
 \end{equation}
 
-Mean adiabatic index
-\begin{equation}
-\Gamma = \frac{c_P}{c_V}.
-\end{equation}
-\todo{Define what the adiabatic index is. Is it defined like this in our case?}
-\begin{equation}
-\Gamma = \frac{\bar{w}}{\bar{e}}
-\end{equation}
-\todo{Define wbar. In PTtools code it's untested and therefore unreliable.}
-
 Enthalpy-weighted mean square fluid 4-velocity around the bubble
 \begin{equation}
-\bar{U}_f^2 = \frac{\Delta e_Q}{w_n}
+\bar{U}_f^2 = \frac{\Delta e_Q}{w_n}.
 \end{equation}
+\todo{Add a generic definition}
+The \href{https://en.wikipedia.org/wiki/Heat_capacity_ratio}{adiabatic index} is defined as
+\begin{equation}
+\gamma \equiv \frac{c_P}{c_V},
+\end{equation}
+where $c_P$ is the specific heat capacity at constant pressure,
+and $c_V$ is the specific heat capacity at constant volume.
+For a classical monoatomic fluid $\gamma = \frac{5}{3}$,
+and for an ultrarelativistic fluid $\gamma = \frac{4}{3}$.
+
+The enthalpy-weighted mean square fluid 4-velocity around the bubble and the kinetic energy density fraction are linked by
+\begin{equation}
+K = \Gamma \bar{U}_f^2,
+\end{equation}
+where
+\begin{equation}
+\Gamma \equiv \frac{\bar{w}}{\bar{e}}
+\end{equation}
+In the case of the ultrarelativistic bag model $\Gamma$ is the mean adiabatic index,
+but for a more general model this may not be the case.
+\todo{Define wbar}
 
 
-
-
+\iffalse
 Efficiency factor $\kappa$, which is the fraction of energy that is converted into fluid motion.
 \begin{equation}
 \kappa \equiv \frac{3}{\xi_w^3 \Delta \theta} \int d\xi \xi^2 w \gamma^2 v^2
@@ -418,19 +429,7 @@ The kinetic energy fraction can be determined from
 \item the speeds of sound
 \item strength parameter of the phase transition
 \end{itemize}
-
-Let us define the pseudotrace as
-\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
-\begin{equation}
-\overline{\theta} \equiv e - \frac{p}{c_{s,b}^2}.
-\end{equation}
-
-For detonations, the optimal phase transition strength is
-\cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
-\todo{Todo: Explain how this is defined}
-\begin{equation}
-\alpha_{\overline{\theta}} \equiv \frac{D \overline{\theta}(T_+)}{3w_+},
-\end{equation}
+\fi
 
 
 \section{Extensions of the standard model}
