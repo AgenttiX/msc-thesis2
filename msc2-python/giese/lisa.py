@@ -137,6 +137,7 @@ def kappaNuMuModel(
                 "alpha too large for shock, alpha=%s, max=%s",
                 al, almax
             )
+            raise ValueError
         vp = min(cs2s/vw, vw)
         almin, wow = getalNwow(vp, vm, vw, cs2b, cs2s)
         if almin > al:
@@ -144,6 +145,7 @@ def kappaNuMuModel(
                 "alpha too small for shock, alpha=%s, min=%s",
                 al, almin
             )
+            raise ValueError
         # Iterate to find v+ using binary search until the corresponding alpha matches the given value.
         # Set binary search limits.
         iv = [[vp, almin], [0, almax]]
