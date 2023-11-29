@@ -127,7 +127,7 @@ w_\pm = 4 a_\pm T^4.
 \end{equation}
 Finally with \eqref{eq:enthalpy_sum} we get the energy density
 \begin{equation}
-e_\pm = 3 a_\pm T^4
+e_\pm = 3 a_\pm T^4 + V_\pm
 \end{equation}
 
 The speed of sound from \eqref{eq:cs2_explicit} simplifies to
@@ -328,14 +328,14 @@ The kinetic energy density is given by
 e_K \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 w \gamma^2 v^2.
 \end{equation}
 It denotes the energy that is converted to macroscopic fluid movement.
-The thermal energy density is given by
+The thermal energy density difference is given by
 \begin{equation}
 \Delta e_Q \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 \frac{3}{4} (w - w_n).
 \end{equation}
 It denotes the energy that is converted to microscopic fluid movement.
-The trace anomaly is given by
+The trace anomaly difference is given by
 \begin{equation}
-\Delta e_\theta = 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n).
+\Delta e_\theta \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n).
 \end{equation}
 It can be considered as the potential energy available for transformation.
 The upper integration limit $\xi_\text{max}$ can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
@@ -357,7 +357,7 @@ Kinetic and thermal efficiency factors quantify the fraction of the available en
 They can be defined as
 \begin{equation}
 \kappa \equiv \frac{e_K}{| \Delta e_\theta |}, \quad
-\omega = \frac{\Delta e_Q}{\Delta e_\theta}.
+\omega \equiv \frac{\Delta e_Q}{\Delta e_\theta}.
 \end{equation}
 They have the property that $\kappa + \omega = 1$.
 
