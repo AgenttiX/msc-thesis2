@@ -2,37 +2,43 @@ Energy density of gravitational waves is given by
 \begin{equation}
 e_{gw} = \frac{1}{32 \pi G} \langle \dot{h}_{ij}^{TT} \dot{h}_{ij}^{TT} \rangle.
 \end{equation}
-\cites[eq. 3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
+\cites[eq. 3.3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
 The critical energy density corresponding to a flat universe is given by
+\cite[eq. 7.196]{maggiore_gw_2008}
 \begin{equation}
 e_c = \frac{3 H^2}{8 \pi G}.
 \label{eq:e_crit}
 \end{equation}
 Let us define the dimensionless quantity
 \begin{equation}
-\Omega_{gw} \equiv \frac{\rho_{gw}}{\rho_c}.
+\Omega_{gw} \equiv \frac{e_{gw}}{e_c}.
+\label{eq:omega_gw}
 \end{equation}
 The spectral density of the time derivative of the perturbations $P_{\dot{h}}$ is defined by
+\cite[eq. 3.5]{hindmarsh_gw_pt_2019}
 \begin{equation}
 e_{gw} = \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
 \end{equation}
 \todo{Why a factor of $k^2$ and not $k$?}
-The gravitational wave power spectrum is given by
-\begin{equation}
-\mathcal{P}_{gw}(k)
-\equiv \frac{d \Omega_{gw}}{d \ln (k)}
-= \frac{1}{\bar{\rho}} \frac{1}{32 \pi G} \mathcal{P}_{\dot{h}}(k)
-= \frac{1}{12 H^2} \mathcal{P}_{\dot{h}}(k),
-\end{equation}
-where in the first step we have used eq. TODO and in the second step eq. \eqref{eq:e_crit}.
-\todo{How to define $\mathcal{P}_{\dot{h}}(k)$?}
-
 A spectral density can be converted to a power spectrum with
 \begin{equation}
-\mathcal{P}(k) = 2 \frac{k^3}{2 \pi^2} P(k).
+\mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
 \label{eq:pow_spec}
 \end{equation}
 The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
+Whether it's included is dependent on the context.
+The gravitational wave power spectrum is defined by
+\begin{equation}
+\mathcal{P}_{gw}(k)
+\equiv \frac{d \Omega_{gw}}{d \ln (k)}
+% = \frac{1}{\bar{\rho}} \frac{1}{32 \pi G} \mathcal{P}_{\dot{h}}(k)
+= \frac{1}{12 H^2} \frac{k^3}{2\pi} P_{\dot{h}}(k)
+= \frac{1}{12 H^2} \mathcal{P}_{\dot{h}}(k),
+\end{equation}
+where the first step comes directly using the equations above.
+It should be noted that in \cite[eq. 3.6]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
+
+% TODO continue proving the steps below
 
 Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
