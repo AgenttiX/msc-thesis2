@@ -65,6 +65,18 @@ The generic solver starts by checking the type of the solution based on the cond
 If the type of the solution cannot be determined automatically, the solver will halt and request the user to provide the type of the solution.
 Then the solver will use the bag model to load reference values for $w_+$ and $w_-$ for the given $v_\text{wall}$ and $\alpha_n$.
 If the reference values have not been precomputed, they will be computed and saved to disk at this point.
+If there is no reference data for the given parameters, then arbitrary but reasonable values will be used as the reference.
+Finally, the Chapman-Jouguet speed of \eqref{eq:chapman_jouguet} is computed.
+
+Once these preparations have been done, the solver chooses an algorithm specific to the type of the solution.
+Detonations are the simplest case.
+Since the fluid is stationary outside the wall, the junction conditions can be solved directly using $\tilde{v}_+ = v_wall$ and $w_+ = w_n$.
+Then the solver ASDF
+
+
+First the solver solves the junction conditions at the wall using the 
+
+
 
 \todo{Write more about the bubble solver}
 
