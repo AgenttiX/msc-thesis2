@@ -229,27 +229,42 @@ g_{e\pm} &= \frac{30}{\pi^2} (\mu - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\
 
 
 The trace anomaly of \eqref{eq:theta} simplifies to
-\begin{equation}
-\theta_\pm(w) = \left( \frac{\mu}{4} - 1 \right) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\pm
-\end{equation}
+\begin{align}
+\theta_\pm(w)
+&= \left( \frac{\mu_\pm}{4} - 1 \right) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\pm \\
+&= \left( \frac{1}{4} - \frac{1}{\mu_\pm} \right) w_\pm + V_\pm
+\label{eq:theta_const_cs}
+\end{align}
 The transition strength of \eqref{eq:alpha_plus} simplifies to
 \begin{equation}
 \alpha_+ = \frac{1}{3} \left( 1 - \frac{4}{\mu_+} \right) - \frac{1}{3} \left(1 - \frac{4}{\mu_-} \right) \frac{w_-}{w_+} + \alpha_{+,\text{bag}}.
 \label{eq:alpha_plus_const_cs}
 \end{equation}
-The transition strength at nucleation temperature of \eqref{eq:alpha_n} simplifies further to
-\begin{equation}
-\alpha_n = \frac{4}{3} \left( \frac{1}{\mu_-} - \frac{1}{\mu_+} \right) + \alpha_{n,\text{bag}}.
-\end{equation}
+The transition strength at nucleation temperature of \eqref{eq:alpha_n} is correspondingly
+\begin{align}
+\alpha_n &= \frac{1}{3} \left( 1 - \frac{4}{\mu_+} \right) - \frac{1}{3} \left(1 - \frac{4}{\mu_-} \right) \frac{w(T_n, \phi_-)}{w_n} + \alpha_{n,\text{bag}} \\
+&= \frac{4}{3} \left( \frac{1}{\mu_-} - \frac{1}{\mu_+} \right) + \frac{1}{3} \left( 1 - \frac{4}{\mu_-} \right)
+\left( 1 - \frac{\mu_- a_-}{\mu_+ a_+} \left( \frac{T}{T_0} \right)^{\mu_- - \mu_+} \right) + \alpha_{n,\text{bag}}
+\label{eq:alpha_n_const_cs}
+\end{align}
+\iffalse
+% This is wrong
 Inverting this gives the enthalpy at the nucleation temperature
 \begin{equation}
 w_n = \frac{V_+ - V_-}{ \frac{3}{4} \alpha_n + \frac{1}{\mu_+} - \frac{1}{\mu_-} }.
 \label{eq:wn_const_cs}
 \end{equation}
-\todo{Check that this is correct in PTtools}
-When $\mu_- = 4$, $\alpha_+$ of \eqref{eq:alpha_plus_const_cs} becomes independent of $w_-$.
-In this case we can obtain $v_{CJ}(\alpha_n, c_{s+})$ analytically by first inserting $\alpha_n$ to \eqref{eq:wn_const_cs} to get $w_n$,
-then inserting $w_n$ to \eqref{eq:alpha_plus_const_cs} to get $\alpha_+$, and then $c_{s-}$ and $\alpha_+$ to \eqref{eq:v_tilde_plus} to get $\tilde{v}_+ = v_{CJ}$.
+\fi
+When $\mu_- = 4$, $\alpha_n$ of \eqref{eq:alpha_n_const_cs} becomes independent of $w_-$, resulting in
+\begin{equation}
+w_n = \frac{4 (V_+ - V_-)}{3 \alpha_n + \frac{4}{\mu_+} - 1}.
+\label{eq:wn_const_cs_mu4}
+\end{equation}
+In this case we can obtain $v_{CJ}(\alpha_n, c_{s+})$ analytically.
+First we insert $\alpha_n$ to \eqref{eq:wn_const_cs_mu4} to get $w_n$,
+and then insert $w_n$ to \eqref{eq:alpha_plus_const_cs} to get $\alpha_+$,
+since in this case $\alpha_+$ is independent of $w_-$.
+Then we can insert $c_{s-}$ and $\alpha_+$ to \eqref{eq:v_tilde_plus} to get $\tilde{v}_+ = v_{CJ}$.
 
 \iffalse
 Now we have everything necessary to compute $\alpha_+$ and the Chapman-Jouguet speed $v_{CJ}$ analytically from $c_{s+}$, $c_{s-}$ and $\alpha_n$.
@@ -259,6 +274,24 @@ Now we have all the variables necessary to compute $\alpha_+$ with \eqref{eq:alp
 Then we insert $\tilde{v}_- = c_{s-}$ to \eqref{eq:v_tilde_plus}, giving us the Chapman-Jouguet speed $v_{CJ} = v_+$.
 \todo{This is wrong! We have a circular dependency and must solve the equation group at once.}
 \fi
+
+If we set $T_0 = T_c$, eq. \eqref{eq:critical_temp} results in
+\begin{equation}
+\Delta V = (a_+ - a_-) T_c^4.
+\end{equation}
+Using this the "bag" part in eq. \ref{eq:alpha_n_const_cs} becomes
+\begin{equation}
+\alpha_{n,\text{bag}} = \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T}{T_c} \right)^{-\mu_+}.
+\end{equation}
+Using this we can reorder \eqref{eq:alpha_n_const_cs} to
+\begin{equation}
+\frac{\alpha_-}{\alpha_+} = \frac{4 + \left( \mu_+ - 4 - 3 \mu_+ \alpha_n \right) \left(\frac{T_n}{T_c}\right)^{\mu_+}}{4 + \left( \mu_- - 4 \right) \left(\frac{T_n}{T_c}\right)^{\mu_-}}.
+\end{equation}
+Noting that $T_n < T_c$, this restricts $\alpha_n$ to
+\begin{equation}
+\alpha_n > \frac{\mu_+ - \mu_-}{3 \mu_+}.
+\end{equation}
+Even though we have used $T_0 = T_c$ in the intermediate steps, this restriction is general.
 
 
 \subsection{Model with cubic thermal effects}
