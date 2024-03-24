@@ -113,7 +113,7 @@ This results in the bag equation of state
 p_\pm = a_\pm T^4 - V_\pm,
 \label{eq:bag_p}
 \end{equation}
-The potential difference $\epsilon = V_+ - V_-$ is the temperature-independent vacuum energy that is released in the phase transition.
+The potential difference $\Delta V \equiv V_+ - V_-$, also known as $\epsilon$, is the temperature-independent vacuum energy that is released in the phase transition.
 The potentials are usually shifted so that $V_b = 0$.
 \cite{giese_2020}
 
@@ -143,12 +143,12 @@ The trace anomaly of \eqref{eq:theta} simplifies to
 \end{align}
 Therefore the transition strength of \eqref{eq:alpha_plus} simplifies to
 \begin{equation}
-\alpha_+ = \frac{4}{3 w_+} (V_+ - V_-),
+\alpha_+ = \frac{4 \Delta V}{3 w_+},
 \label{eq:alpha_plus_bag}
 \end{equation}
 and the transition strength at nucleation temperature from \eqref{eq:alpha_n} simplifies to
 \begin{equation}
-\alpha_n = \frac{4}{3 w_n} (V_+ - V_-).
+\alpha_n = \frac{4 \Delta V}{3 w_n}.
 \label{eq:alpha_n_bag}
 \end{equation}
 This is trivial to invert, giving enthalpy at the nucleation temperature $w_n$.
@@ -279,19 +279,21 @@ The pseudotrace of \eqref{eq:theta_bar} is given by
 \begin{align}
 \bar{\theta} = (\mu_\pm - \mu_-) a \left(\frac{T}{T_0}\right)^{\mu_\pm - 4} T_0^4 + \mu_- V_\pm.
 \end{align}
-Therefore the corresponding transition strength of \eqref{eq:alpha_theta_bar_plus} becomes
-\begin{equation}
-\alpha_{\bar{\theta}_+} = \frac{1}{3}\left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{3w_+} \Delta V.
-\end{equation}
+Therefore the corresponding transition strengths of \eqref{eq:alpha_theta_bar_plus} and \eqref{eq:alpha_theta_bar_n}become
+\begin{align}
+\alpha_{\bar{\theta}_+} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{+,\text{bag}}, \\
+\alpha_{\bar{\theta}_n} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{n,\text{bag}}.
+\end{align}
 
 If we set $T_0 = T_c$, eq. \eqref{eq:critical_temp} results in
 \begin{equation}
 \Delta V = (a_+ - a_-) T_c^4.
 \end{equation}
-Using this the "bag" part in eq. \ref{eq:alpha_n_const_cs} becomes
-\begin{equation}
-\alpha_{n,\text{bag}} = \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T}{T_c} \right)^{-\mu_+}.
-\end{equation}
+Using this the "bag" part in eq. \eqref{eq:alpha_plus_const_cs} and \eqref{eq:alpha_n_const_cs} becomes
+\begin{align}
+\alpha_{+,\text{bag}} &= \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T_+}{T_c} \right)^{-\mu_+}, \\
+\alpha_{n,\text{bag}} &= \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T_n}{T_c} \right)^{-\mu_+}.
+\end{align}
 Using this we can reorder \eqref{eq:alpha_n_const_cs} to
 \begin{equation}
 \frac{a_-}{a_+} = \frac{4 + \left( \mu_+ - 4 - 3 \mu_+ \alpha_n \right) \left(\frac{T_n}{T_c}\right)^{\mu_+}}{4 + \left( \mu_- - 4 \right) \left(\frac{T_n}{T_c}\right)^{\mu_-}}.
@@ -302,11 +304,30 @@ Noting that $T_n < T_c$, this restricts $\alpha_n$ to
 \end{equation}
 Even though we have used $T_0 = T_c$ in the intermediate steps, this restriction is general.
 
-With $T_0 = T_c$ we also have
+Approximating $T_+ \approx T_-$ results in eq. \eqref{eq:cs2_compact} being approximated as
 \begin{equation}
-\alpha_{\bar{\theta}_+ = \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{1}{3} \frac{\mu_-}{\mu_+} \left(1 - \frac{a_-}{a_+} \right) \frac{T}{T_c}\right)^{-\mu_+}
+c_{s,b}^2
+\equiv \frac{dp_b}{de_b}
+= \frac{dp_b/dT}{de_b/dT} \big|_{T_+ \approx T_-}
+\approx \frac{\delta p_-}{\delta e_-}.
 \end{equation}
-
+In the case of the constant sound speed model $c_{s}$ is independent of temperature, and therefore this approximation is exact.
+With this approximation and the use of eq. \eqref{eq:delta_relation} the second junction condition of eq. \eqref{eq:junction_conditions_simplified} becomes
+\begin{equation}
+\delta p_- \left(1 - \frac{v_+ v_-}{c_{s,b}^2} \right) = v_+ v_- De_+ - Dp_+
+\end{equation}
+Using this, eq. \eqref{eq:delta_relation} and eq. \eqref{eq:enthalpy_sum} on the first junction condition of \eqref{eq:junction_conditions_simplified} results in
+\begin{align}
+\frac{v_+}{v_-}
+&\approx \frac{
+w_+ \left( \frac{v_+ v_-}{c_{s,b}^2} - 1 \right) + \left( De_+ - \frac{Dp_+}{c_{s,b}^2} \right)
+}{
+w_+ \left( \frac{v_+ v_-}{c_{s,b}^2} - 1 \right) + v_+ v_- \left( De_+ - \frac{Dp_+}{c_{s,b}^2} \right)
+} \\
+&= \frac{ \left( \frac{v_+ v_-}{c_{s,b}^2} - 1 \right) + 3 \alpha_{\bar{\theta}}
+}{
+\left( \frac{v_+ v_-}{c_{s,b}^2} - 1 \right) + 3v_+ v_- \alpha_{\bar{\theta}}}
+\end{align}
 
 
 \subsection{Model with cubic thermal effects}

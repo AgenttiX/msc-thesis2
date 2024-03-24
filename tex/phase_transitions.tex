@@ -392,7 +392,7 @@ We can quantify its difference from zero with the trace anomaly
 \label{eq:theta}
 \end{equation}
 The definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
-The difference of a quantity $X$ ust ahead and behind the wall is denoted as
+The difference of a quantity $X$ just ahead and behind the wall is denoted as
 \begin{equation}
 \Delta X
 \equiv X_+(T_+) - X_-(T_-) % \\
@@ -400,8 +400,20 @@ The difference of a quantity $X$ ust ahead and behind the wall is denoted as
 \end{equation}
 The difference of a quantity $X$ in both phases at the same temperature is denoted as
 \begin{equation}
-DX(T) = X_+(T) - X_-(T).
+DX_\pm \equiv X_+(T_\pm) - X_-(T_\pm).
 \end{equation}
+The difference of a quantity $X$ in the same phase at different temperatures is denoted as
+\begin{equation}
+\delta X_\pm \equiv X_\pm(T_+) - X_\pm(T_-)
+\end{equation}
+These are related by
+\begin{align}
+\Delta X
+&= X_+(T_+) - X_-(T_-) \\
+&= \left( X_+(T_+) - X_-(T_+) \right) + \left( X_-(T_+) - X_-(T_-) \right) \\
+&= DX_+ + \delta X_-.
+\label{eq:delta_relation}
+\end{align}
 With these we can define the transition strength
 \begin{equation}
 \alpha_+
@@ -413,7 +425,7 @@ and the transition strength at nucleation temperature
 \cite[eq. 2.11]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \alpha_n
-\equiv \frac{4D\theta}{3w_n}
+\equiv \frac{4D\theta(T_n)}{3w_n}
 = \frac{4}{3} \frac{\theta_+(T_n) - \theta_-(T_n)}{w_n}.
 \label{eq:alpha_n}
 \end{equation}
@@ -432,14 +444,14 @@ sometimes denoted as $\alpha_{\bar{\theta}}$, as
 \alpha_{\bar{\theta}_+}
 \equiv \frac{D \bar{\theta}(T_+)}{3w_+}
 = \frac{\bar{\theta}_+(T_+) - \bar{\theta}_-(T_+)}{3w_+}
-\label{eq:alpha_thetabar_plus}
+\label{eq:alpha_theta_bar_plus}
 \end{equation}
 The transition strength for the pseudotrace at the nucleation temperature is given as
 \begin{equation}
 \alpha_{\bar{\theta}_n}
 \equiv \frac{D \bar{\theta}(T_n)}{3w_n}
 = \frac{\bar{\theta}_+(T_n) - \bar{\theta}_-(T_n)}{3w_n}.
-\label{eq:alpha_thetabar_n}
+\label{eq:alpha_theta_bar_n}
 \end{equation}
 Note that these equations differ from the regular transition strength by a factor of $\frac{1}{4}$ due to different conventions, but this is canceled by the lack of $\frac{1}{4}$ in $\bar{\theta}$.
 These also use $D$ instead of $\Delta$,
