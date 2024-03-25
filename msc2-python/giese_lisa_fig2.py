@@ -1,6 +1,9 @@
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 
+import const
 from giese.lisa import kappaNuMuModel
 
 
@@ -26,6 +29,7 @@ def main():
     ax.set_xlabel(r"$\xi_w$")
     ax.set_ylabel(r"$\kappa$")
     ax.set_yscale("log")
+    fig.savefig(os.path.join(const.FIG_DIR, "giese_lisa_fig2.png"))
 
     # Reference values for PTtools unit tests
     alpha_thetabar_ns_test = np.array([0.01, 0.1, 0.3])
@@ -39,6 +43,7 @@ def main():
                         kappa, v_arr, wow_arr, xi_arr, mode = kappaNuMuModel(cs2s=cs2s, cs2b=cs2b, al=alpha_tb_n, vw=xi_w)
                         kappas_test[i_cs2s, i_cs2b, i_alpha, i_xi_w] = kappa
                     except ValueError:
+                        print(f"Error with: cs2s={cs2s}, cs2b={cs2b}, alpha_tb_n={alpha_tb_n}, xi_w={xi_w}")
                         kappas_test[i_cs2s, i_cs2b, i_alpha, i_xi_w] = np.nan
             print(cs2s, cs2b)
             print(repr(kappas_test[i_cs2s, i_cs2b, :, :]))
