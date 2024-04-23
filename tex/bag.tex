@@ -1,0 +1,58 @@
+\section{The bag model}
+\label{bag_model}
+For phase transitions in the early universe,
+the most commonly used equation of state is the bag model, for which
+\begin{equation}
+g_{e\pm} = g_{p\pm} = g_{s\pm} = \frac{90}{\pi^2} a_\pm,
+\end{equation}
+where $a_\pm$ are constants with $a_+ > a_-$.
+$+$ refers to the symmetric phase, and $-$ refers to the broken phase.
+The potentials $V_\pm$ are also constants with $V_+ > V_-$.
+This results in the bag equation of state
+\cites[eq. 7.33]{lecture_notes}[eq. 8-9]{giese_2020}
+\begin{equation}
+p_\pm = a_\pm T^4 - V_\pm,
+\label{eq:bag_p}
+\end{equation}
+The potential difference $\Delta V \equiv V_+ - V_-$, also known as $\epsilon$, is the temperature-independent vacuum energy that is released in the phase transition.
+The potentials are usually shifted so that $V_b = 0$.
+\cite{giese_2020}
+
+Using \eqref{eq:entropy_density} we get the entropy density
+\begin{equation}
+s_\pm = 4 a_\pm T^3,
+\end{equation}
+and with \eqref{eq:enthalpy_entropy} the enthalpy density
+\begin{equation}
+w_\pm = 4 a_\pm T^4.
+\end{equation}
+Finally with \eqref{eq:enthalpy_sum} we get the energy density
+\begin{equation}
+e_\pm = 3 a_\pm T^4 + V_\pm
+\end{equation}
+
+The speed of sound from \eqref{eq:cs2_explicit} simplifies to
+\begin{equation}
+c_s^2 = \frac{dp}{de} = \frac{dp/dT}{de/dT} = \frac{1}{3}.
+\end{equation}
+As in section \ref{general_eq}, this corresponds to assuming both of the phases to be ultrarelativistic.
+It also happens to be the same as the $\tilde{v}_-$ that corresponds to \eqref{eq:v_tilde_plus_limit}, and therefore the Chapman-Jouguet speed $v_{CJ}$ of the bag model is given by \eqref{eq:v_tilde_plus_limit}.
+
+The trace anomaly of \eqref{eq:theta} simplifies to
+\begin{align}
+\theta_\pm = V_\pm.
+\end{align}
+Therefore the transition strength of \eqref{eq:alpha_plus} simplifies to
+\begin{equation}
+\alpha_{+,\text{bag}} = \frac{4 \Delta V}{3 w_+},
+\label{eq:alpha_plus_bag}
+\end{equation}
+and the transition strength at nucleation temperature from \eqref{eq:alpha_n} simplifies to
+\begin{equation}
+\alpha_{n,\text{bag}} = \frac{4 \Delta V}{3 w_n}.
+\label{eq:alpha_n_bag}
+\end{equation}
+This is trivial to invert, giving enthalpy at the nucleation temperature $w_n$.
+
+The name of the bag model originates from quantum chromodynamics (QCD), where it's used to describe the proton as a bag of quarks.
+\todo{check this}

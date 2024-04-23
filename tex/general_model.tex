@@ -1,0 +1,97 @@
+\section{General equation of state}
+\label{general_eq}
+The equation of state is the function $p(T)$ or $p(w)$ that characterises the behaviour of the fluid as a function of temperature $T$ or enthalpy $w$.
+It should be highlighted that everything up to this point has been independent of the equation of state.
+We will now first describe the derivation for the general equation of state of an ultrarelativistic plasma,
+and then introduce approximate models.
+
+\iffalse
+In general the pressure of the ultrarelativistic ASDF
+\begin{equation}
+p(T,\phi) = - \sum_B f_B (m(\phi),T) - \sum_F f_F (m(\phi),T)
+\end{equation}
+\fi
+
+The energy density at a point is the sum of the energies of all particles at that point.
+Therefore the energy density in the position space can be obtained by integrating over the momentum space as
+\cite[eq. 4.10]{lecture_notes}
+\begin{equation}
+e(x) = \int \frac{d^3 p}{(2 \pi)^3} E(p) f(\vec{p}, x).
+\end{equation}
+\href{https://physics.stackexchange.com/a/141737/}{The factor $(2\pi)^3$ normalises the momentum space}.
+Similarly we can obtain the other components of the energy-momentum tensor in the position space as
+\cite[eq. 4.13]{lecture_notes}
+\begin{equation}
+T^{\mu \nu}(x) = \int \frac{d^3 p}{(2 \pi)^3} \frac{p^\mu p^\nu}{p^0} f(\vec{p},x).
+\end{equation}
+To give an intuitive explanation for this we can note that $p^0 = E = \gamma m_0$ and $p^i = \gamma m_0 v^i$,
+Therefore $\frac{p^i}{p^0} = v^i$,
+and the factor $\frac{p^i p^j}{p^0} = p^i v^j$ denotes the amount of momentum being transported by the moving plasma.
+By inserting this to the definition of pressure \eqref{eq:pressure_from_ep_tensor} we get
+\begin{equation}
+p(x) = \frac{1}{3} \int \frac{d^3 p}{(2 \pi)^3} \frac{|\vec{p}|^2}{E} f(\vec{p},x)
+\end{equation}
+This notation is rather confusing, as the $p$ on the left refers to the pressure,
+and all $p$ on the right refer to the momentum.
+
+The particle distribution functions for fermions and bosons are
+\cite[eq. 4.6]{lecture_notes}
+\begin{equation}
+f(\vec{p}) = \frac{1}{e^\frac{E-\mu}{T} \pm 1},
+\end{equation}
+where $+$ gives the Fermi-Dirac distribution for fermions and $-$ gives the Bose-Einstein distribution for bosons.
+Let us approximate that the fluid consists entirely of bosons,
+and that they are ultrarelativistic: $E(\vec{p}) = \sqrt{\vec{p}^2 + m^2} \approx p$.
+Particle number is not conserved in an ultrarelativistic plasma, and therefore $\mu = 0$.
+Let us also remember that we can convert the integral to 1D using the area of a sphere $A(r) = 4\pi r^2$.
+With these we get
+\begin{align}
+e &= \frac{1}{2 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1},
+\label{eq:ultrarelativistic_e} \\
+p &= \frac{1}{6 \pi^2} \int_0^\infty \frac{p^3 dp}{e^\frac{p}{T} - 1}.
+\label{eq:ultrarelativistic_p}
+\end{align}
+These contain integrals of the form
+\cite[eq. B.36]{schroeder_thermal_2000}
+\begin{equation}
+\int_0^\infty \frac{x^n}{e^x - 1} = \Gamma(n+1) \zeta(n+1),
+\end{equation}
+where $\Gamma$ is the
+\href{https://en.wikipedia.org/wiki/Gamma_function}{gamma function}, which for integers is $\Gamma(n) = (n-1)!$.
+$\zeta$ is the
+\href{https://en.wikipedia.org/wiki/Riemann_zeta_function}{Riemann zeta function}.
+It can be shown that $\zeta(4) = \frac{\pi^4}{90}$.
+\cite[prob. B.19]{schroeder_thermal_2000}
+At this ultrarelativistic limit we can see from eq. \eqref{eq:ultrarelativistic_e} and \eqref{eq:ultrarelativistic_p} that $e = 3p$, and therefore using eq. \eqref{eq:cs2_compact} $c_s^2 = \frac{1}{3}$.
+
+To account for the various particle species in the plasma and their non-ultrarelativistic behaviour,
+we need to multiply with the degrees of freedom $g_e$ and $g_p$,
+which are weighted sums over the contributions of different particle species.
+To also account for the field, we need to add its potential $V$ to the final result
+\cite[eq. S12]{borsanyi_lattice_2016}
+\begin{align}
+e(T,\phi) &= \frac{\pi^2}{30} g_e(T) T^4 + V(T,\phi),
+\label{eq:e_general} \\
+p(T,\phi) &= \frac{\pi^2}{90} g_p(T) T^4 - V(T,\phi).
+\label{eq:p_general}
+\end{align}
+
+With \eqref{eq:enthalpy_sum}, \eqref{eq:enthalpy_entropy}, \eqref{eq:e_general} and \eqref{eq:p_general} we can obtain the entropy density as
+\cite[eq. S12]{borsanyi_lattice_2016}
+\begin{equation}
+s(T,\phi) = \frac{2\pi^2}{45} g_s(T) T^3,
+\end{equation}
+\todo{Should the entropy be defined differently? Defining it with $s = \frac{dp}{dT}$ results in a much more complex and less useful expression.}
+where the degrees of freedom for the entropy density are
+\begin{equation}
+g_s = \frac{1}{4} (3g_e + g_p).
+\end{equation}
+Often only $g_e$ and $g_s$ are provided, and $g_p$ is obtained with
+\begin{equation}
+g_p = 4g_s - 3g_e.
+\end{equation}
+For a free scalar particle $g_e = g_p = g_s = 1$, which is known as the Stefan-Boltzmann limit.
+\iffalse
+due to its reminiscence to the Stefan-Boltzmann law $j^* = \sigma T^4$,
+which relates the power radiated by a black body to its temperature with the Stefan-Boltzmann constant $\sigma$.
+\fi
