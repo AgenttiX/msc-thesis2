@@ -27,36 +27,115 @@ A spectral density can be converted to a power spectrum with
 \end{equation}
 The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
 Whether it's included is dependent on the context.
+
+Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+\begin{equation}
+P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\end{equation}
+The spectral density of the velocity power spectrum is given by
+\begin{equation}
+P_{\tilde{v}} (q) = 2 P_v (q).
+\end{equation}
+The velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
+\end{equation}
+
+
+
 The gravitational wave power spectrum is defined by
+\cite[eq. 3.45]{hindmarsh_gw_pt_2019}
+\todo{Find a better source}
 \begin{equation}
 \mathcal{P}_{gw}(k)
 \equiv \frac{d \Omega_{gw}}{d \ln (k)}
 % = \frac{1}{\bar{\rho}} \frac{1}{32 \pi G} \mathcal{P}_{\dot{h}}(k)
 = \frac{1}{12 H^2} \frac{k^3}{2\pi} P_{\dot{h}}(k)
 = \frac{1}{12 H^2} \mathcal{P}_{\dot{h}}(k),
+\label{eq:gw_pow_spec}
 \end{equation}
 where the first step comes directly using the equations above.
 It should be noted that in \cite[eq. 3.6]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
+We will now proceed to define quite a few similar quantities.
+To avoid confusion, their symbols and names are listed in table \ref{table:symbols}.
 
-% TODO continue proving the steps below
+\begin{table}
+\caption{Spectral quantities}
+\begin{tabular}{l|l}
+$P_{\dot{h}}$ & Spectral density of $\dot{h}$ \\
+$P_v$ & Spectral density of the velocity field \\
+$P_{\tilde{v}}$ & Spectral density of the Fourier transformation of the velocity field \\
+$\tilde{P}_v$ & Scaled velocity spectral density \\
+$\tilde{P}_{gw}$ & Spectral density of the gravitational wave power spectrum \\
+$\mathcal{P}_v$ & ??? \\
+$\mathcal{P}_{\tilde{v}}$ & Velocity power spectrum \\
+$\mathcal{P}_gw$ & Gravitational wave power spectrum
+\end{tabular}
+\label{table:symbols}
+\end{table}
 
-Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+Let us define
+\begin{align}
+\tilde{q} &= \frac{k}{c_s} - q, \\
+q_\pm &= \frac{k(1 \pm c_s)}{2 c_s}, \\
+\mu &= \frac{2qc_s - k(1 - c_s^2)}{2qc_s^2}.
+\end{align}
+Using these the the growth rate of the spectral density of $\dot{h}$ can be written as
 \begin{equation}
-P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\dot{P}_{\dot{h}} (k) = (15 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
 \end{equation}
-The velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
-\begin{equation}
-\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_v(q)
-\end{equation}
 
-Spectral density of the gravitational waves \cite[eq. 3.47]{hindmarsh_gw_pt_2019}
+Let us introduce the scaled velocity spectral density $\tilde{P}_v$ as
 \begin{equation}
-\tilde{P}_{gw}(y)
-= \frac{1}{4 \pi y c_s}
-\left( \frac{1 - c_s^2}{c_s^2} \right)^2
+\tilde{P}_v(qL_f) \equiv \frac{P_v(q)}{L_f^3} \bar{U}_f^2,
+\end{equation}
+where $L_f$ is a length scale in the velocity field, and $\bar{U}_f$ is the RMS fluid velocity.
+Let us also define two additional quantities
+\begin{equation}
+y = kL_f, \quad z = qL_f, \quad z_\pm = y \frac{1 \pm c_s}{2 c_s}.
+\label{eq:gw_yz}
+\end{equation}
+From these we get the intermediate results
+\begin{align}
+\tilde{q}L_f &= \frac{y}{c_s} - z, \\
+\frac{y}{c_s} - z &= z_+ + z_- - z, \\
+1 - \mu^2 &= \frac{a}{z^2}(z-z_+)(z-z_-)
+\label{eq:gw_mu_z}
+\end{align}
+Therefore the asymptotic growth rate of the spectral density can be written as
+\begin{equation}
+\dot{P}_{\dot{h}}(y) =
+\left( 16 \pi G \bar{w} \bar{U}_f^2 \right)^2
+\frac{L_f^4}{4 \pi y c_s}
+\int_{z_-}^{z_+} dz
+\frac{z^3}{\frac{y}{c_s} - z}
+(1 - \mu^2)^2
+\tilde{P}_v (z) \tilde{P}_v (\frac{y}{c_s} - z).
+\end{equation}
+The growth rate of the gravitational wave spectrum relative to the Hubble rate is defined as and using \eqref{eq:gw_pow_spec} can be expressed as
+\cite[eq. 3.46]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}'_{\text{gw}} \equiv \frac{1}{H} \frac{d}{dt} \mathcal{P}_{\text{gw}}
+= 3 \left( \Gamma \bar{U}_f^2 \right)^2 (HL_f) \frac{(kL_f)^3}{2 \pi^2} \tilde{P}_{\text{gw}} (kL_f),
+\end{equation}
+where using \eqref{eq:gw_mu_z} we have $\tilde{P}_{\text{gw}}$,the dimensionless spectral density function
+\cite[eq. 3.47]{hindmarsh_gw_pt_2019}
+\footnote{In \cite{hindmars_gw_pt_2019} the $\tilde{P}_v$ is denoted as $\bar{P}_v$ by mistake.}
+\begin{equation}
+\tilde{P}_\text{gw} (y) = \frac{1}{4\pi yc_s} \left(\frac{1-c_s^2}{c_s^2}\right)^2
 \int_{z_-}^{z_+} \frac{dz}{z}
 \frac{(z-z_+)^2(z-z_-)^2}{z_+ + z_- - z}
-\tilde{P}_v (z) \tilde{P}_v (z_+ + z_- - z).
+\tilde{P}_v (z) \tilde{P}_v (z_+ + z_- z).
 \end{equation}
+To get the total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v$ is given by
+\begin{equation}
+\mathcal{P}_\text{gw}(k)
+= \int_{t_0}^{t} H \mathcal{P}'_\text{gw}
+= 3 \left( \Gamma \bar{U}_f^2 \right)^2 (H \tau_v)(H L_f) \frac{(kL_f)^3}{2\pi^2} \tilde{P}_\text{gw} (kL_f).
+\end{equation}
+This is the equation used by PTtools to compute the gravitational wave spectrum.
+\todo{Check if this is really "the" equation}
+
+
 
 \cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}
