@@ -1,8 +1,45 @@
-Energy density of gravitational waves is given by
+In this thesis the gravitational wave spectrum from the first order phase transition is calculated using the Sound Shell Model.
+We shall start by rigorously deriving the necessary equations based on the section 3 of \cite{hindmarsh_gw_pt_2019}.
+
+First of all we assume that the time scale of the phase transition is much shorter than the Hubble time.
+Therefore we can neglect the expansion of the universe and assume that the background is Minkowski spacetime.
+On top of this the fluid and the scalar field are a source of metric perturbations.
+In the synchronous gauge these produce a change in the space-time interval
 \begin{equation}
-e_{gw} = \frac{1}{32 \pi G} \langle \dot{h}_{ij}^{TT} \dot{h}_{ij}^{TT} \rangle.
+ds^2 = -dt^2 + (\delta_{ij} + h_{ij}) dx^i dx^j.
 \end{equation}
+The metric perturbations $h_{ij}$ are sourced by shear stress,
+which is the transverse-traceless part of the energy-momentum tensor $\Pi_{ij}$ of eq. \eqref{eq:ep_tensor_general_matrix}.
+\begin{equation}
+\ddot{h}_{ij} - \nabla^2 h_{ij} = 16 \pi G \Pi_{ij}.
+\end{equation}
+\todo{Clarify where this comes from}
+
+The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and the scalar field
+\begin{align}
+T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij} \\
+T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}
+\end{align}
+The spectral density of the time derivative of the perturbations $P_{\dot{h}}(\mathbb{k},t)$ is defined by
+\cite[eq. 3.4]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\langle \dot{h}_\mathbb{k}^{ij}(t) \dot{h}_{\mathbb{k}}^{ij}(t) \rangle = P_{\dot{h}}(\mathbb{k},t) (2\pi)^3 \delta (\mathbb{k} + \mathbb{k}').
+\end{equation}
+
+\begin{align}
+\Lambda_{ij,kl}(\mathbb{k}) &= P_{ik}(\mathbb{k}) P_{jl}(\mathbb{k}) - \frac{1}{2} P_{ij}(\mathbb{k}) P_{kl}(\mathbb{k}) \\
+P_{ij}(\mathbb{k}) &= \delta_{ij} - \hat{k}_i \hat{k}_j
+\end{align}
+
+Energy density of gravitational waves is given by
 \cites[eq. 3.3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
+\begin{align}
+e_{gw}
+&= \frac{1}{32 \pi G} \langle \dot{h}_{ij}^{TT} \dot{h}_{ij}^{TT} \rangle
+&= \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
+\end{align}
+\todo{Why a factor of $k^2$ and not $k$?}
+
 The critical energy density corresponding to a flat universe is given by
 \cite[eq. 7.196]{maggiore_gw_2008}
 \begin{equation}
@@ -14,19 +51,14 @@ Let us define the dimensionless quantity
 \Omega_{gw} \equiv \frac{e_{gw}}{e_c}.
 \label{eq:omega_gw}
 \end{equation}
-The spectral density of the time derivative of the perturbations $P_{\dot{h}}$ is defined by
-\cite[eq. 3.5]{hindmarsh_gw_pt_2019}
-\begin{equation}
-e_{gw} = \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
-\end{equation}
-\todo{Why a factor of $k^2$ and not $k$?}
+
 A spectral density can be converted to a power spectrum with
 \begin{equation}
 \mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
 \label{eq:pow_spec}
 \end{equation}
 The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
-Whether it's included is dependent on the context.
+Whether it's included or not is dependent on the context.
 
 Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -82,7 +114,7 @@ q_\pm &= \frac{k(1 \pm c_s)}{2 c_s}, \\
 \end{align}
 Using these the the growth rate of the spectral density of $\dot{h}$ can be written as
 \begin{equation}
-\dot{P}_{\dot{h}} (k) = (15 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
+\dot{P}_{\dot{h}} (k) = (15 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
 \end{equation}
 
 Let us introduce the scaled velocity spectral density $\tilde{P}_v$ as
