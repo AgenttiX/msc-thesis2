@@ -20,25 +20,34 @@ The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and
 T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij} \\
 T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}
 \end{align}
-The spectral density of the time derivative of the perturbations $P_{\dot{h}}(\mathbb{k},t)$ is defined by
-\cite[eq. 3.4]{hindmarsh_gw_pt_2019}
+
+Let us introduce the tensor \cite[eq. 1.35]{maggiore_gw_2008}
 \begin{equation}
-\langle \dot{h}_\mathbb{k}^{ij}(t) \dot{h}_{\mathbb{k}}^{ij}(t) \rangle = P_{\dot{h}}(\mathbb{k},t) (2\pi)^3 \delta (\mathbb{k} + \mathbb{k}').
+P_{ij}(\bm{k}) = \delta_{ij} - \hat{k}_i \hat{k}_j.
+\end{equation}
+This tensor is symmetric, transverse ($\hat{k}_i P_{ij}(\bm{k}) = 0$) and a projector ($P_{ik}P_{kj} = P_{ij}$), and its trace is $P_{ii} = 2$.
+Using $P_{ij}$ we can construct the Lambda tensor \cite[eq. 1.36]{maggiore_gw_2008}
+\begin{equation}
+\Lambda_{ij,kl}(\bm{k}) = P_{ik}(\bm{k}) P_{jl}(\bm{k}) - \frac{1}{2} P_{ij}(\bm{k}) P_{kl}(\bm{k}).
 \end{equation}
 
-\begin{align}
-\Lambda_{ij,kl}(\mathbb{k}) &= P_{ik}(\mathbb{k}) P_{jl}(\mathbb{k}) - \frac{1}{2} P_{ij}(\mathbb{k}) P_{kl}(\mathbb{k}) \\
-P_{ij}(\mathbb{k}) &= \delta_{ij} - \hat{k}_i \hat{k}_j
-\end{align}
 
-Energy density of gravitational waves is given by
+The spectral density of the time derivative of the perturbations $P_{\dot{h}}(\bm{k},t)$ is defined by
+\cite[eq. 3.4]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\langle \dot{h}_{\bm{k}}^{ij}(t) \dot{h}_{\bm{k}}^{ij}(t) \rangle = P_{\dot{h}}(\bm{k},t) (2\pi)^3 \delta (\bm{k} + \bm{k}').
+\end{equation}
+\todo{Should the second $k$ be $k'$?}
+
+The energy density of gravitational waves is given by
 \cites[eq. 3.3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
 \begin{align}
 e_{gw}
-&= \frac{1}{32 \pi G} \langle \dot{h}_{ij}^{TT} \dot{h}_{ij}^{TT} \rangle
+&= \frac{1}{32 \pi G} \int dk^3 \langle \dot{h}_{ij} \dot{h}_{ij} \rangle \\
 &= \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
 \end{align}
-\todo{Why a factor of $k^2$ and not $k$?}
+In many textbooks and articles the integral in the first expression is implicit.
+The factor $k^2$ is introduced by the conversion to spherical coordinates, and TODO
 
 The critical energy density corresponding to a flat universe is given by
 \cite[eq. 7.196]{maggiore_gw_2008}
