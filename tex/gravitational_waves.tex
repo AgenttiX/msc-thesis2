@@ -10,15 +10,15 @@ ds^2 = -dt^2 + (\delta_{ij} + h_{ij}) dx^i dx^j.
 \end{equation}
 The metric perturbations $h_{ij}$ are sourced by shear stress,
 which is the transverse-traceless part of the energy-momentum tensor $\Pi_{ij}$ of eq. \eqref{eq:ep_tensor_general_matrix}.
+This results in a wave equation for $h_{ij}$ with a source term,
 \begin{equation}
 \ddot{h}_{ij} - \nabla^2 h_{ij} = 16 \pi G \Pi_{ij}.
 \end{equation}
 \todo{Clarify where this comes from}
-
 The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and the scalar field
 \begin{align}
 T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij} \\
-T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}
+T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}.
 \end{align}
 
 Let us introduce the tensor \cite[eq. 1.35]{maggiore_gw_2008}
@@ -26,19 +26,32 @@ Let us introduce the tensor \cite[eq. 1.35]{maggiore_gw_2008}
 P_{ij}(\bm{k}) = \delta_{ij} - \hat{k}_i \hat{k}_j.
 \end{equation}
 This tensor is symmetric, transverse ($\hat{k}_i P_{ij}(\bm{k}) = 0$) and a projector ($P_{ik}P_{kj} = P_{ij}$), and its trace is $P_{ii} = 2$.
-Using $P_{ij}$ we can construct the Lambda tensor \cite[eq. 1.36]{maggiore_gw_2008}
+Using $P_{ij}$ we can construct another tensor that we call Lambda tensor \cite[eq. 1.36]{maggiore_gw_2008}
 \begin{equation}
 \Lambda_{ij,kl}(\bm{k}) = P_{ik}(\bm{k}) P_{jl}(\bm{k}) - \frac{1}{2} P_{ij}(\bm{k}) P_{kl}(\bm{k}).
 \end{equation}
+\iffalse
+This is still a projector, in the sense that
+\begin{equation}
+\Lambda_{ij,kl} \Lambda_{kl,mn} = \Lambda_{ij,mn}.
+\end{equation}
+It is also transverse on all of its indices as $n^i \Lambda_{ij,kl} = 0$ for all indices ($ijkl$}.
+Itis traceless with respect to the ($i,j$) and ($k,l$) index pairs,
+\begin{equation}
+\Lambda_{ii,kl} = \Lambda_{ij,kk} = 0.
+\end{equation}
+\fi
+For further details on the Lambda tensor, please see \cite[ch. 1.2]{maggiore_gw_2008}.
 
-
-The spectral density of the time derivative of the perturbations $P_{\dot{h}}(\bm{k},t)$ is defined by
+The spectral density of the time derivative of the perturbations, $P_{\dot{h}}(\bm{k},t)$, is defined by
 \cite[eq. 3.4]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \langle \dot{h}_{\bm{k}}^{ij}(t) \dot{h}_{\bm{k}}^{ij}(t) \rangle = P_{\dot{h}}(\bm{k},t) (2\pi)^3 \delta (\bm{k} + \bm{k}').
+\label{eq:hbracket}
 \end{equation}
 \todo{Should the second $k$ be $k'$?}
 
+% Defining Omega_gw
 The energy density of gravitational waves is given by
 \cites[eq. 3.3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
 \begin{align}
@@ -47,8 +60,7 @@ e_{gw}
 &= \frac{1}{32 \pi G} \int dk \frac{k^2}{2 \pi^2} P_{\dot{h}}(k).
 \end{align}
 In many textbooks and articles the integral in the first expression is implicit.
-The factor $k^2$ is introduced by the conversion to spherical coordinates, and TODO
-
+The factor of $\frac{k^2}{2\pi^2}$ results from the conversion to spherical coordinates.
 The critical energy density corresponding to a flat universe is given by
 \cite[eq. 7.196]{maggiore_gw_2008}
 \begin{equation}
@@ -60,29 +72,7 @@ Let us define the dimensionless quantity
 \Omega_{gw} \equiv \frac{e_{gw}}{e_c}.
 \label{eq:omega_gw}
 \end{equation}
-
-A spectral density can be converted to a power spectrum with
-\begin{equation}
-\mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
-\label{eq:pow_spec}
-\end{equation}
-The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
-Whether it's included or not is dependent on the context.
-
-Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
-\begin{equation}
-P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
-\end{equation}
-The spectral density of the velocity power spectrum is given by
-\begin{equation}
-P_{\tilde{v}} (q) = 2 P_v (q).
-\end{equation}
-The velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
-\begin{equation}
-\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
-\end{equation}
-
-
+This will be needed later in eq. \eqref{eq:gw_pow_spec}.
 
 The gravitational wave power spectrum is defined by
 \cite[eq. 3.45]{hindmarsh_gw_pt_2019}
@@ -99,6 +89,57 @@ where the first step comes directly using the equations above.
 It should be noted that in \cite[eq. 3.6]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
 We will now proceed to define quite a few similar quantities.
 To avoid confusion, their symbols and names are listed in table \ref{table:symbols}.
+
+
+The spectral density of the velocity power spectrum is given by
+\begin{equation}
+P_{\tilde{v}} (q) = 2 P_v (q).
+\end{equation}
+A spectral density can be converted to a power spectrum with
+\begin{equation}
+\mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
+\label{eq:pow_spec}
+\end{equation}
+The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
+Whether it's included or not is dependent on the context.
+Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
+\end{equation}
+
+There exists a solution to the gravitational wave equation in the form of
+\begin{equation}
+h_{ij} (\bm{k},t) = (16 \pi G) \Lambda_{ij,kl}(\bm{k}) \int_0^t dt' \frac{\sin [k(t-t')]}{k} T_{kl}(\bm{k},t')
+\end{equation}
+It is sufficient to replace $T_{ij}$ with the tensor
+\begin{equation}
+\tau_{ij} = \gamma^2 w v_i v_j + \delta_ \phi \delta_j \phi
+\end{equation}
+\todo{This is $T_{ij}$ with the diagonal elements removed. TT gauge?}
+Therefore we have
+\begin{multline}
+\langle \dot{h}_{\bm{k}_1}^{ij}(t) \dot{h}_{\bm{k}_2}^{ij}(t) \rangle \\
+= (16 \pi G)^2 \int_0^t dt_1 dt_2 \cos [k_1(t-t_1)] \cos [k_2(t-t_2)] \Lambda_{ij,kl}(\bm{k})
+\langle \tau_{\bm{k}_1}^{ij}(t_1) \tau_{\bm{k}_2}^{kl}(t_2) \rangle
+\end{multline}
+Let us define the unequal time correlator (UETC) of the fluid shear stress $U_\Pi$ with
+\begin{equation}
+\Lambda_{ij,kl}(\bm{k}) \langle \tau_{\bm{k}_1}^{ij}(t_1) \tau_{\bm{k}_2}^{kl}(t_2) \rangle
+= U_\Pi (k_1, t_1, t_2) (2 \pi)^3 \delta(\bm{k}_1 + \bm{k}_2).
+\label{eq:hbracket2}
+\end{equation}
+Using this we can make a simple substitutions to eq. \eqref{eq:hbracket} and \eqref{eq:hbracket2},
+resulting in an expression for the spectral density as
+\begin{equation}
+P_{\dot{h}} (k,t) = (16 \pi G)^2 \int_0^t dt_1 \int_0^t dt_2 \cos [k(t-t_1)] \cos [k(t-t_2)] U_\Pi (k, t_1, t_2).
+\end{equation}
+
+
+Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+\begin{equation}
+P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\end{equation}
+
 
 \begin{table}
 \caption{Spectral quantities}
@@ -123,7 +164,7 @@ q_\pm &= \frac{k(1 \pm c_s)}{2 c_s}, \\
 \end{align}
 Using these the the growth rate of the spectral density of $\dot{h}$ can be written as
 \begin{equation}
-\dot{P}_{\dot{h}} (k) = (15 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
+\dot{P}_{\dot{h}} (k) = (16 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
 \end{equation}
 
 Let us introduce the scaled velocity spectral density $\tilde{P}_v$ as
