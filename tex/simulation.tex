@@ -25,7 +25,7 @@ or they can specify their own model by either inheriting from the provided \text
 or by inheriting from the \texttt{FullModel} class by providing the degrees of freedom $g_e(T,\phi)$ and $g_s(T,\phi)$.
 PTtools then runs various validity checks for the model,
 including that $V_s - V_b \geq 0$ and that the model has a critical temperature.
-As a part of the model initialization, PTtools creates a function for the $c_s^2$ of the model.
+As a part of the model initialization, PTtools creates a function for the speed of sound $c_s^2$ of the model.
 This function is compiled using Numba to achieve sufficient performance for using this function in the bubble solving.
 
 Once the model has been specified,
@@ -78,8 +78,29 @@ Detonations are the simplest case.
 Since the fluid is stationary outside the wall,
 the junction conditions can be solved directly using
 $\tilde{v}_+ = v_\text{wall}$ and $w_+ = w_n$.
-Then the solver
-ASDFASDF TODO
+Then the solver integrates from $(v_-, w_-)$ to the fixed point with $v=0$.
+The fluid inside the fixed point is stationary.
+
+Deflagrations are more complicated,
+as we cannot compute $v_{-,sh}, w_{-,sh}$ from $v_{+,sh}=0, w_{+,sh}=w_n$ using the junction conditions,
+as the shock can be too small for the numerical accuracy of the junction solver.
+Therefore, we have to start by guessing a $w_-$.
+Since the fluid inside the wall is stationary, we know that $\tilde{v}_- = v_{\text{wall}}$.
+For a given $(v_-, w_-)$ we can solve the junction conditions, giving $(v_+, w_+)$.
+From these we can integrate until we encounter the shock.
+Then we solve the junction conditions with $v_{+,sh} = 0$, giving us a $w_{+,sh}$.
+Then we compare this to the given $w_n$.
+If they don't match, we adjust our guess for $w_-$ and start again until we have $w_{+,sh} = w_n$.
+
+We cannot directly compute $v_sh(\xi_sh)$, as it's dependent on $w_{-,sh}$.
+
+
+Hybrids are the most complicated case, as neither $v_+$ nor $v_-$ is known beforehand.
+Therefore we start by guessing a $w_-$, and we know that $\tilde{v}_- = c_s(w_-, \phi_-)$.
+Then we can solve the junction conditions to get $(v_+, w_+)$.
+With these we can integrate until we encounter the shock.
+
+
 
 First the solver solves the junction conditions at the wall using the 
 
