@@ -1,6 +1,7 @@
 The equations for the fluid dynamics and gravitational wave production have no analytical solutions in the general case.
 Therefore numerical solutions are required.
-To enable these, in this thesis the simulation software PTtools has been developed further to account for speeds of sound that differ from the bag model presented in section \ref{bag_model}.
+To enable these, in this thesis the simulation software PTtools has been developed further to account for speeds of sound that differ from the bag model presented in section \ref{bag_model},
+enabling the detailed analysis of models beyond the bag model.
 
 
 \section{Overview of PTtools}
@@ -61,13 +62,14 @@ spectrum.plot_multi()
 
 
 \section{Bubble solver}
-The bubble solver consists of preparatory steps that provide initial values for a numerical solver, the numerical solver itself, and post-processing to provide output data in a consistent form.
+The bubble solver consists of three steps: 1) preparatory steps that provide initial values for a numerical solver, 2) the numerical solver itself, and 3) post-processing to provide output data in a consistent form.
 For the bag model the user can also choose to use the previous version of the solver,
 which uses several analytical shortcuts based on the assumption that $c_s^2 = \frac{1}{3}$.
 
 The generic solver starts by checking the type of the solution based on the conditions of table \ref{table:solution_types}.
 If the type of the solution cannot be determined automatically, the solver will halt and request the user to provide the type of the solution.
 Then the solver will use the bag model to load reference values for $w_+$ and $w_-$ for the given $v_\text{wall}$ and $\alpha_n$.
+These reference values will be used as the starting point for the numerical solver.
 If the reference values have not been precomputed, they will be computed and saved to disk at this point.
 If there is no reference data for the given parameters, then arbitrary but reasonable values will be used as the reference.
 Finally, the Chapman-Jouguet speed of \eqref{eq:chapman_jouguet} is computed.
@@ -88,33 +90,68 @@ Therefore, we have to start by guessing a $w_-$.
 Since the fluid inside the wall is stationary, we know that $\tilde{v}_- = v_{\text{wall}}$.
 For a given $(v_-, w_-)$ we can solve the junction conditions, giving $(v_+, w_+)$.
 From these we can integrate until we encounter the shock.
-Then we solve the junction conditions with $v_{+,sh} = 0$, giving us a $w_{+,sh}$.
+However, we cannot directly compute $v_{sh}(\xi_sh)$, as it's dependent on $w_{-,sh}$.
+Therefore we have to evaluate $v_{sh}(\xi_{sh}, w_{-,sh}$ for each $(\xi, w)$ on the integrated curve to see
+when the curve encounters the shock.
+This is accomplished by a binary search.
+Once we know $\xi_{sh}$, we can solve the junction conditions with $v_{+,sh} = 0$, giving us a $w_{+,sh}$.
 Then we compare this to the given $w_n$.
 If they don't match, we adjust our guess for $w_-$ and start again until we have $w_{+,sh} = w_n$.
-
-We cannot directly compute $v_sh(\xi_sh)$, as it's dependent on $w_{-,sh}$.
-
 
 Hybrids are the most complicated case, as neither $v_+$ nor $v_-$ is known beforehand.
 Therefore we start by guessing a $w_-$, and we know that $\tilde{v}_- = c_s(w_-, \phi_-)$.
 Then we can solve the junction conditions to get $(v_+, w_+)$.
 With these we can integrate until we encounter the shock.
+Then we perform the rest of the steps as for deflagrations, and iterate until we have $w_{+,sh} = w_n$.
+Once this is found, we integrate from our starting point $(v_-, w_-)$ to the fixed point to get the detonation-like tail,
+resulting in the full hybrid solution.
 
+For all solution types, once we have the solution,
+we add points corresponding to $(\xi=0, w_\text{center})$ and $(\xi=1, w_n)$
+so that the solution covers the full range $\xi \in [0, 1]$.
+It should be noted, that the resulting solution does not have a fixed step for $\xi$,
+and therefore one has to be careful when computing integrals or Fourier transforms of the solution.
 
+The \verb|Bubble| class performs various checks on the solution.
+It checks that
+1) $\alpha_+(w_+, w_-, \tilde{v}_+)$ can be computed,
+2) entropy fluxes across the wall and their difference are non-negative,
+3) the total change in the volume-averaged entropy density is non-negative, and
+4) $\kappa + \omega \approx 1$.
+If any of these checks fail, the solution is marked to have an error.
 
-First the solver solves the junction conditions at the wall using the 
-
-
-
-\todo{Write more about the bubble solver}
+Once the bubble is solved, the \verb|Bubble| object can be queried for various quantities,
+including but not limited to the fluid velocities in both the plasma and wall frames,
+the corresponding velocities for the shock,
+enthalpies at the wall and at the shock,
+various thermodynamic quantities in both bubble volume averaged and volume-averaged forms,
+such as the entropy density and entropy fluxes,
+kinetic energy density,
+kinetic energy fraction,
+thermal energy density,
+thermal energy fraction,
+trace anomaly $\theta$,
+average energy $\bar{e} = e_n$,
+$\kappa$ as defined by Hindmarsh et al. \todo{reference},
+$\kappa$ as defined by Giese et al. \todo{reference},
+mean adiabatic index $\Gamma$,
+$\omega$ and
+$\bar{U}_f^2$.
 
 
 \section{Spectrum computation}
-TODO write about the spectrum computation
+Once the fluid velocity profile of a bubble is solved as above,
+it can be converted to a gravitational wave spectrum by constructing a \verb|Spectrum| object.
+The spectrum computation is based on \cite{hindmarsh_gw_pt_2019}.
+First, the spectral density of the plane wave components of the velocity field $P_v(q)$ is computed using eq. \eqref{eq:spec_den_v}.
+This is converted to the velocity power spectrum $\mathcal{P}_{\tilde{v}}$ using eq. \eqref{eq:pow_v}.
+The spectral density of the plane wave components of the velocity field $P_v(q)$ is also used to compute the dimensionless spectral density function $\tilde{P}_{\text{gw}}(y)$ of eq. \eqref{eq:spectral_density} and using it the spectral density of gravitational waves \todo{symbol}.
+This is converted to the gravitational wave power spectrum $\mathcal{P}_{\text{gw}}$ using \eqref{eq:pow_gw}.
 
 
 \section{Parallel computing}
-PTtools provides an interface for creating multiple bubbles and computing quantities from them in parallel on multiple CPU cores, despite being a Python-based software.
+PTtools provides an interface for creating multiple bubbles and computing quantities from them in parallel on multiple CPU cores,
+despite being a Python-based software.
 This is made possible by the
 \href{https://docs.python.org/3/library/multiprocessing.html}{\texttt{multiprocessing}}
 module of the Python standard library.
@@ -140,5 +177,28 @@ another_interesting_quantity_grid = grid.data[1]
 
 
 \section{Results}
-TODO examples here
+The constant $c_s$ model was chosen as the model to test PTtools with, as the model is relatively simple and there is some reference data available from \cites{giese_2020}{giese_2021}.
+Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall speeds $v_\text{wall}$ and $\alpha_n$.
+These are the same values as in \cite[fig. 10]{hindmarsh_gw_pt_2019}.
+However, instead of drawing merely the $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
+we consider the four different combinations of the speeds of sound
+$c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}$.
+
+\begin{figure}[h!]
+\centering
+\missingfigure{TODO}
+\caption{Self-similar fluid profiles}
+\label{fig:fluid_profiles}
+\end{figure}
+
+To test the accuracy and reliability of the results provided by PTtools,
+we compared to the results in \cite[fig. 2]{giese_2021}.
+It should be noted that the article uses $\kappa_\text{Giese}$ \todo{Find a proper notation}.
+
+\begin{figure}[h!]
+\centering
+\missingfigure{TODO}
+\caption{Self-similar fluid profiles}
+\label{fig:kappa_giese}
+\end{figure}
 

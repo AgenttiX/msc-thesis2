@@ -105,6 +105,7 @@ Whether it's included or not is dependent on the context.
 Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
+\label{eq:pow_v}
 \end{equation}
 
 There exists a solution to the gravitational wave equation in the form of
@@ -138,6 +139,7 @@ P_{\dot{h}} (k,t) = (16 \pi G)^2 \int_0^t dt_1 \int_0^t dt_2 \cos [k(t-t_1)] \co
 Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
 P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\label{eq:spec_den_v}
 \end{equation}
 
 
@@ -208,12 +210,14 @@ where using \eqref{eq:gw_mu_z} we have $\tilde{P}_{\text{gw}}$,the dimensionless
 \int_{z_-}^{z_+} \frac{dz}{z}
 \frac{(z-z_+)^2(z-z_-)^2}{z_+ + z_- - z}
 \tilde{P}_v (z) \tilde{P}_v (z_+ + z_- z).
+\label{eq:spectral_density}
 \end{equation}
 To get the total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v$ is given by
 \begin{equation}
 \mathcal{P}_\text{gw}(k)
 = \int_{t_0}^{t} H \mathcal{P}'_\text{gw}
 = 3 \left( \Gamma \bar{U}_f^2 \right)^2 (H \tau_v)(H L_f) \frac{(kL_f)^3}{2\pi^2} \tilde{P}_\text{gw} (kL_f).
+\label{eq:pow_gw}
 \end{equation}
 This is the equation used by PTtools to compute the gravitational wave spectrum.
 \todo{Check if this is really "the" equation}
