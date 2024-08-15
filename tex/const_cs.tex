@@ -90,7 +90,7 @@ The transition strength at nucleation temperature of \eqref{eq:alpha_n} is corre
 \label{eq:alpha_n_const_cs}
 \end{align}
 \iffalse
-% This is wrong
+%% This is wrong
 Inverting this gives the enthalpy at the nucleation temperature
 \begin{equation}
 w_n = \frac{V_+ - V_-}{ \frac{3}{4} \alpha_n + \frac{1}{\mu_+} - \frac{1}{\mu_-} }.
@@ -119,12 +119,12 @@ Then we insert $\tilde{v}_- = c_{s-}$ to \eqref{eq:v_tilde_plus}, giving us the 
 
 The pseudotrace of \eqref{eq:theta_bar} is given by
 \begin{align}
-\bar{\theta} = (\mu_\pm - \mu_-) a \left(\frac{T}{T_0}\right)^{\mu_\pm - 4} T_0^4 + \mu_- V_\pm.
+\bar{\Theta} = (\mu_\pm - \mu_-) a \left(\frac{T}{T_0}\right)^{\mu_\pm - 4} T_0^4 + \mu_- V_\pm.
 \end{align}
 Therefore the corresponding transition strengths of \eqref{eq:alpha_theta_bar_plus} and \eqref{eq:alpha_theta_bar_n} become
 \begin{align}
-\alpha_{\bar{\theta}_+} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{+,\text{bag}}, \\
-\alpha_{\bar{\theta}_n} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{n,\text{bag}}.
+\alpha_{\bar{\Theta}_+} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{+,\text{bag}}, \\
+\alpha_{\bar{\Theta}_n} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{n,\text{bag}}.
 \end{align}
 These are equal for detonations regardless of the wall speed or the speeds of sound,
 since $\alpha_{+,\text{bag}} = \alpha_{n,\text{bag}}$ for detonations.
@@ -169,9 +169,9 @@ w_+ \left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + \left( De_+ -
 }{
 w_+ \left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + \tilde{v}_+ \tilde{v}_- \left( De_+ - \frac{Dp_+}{c_{s,b}^2} \right)
 } \\
-&= \frac{ \left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + 3 \alpha_{\bar{\theta}_+}
+&= \frac{ \left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + 3 \alpha_{\bar{\Theta}_+}
 }{
-\left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + 3\tilde{v}_+ \tilde{v}_- \alpha_{\bar{\theta}_+}}
+\left( \frac{\tilde{v}_+ \tilde{v}_-}{c_{s,b}^2} - 1 \right) + 3\tilde{v}_+ \tilde{v}_- \alpha_{\bar{\Theta}_+}}
 \label{eq:const_cs_vp_vm}
 \end{align}
 The only approximation in this calculation is that of eq. \eqref{eq:const_cs_approx}.
@@ -180,25 +180,25 @@ eq. \eqref{eq:const_cs_vp_vm} is exact for the constant sound speed model.
 Eq. \eqref{eq:const_cs_vp_vm} can be rearranged to
 \begin{equation}
 \frac{\tilde{v}_+}{c_{s,b}^2} \tilde{v}_-^2
-+ \left(3 \alpha_{\bar{\theta}_+} - 1 - \tilde{v}_+^2 \left(\frac{1}{c_{s,b}^2} + 3 \alpha_{\bar{\theta}_+} \right) \right) \tilde{v}_-
++ \left(3 \alpha_{\bar{\Theta}_+} - 1 - \tilde{v}_+^2 \left(\frac{1}{c_{s,b}^2} + 3 \alpha_{\bar{\Theta}_+} \right) \right) \tilde{v}_-
 + \tilde{v}_+
 = 0,
 \end{equation}
-which is a basic second-order equation for $\tilde{v}_- ( \tilde{v}_+, \alpha_{\bar{\theta}_+} )$.
-Since $\tilde{v}_+ = v_w$ for all detonations, and $\alpha_{\bar{\theta}_+} = \alpha_{\bar{\theta}_n}$ for all detonations in the constant sound speed model, this gives $\tilde{v}_- ( v_w, \alpha_{\bar{\theta}_n} )$.
+which is a basic second-order equation for $\tilde{v}_- ( \tilde{v}_+, \alpha_{\bar{\Theta}_+} )$.
+Since $\tilde{v}_+ = v_w$ for all detonations, and $\alpha_{\bar{\Theta}_+} = \alpha_{\bar{\Theta}_n}$ for all detonations in the constant sound speed model, this gives $\tilde{v}_- ( v_w, \alpha_{\bar{\Theta}_n} )$.
 And since \eqref{eq:alpha_n_const_cs} gives $\alpha_n(\mu_+, \mu_-, \alpha_{n,\text{bag}}$, we have $\tilde{v}_- (v_w,
 $
 TODO
 Eq. \eqref{eq:const_cs_vp_vm} can also be rearranged to
 \begin{equation}
-\left( \frac{1}{c_{s,b}^2} + 3\alpha_{\bar{\theta}_+} \right) \tilde{v}_+^2
+\left( \frac{1}{c_{s,b}^2} + 3\alpha_{\bar{\Theta}_+} \right) \tilde{v}_+^2
 - \left( \frac{1}{\tilde{v}_-} + \frac{\tilde{v}_-}{c_{s,b}^2} \right) \tilde{v}_+
-+ 1 - 3\alpha_{\bar{\theta}_+}
++ 1 - 3\alpha_{\bar{\Theta}_+}
 = 0.
 \end{equation}
 This gives the Chapman-Jouguet speed $\tilde{v}_+ \left( \tilde{v}_- = c_{s,b} \right)$ as
 \cite[eq. 55]{giese_2020}
 \begin{equation}
-v_{CJ} = \frac{ 1 + \sqrt{ 3\alpha_{\bar{\theta}_+} ( 1 - c_{s,b}^2 + 3 c_{s,b}^2 \alpha_{\bar{\theta}_+} ) }}{ \frac{1}{c_{s,b}} + 3 c_{s,b} \alpha_{\bar{\theta}_+}}.
+v_{CJ} = \frac{ 1 + \sqrt{ 3\alpha_{\bar{\Theta}_+} ( 1 - c_{s,b}^2 + 3 c_{s,b}^2 \alpha_{\bar{\Theta}_+} ) }}{ \frac{1}{c_{s,b}} + 3 c_{s,b} \alpha_{\bar{\Theta}_+}}.
 \end{equation}
 This holds for all values of $\mu_+$ and $\mu_-$.

@@ -56,6 +56,11 @@ We can quantify its difference from zero with the trace anomaly
 \label{eq:theta}
 \end{equation}
 The definition of the trace anomaly varies by a factor of $\frac{1}{4}$ depending on the source as a matter of convention.
+To alleviate this confusion, we introduce the trace anomaly without the factor of $\frac{1}{4}$ as
+\begin{equation}
+\Theta \equiv e - 3p.
+\label{eq:theta_big}
+\end{equation}
 The difference of a quantity $X$ just ahead and behind the wall is denoted as
 \begin{equation}
 \Delta X
@@ -96,28 +101,30 @@ and the transition strength at nucleation temperature
 A quantity similar to the trace anomaly is the pseudotrace
 \cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
 \begin{equation}
-\bar{\theta} \equiv e - \frac{p}{c_{s,b}^2}.
+\bar{\Theta} \equiv e - \frac{p}{c_{s,b}^2}.
 \label{eq:theta_bar}
 \end{equation}
 It is defined with respect to $c_{s,b}^2$ in both phases so that eq. \ref{eq:junction_conditions_simplified} can be simplified.
+It should be noted that the articles \cite{giese_2020}{giese_2021} denote this pseudotrace as $\bar{\theta}$,
+but we have chosen the symbol $\bar{\Theta}$ in accordance with \eqref{eq:theta_big} to highlight that it doesn't have the factor of $\frac{1}{4}$ as \eqref{eq:theta} does.
 Using it we can define the transition strength for the pseudotrace,
-sometimes denoted as $\alpha_{\bar{\theta}}$, as
+sometimes denoted as $\alpha_{\bar{\Theta}}$, as
 \todo{Is this the optimal phase transition strength for detonations?}
 \cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
 \begin{equation}
-\alpha_{\bar{\theta}_+}
-\equiv \frac{D \bar{\theta}(T_+)}{3w_+}
-= \frac{\bar{\theta}_+(T_+) - \bar{\theta}_-(T_+)}{3w_+}
+\alpha_{\bar{\Theta}_+}
+\equiv \frac{D \bar{\Theta}(T_+)}{3w_+}
+= \frac{\bar{\Theta}_+(T_+) - \bar{\Theta}_-(T_+)}{3w_+}
 \label{eq:alpha_theta_bar_plus}
 \end{equation}
 The transition strength for the pseudotrace at the nucleation temperature is given as
 \begin{equation}
-\alpha_{\bar{\theta}_n}
-\equiv \frac{D \bar{\theta}(T_n)}{3w_n}
-= \frac{\bar{\theta}_+(T_n) - \bar{\theta}_-(T_n)}{3w_n}.
+\alpha_{\bar{\Theta}_n}
+\equiv \frac{D \bar{\Theta}(T_n)}{3w_n}
+= \frac{\bar{\Theta}_+(T_n) - \bar{\Theta}_-(T_n)}{3w_n}.
 \label{eq:alpha_theta_bar_n}
 \end{equation}
-Note that these equations differ from the regular transition strength by a factor of $\frac{1}{4}$ due to different conventions, but this is canceled by the lack of $\frac{1}{4}$ in $\bar{\theta}$.
+Note that these equations differ from the regular transition strength by a factor of $\frac{1}{4}$ due to different conventions, but this is canceled by the lack of $\frac{1}{4}$ in $\bar{\Theta}$.
 These also use $D$ instead of $\Delta$,
 and will prove out to be convenient with the constant sound speed model of section \ref{const_cs}.
 We can also define the enthalpy ratio
