@@ -9,7 +9,7 @@ Commented for better readability.
 
 import numpy as np
 from scipy.integrate import odeint
-from scipy.integrate import simps
+from scipy.integrate import simpson
 
 
 def kappaNuModel(cs2: float, al: float, vp: float):
@@ -42,4 +42,4 @@ def kappaNuModel(cs2: float, al: float, vp: float):
     sol = odeint(dfdv, [vp, 1.], vs, args=(nu,))
     xis, ws = sol[:, 0], -sol[:, 1]*wm/al*4./vp**3
 
-    return simps(ws*(xis*vs)**2/(1.-vs**2), xis)
+    return simpson(ws*(xis*vs)**2/(1.-vs**2), xis)
