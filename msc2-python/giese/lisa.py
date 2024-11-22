@@ -94,7 +94,7 @@ def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[np.ndarray, np.ndar
         # Scaling with w_shock and then multiplying with the value of wow just before the shock
         # (This is also done in PTtools in
         wows = wows[:ll] / wows[ll-1] * getwow(xis[-1], mu(xis[-1], vs[-1]))
-    Kint = simpson(wows*(xis*vs)**2/(1.-vs**2), xis)
+    Kint = simpson(y=wows*(xis*vs)**2/(1.-vs**2), x=xis)
     # Alternative trapezoidal integration
     # Kint = trapezoid(wows * (xis * vs) ** 2 / (1. - vs ** 2), xis)
     return vs, wows, xis, Kint*4./vw**3, wows[0]
