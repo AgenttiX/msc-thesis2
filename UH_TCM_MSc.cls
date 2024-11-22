@@ -287,7 +287,8 @@
 
 \end{LARGE}
 
-\vspace{2cm}
+% \vspace{2cm}
+\vspace{1.5cm}
 \begin{large}
 \@author
 \end{large}
@@ -297,7 +298,8 @@
 \@date
 \end{large}
 
-\vspace{2.0cm}
+% \vspace{2cm}
+\vspace{1.5cm}
 
 \begin{large}
 
@@ -415,7 +417,8 @@
 \put(212, 744){\makebox(100, 8)[l]{\abst@small\@programme}}
 %\put(289, 744){\makebox(100, 8)[l]{\abst@small\@subject}}
 \put(58,  714){\makebox(100, 8)[l]{\abst@small\@author}}
-\put(58,  684){\parbox[l]{450pt}{\renewcommand{\baselinestretch}{.9}\abst@small\@title}}
+% \put(58,  684){\parbox[l]{450pt}{\renewcommand{\baselinestretch}{.9}\abst@small\@title}}
+\put(58,  687){\parbox[l]{450pt}{\renewcommand{\baselinestretch}{.9}\abst@small\@title}}
 \put(58,  654){\makebox(100, 8)[l]{\abst@small\@level}}
 \put(212, 654){\makebox(100, 8)[l]{\abst@small\@date}}
 \put(366, 654){\makebox(100, 8)[l]{\abst@small\pageref{LastPage}}}
@@ -492,7 +495,8 @@
 \if@english
 \faculty{Faculty of Science}
 \level{Master's thesis}
-\programme{Master's Programme in Theoretical and Computational Methods}
+% \programme{Master's Programme in Theoretical and Computational Methods}
+\programme{Master's Programme in Particle Physics and Astrophysical Sciences}
 %\subject{Subprogramme}
 \address{P. O. Box 64 (Gustaf H\"allstr\"omin katu 2)\\00014 University of Helsinki}
 \fi
