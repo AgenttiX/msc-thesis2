@@ -10,6 +10,7 @@
 *.lot
 *.log
 *.nav
+*.nlo
 *.out
 *.run.xml
 *.snm
