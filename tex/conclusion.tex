@@ -1,3 +1,4 @@
+\iffalse
 \begin{itemize}
     \item Briefly discuss the results
     \item Highlight alternative research questions
@@ -6,3 +7,29 @@
 \end{itemize}
 
 "A good thesis should bite itself in the tail"
+\fi
+
+In this thesis PTtools has been expanded from a compact simulation script based on the bag model
+to a comprehensive framework for simulating first order phase transitions and their gravitational wave spectra using the Sound Shell Model,
+including the conversion to the gravitational spectra today.
+
+PTtools was tested using the constant sound speed model for simplicity,
+but the interface between the model and the rest of PTtools is general in such a way
+that it supports arbitrary particle physics models as long as they provide $V_s(T,\phi), V_b(T,\phi)$ and two of $g_p(T,\phi), g_e(T,\phi), g_s(T,\phi)$ or two of $p(T,\phi), e(T,\phi), s(T,\phi)$, but preferably all three for numerical precision.
+This enables the easy integration of models developed by other researchers,
+and therefore the comparison of the gravitational wave spectra of these models.
+This is also to the author's best knowledge the first time that phase transitions in the early universe can be simulated with temperature-dependent speeds of sound without resorting to time-consuming 3D simulations.
+\todo{Is this true?}
+
+The numerical precision of the simulation is a challenge for thin hybrid shells,
+but this is a small section of the $(v_\text{wall}, \alpha_n)$ parameter space,
+and for the vast majority of the parameter combinations the simulator works reliably.
+
+This master's thesis lays the groundwork for the author's PhD thesis on the topic.
+Now there is a framework for determining the gravitational wave spectrum from the phase transition parameters, including temperature-dependent speed of sound.
+Determining the parameters of a phase transition from LISA data will require solving the inverse problem: what are the phase transition parameters based on the gravitational wave spectrum?
+This will require novel tools such as machine learning or Markov chain Monte Carlo simulations.
+There is also potential for integrating PTtools with the existing web-based simulation utility PTPlot to create a comprehensive but easy-to-use utility for researchers to simulate phase transitions with various parameters.
+
+PTtools will be published as open source soon after the publication of this thesis on GitHub at \cite{pttools}.
+This will enable other researchers to use the library and to integrate their models to it.
