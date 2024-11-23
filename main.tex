@@ -1,17 +1,40 @@
-\documentclass[a4paper]{report}
+%% Thesis template:
+%% Final edits by Jussi Kangasharju and Pirjo Moen
+%% This file is modified by Veli Mäkinen from HY_fysiikka_LuKtemplate.tex authored by Roope Halonen ja Tomi Vainio.
+%% Some text is also inherited from engl_malli.tex by Kutvonen, Erkiö, Mäkelä, Verkamo, Kurhila, and Nykänen.
+
+
+% STEP 1: Choose oneside or twoside
+\documentclass[english,twoside,openright]{UH_TCM_MSc}
+%finnish,swedish
+
+% \documentclass[a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage{amsfonts} % mathbb etc.
-\usepackage{amsmath} % align
+\usepackage{amsmath, amssymb} % For better math
+\usepackage[titletoc]{appendix}
+% \usepackage{babel}
 \usepackage[sorting=none]{biblatex}
+\usepackage{blindtext}
 \usepackage{bm} % bold symbols in math mode
-\usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[footnotesize,bf]{caption} % For more control over figure captions
+\usepackage[en-GB]{datetime2}
+\usepackage{fancyhdr} % For nicer page headers
+\usepackage[pdftex]{color, graphicx} % For pdf output and jpg/png graphics
+\usepackage[pdftex, plainpages=false]{hyperref} % For hyperlinks and pdf metadata
 \usepackage{listings}
+\usepackage{lmodern} % Font package
 \usepackage{placeins} % FloatBarrier
+%\usepackage[square]{natbib} % For bibliography
+\usepackage{textcomp} % Package for special symbols
+\usepackage{tikz} % For making vector graphics (hard to learn but powerful)
+\usepackage{titlesec}
 \usepackage{todonotes}
+%\usepackage{wrapfig} % For nice text-wrapping figures (use at own discretion)
 \usepackage{xcolor}
+
 
 % For fixing LaTeX Unicode errors
 % \DeclareUnicodeCharacter{FE20}{WARNING}
@@ -22,29 +45,88 @@
 % \makeglossaries
 
 % Citations
-\addbibresource{tex/references.bib}
+% \addbibresource{tex/references.bib}
 % \hypersetup{hidelinks}
 
-% Title page
-% TODO think about the title
+\onehalfspacing %line spacing
+%\singlespacing
+%\doublespacing
+
+%\fussy
+\sloppy % sloppy and fussy commands can be used to avoid overlong text lines
+
+% STEP 2:
+% Set up all the information for the title page and the abstract form.
+% Replace parameters with your information.
 % \title{Equations of state for phase transitions in the early universe}
 % \title{Self-similar hydrodynamics of first-order phase transitions in the early universe}
+% Remember to update this to the pdf properties below as well!
 \title{The effect of sound speed on the gravitational wave spectrum of first order phase transitions in the early universe}
 \author{Mika Mäki}
-% \examiner{prof. Mark Hindmarsh, prof. Kari Rummukainen}
+\date{\today}
+\prof{Professor Mark Hindmarsh}
+\censors{Professor Mark Hindmarsh}{Professor Kari Rummukainen}{}
+\keywords{phase transitions, gravitational waves} % TODO
+\depositeplace{}
+\additionalinformation{}
 
-% \finishdate{2022}{TODO}{TODO}
-% \thesistype{Pro Gradu TODO}{MSc thesis}
-% \facultyname{Faculty of Science}
-% \programmename{}
-% \keywords{}
+% \classification{\protect{\ \\
+% \  TODO General and reference $\rightarrow$ Document types  $\rightarrow$ Surveys and overviews\  \\
+% \  Applied computing  $\rightarrow$ Document management and text processing  $\rightarrow$ Document management $\rightarrow$ Text editing\\
+% }}
+% Commenting this out results in an "Undefined control sequence.\end@summary error" later.
+\classification{}
+
+% if you want to quote someone special. You can comment this line and there will be nothing on the document.
+%\quoting{Bachelor's degrees make pretty good placemats if you get them laminated.}{Jeph Jacques}
+
+
+% OPTIONAL STEP: Set up properties and metadata for the pdf file that pdfLaTeX makes.
+% But you don't really need to do this unless you want to.
+\hypersetup{
+    %bookmarks=true,         % show bookmarks bar first?
+    unicode=true,           % to show non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={The effect of sound speed on the gravitational wave spectrum of first order phase transitions in the early universe},            % title
+    pdfauthor={Mika Mäki},           % author
+    pdfsubject={},          % subject of the document
+    pdfcreator={},          % creator of the document
+    pdfproducer={pdfLaTeX}, % producer of the document
+    pdfkeywords={phase transitions} {gravitational waves}, % list of keywords for TODO
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=black,        % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+% \bibliography{bibliography}
 
 % Actual document starts here
 \begin{document}
 
 \maketitle
 
-\tableofcontents
+% STEP 3:
+% Write your abstract (of course you really do this last).
+% You can make several abstract pages (if you want it in different languages),
+% but you should also then redefine some of the above parameters in the proper
+% language as well, in between the abstract definitions.
+
+\begin{abstract}
+\input{tex/abstract.tex}
+\end{abstract}
+
+% Place ToC
+% \tableofcontents
+\mytableofcontents
+
+\mynomenclature
+
 \clearpage
 \listoffigures
 \clearpage
@@ -55,8 +137,8 @@
 \listoftodos
 \clearpage
 
-\chapter*{Abstract}
-\input{tex/abstract.tex}
+% \chapter*{Abstract}
+% \input{tex/abstract.tex}
 
 \chapter{Introduction}
 \label{ch:introduction}
@@ -87,7 +169,15 @@
 \label{ch:conclusion}
 \input{tex/conclusion.tex}
 
-\printbibliography[heading=bibintoc]
+\cleardoublepage %fixes the position of the bibliography in bookmarks
+\phantomsection
+
+\addcontentsline{toc}{chapter}{\bibname} % This lines adds the bibliography to the ToC
+% \bibliographystyle{abbrv} % numbering alphabetic order
+% \bibliography{bibliography}
+
+% \printbibliography[heading=bibintoc]
+\printbibliography
 
 % \begin{appendices}
 
