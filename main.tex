@@ -3,6 +3,18 @@
 %% This file is modified by Veli Mäkinen from HY_fysiikka_LuKtemplate.tex authored by Roope Halonen ja Tomi Vainio.
 %% Some text is also inherited from engl_malli.tex by Kutvonen, Erkiö, Mäkelä, Verkamo, Kurhila, and Nykänen.
 
+%%%%%
+% Information about the compilation errors
+%%%%%
+
+% LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+% (Font)              using `T1/lmr/m/scsl' instead on input line 160.
+% This is safe to ignore:
+% https://tex.stackexchange.com/questions/555332/latex-warning-after-update-miktex-font-shape-t1-lmr-m-scit-undefined-fontu
+
+%%%%%
+% Document
+%%%%%
 
 % STEP 1: Choose oneside or twoside
 \documentclass[english,twoside,openright]{UH_TCM_MSc}
@@ -15,15 +27,15 @@
 \usepackage{amsfonts} % mathbb etc.
 \usepackage{amsmath, amssymb} % For better math
 \usepackage[titletoc]{appendix}
-% \usepackage{babel}
-\usepackage[sorting=none]{biblatex}
+\usepackage{babel}
+\usepackage[backend=biber,sorting=none]{biblatex}
 \usepackage{blindtext}
 \usepackage{bm} % bold symbols in math mode
 \usepackage[footnotesize,bf]{caption} % For more control over figure captions
 \usepackage[en-GB]{datetime2}
 \usepackage{fancyhdr} % For nicer page headers
-\usepackage[pdftex]{color, graphicx} % For pdf output and jpg/png graphics
-\usepackage[pdftex, plainpages=false]{hyperref} % For hyperlinks and pdf metadata
+\usepackage{color, graphicx} % For pdf output and jpg/png graphics
+\usepackage[plainpages=false]{hyperref} % For hyperlinks and pdf metadata
 \usepackage{listings}
 \usepackage{lmodern} % Font package
 \usepackage{placeins} % FloatBarrier
@@ -45,7 +57,7 @@
 % \makeglossaries
 
 % Citations
-% \addbibresource{tex/references.bib}
+\addbibresource{tex/references.bib}
 % \hypersetup{hidelinks}
 
 \onehalfspacing %line spacing
@@ -95,7 +107,7 @@
     pdfsubject={},          % subject of the document
     pdfcreator={},          % creator of the document
     pdfproducer={pdfLaTeX}, % producer of the document
-    pdfkeywords={phase transitions} {gravitational waves} {LISA} {sound speed} {equation of state}, % list of keywords
+    pdfkeywords={phase transitions} {gravitational waves}, % list of keywords for TODO
     pdfnewwindow=true,      % links in new window
     colorlinks=true,        % false: boxed links; true: colored links
     linkcolor=black,        % color of internal links
@@ -178,6 +190,7 @@
 
 % \printbibliography[heading=bibintoc]
 \printbibliography
+ASDFASDF
 
 % \begin{appendices}
 

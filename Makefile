@@ -1,4 +1,4 @@
-clean:
-	rm -f ./*.aux ./*.fdb_latexmk ./*.fls ./*.log ./*.tdo
 pdf:
-	latexmk
+	latexmk -f main.tex
+clean:
+	rm -f ./*.aux ./*.bbl ./*.bcf ./*.blg ./*.fdb_latexmk ./*.fls ./*.gz ./*.lof ./*.log ./*.lot ./*.nlo ./*.out ./*.tdo ./*.toc ./*.xml

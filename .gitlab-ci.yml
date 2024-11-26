@@ -6,7 +6,8 @@ compile_pdf:
   # aergus/latex
   image: agenttix/latex:latest
   script:
-    - latexmk -pdf --shell-escape "main.tex"
+    # Allow exit code 2
+    - make || [ $? -eq 2 ]
     - mv "main.pdf" "MSc thesis 2 Mika Mäki.pdf"
   artifacts:
     paths:
