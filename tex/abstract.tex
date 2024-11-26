@@ -33,3 +33,21 @@ To find out whether such phase transitions have occurred,
 ASDFASDF
 
 The Laser Interferometer Space Antenna (LISA) space probe will be launched in the 2030s to answer this question.
+
+The sound speed is an important parameter for ASDF
+
+The equation of state which determines the pressure $p(T,\phi)$ as a function of the temperature and phase is an important parameter.
+
+However, the vast majority of existing simulations have been based on the bag model equation of state, which assumes the ultrarelativistic sound speed $c_s =\frac{1}{\sqrt{3}}$ for both phases.
+This was also the case for the PTtools phase transition simulation framework.
+In this thesis PTtools was extended \todo{Should I use "I" or "we" instead of passive?} to include support for arbitrary equations of state and therefore for a temperature- and phase-dependent speed of sound $c_s(T,\phi)$.
+Since the sound speed is such an integral part of the hydrodynamic equations,
+this required a nearly complete rewrite and significant extension of the code.
+
+PTtools was tested with the constant sound speed model, in which the sound speed is a constant for each phase.
+The sound speed was shown to have a significant effect on the resulting gravitational wave spectrum,
+especially when changing the sound speed resulted in a change in the type of the solution.
+This has laid the groundwork for simulating cosmological phase transitions with realistic equations of state based on the extensions of the Standard Model.
+This will result in gravitational wave spectra that can be used in the LISA data analysis pipeline to search for the existence and parameters of a first-order phase transition in the early universe.
+
+TODO Something about the detectability and signal-to-noise ratio?
