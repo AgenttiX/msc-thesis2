@@ -18,9 +18,46 @@ The thesis
 This is among the last sections to be written.
 \fi
 
-The Standard Model of particle physics has proven to be remarkably accurate in various collider experiments.
-However, it lacks explanations for some observed phenomena such as baryon asymmetry: Why is there more matter than antimatter?
-The answer could be in cosmological phase transitions that have occurred early in the Big Bang.
+The Standard Model of particle physics has proven to be remarkably accurate in various collider experiments,
+but lacks explanations for some observed phenomena such as baryon asymmetry: Why is there more matter than antimatter?
+The extensions of the Standard Model provide possible solutions to these questions,
+but the energy scales required to distinguish between them are difficult to achieve in colliders.
+However, many of these extensions also result in cosmological phase transitions that have occurred early in the Big Bang during the electroweak symmetry breaking at around $10^{-11} \text{s}$ or earlier.
+
+If these phase transitions have been of first order,
+they have created a stochastic background of gravitational waves that can be directly observable today.
+The Laser Interferometer Space Antenna (LISA) space probe will be launched in the 2030s to study gravitational waves and
+to see whether such a stochastic background exists.
+If we see a signal of cosmological origin,
+we need to be able to deduce the parameters of the phase transition from the gravitational wave signal to understand the physics behind it.
+To accomplish this, we need simulations of the gravitational wave spectra with various parameters.
+One such important parameter is the sound speed $c_s$.
+
+The vast majority of existing simulations have been based on the bag model equation of state,
+which assumes the ultrarelativistic sound speed $c_s =\frac{1}{\sqrt{3}}$ for both phases.
+This was also the case for the PTtools phase transition simulation framework developed by Hindmarsh et al.
+In this thesis PTtools was extended to include support for arbitrary equations of state and therefore for a temperature- and phase-dependent speed of sound $c_s(T,\phi)$.
+Since the sound speed is such an integral part of the hydrodynamic equations,
+this required a nearly complete rewrite and significant extension of the code.
+
+PTtools was tested with the constant sound speed model, in which the sound speed is a constant for each phase.
+The sound speed was shown to have a significant effect on the resulting gravitational wave spectrum,
+especially when changing the sound speed resulted in a change in the type of the solution.
+This has laid the groundwork for simulating cosmological phase transitions with realistic equations of state based on the extensions of the Standard Model.
+This will result in gravitational wave spectra that can be used in the LISA data analysis pipeline to search for the existence and parameters of a first-order phase transition in the early universe.
+
+TODO:
+- Should I use "I" or we instead of passive?
+- Unnecessary self-praise in the third paragraph?
+
+
+\iffalse
+The possible cosmological phase transitions occurred before the universe became transparent to electromagnetic radiation,
+and therefore before the formation of the cosmic microwave background (CMB).
+
+Up to this date our earliest source of observational data has been the cosmic microwave background (CMB).
+However, it formed quite late in the Big Bang when the universe was about 400 000 years old,
+and to directly study the earlier universe we need
 
 Up to this date our earliest source of observational data has been the cosmic microwave background (CMB).
 However, it was formed quite late in the Big Bang when the universe was about 400 000 years old.
@@ -51,3 +88,4 @@ This has laid the groundwork for simulating cosmological phase transitions with 
 This will result in gravitational wave spectra that can be used in the LISA data analysis pipeline to search for the existence and parameters of a first-order phase transition in the early universe.
 
 TODO Something about the detectability and signal-to-noise ratio?
+\fi
