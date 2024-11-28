@@ -48,12 +48,6 @@ TODO: understand these
 \end{itemize}
 
 "My job is to give the GWs the right energy-momentum tensor"
-\fi
-
-The early universe has undergone multiple phase transitions.
-The most notable of these are the electroweak symmetry breaking at around $10^{-11}$ s and $100$ -- $1000$ GeV,
-and the QCD phase transition at around 200 MeV.
-
 
 Electroweak symmetry breaking at
 First-order phase transition
@@ -69,9 +63,40 @@ How does this correspond to the neutrino content of the universe?)
 
 The gravitational wave spectrum can be calculated from a few thermodynamic properties of ultrarelativistic matter, which can be computed from quantum field theory.
 These parameters can be measured by LISA.
+\fi
 
-\todo{Much of this was already explained in the introduction. Should something from there be moved here?}
-\todo{Should I add some figures?}
+The early universe has undergone multiple phase transitions.
+Among the most notable of these is the electroweak symmetry breaking, also known as the Higgs transition, at around $10^{-11}$ s and $100$ -- $1000$ GeV,
+when the electromagnetic interaction separated from the weak interaction and the Higgs mechanism turned on,
+giving the gauge bosons their rest masses.
+Another notable phase transition is the QCD phase transition at around $10^{-5}$ s and $200$ MeV,
+when the quarks of the quark-gluon plasma of the early universe became bound into hadrons.
+In the Standard Model these are both second-order phase transitions, also known as crossovers.
+\cites{lecture_notes}{aoki_order_2006}
+
+The electroweak symmetry breaking is of particular interest,
+as the transition is of first order in various extensions of the Standard Model.
+A first-order phase transition results in a departure from thermal equilibrium,
+which is a requirement for the formation of matter-antimatter asymmetry.
+This generation of net baryon number is known as baryogenesis.
+\cite{lecture_notes}
+
+The theory of first-order phase transitions in the early universe is based on relativistic hydrodynamics.
+In the following section we start from the energy-momentum tensor of general relativity and derive the equations that
+govern the evolution of the fluid: the relativistic Euler equation, the energy-conservation equation and the wave equation.
+We then proceed to the process of relativistic combustion and derive the bubble wall junction conditions
+that define the behaviour of the fluid velocities and thermodynamic quantities at the bubble wall.
+We then define various equations and quantities that will be of use in the simulations,
+including the transition strength $\alpha$ and a ordinary differential equation group that determines the fluid velocity profile of the bubble.
+We then investigate the different types of solutions that these equations allow,
+and the speed limits associated with these solutions.
+We define the simplest equation of state, the bag model,
+and its extension with different sound speeds in each phase,
+the constant sound speed model.
+Finally we investigate how the phase transition affects the distribution of energy between the field and the kinetic and thermal energies of the fluid.
+
+\todo{What should be in the introduction and what here? Should I add some figures?}
+
 
 \section{Relativistic hydrodynamics}
 \label{rel_hydro}
