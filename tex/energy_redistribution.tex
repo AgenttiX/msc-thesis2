@@ -3,21 +3,32 @@
 Once the velocity profile of a bubble is known, it can be used to compute various thermodynamic quantities.
 
 We have assumed that the background spacetime is Minkowski, and that the spacetime does not expand significantly during the phase transition.
-Therefore, the total energy of the system is conserved, and the average energy density $\bar{e}$ over the bubble is the same as outside it,
+Therefore, the total energy of the system is conserved and
 \begin{equation}
-\bar{e} = 4 \pi \int_0^R dr r^2 T^{00} = e(w_n, \phi_s),
+E = 4 \pi \int_0^R dr r^2 T^{00}
+\end{equation}
+is a constant for $R$ larger than the fluid velocity profile.
+It should be noted that this energy conservation applies only to the total energy system,
+and not the energy of the fluid, as there is energy transfer from the field to the fluid.
+\cite[p. 21]{lecture_notes}
+
+Correspondingly the average energy density $\bar{e}$ is defined as \cite[p. 39]{lecture_notes}
+\begin{equation}
+\bar{e} = \frac{3}{\xi_\text{max}^3} \int_0^{\xi_\text{max}} d\xi \xi^2 e = e(w_n, \phi_s).
 \label{eq:e_conservation}
 \end{equation}
-for $R$ larger than the fluid velocity profile.
-\todo{Energy-momentum of the fluid is not conserved, but for the total system it is. See lecture notes p. 21.}
+The average enthalpy density $\bar{w}$ is defined as
+\begin{equation}
+\bar{w} = \frac{3}{\xi_\text{max}^3} \int_0^{\xi_\text{max}} d\xi \xi^2 w
+\end{equation}
 
-For an ideal fluid of eq. \eqref{eq:ep_tensor}
+For an ideal fluid of eq. \eqref{eq:ep_tensor} \cite[eq. B.23]{hindmarsh_gw_pt_2019}
 % This is easy to prove by hand.
 \begin{equation}
 T^{00} = w\gamma^2 - p = w\gamma^2 v^2 + e = w\gamma^2 v^2 + \frac{3}{4}w + \theta.
 \end{equation}
 
-Inserting this to \eqref{eq:e_conservation} results in the equation
+Inserting this to \eqref{eq:e_conservation} results in the equation \cite[eq. B.24]{hindmarsh_gw_pt_2019}
 \begin{equation}
 e_K + \Delta e_Q = - \Delta e_\theta,
 \end{equation}
@@ -39,6 +50,7 @@ The trace anomaly difference is given by
 It can be considered as the potential energy available for transformation.
 The upper integration limit $\xi_\text{max}$ can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
 A convenient choice is $\xi_\text{max} = \max (v_w, \xi_{sh})$.
+\cite[eq. B.25]{hindmarsh_gw_pt_2019}
 
 It should be noted that the trace anomaly is not quite equivalent to the thermal potential energy density $V_T(T,\phi)$, as using eq. \eqref{eq:enthalpy_pressure}, \eqref{eq:enthalpy_sum} and \eqref{eq:p_general} we can see that for the case of temperature-independent $g$,
 \begin{equation}
@@ -64,24 +76,26 @@ They have the property that $\kappa + \omega = 1$.
 It should be noted that some sources such as \cites[eq. 36]{giese_2020}[eq. 12, 14]{giese_2021}
 use different definitions for $\kappa$:
 \begin{align}
-\kappa_{\bar{\theta}_+} &\equiv \frac{4 e_K}{D \bar{\theta}(T_+)} = \frac{4 e_K}{3 \alpha_{\bar{\theta}_+} w_+}
+\kappa_{\bar{\theta}_+} &\equiv \frac{4 e_K}{D \bar{\theta}(T_+)} = \frac{4 e_K}{3 \alpha_{\bar{\theta}_+} w_+},
 \label{eq:kappa_thetabar_plus} \\
-\kappa_{\bar{\theta}_n} &\equiv \frac{4 e_K}{D \bar{\theta}(T_n)} = \frac{4 e_K}{3 \alpha_{\bar{\theta}_n} w_n}
+\kappa_{\bar{\theta}_n} &\equiv \frac{4 e_K}{D \bar{\theta}(T_n)} = \frac{4 e_K}{3 \alpha_{\bar{\theta}_n} w_n}.
 \label{eq:kappa_thetabar_n}
 \end{align}
 
-We can obtain the volume-average entropy density similarly as the energy density, with
+We can obtain the volume-average entropy density difference similarly as the energy density, with
 \begin{equation}
-s_\text{avg} = \frac{1}{v_w^3} \int \left( s(w,\phi) - s(w_n, \phi_s) \right) d\xi^3
+\Delta s_\text{avg} = 4\pi \int_0^{\xi_\text{max}} d\xi \xi^2 \left( s(w,\phi) - s(w_n, \phi_s) \right).
 \end{equation}
-\todo{Should there be a delta here? And change the integral to 1D.}
+\todo{Check that the pre-factors of 3/4 and pi are correct}
 
+\iffalse
 Relative volume-averaged entropy density
 \begin{equation}
 TODO = \frac{s_\text{avg}}{s_n}
 \end{equation}
+\fi
 
-Enthalpy-weighted mean square fluid 4-velocity around the bubble
+The enthalpy-weighted mean square fluid 4-velocity around the bubble is defined by
 \begin{equation}
 \bar{U}_f^2 = \frac{\Delta e_Q}{w_n}.
 \end{equation}
@@ -101,11 +115,10 @@ K = \Gamma \bar{U}_f^2,
 \end{equation}
 where
 \begin{equation}
-\Gamma \equiv \frac{\bar{w}}{\bar{e}}
+\Gamma \equiv \frac{\bar{w}}{\bar{e}}.
 \end{equation}
 In the case of the ultrarelativistic bag model $\Gamma$ is the mean adiabatic index,
 but for a more general model this may not be the case.
-\todo{Define wbar}
 
 
 \iffalse
