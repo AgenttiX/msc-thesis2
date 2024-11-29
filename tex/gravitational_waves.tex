@@ -67,7 +67,8 @@ The critical energy density corresponding to a flat universe is given by
 e_c = \frac{3 H^2}{8 \pi G}.
 \label{eq:e_crit}
 \end{equation}
-Let us define the dimensionless quantity
+Let us define energy density of gravitational waves relative to the critical energy density.
+This is the dimensionless quantity
 \begin{equation}
 \Omega_{gw} \equiv \frac{e_{gw}}{e_c}.
 \label{eq:omega_gw}
@@ -90,10 +91,29 @@ It should be noted that in \cite[eq. 3.6]{hindmarsh_gw_pt_2019} it is presumed t
 We will now proceed to define quite a few similar quantities.
 To avoid confusion, their symbols and names are listed in table \ref{table:symbols}.
 
+\begin{table}[ht]
+\caption{Symbols and explanations of the spectral quantities}
+\begin{tabular}{l|l|l}
+Symbol & Explanation & Eq.\\
+\hline
+$P_{\dot{h}}$ & Spectral density of $\dot{h}$ & \eqref{eq:p_dot_h} \\
+$P_v$ & Spectral density of the velocity field & \eqref{eq:spec_den_v} \\
+$P_{\tilde{v}}$ & Spectral density of the Fourier transformation of the velocity field & \eqref{eq:p_tilde_v} \\
+$\tilde{P}_v$ & Scaled velocity spectral density & \eqref{eq:tilde_p_v} \\
+$\mathcal{P}_{\tilde{v}}$ & Velocity power spectrum & \eqref{eq:pow_v} \\
+$\tilde{P}_\text{gw}$ & Spectral density of the gravitational wave power spectrum & \eqref{eq:spectral_density} \\
+% $\mathcal{P}_v$ & ??? \\
+$\mathcal{P}_\text{gw}$ & Gravitational wave power spectrum & \eqref{eq:pow_gw} \\
+$\dot{P}_{\dot{h}}$ & Growth rate of the spectral density of $\dot{h}$ & \eqref{eq:dot_p_dot_h} \\
+$\mathcal{P}'_{\text{gw}}$ & Growth rate of the GW spectrum relative to the Hubble rate & \eqref{eq:pow_gw_prime}
+\end{tabular}
+\label{table:symbols}
+\end{table}
 
 The spectral density of the velocity power spectrum is given by
 \begin{equation}
 P_{\tilde{v}} (q) = 2 P_v (q).
+\label{eq:p_tilde_v}
 \end{equation}
 A spectral density can be converted to a power spectrum with
 \begin{equation}
@@ -110,11 +130,11 @@ Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite
 
 There exists a solution to the gravitational wave equation in the form of
 \begin{equation}
-h_{ij} (\bm{k},t) = (16 \pi G) \Lambda_{ij,kl}(\bm{k}) \int_0^t dt' \frac{\sin [k(t-t')]}{k} T_{kl}(\bm{k},t')
+h_{ij} (\bm{k},t) = (16 \pi G) \Lambda_{ij,kl}(\bm{k}) \int_0^t dt' \frac{\sin [k(t-t')]}{k} T_{kl}(\bm{k},t').
 \end{equation}
 It is sufficient to replace $T_{ij}$ with the tensor
 \begin{equation}
-\tau_{ij} = \gamma^2 w v_i v_j + \delta_ \phi \delta_j \phi
+\tau_{ij} = \gamma^2 w v_i v_j + \delta_ \phi \delta_j \phi.
 \end{equation}
 \todo{This is $T_{ij}$ with the diagonal elements removed. TT gauge?}
 Therefore we have
@@ -133,31 +153,15 @@ Using this we can make a simple substitutions to eq. \eqref{eq:hbracket} and \eq
 resulting in an expression for the spectral density as
 \begin{equation}
 P_{\dot{h}} (k,t) = (16 \pi G)^2 \int_0^t dt_1 \int_0^t dt_2 \cos [k(t-t_1)] \cos [k(t-t_2)] U_\Pi (k, t_1, t_2).
+\label{eq:p_dot_h}
 \end{equation}
 
-
-Spectral density of the plane wave components of the velocity field \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+Spectral density of the plane wave components of the velocity field is given as
+\cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
 P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
 \label{eq:spec_den_v}
 \end{equation}
-
-
-\begin{table}
-\caption{Spectral quantities}
-\begin{tabular}{l|l}
-$P_{\dot{h}}$ & Spectral density of $\dot{h}$ \\
-$P_v$ & Spectral density of the velocity field \\
-$P_{\tilde{v}}$ & Spectral density of the Fourier transformation of the velocity field \\
-$\tilde{P}_v$ & Scaled velocity spectral density \\
-$\tilde{P}_{gw}$ & Spectral density of the gravitational wave power spectrum \\
-$\mathcal{P}_v$ & ??? \\
-$\mathcal{P}_{\tilde{v}}$ & Velocity power spectrum \\
-$\mathcal{P}_gw$ & Gravitational wave power spectrum
-\end{tabular}
-\label{table:symbols}
-\end{table}
-
 Let us define
 \begin{align}
 \tilde{q} &= \frac{k}{c_s} - q, \\
@@ -167,14 +171,16 @@ q_\pm &= \frac{k(1 \pm c_s)}{2 c_s}, \\
 Using these the the growth rate of the spectral density of $\dot{h}$ can be written as
 \begin{equation}
 \dot{P}_{\dot{h}} (k) = (16 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
+\label{eq:dot_p_dot_h}
 \end{equation}
 
 Let us introduce the scaled velocity spectral density $\tilde{P}_v$ as
 \begin{equation}
 \tilde{P}_v(qL_f) \equiv \frac{P_v(q)}{L_f^3} \bar{U}_f^2,
+\label{eq:tilde_p_v}
 \end{equation}
 where $L_f$ is a length scale in the velocity field, and $\bar{U}_f$ is the RMS fluid velocity.
-Let us also define two additional quantities
+Let us also define the additional quantities
 \begin{equation}
 y = kL_f, \quad z = qL_f, \quad z_\pm = y \frac{1 \pm c_s}{2 c_s}.
 \label{eq:gw_yz}
@@ -193,14 +199,16 @@ Therefore the asymptotic growth rate of the spectral density can be written as
 \frac{L_f^4}{4 \pi y c_s}
 \int_{z_-}^{z_+} dz
 \frac{z^3}{\frac{y}{c_s} - z}
-(1 - \mu^2)^2
-\tilde{P}_v (z) \tilde{P}_v (\frac{y}{c_s} - z).
+\left(1 - \mu^2)^2
+\tilde{P}_v (z) \tilde{P}_v (\frac{y}{c_s} - z \right).
 \end{equation}
-The growth rate of the gravitational wave spectrum relative to the Hubble rate is defined as and using \eqref{eq:gw_pow_spec} can be expressed as
+The growth rate of the gravitational wave spectrum relative to the Hubble rate is defined as below,
+and using \eqref{eq:gw_pow_spec} can be expressed as
 \cite[eq. 3.46]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \mathcal{P}'_{\text{gw}} \equiv \frac{1}{H} \frac{d}{dt} \mathcal{P}_{\text{gw}}
 = 3 \left( \Gamma \bar{U}_f^2 \right)^2 (HL_f) \frac{(kL_f)^3}{2 \pi^2} \tilde{P}_{\text{gw}} (kL_f),
+\label{eq:pow_gw_prime}
 \end{equation}
 where using \eqref{eq:gw_mu_z} we have $\tilde{P}_{\text{gw}}$,the dimensionless spectral density function
 \cite[eq. 3.47]{hindmarsh_gw_pt_2019}
@@ -222,6 +230,41 @@ To get the total gravitational wave power spectrum for a stationary velocity pow
 This is the equation used by PTtools to compute the gravitational wave spectrum.
 \todo{Check if this is really "the" equation}
 
-
-
 \cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}
+
+In addition to these Sound Shell Model calculations, PTtools applies a few correction factors.
+For these we need to define a few additional quantities.
+
+Barotropic equation of state parameter
+\begin{equation}
+\omega(T,\phi) \equiv \frac{p(T,\phi)}{e(T,\phi)}
+\end{equation}
+
+The $\nu$ term of \cite[eq. 2.11]{giombi_2024}
+\begin{equation}
+\nu_\text{gdh2024} = \frac{1 - 3\omega}{1 + 3\omega}
+\end{equation}
+
+We define the source lifetime multiplier $\lambda$ as
+\begin{equation}
+\frac{\Delta \eta}{\eta_*} = \lambda \frac{2 r_*}{\sqrt{K}}
+\end{equation}
+
+Source lifetime factor
+\begin{equation}
+X_s \equiv \frac{1}{1 + 2\nu} \left(1 - \left(1 + \frac{\Delta \eta}{\eta_*} \right) \right)^{-1-2\nu}
+\end{equation}
+
+The corrected spectral density is defined as
+\begin{equation}
+\mathcal{P}_\text{gw,corr.}(k)
+\equiv 3 \Gamma^2 X_s \mathcal{P}_\text{gw,corr.}(k)
+\end{equation}
+
+
+LISA instrument noise
+\begin{equation}
+ASDF
+\end{equation}
+
+
