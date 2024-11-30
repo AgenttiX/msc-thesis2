@@ -116,13 +116,13 @@ It should be noted that the
 Greek indices are used for four-vectors and latin indices for three-vectors.
 % The Einstein notation is absolute basics for theoretical physicists, but unfortunately the study programme of many of my applied/technical physicists friends doesn't involve it, so I'm mentioning it explicitly here so that they can google it.
 
-In general relativity the matter and energy content of space are described by the \textbf{energy-momentum tensor} $T_{\mu \nu}$, also known as the stress-energy tensor.
+In general relativity the matter and energy content of space are described by the energy-momentum tensor $T_{\mu \nu}$, also known as the stress-energy tensor.
 \iffalse
 Without loss of generality it can be decomposed as
 \begin{equation}
 T_{\mu \nu} = e u_\mu u_\nu + p h_{\mu \nu} + 2 q_{(\mu} u_{\beta)} + \Pi_{\mu \mu},
 \end{equation}
-where $h_{\mu \nu} = g_{\mu \nu} + u_\alpha u_\beta$ projects orthogonally to the time direction given by $u^\alpha$, $e$ is the \textbf{energy density}, p is the \textbf{pressure}, $q_\alpha$ is the \textbf{energy flux} or \textbf{momentum density}, and $\Pi_{\mu \nu}$ is the \textbf{anisotropic stress} or \textbf{anisotropic pressure}.
+where $h_{\mu \nu} = g_{\mu \nu} + u_\alpha u_\beta$ projects orthogonally to the time direction given by $u^\alpha$, $e$ is the energy density, p is the pressure, $q_\alpha$ is the energy flux or momentum density, and $\Pi_{\mu \nu}$ is the anisotropic stress or anisotropic pressure.
 \fi
 In Minkowski space in Cartesian coordinates this can be expressed nicely as a matrix,
 if we take the time direction to be the coordinate time, $u^\mu = \delta^{\mu 0}$.
@@ -138,8 +138,8 @@ e & -q_1 & -q_2 & -q_3 \\
 \end{bmatrix},
 \label{eq:ep_tensor_general_matrix}
 \end{equation}
-where $e$ is the \textbf{energy density}, $p$ is the \textbf{isotropic pressure}, $q$ is the \textbf{energy flux} or \textbf{momentum density} and
-$\Pi_{ij}$ is known as the \textbf{anisotropic stress}, \textbf{anisotropic pressure} or \textbf{momentum flux},
+where $e$ is the energy density, $p$ is the isotropic pressure, $q$ is the energy flux or momentum density and
+$\Pi_{ij}$ is known as the anisotropic stress, anisotropic pressure or momentum flux,
 for which $\delta^{ij} \Pi_{ij} = 0$.
 Therefore the pressure can be extracted as
 \begin{equation}
@@ -167,7 +167,7 @@ e & 0 & 0 & 0 \\
 \end{bmatrix}.
 \end{equation}
 This
-\href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{\textbf{energy-momentum tensor of an ideal fluid}}
+\href{https://en.wikipedia.org/wiki/Stress\%E2\%80\%93energy\_tensor\#Stress\%E2\%80\%93energy\_of\_a\_fluid\_in\_equilibrium}{energy-momentum tensor of an ideal fluid}
 can be broken in two components as
 \cites[eq. 5.11, 5.23]{lecture_notes}[eq. 4.12]{rasanen_gr_2022}
 % [eq. 3]{giese_2020}[eq. 4]{giese_2021}
@@ -181,7 +181,7 @@ This expression is independent of our choice of a coordinate system.
 We have also defined the enthalpy density $w = e+p$ to simplify the expression.
 The enthalpy density will be defined more thoroughly later in \eqref{eq:enthalpy_sum}.
 
-We are assuming the background space-time to be constant, and therefore the total \textbf{energy-momentum is conserved}.
+We are assuming the background space-time to be constant, and therefore the total energy-momentum is conserved.
 In the language of general relativity this is
 \begin{equation}
 \nabla_\mu T^{\mu\nu} = 0.
@@ -221,7 +221,7 @@ Projecting using \eqref{eq:ep_conservation} and using these we get
 = 0.
 \end{equation}
 It should be noted that \cite{rezzolla_relativistic_2013} uses the specific enthalpy $h$ in their form these equations, but it is not a meaningful quantity for an ultrarelativistic plasma and is therefore not used here.
-Dividing by $w$ we get the \textbf{relativistic Euler equations}
+Dividing by $w$ we get the relativistic Euler equations
 \cite[eq. 3.55]{rezzolla_relativistic_2013}
 \begin{equation}
 u^\mu \nabla_\mu u_\nu + \frac{1}{w} h^\mu_\nu \nabla_\mu p = 0.
@@ -230,7 +230,7 @@ Similarly we can project along the direction of velocity,
 \begin{equation}
 \bm{u} \cdot \bm{\nabla} \cdot \bm{T} = u_\lambda \nabla_\mu T^{\mu\lambda} = 0.
 \end{equation}
-This results in the \textbf{energy-conservation equation}
+This results in the energy-conservation equation
 \cite[eq. 3.57]{rezzolla_relativistic_2013}
 \begin{equation}
 u^\mu \nabla_\mu e + w \Theta = 0.
@@ -260,7 +260,8 @@ Taking the time derivative of \eqref{eq:ep_conservation_rewritten_1} and a space
 \begin{equation}
 \partial_t^2 (\delta e) - \frac{\delta p}{\delta e} \partial_x^2(\delta e) = 0.
 \end{equation}
-This is the familiar \textbf{wave equation}, so the motion of the fluid has wave solutions that we call sound.
+This is the familiar wave equation,
+so the motion of the fluid has wave solutions that we call sound.
 \cites[ch. 4.3]{rezzolla_relativistic_2013}[ch. 7.4]{lecture_notes}
 The speed of sound is then defined as
 \cites[eq. 2.168]{rezzolla_relativistic_2013}[eq. 13]{giese_2020}[eq. 3]{giese_2021}
@@ -304,7 +305,7 @@ where $U$ is internal energy, $T$ is temperature, $p$ is pressure, $V$ is volume
 The fluids in our case are ultrarelativistic, and therefore effectively $T >> \mu$,
 and we can neglect $dN$.
 
-Inserting \eqref{eq:entropy_density} to \eqref{eq:thermodynamic_identity} gives the \textbf{energy density}
+Inserting \eqref{eq:entropy_density} to \eqref{eq:thermodynamic_identity} gives the energy density
 \begin{equation}
 e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
 \label{eq:energy_density}
@@ -314,7 +315,7 @@ This in turn can be inserted to the definition of enthalpy
 \begin{equation}
 H \equiv E + pV
 \end{equation}
-to get the \textbf{enthalpy density}
+to get the enthalpy density
 \begin{align}
 w
 &\equiv \frac{dH}{dV} \\
@@ -326,15 +327,15 @@ w
 \label{eq:enthalpy_entropy}
 \end{align}
 \iffalse
-Additionally we need to define the \textbf{specific enthalpy} \cite[eq. 2.141]{rezzolla_relativistic_2013}
+Additionally we need to define the specific enthalpy \cite[eq. 2.141]{rezzolla_relativistic_2013}
 \begin{equation}
 h = \frac{e+p}{\rho},
 \label{eq:specific_enthalpy}
 \end{equation}
-where $\rho$ is the rest-mass density, and the \textbf{entropy current}
+where $\rho$ is the rest-mass density, and the entropy current
 % Rest-mass density is defined in eq. 2.123
 \fi
-Additionally we need to define the \textbf{entropy current}
+Additionally we need to define the entropy current
 \cite[p. 23]{lecture_notes}
 \begin{equation}
 S^\mu \equiv su^\mu.
