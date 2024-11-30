@@ -197,11 +197,12 @@ Please note that the way these vectors are defined and the convention for the si
 from article to article.
 These vectors form an orthonormal basis.
 It should be noted, that for orthonormal vectors
-\begin{align}
 % Note that the lecture notes use ubar here.
+\begin{align}
 u_\mu u^\mu &= -1, \\
 u_\mu \bar{u}^\mu &= 0.
 \end{align}
+\cite[p. 36]{lecture_notes}
 By projecting the conservation equation~\eqref{eq:ep_conservation} to this basis and noting that
 $\nabla_\nu (u_\mu u^\mu) = 0$ and therefore $u_\mu \nabla_\nu u^\mu = 0$, we get
 \cite[eq. 7.28-7.29]{lecture_notes}
@@ -231,24 +232,24 @@ Let us look for a spherically symmetric self-similar solution using the dimensio
 In a spherically symmetric case for $u^\mu$ of eq.~\eqref{eq:u_mu},
 the latter two terms of~\eqref{eq:divergence} are zero, and therefore
 \begin{equation}
-\nabla_\mu u^\mu = \frac{\gamma}{t} \left[ 2\frac{v}{\xi} + \left[1 - \gamma^2 v (\xi - v) \right] \partial_\xi v \right]
+\nabla_\mu u^\mu = \frac{\gamma}{t} \left[ 2\frac{v}{\xi} + \left[1 - \gamma^2 v (\xi - v) \right] \frac{\partial v}{\partial \xi} \right]
 \end{equation}
 The gradients in~\eqref{eq:continuity1} and~\eqref{eq:continuity2} can also be expressed as~\cite[eq. 25]{espinosa_energy_2010}.
 \begin{align}
-u_\mu \nabla^\mu &= - \frac{\gamma}{t} (\xi - v) \partial_\xi, \\
-\bar{u}_\mu \nabla^\mu &= \frac{\gamma}{t} (1 - \xi v) \partial_\xi.
+u_\mu \nabla^\mu &= - \frac{\gamma}{t} (\xi - v) \frac{\partial}{\partial \xi}, \\
+\bar{u}_\mu \nabla^\mu &= \frac{\gamma}{t} (1 - \xi v) \frac{\partial}{\partial \xi}.
 \end{align}
 With these eq.~\eqref{eq:continuity1} and~\eqref{eq:continuity2} can be expressed as
 \begin{align}
-(\xi - v) \frac{d_\xi e}{w} &= 2 \frac{v}{\xi} + \left[ 1 - \gamma^2 v (\xi - v) \right] d_\xi v, \\
-(1 - v\xi) \frac{d_\xi p}{w} &= \gamma^2 (\xi - v) d_\xi v.
+(\xi - v) \frac{1}{w} \frac{de}{d\xi} &= 2 \frac{v}{\xi} + \left[ 1 - \gamma^2 v (\xi - v) \right] \frac{dv}{d\xi}, \\
+(1 - v\xi) \frac{d_\xi p}{w} &= \gamma^2 (\xi - v) \frac{dv}{d\xi}.
 \end{align}
 These are dependent only on $\xi$ instead of $r$,
 and therefore a spherically symmetric self-similar solution exists.
 Here the derivatives are now total derivatives, as $e$ and $p$ are functions of a single variable.
 By dividing one equation by the other and using eq.~\eqref{eq:cs2_compact}, we can combine these to
 \begin{equation}
-2 \frac{v}{\xi} = \gamma^2 (1 - v\xi) \left[ \frac{\mu^2}{c_s^2} - 1 \right] d_\xi v,
+2 \frac{v}{\xi} = \gamma^2 (1 - v\xi) \left[ \frac{\mu^2}{c_s^2} - 1 \right] \frac{dv}{d\xi},
 \label{eq:continuity_combined}
 \end{equation}
 where
