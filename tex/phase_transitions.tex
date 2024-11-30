@@ -341,28 +341,51 @@ Additionally we need to define the entropy current
 \begin{equation}
 S^\mu \equiv su^\mu.
 \end{equation}
-The critical temperature $T_c$ of a phase transition is defined by
-\begin{equation}
-p_1(T_c) = p_2(T_c)
-\label{eq:critical_temp}
-\end{equation}
-
 
 
 \section{Field-fluid system}
-Based on \cite{moore_pt_1995}.
-
-In the electroweak phase transition the fluid is coupled to a scalar field with the energy-momentum tensor
-\cites[eq. 2.9]{hindmarsh_gw_pt_2019}
+Our system of interest consists of a relativistic fluid of particles and the scalar field $\phi$,
+which are coupled to each other.
+The fluid is governed by the energy-momentum tensor of \eqref{q:ep_tensor},
+and the scalar field is governed by the energy momentum tensor
+\cites[eq. 5.12]{lecture_notes}[eq. 2.9]{hindmarsh_gw_pt_2019}
 \begin{equation}
 T_\phi^{\mu \nu}
 = \partial^\mu \partial^\nu \phi
 - g^{\mu \nu} \left(\frac{1}{2} (\partial \phi)^2 + V_0 (\phi) \right)
+\label{eq:ep_tensor_field}
 \end{equation}
-
 The total energy-momentum is conserved, and \ref{eq:ep_conservation} can therefore be decomposed as
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
 \label{eq:ep_conservation_total}
 \end{equation}
+For further details, please see \cite{moore_pt_1995}.
+
+The potential of the scalar field
+For temperatures $T > T_c$ (red) the minimum of the potential is at $\phi = 0$, and the ground state is symmetric.
+As the temperature decreases below $T_1$ (dark green), a second minimum develops, but its potential is higher than that of the ground state.
+At the critical temperature $T_c$ both minima have the same potential.
+Below the critical temperature, the minimum at $\phi > 0$ becomes the global minimum and therefore the new stable ground state.
+This results in eventual quantum tunneling from the $\phi = 0$ state to the $|\phi| = v$ state,
+and therefore the spontaneous nucleation of bubbles.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{../pttools/examples/fig/potential.eps}
+\caption{The thermal effective potential at different temperatures. Generated with PTtools utilities. See also \cite[fig. 4]{lecture_notes}}
+\label{fig:potential}
+\end{figure}
+
+
+
+For a description on the equation of state, please see the section \ref{general_eq}.
+
+The critical temperature $T_c$ of a phase transition is the temperature where the pressures on both sides of the wall are equal
+\begin{equation}
+p_+(T_c) = p_-(T_c),
+\label{eq:critical_temp}
+\end{equation}
+where $+$ refers to the symmetric phase in front of the bubble wall,
+and the $-$ refers to the broken phase behind the bubble wall.
