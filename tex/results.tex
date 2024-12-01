@@ -1,9 +1,14 @@
-The constant $c_s$ model was chosen as the model to test PTtools with, as the model is relatively simple and there is some reference data available from \cites{giese_2020}{giese_2021}.
-Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall speeds $v_\text{wall}$ and $\alpha_n$.
-These are the same values as in \cite[fig. 10]{hindmarsh_gw_pt_2019}.
-However, instead using only the bag model $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
-we consider the four different combinations of the speeds of sound
+The constant $c_s$ model was chosen as the model to test PTtools with,
+as the model is the next logical extension of the bag model,
+and there is some reference data available from \cites{giese_2020}{giese_2021}.
+Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall speeds $v_\text{wall}$ and two different $\alpha_n$.
+% These are not the same as the values \cite[fig. 10]{hindmarsh_gw_pt_2019}.
+Instead of using only the bag model $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
+each plot has four curves, each corresponding to a different combination of the sound speeds
 $c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}$.
+The corresponding gravitational wave spectra are plotted in \ref{fig:gw_spectra}.
+Converting these to the frequencies today results in the figure \ref{fig:omgw0},
+which also contains the LISA instrument noise spectrum as a reference.
 
 \begin{figure}[h!]
 \centering
@@ -25,6 +30,38 @@ $c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \fr
 \caption{Gravitational wave power spectra today $\Omega_{gw,0}$}
 \label{fig:omgw0}
 \end{figure}
+
+These figures demonstrate that the sound speed can have a profound effect on the resulting gravitational wave spectrum.
+To understand how the sound speeds affect the gravitational wave spectrum,
+we have to first study the fluid shells of figure \ref{fig:fluid_profiles}.
+
+There are two curves that constrain the shape of the fluid shells.
+The solid black curves are the shock velocities $v_{sh](c_{s,s})$ that are determined by $c{s,s}$.
+In general the shock velocity isalso dependent on $w$, since in general $c_s = c_s(w,\phi)$,
+but in the constant sound speed model the sound speed is independent of the enthalpy.
+Therefore we can plot the shock velocities as curves in the 2D plots instead of having to plot them as surfaces as functions of $(\xi,w)$ in a 3D plot.
+The dotted black curves are the $\mu(\xi,c_{s,b})$ curves of eq. \eqref{eq:mu} that constrain the maximum fluid velocity inside the bubble.
+They are dependent on the choice of $c_{s,b}$.
+The $v_{sh}$ curves encounter $v=0$ at $\xi = c_{s,s}$ and the $\mu$ curves at $\xi = c_{s,b}$.
+
+For all solution types, adjusting either of the sound speeds affects the degrees of freedom and therefore the pressure $p$ and enthalpy $w$ for that phase.
+This affects the solution of the bubble wall junction conditions of eq. \eqref{eq:junction_conditions} and therefore $v(\xi_\text{wall})$,
+which is also the peak of the fluid velocity profile.
+This effect can be seen at the top-left figure, where all four fluid shells have different $v(\xi_\text{wall})$.
+The change caused by adjusting the sound speed is the most profound for deflagrations when $c_{s,s}$ is decreased below $v_\text{wall}$, as it causes them to become hybrids, and vice versa.
+Similarly changing $c_{s,b}$ so that the Chapman-Jouguet speed of \eqref{eq:chapman_jouguet} is decreased below $v_\text{wall}$ converts a hybrid to a detonation, and vice versa.
+This can be seen at the top-right figure.
+
+For deflagrations and hybrids, adjusting $c_{s,s}$ affects the location of the shock and therefore the thickness of the fluid shell.
+It also affects the shape of the ODE integration and therefore the shape of the fluid shell in front of the bubble wall.
+These effects can be seen at the top-left and bottom-left figures, where the curves with the same $c_{s,s}$ are grouped together.
+Correspondingly for hybrids, adjusting $c_{s,b}$ affects $\mu(\xi_\text{wall},c_{s,b})$,
+which is the point from which the integration of the detonation-like part of the fluid shell starts.
+This can be seen in the two figures at the middle, where the detonation-like tails of the curves with the same $c_{s,b}$ are grouped together.
+And for both detonations and hybrids, adjusting $c_{s,b}$ affects the shape of the fluid shell behind the wall.
+
+These differences in the shapes of the fluid shells carry over to the gravitational wave spectra of fig. \ref{fig:gw_spectra} and eventually of the gravitational wave spectra today in fig. \ref{fig:omgw0}.
+The sine transformation that converts ASDFASDF
 
 To test the precision and reliability of the results provided by PTtools,
 we compared to the results in \cite[fig. 2]{giese_2021},
