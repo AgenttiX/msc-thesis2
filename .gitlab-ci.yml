@@ -7,7 +7,7 @@ compile_pdf:
   image: agenttix/latex:latest
   script:
     # Allow exit code 2
-    - make || [ $? -eq 2 ]
+    - make  # || [ $? -eq 2 ]
     - mv "main.pdf" "MSc thesis 2 Mika Mäki.pdf"
   artifacts:
     paths:
