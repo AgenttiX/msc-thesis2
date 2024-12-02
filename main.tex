@@ -16,12 +16,20 @@
 % Document
 %%%%%
 
+% This silences the warning
+% LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+% (Font)              using `T1/lmr/m/scsl' instead
+% https://tex.stackexchange.com/a/572817/214874
+\RequirePackage{silence}
+\WarningFilter{latexfont}{Font shape `T1/lmr/m/scit'}
+
 % STEP 1: Choose oneside or twoside
 \documentclass[english,twoside,openright]{UH_TCM_MSc}
 %finnish,swedish
 
 % \documentclass[a4paper]{report}
-\usepackage[utf8]{inputenc}
+% The package inputenc is disabled when using LuaLaTeX or XeLaTex, as those are utf8-based by default.
+% \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage{amsfonts} % mathbb etc.
@@ -32,6 +40,7 @@
 \usepackage{blindtext}
 \usepackage{bm} % bold symbols in math mode
 \usepackage[footnotesize,bf]{caption} % For more control over figure captions
+\usepackage{csquotes} % Prevents the warning "'babel/polyglossia' detected but 'csquotes' missing"
 \usepackage[en-GB]{datetime2}
 \usepackage{fancyhdr} % For nicer page headers
 \usepackage{color, graphicx} % For pdf output and jpg/png graphics
