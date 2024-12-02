@@ -15,7 +15,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2000/06/01]
 \ProvidesClass{UH_TCM_MSc}
-  [2023/05/09 v1.0 University of Helsinki Theoretical and Computational MEthods Official MS Thesis Template]
+  [2023/05/09 v1.0 University of Helsinki Theoretical and Computational Methods Official MS Thesis Template]
 \newif\if@finnish
 \newif\if@swedish
 \newif\if@english
