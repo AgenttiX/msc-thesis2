@@ -6,11 +6,13 @@
 *.fdb_latexmk
 *.fls
 *.gz
+*.ilg
 *.lof
 *.lot
 *.log
 *.nav
 *.nlo
+*.nls
 *.out
 *.run.xml
 *.snm

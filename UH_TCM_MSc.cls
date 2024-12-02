@@ -244,7 +244,8 @@
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
 
 \newcommand{\mynomenclature}{%
-\ifnum0\pdffilesize{\jobname.nls}>0
+% \ifnum0\pdffilesize{\jobname.nls}>0
+\iftrue
 	\printnomenclature
 	\addcontentsline{toc}{chapter}{\nomname}
 	\markboth{\nomname}{}
