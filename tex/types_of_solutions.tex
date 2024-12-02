@@ -24,6 +24,19 @@ Another way to see that there are two classes of solutions is by noting
 that the equations \eqref{eq:v_tilde_plus} and \eqref{eq:v_tilde_minus} have two branches.
 These solutions are classified in table \ref{table:solution_types}.
 
+\begin{table}[ht!]
+\small
+\caption{Types of solutions to the hydrodynamic equations}
+\begin{tabular}{r|c|c}
+                & Detonations            & Deflagrations \\
+                & $p_+ < p_-, \tilde{v}_+ > \tilde{v}_-$ & $p_+ > p_-, \tilde{v}_+ < \tilde{v}_-$ \\ \hline
+Weak            & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$ \\
+Chapman-Jouguet & $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ \\
+Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$} & {\color{gray} $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} \\
+\end{tabular}
+\label{table:solution_types}
+\end{table}
+
 The solutions with $\tilde{v}_+ > \tilde{v}_-$ are known as detonations.
 % In this case there is no way for the front to influence the fluid ahead,
 % and the outermost front is a shock.
@@ -56,18 +69,7 @@ Chapman-Jouguet deflagrations are known as supersonic deflagrations or hybrids,
 as in them the wall speed exceeds the speed of sound in the broken phase $c_{s-}$,
 and the fluid is moving inside the phase boundary as well, as in a detonation.
 \todo{Investigate what a strong detonation looks like.}
-
-\begin{table}[ht!]
-\small
-\begin{tabular}{r|c|c}
-                & Detonations            & Deflagrations \\
-                & $p_+ < p_-, \tilde{v}_+ > \tilde{v}_-$ & $p_+ > p_-, \tilde{v}_+ < \tilde{v}_-$ \\ \hline
-Weak            & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$ \\
-Chapman-Jouguet & $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ \\
-Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$} & {\color{gray} $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} \\
-\end{tabular}
-\label{table:solution_types}
-\end{table}
+The three solution types: subsonic deflagrations, supersonic deflagrations aka. hybrids and detonations are illustrated in figure \ref{fig:solution_types}.
 
 \begin{figure}[ht!]
 \centering
