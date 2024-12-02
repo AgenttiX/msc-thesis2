@@ -32,13 +32,13 @@ which also contains the LISA instrument noise spectrum as a reference.
 \end{figure}
 
 These figures demonstrate that the sound speed can have a profound effect on the resulting gravitational wave spectrum.
-To understand how the sound speeds affect the gravitational wave spectrum,
+To understand how the sound speed affects the gravitational wave spectrum,
 we have to first study the fluid shells of figure \ref{fig:fluid_profiles}.
-
 There are two curves that constrain the shape of the fluid shells.
-The solid black curves are the shock velocities $v_{sh}(c_{s,s})$ that are determined by $c{s,s}$.
-In general the shock velocity isalso dependent on $w$, since in general $c_s = c_s(w,\phi)$,
-but in the constant sound speed model the sound speed is independent of the enthalpy.
+The solid black curves are the shock velocities $v_{sh}(c_{s,s})$ that are determined by $c_{s,s}$.
+In general the shock velocity is also dependent on $w$, since $c_s = c_s(w,\phi)$,
+but in the constant sound speed model the sound speed is independent of the enthalpy,
+as it's a constant for each phase.
 Therefore we can plot the shock velocities as curves in the 2D plots instead of having to plot them as surfaces as functions of $(\xi,w)$ in a 3D plot.
 The dotted black curves are the $\mu(\xi,c_{s,b})$ curves of eq. \eqref{eq:mu} that constrain the maximum fluid velocity inside the bubble.
 They are dependent on the choice of $c_{s,b}$.
@@ -53,7 +53,7 @@ Similarly changing $c_{s,b}$ so that the Chapman-Jouguet speed of \eqref{eq:chap
 This can be seen at the top-right figure.
 
 For deflagrations and hybrids, adjusting $c_{s,s}$ affects the location of the shock and therefore the thickness of the fluid shell.
-It also affects the shape of the ODE integration and therefore the shape of the fluid shell in front of the bubble wall.
+It also affects the ODE group of eq. \eqref{eq:hydro_param1}, \eqref{eq:hydro_param2}, \eqref{eq:hydro_param13} and therefore the shape of the fluid shell in front of the bubble wall.
 These effects can be seen at the top-left and bottom-left figures, where the curves with the same $c_{s,s}$ are grouped together.
 Correspondingly for hybrids, adjusting $c_{s,b}$ affects $\mu(\xi_\text{wall},c_{s,b})$,
 which is the point from which the integration of the detonation-like part of the fluid shell starts.
@@ -61,7 +61,17 @@ This can be seen in the two figures at the middle, where the detonation-like tai
 And for both detonations and hybrids, adjusting $c_{s,b}$ affects the shape of the fluid shell behind the wall.
 
 These differences in the shapes of the fluid shells carry over to the gravitational wave spectra of fig. \ref{fig:gw_spectra} and eventually of the gravitational wave spectra today in fig. \ref{fig:omgw0}.
-The sine transformation that converts ASDFASDF
+The sine transformation of eq. \todo{Add equation reference} that converts the fluid shells of fig. \ref{fig:fluid_profiles} to the gravitational wave spectra of \ref{fig:gw_spectra} has the same basic properties as a Fourier transform.
+Therefore by comparing the fluid velocity profiles and the gravitational wave spectra we can identify a few general correlations.
+The thinner the fluid shell is, the broader the gravitational wave spectrum.
+And the higher the fluid velocities are in the fluid shell, the higher is the intensity of the gravitational waves.
+Thin shells also have more of the higher frequencies.
+These effects can be seen in the case of thin hybrids of the middle and right figures.
+
+However, regarding hybrids and especially these thin hybrids
+it should be noted that the hybrid solutions are very finely tuned, and may not exist in a real fluid.
+\cite[p. 5]{gowling_lisa_2021}
+
 
 To test the precision and reliability of the results provided by PTtools,
 we compared to the results in \cite[fig. 2]{giese_2021},
