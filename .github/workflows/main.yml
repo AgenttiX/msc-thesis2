@@ -1,0 +1,21 @@
+name: Compile pdf
+on:
+  push:
+jobs:
+  compile_pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: ghcr.io/agenttix/docker-latex:master
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Compile pdf
+        run: make
+      - name: Rename pdf
+        run: mv "main.pdf" "MSc thesis 2 Mika Mäki.pdf"
+      - name: Upload pdf
+        uses: actions/upload-artifact@v4
+        with:
+          name: Thesis pdf
+          path: "MSc thesis 2 Mika Mäki.pdf"
