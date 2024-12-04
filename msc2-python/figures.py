@@ -17,8 +17,7 @@ def gen_vm_vp_fig():
 
 def gen_rel_combustion_fig():
     print("Generating relativistic combustion figure")
-    fig1 = rel_combustion()
-    save(fig1, os.path.join(const.FIG_DIR, "relativistic_combustion"))
+    rel_combustion(path=os.path.join(const.FIG_DIR, "relativistic_combustion"))
 
 
 def gen_const_cs_gw_figs():

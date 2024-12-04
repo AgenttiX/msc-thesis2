@@ -1,4 +1,4 @@
-name: Compile pdf
+name: Create pdf and figures
 on:
   push:
 jobs:
@@ -20,49 +20,50 @@ jobs:
           name: Thesis pdf
           path: "MSc thesis 2 Mika Mäki.pdf"
           if-no-files-found: error
-  gen_figures:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Checkout PTtools
-        uses: actions/checkout@v4
-        with:
-          repository: CFT-HY/pttools
-          ref: dev
-          path: pttools
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - name: Load pip cache
-        uses: actions/cache@v4
-        with:
-          path: .pip
-          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            pip-${{ runner.os }}-
-            pip-
-      - name: Install requirements
-        run: |
-          pip --cache-dir=.pip install --upgrade pip
-          pip --cache-dir=.pip install --upgrade wheel
-          pip --cache-dir=.pip install -r requirements.txt
-      - name: Print Numba sysinfo
-        run: numba --sysinfo | tee numba-sysinfo.txt
-      - name: Generate reference data
-        run: python3 ${{ github.workspace }}/pttools/pttools/bubble/fluid_reference.py
-        env:
-          PYTHONPATH: ${{ github.workspace }}/pttools
-      - name: Run tests
-        run: python3 ./msc2-python/figures.py
-        env:
-            PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2-python
-      - name: Upload results
-        uses: actions/upload-artifact@v4
-        with:
-          name: Figures
-          path: |
-            msc2-python/fig
-          if-no-files-found: error
+# This cannot be enabled before PTtools is public
+#  gen_figures:
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 10
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#      - name: Checkout PTtools
+#        uses: actions/checkout@v4
+#        with:
+#          repository: CFT-HY/pttools
+#          ref: dev
+#          path: pttools
+#      - name: Setup Python
+#        uses: actions/setup-python@v5
+#        with:
+#          python-version: 3.12
+#      - name: Load pip cache
+#        uses: actions/cache@v4
+#        with:
+#          path: .pip
+#          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+#          restore-keys: |
+#            pip-${{ runner.os }}-
+#            pip-
+#      - name: Install requirements
+#        run: |
+#          pip --cache-dir=.pip install --upgrade pip
+#          pip --cache-dir=.pip install --upgrade wheel
+#          pip --cache-dir=.pip install -r requirements.txt
+#      - name: Print Numba sysinfo
+#        run: numba --sysinfo | tee numba-sysinfo.txt
+#      - name: Generate reference data
+#        run: python3 ${{ github.workspace }}/pttools/pttools/bubble/fluid_reference.py
+#        env:
+#          PYTHONPATH: ${{ github.workspace }}/pttools
+#      - name: Run tests
+#        run: python3 ./msc2-python/figures.py
+#        env:
+#            PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2-python
+#      - name: Upload results
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: Figures
+#          path: |
+#            msc2-python/fig
+#          if-no-files-found: error
