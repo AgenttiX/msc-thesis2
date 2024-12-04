@@ -5,7 +5,8 @@ import numpy as np
 
 from pttools.logging import setup_logging
 from pttools.models import BagModel, ConstCSModel
-from pttools.analysis.plot_entropy import BubbleGridVWAlpha, EntropyPlot, KappaPlot, compute
+from pttools.analysis.bubble_grid import BubbleGridVWAlpha
+from pttools.analysis.plot_entropy_grid import EntropyPlot, KappaPlot, compute
 
 import const
 
