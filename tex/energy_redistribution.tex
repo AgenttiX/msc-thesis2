@@ -11,7 +11,6 @@ is a constant for $R$ larger than the fluid velocity profile.
 It should be noted that this energy conservation applies only to the total energy system,
 and not the energy of the fluid, as there is energy transfer from the field to the fluid.
 \cite[p. 21]{lecture_notes}
-
 Correspondingly the average energy density $\bar{e}$ is defined as \cite[p. 39]{lecture_notes}
 \begin{equation}
 \bar{e} = \frac{3}{\xi_\text{max}^3} \int_0^{\xi_\text{max}} d\xi \xi^2 e = e(w_n, \phi_s).
@@ -28,10 +27,10 @@ For an ideal fluid of eq. \eqref{eq:ep_tensor} \cite[eq. B.23]{hindmarsh_gw_pt_2
 \begin{equation}
 T^{00} = w\gamma^2 - p = w\gamma^2 v^2 + e = w\gamma^2 v^2 + \frac{3}{4}w + \theta.
 \end{equation}
-
-Inserting this to \eqref{eq:e_conservation} results in the equation \cite[eq. B.24]{hindmarsh_gw_pt_2019}
+Inserting this to the energy conservation equation \eqref{eq:e_conservation} results in the equation \cite[eq. B.24]{hindmarsh_gw_pt_2019}
 \begin{equation}
 e_K + \Delta e_Q = - \Delta e_\theta,
+\label{eq:energy_components}
 \end{equation}
 which consists of the terms defined below.
 The kinetic energy density is given by
@@ -75,7 +74,8 @@ They can be defined as
 \omega \equiv \frac{\Delta e_Q}{\Delta e_\theta}.
 \label{eq:kappa_omega}
 \end{equation}
-They have the property that $\kappa + \omega = 1$.
+Since energy is conserved by eq. \eqref{eq:energy_components},
+these have have the property that $\kappa + \omega = 1$.
 
 It should be noted that some sources such as \cites[eq. 36]{giese_2020}[eq. 12, 14]{giese_2021}
 use different definitions for $\kappa$:
