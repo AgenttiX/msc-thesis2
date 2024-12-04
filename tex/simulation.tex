@@ -1,13 +1,19 @@
 The equations for the fluid dynamics and gravitational wave production have no analytical solutions in the general case.
 Therefore numerical solutions are required.
-To enable these, in this thesis the simulation software PTtools has been developed further to account for speeds of sound that differ from the bag model presented in section \ref{bag_model},
-enabling the detailed analysis of models beyond the bag model.
+To create these solutions, Hindmarsh et al. developed the phase transition simulation software PTtools \cite{pttools}.
+In this thesis PTtools has been extended to account for speeds of sound that differ from the bag model of section \ref{bag_model}.
+This has enabled PTtools to simulate bubbles using models beyond the bag model,
+such as the constant sound speed model of \ref{const_cs}.
+The previous fluid profile solver relied heavily on analytical shortcuts specific to the bag model,
+and the surrounding higher-level functionality was built with this assumption in mind.
+Therefore enabling the support for more complex models required a nearly complete rewrite and significant extension of the entire simulation software.
+When also counting the speedup optimisations done by the author as preparations for this update,
+these changes resulted in PTtools growing more than an order of magnitude in terms of the lines of code.
 
 
 \section{Overview of PTtools}
-PTtools is a simulation software for modeling the velocity and enthalpy profile of the fluid shell of a single bubble,
+PTtools \cite{pttools} is a simulation software for modeling the velocity and enthalpy profile of the fluid shell of a single bubble,
 and for converting the profile to a gravitational wave spectrum using the sound shell model.
-In this thesis PTtools has been extended to support arbitrary equations of state in addition to the bag model.
 PTtools is a Python library, which uses
 \href{https://numpy.org/}{Numpy}
 and
@@ -19,21 +25,25 @@ for speeding up the computations and
 and
 \href{https://plotly.com/}{Plotly}
 for plotting.
+For PTools and its full documentation, please see \cite{pttools}.
 
 To use PTtools, the user has to first specify the equation of state.
 They can either use the provided bag model (\texttt{BagModel}) or constant sound speed model (\texttt{ConstCSModel}),
 or they can specify their own model by either inheriting from the provided \texttt{Model} class and providing the equation of state analytically.
-Another option is to inherit from the provided \texttt{ThermoModel} class and provide the degrees of freedom $g_e(T,\phi)$ and $g_s(T,\phi)$ and the potential $V(T,\phi)$.
+Another option is to inherit from the provided \texttt{ThermoModel} class and provide two of the degrees of freedom $g_p(T,\phi)$ of eq. \eqref{eq:p_general}, $g_e(T,\phi)$ of \eqref{eq:e_general} and $g_s(T,\phi)$ of \eqref{eq:s_general}, and the potential $V(T,\phi)$ of \eqref{eq:p_general}.
 This way one can let PTtools take care of constructing the equation of state from these parameters.
-PTtools then runs various validity checks for the model,
-including that $V_s - V_b \geq 0$ and that the model has a critical temperature.
+PTtools then runs various validity checks for the model to ensure that a phase transition will occur and proceed in the system.
+For the phase transition to proceed, there has to be a release of energy from the field to the fluid,
+and therefore $\Delta V = V_s - V_b \geq 0$.
+The model also has to have a critical temperature of eq. \eqref{eq:critical_temp},
+under which it is energetically favourable for the system to transition to the new phase.
 As a part of the model initialization, PTtools creates a function for the speed of sound $c_s^2$ of the model.
 This function is compiled using Numba to achieve sufficient performance for using this function in the bubble solving.
 
 Once the model has been specified,
 the user can create a bubble by creating an instance of the \texttt{Bubble} class by providing the model, $v_\text{wall}$ and $\alpha_n$.
 PTtools then runs various validity checks for the bubble,
-including that there exists a nucleation enthalpy $w_n$ and a valid solution type,
+including that there exists a nucleation enthalpy $w_n$ of eq. \eqref{eq:wn} and a valid solution type of fig. \ref{fig:relativistic_combustion},
 and that the nucleation temperature $T_n$ is below the critical temperature.
 PTtools also warns if the bubble requires deviations from the local thermal equilibrium to exist.
 PTtools then solves the bubble, unless specifically instructed to delay the solving.
@@ -101,7 +111,9 @@ The fluid inside the fixed point is stationary.
 
 Deflagrations are more complicated,
 as we cannot compute $v_{-,sh}, w_{-,sh}$ from $v_{+,sh}=0, w_{+,sh}=w_n$ using the junction conditions,
-as the shock can be too small for the numerical accuracy of the junction solver.
+since we don't know the shock speed beforehand.
+For some deflagrations, the shock can also be too small for the numerical accuracy of the junction solver,
+since when $v_{sh}$ is close to $c_{s,s}$, the fluid profile can vary significantly with small changes of $v_{sh}$.
 Therefore, we have to start by guessing a $w_-$.
 Since the fluid inside the wall is stationary, we know that $\tilde{v}_- = v_{\text{wall}}$.
 For a given $(v_-, w_-)$ we can solve the junction conditions, giving $(v_+, w_+)$.
