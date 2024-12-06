@@ -30,8 +30,9 @@ def gen_const_cs_gw_figs():
 
 def gen_giese_lisa_fig2():
     print("Generating Giese LISA figure 2")
-    fig3 = giese_lisa_fig2()
-    save(fig3, os.path.join(const.FIG_DIR, "giese_lisa_fig2"))
+    fig1, fig2 = giese_lisa_fig2()
+    save(fig2, os.path.join(const.FIG_DIR, "giese_lisa_fig2"))
+    save(fig2, os.path.join(const.FIG_DIR, "giese_lisa_fig2_diff"))
 
 
 def main():
