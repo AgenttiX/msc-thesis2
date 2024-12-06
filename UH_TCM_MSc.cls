@@ -12,7 +12,7 @@
   %   http://www.latex-project.org/lppl.txt
   % and version 1.3 or later is part of all distributions of LaTeX
   % version 2005/12/01 or later.
-%% 
+%%
 \NeedsTeXFormat{LaTeX2e}[2000/06/01]
 \ProvidesClass{UH_TCM_MSc}
   [2023/05/09 v1.0 University of Helsinki Theoretical and Computational Methods Official MS Thesis Template]
@@ -246,7 +246,8 @@
 
 \newcommand{\mynomenclature}{%
 % \ifnum0\pdffilesize{\jobname.nls}>0
-\iftrue
+% \iftrue
+\iffalse
 	\printnomenclature
 	\addcontentsline{toc}{chapter}{\nomname}
 	\markboth{\nomname}{}
