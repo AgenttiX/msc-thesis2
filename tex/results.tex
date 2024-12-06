@@ -1,33 +1,33 @@
 The constant $c_s$ model was chosen as the model to test PTtools with,
 as the model is the next logical extension of the bag model,
 and there is some reference data available from \cites{giese_2020}{giese_2021}.
-Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall speeds $v_\text{wall}$ and two different $\alpha_n$.
+Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall speeds $v_\text{wall}$ and two different transition strengths $\alpha_n$ of eq. \eqref{eq:alpha_n}.
 % These are not the same as the values \cite[fig. 10]{hindmarsh_gw_pt_2019}.
-Instead of using only the bag model $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
-each plot has four curves, each corresponding to a different combination of the sound speeds
+Instead of using only the bag model which has the squared sound speeds $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
+each plot has four curves, each corresponding to a different combination of the squared sound speeds
 $c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}$.
 The corresponding gravitational wave spectra are plotted in \ref{fig:gw_spectra}.
-Converting these to the frequencies today results in the figure \ref{fig:omgw0},
+Converting these to the frequencies and amplitudes today results in the figure \ref{fig:omgw0},
 which also contains the LISA instrument noise spectrum as a reference.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{msc2-python/fig/const_cs_gw_v.eps}
-\caption{Self-similar fluid profiles}
+\caption{Self-similar fluid profiles with four sound speed combinations, three different wall speeds $v_\text{wall}$ and two transition strengths $\alpha_n$}
 \label{fig:fluid_profiles}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{msc2-python/fig/const_cs_gw_v.eps}
-\caption{Gravitational wave power spectra}
+\caption{Gravitational wave power spectra computed with the sound shell model from the fluid profiles of fig. \ref{fig:fluid_profiles}}
 \label{fig:gw_spectra}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{msc2-python/fig/const_cs_gw_v.eps}
-\caption{Scaled gravitational wave power spectra $\Omega_{gw,0}$}
+\caption{Scaled gravitational wave power spectra today, $\Omega_{gw,0}$, of the gravitational wave power spectra of fig. \ref{fig:gw_spectra}}
 \label{fig:omgw0}
 \end{figure}
 
@@ -38,7 +38,7 @@ There are two curves that constrain the shape of the fluid shells.
 The solid black curves are the shock velocities $v_{sh}(\xi,c_{s,s})$ that are determined by $c_{s,s}$.
 In general the shock velocity is also dependent on $w$, since $c_s = c_s(w,\phi)$,
 but in the constant sound speed model the sound speed is independent of the enthalpy,
-as it's a constant for each phase.
+as it is a constant for each phase.
 Therefore we can plot the shock velocities as curves in the 2D plots instead of having to plot them as surfaces as functions of $(\xi,w)$ in a 3D plot.
 The dotted black curves are the $\mu(\xi,c_{s,b})$ curves of eq. \eqref{eq:mu} that constrain the maximum fluid velocity inside the bubble.
 They are dependent on the choice of $c_{s,b}$.
@@ -77,8 +77,12 @@ it should be noted that the hybrid solutions are very finely tuned, and may not 
 Outside the region of the peak, the gravitational wave spectra follow a $k^9$ power law at low $z$,
 and $k^{-3}$ at high $z$.
 
+% -----
+% Giese comparison
+% -----
+
 To test the precision and reliability of the results provided by PTtools,
-we compared to the results in \cite[fig. 2]{giese_2021},
+we compared to the results in Giese et al., 2021 \cite[fig. 2]{giese_2021},
 resulting in figure \ref{fig:kappa_giese}.
 It should be noted that the article uses $\kappa_{\bar{\theta}_n}$ of eq. \eqref{eq:kappa_thetabar_n},
 which differs from the $\kappa$ defined in eq. \eqref{eq:kappa_omega}.
@@ -137,3 +141,16 @@ This too continues to be under investigation.
 Given that \cites{giese_2020}{giese_2021} are the only known references known by the author regarding the effects of changing the sound speed on the fluid shell profile,
 the numerical imprecisions can be either in PTtools or the Giese code, or both.
 The development of the code continues.
+
+PTtools is subject to active development.
+Therefore these results reflect the current state of the code,
+and improvements can and will be made in the future.
+
+However, comparign the differences in the results we see that they are almost the same for the vast majority of the parameter points, and for the investigated points, only one at the hybrid-detonation boundary has a significant deviation.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth]{../pttools/examples/fig/giese_lisa_fig2_diff.eps}
+\caption{Comparison of the differences of the $\kappa_{\bar{\theta}_n}$ in fig. \ref{fig:kappa_giese}}
+\label{fig:kappa_giese_diff}
+\end{figure}
