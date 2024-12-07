@@ -118,7 +118,7 @@ def getalNwow(vp, vm, vw, cs2b, cs2s):
 
 def kappaNuMuModel(
         cs2b: float, cs2s: float,
-        al: float, vw: float) -> tp.Tuple[float, np.ndarray, np.ndarray, np.ndarray, int]:
+        al: float, vw: float) -> tp.Tuple[float, np.ndarray, np.ndarray, np.ndarray, int, float, float]:
     r"""Calculate the efficiency factor $\kappa$.
     This uses the other functions.
 
@@ -173,19 +173,21 @@ def kappaNuMuModel(
     if mode > 0:
         v_in, wow_in, xi_in, Krf, wow3 = getKandWow(vw=vw, v0=mu(vw, vm), cs2=cs2b)
         v_in = np.flip(v_in)
-        wow_in = np.flip(wow_in)
+        wow_mult = wow * getwow(vp, vm)
+        wow_in = np.flip(wow_in) * wow_mult
         xi_in = np.flip(xi_in)
-        Krf *= -wow * getwow(vp, vm)
+        Krf *= -wow_mult
     else:
         Krf = 0
         v_in = wow_in = xi_in = np.array([])
 
+    # Expand v array to inside and outside the fluid shell
     v_f = v_b = np.array([0, 0])
     v_arr = np.concatenate((v_b, v_in, v_out, v_f))
 
     wow_arr = np.concatenate((wow_in, wow_out))
     wow_b = np.array([wow_arr[0], wow_arr[0]])
-    wow_f = np.array([wow_arr[-1], wow_arr[-1]])
+    wow_f = np.array([1, 1])
     wow_arr = np.concatenate((wow_b, wow_arr, wow_f))
 
     xi_arr = np.concatenate((xi_in, xi_out))
@@ -198,4 +200,4 @@ def kappaNuMuModel(
     if np.any(v_arr < 0) or np.any(v_arr > 1):
         logger.error("Invalid v values")
 
-    return (Ksh + Krf)/al, v_arr, wow_arr, xi_arr, mode
+    return (Ksh + Krf)/al, v_arr, wow_arr, xi_arr, mode, vp, vm
