@@ -1,34 +1,42 @@
 In this thesis the gravitational wave spectrum from the first order phase transition is calculated using the Sound Shell Model.
-We shall start by rigorously deriving the necessary equations based on the section 3 of \cite{hindmarsh_gw_pt_2019}.
+Let us start by rigorously deriving the necessary equations based on the section 3 of \cite{hindmarsh_gw_pt_2019}.
 
+\section{Gravitational wave production from shear stress}
+In this section we derive how the gravitational wave spectrum is produced by the shear stress correlator.
 First of all we assume that the time scale of the phase transition is much shorter than the Hubble time.
 Therefore we can neglect the expansion of the universe and assume that the background is Minkowski spacetime.
 On top of this the fluid and the scalar field are a source of metric perturbations.
 In the synchronous gauge these produce a change in the space-time interval
+\cite[p. 7]{hindmarsh_gw_pt_2019}
 \begin{equation}
 ds^2 = -dt^2 + (\delta_{ij} + h_{ij}) dx^i dx^j.
 \end{equation}
 The metric perturbations $h_{ij}$ are sourced by shear stress,
 which is the transverse-traceless part of the energy-momentum tensor $\Pi_{ij}$ of eq. \eqref{eq:ep_tensor_general_matrix}.
 This results in a wave equation for $h_{ij}$ with a source term,
+\cites[eq. 3.1]{hindmarsh_gw_pt_2019}[eq. 1.24]{maggiore_gw_2008}
+% (similar to \eqref{eq:wave_equation})
 \begin{equation}
 \ddot{h}_{ij} - \nabla^2 h_{ij} = 16 \pi G \Pi_{ij}.
 \end{equation}
-\todo{Clarify where this comes from}
-The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and the scalar field
+The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and the scalar field \cite[p. 7]{hindmarsh_gw_pt_2019}
 \begin{align}
 T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij} \\
 T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}.
 \end{align}
 
-Let us introduce the tensor \cite[eq. 1.35]{maggiore_gw_2008}
+% Defining P and Lambda tensors
+Let us introduce the tensor
+\cite[eq. 1.35]{maggiore_gw_2008}
 \begin{equation}
 P_{ij}(\bm{k}) = \delta_{ij} - \hat{k}_i \hat{k}_j.
 \end{equation}
 This tensor is symmetric, transverse ($\hat{k}_i P_{ij}(\bm{k}) = 0$) and a projector ($P_{ik}P_{kj} = P_{ij}$), and its trace is $P_{ii} = 2$.
-Using $P_{ij}$ we can construct another tensor that we call Lambda tensor \cite[eq. 1.36]{maggiore_gw_2008}
+Using $P_{ij}$ we can construct another tensor that we call Lambda tensor
+\cite[eq. 1.36]{maggiore_gw_2008}
 \begin{equation}
 \Lambda_{ij,kl}(\bm{k}) = P_{ik}(\bm{k}) P_{jl}(\bm{k}) - \frac{1}{2} P_{ij}(\bm{k}) P_{kl}(\bm{k}).
+\label{eq:Lambda}
 \end{equation}
 \iffalse
 This is still a projector, in the sense that
@@ -41,8 +49,10 @@ It is traceless with respect to the ($i,j$) and ($k,l$) index pairs,
 \Lambda_{ii,kl} = \Lambda_{ij,kk} = 0.
 \end{equation}
 \fi
-For further details on the Lambda tensor, please see \cite[ch. 1.2]{maggiore_gw_2008}.
+For further details on the Lambda tensor, please see
+\cite[ch. 1.2]{maggiore_gw_2008}.
 
+% Defining P_\dot{h}
 The spectral density of the time derivative of the perturbations, $P_{\dot{h}}(\bm{k},t)$, is defined by
 \cite[eq. 3.4]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -51,7 +61,7 @@ The spectral density of the time derivative of the perturbations, $P_{\dot{h}}(\
 \end{equation}
 \todo{Should the second $k$ be $k'$?}
 
-% Defining Omega_gw
+% Defining e_{gw}, e_c and Omega_gw
 The energy density of gravitational waves is given by
 \cites[eq. 3.3]{hindmarsh_gw_pt_2019}[eq. 1.135, 7.193]{maggiore_gw_2008}
 \begin{align}
@@ -73,11 +83,11 @@ This is the dimensionless quantity
 \Omega_{gw} \equiv \frac{e_{gw}}{e_c}.
 \label{eq:omega_gw}
 \end{equation}
-This will be needed later in eq. \eqref{eq:gw_pow_spec}.
+% This will be needed later in eq. \eqref{eq:gw_pow_spec}.
 
+% GW power spectrum. Uses Omega, so this is in the correct place.
 The gravitational wave power spectrum is defined by
 \cite[eq. 3.45]{hindmarsh_gw_pt_2019}
-\todo{Find a better source}
 \begin{equation}
 \mathcal{P}_{gw}(k)
 \equiv \frac{d \Omega_{gw}}{d \ln (k)}
@@ -87,10 +97,27 @@ The gravitational wave power spectrum is defined by
 \label{eq:gw_pow_spec}
 \end{equation}
 where the first step comes directly using the equations above.
-It should be noted that in \cite[eq. 3.6]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
-We will now proceed to define quite a few similar quantities.
+It should be noted that in \cite[eq. 3.6, eq. 3.46]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
+A spectral density can be converted to a power spectrum with
+\cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
+\label{eq:pow_spec}
+\end{equation}
+The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
+(See also \cite[p. 338]{maggiore_gw_2008}.)
+Whether it's included or not is dependent on the context.
+Therefore, the gravitational wave power spectrum can be obtained from the spectral density $P_\dot{h}$ as
+\begin{equation}
+\mathcal{P}_{gw}(k) = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_\dot{h}.
+\label{eq:gw_pow_spec2}
+\end{equation}
+To obtain the gravitational wave spectrum $\mathcal{P}_{gw}(k)$,
+we therefore need to obtain an expression for $P_\dot{h}$ that we can compute from the fluid shell profile.
+For this we will need quite a few similar intermediate quantities.
 To avoid confusion, their symbols and names are listed in table \ref{table:symbols}.
 
+% This is here, since the first P has just been introduced.
 \begin{table}[ht]
 \caption{Symbols and explanations of the spectral quantities}
 \begin{tabular}{l|l|l}
@@ -110,40 +137,28 @@ $\mathcal{P}'_{\text{gw}}$ & Growth rate of the GW spectrum relative to the Hubb
 \label{table:symbols}
 \end{table}
 
-The spectral density of the velocity power spectrum is given by
-\begin{equation}
-P_{\tilde{v}} (q) = 2 P_v (q).
-\label{eq:p_tilde_v}
-\end{equation}
-A spectral density can be converted to a power spectrum with
-\begin{equation}
-\mathcal{P}(k) = \textcolor{gray}{(2)} \frac{k^3}{2 \pi^2} P(k).
-\label{eq:pow_spec}
-\end{equation}
-The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
-Whether it's included or not is dependent on the context.
-Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec} \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
-\begin{equation}
-\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
-\label{eq:pow_v}
-\end{equation}
-
 There exists a solution to the gravitational wave equation in the form of
+\cite[eq. 3.2]{hindmarsh_gw_pt_2019}
 \begin{equation}
 h_{ij} (\bm{k},t) = (16 \pi G) \Lambda_{ij,kl}(\bm{k}) \int_0^t dt' \frac{\sin [k(t-t')]}{k} T_{kl}(\bm{k},t').
+\label{eq:h_ij}
 \end{equation}
-It is sufficient to replace $T_{ij}$ with the tensor
+Since we are operating in the transverse-traceless gauge, it is sufficient to replace $T_{ij}$ with the tensor
+\cite[eq. 3.7]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\tau_{ij} = \gamma^2 w v_i v_j + \delta_ \phi \delta_j \phi.
+\tau_{ij} = \gamma^2 w v_i v_j + \partial_ \phi \partial_j \phi.
+\label{eq:tau_ij}
 \end{equation}
-\todo{This is $T_{ij}$ with the diagonal elements removed. TT gauge?}
-Therefore we have
+This will be approximated in eq. \eqref{eq:tau_ij_approx}.
+Therefore, using eq. \eqref{eq:h_ij} and \eqref{eq:tau_ij} we have
+\cite[eq. 3.8]{hindmarsh_gw_pt_2019}
 \begin{multline}
 \langle \dot{h}_{\bm{k}_1}^{ij}(t) \dot{h}_{\bm{k}_2}^{ij}(t) \rangle \\
 = (16 \pi G)^2 \int_0^t dt_1 dt_2 \cos [k_1(t-t_1)] \cos [k_2(t-t_2)] \Lambda_{ij,kl}(\bm{k})
 \langle \tau_{\bm{k}_1}^{ij}(t_1) \tau_{\bm{k}_2}^{kl}(t_2) \rangle
 \end{multline}
 Let us define the unequal time correlator (UETC) of the fluid shear stress $U_\Pi$ with
+\cite[eq. 3.9]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \Lambda_{ij,kl}(\bm{k}) \langle \tau_{\bm{k}_1}^{ij}(t_1) \tau_{\bm{k}_2}^{kl}(t_2) \rangle
 = U_\Pi (k_1, t_1, t_2) (2 \pi)^3 \delta(\bm{k}_1 + \bm{k}_2).
@@ -151,32 +166,180 @@ Let us define the unequal time correlator (UETC) of the fluid shear stress $U_\P
 \end{equation}
 Using this we can make a simple substitutions to eq. \eqref{eq:hbracket} and \eqref{eq:hbracket2},
 resulting in an expression for the spectral density as
+\cite[eq. 3.10]{hindmarsh_gw_pt_2019}
 \begin{equation}
 P_{\dot{h}} (k,t) = (16 \pi G)^2 \int_0^t dt_1 \int_0^t dt_2 \cos [k(t-t_1)] \cos [k(t-t_2)] U_\Pi (k, t_1, t_2).
 \label{eq:p_dot_h}
 \end{equation}
-
-Spectral density of the plane wave components of the velocity field is given as
-\cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+Averaging over oscillations at wavenumber $k$,
+\todo{How?}
 \begin{equation}
-P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
-\label{eq:spec_den_v}
+P_{\dot{h}} (k,t) = (16 pi G)^2 \frac{1}{2} \int_0^t dt_1 \int_0^t dt_2 \cos \left( k(t_1 - t_2) \right) U_\Pi (k, t_1, t_2).
+\label{eq:p_dot_h_avg}
 \end{equation}
-Let us define
+This way we can compute the gravitational wave spectrum from the fluid shear stress UETC $U_\Pi$.
+
+
+\section{Shear stress from sound waves}
+In this section we investigate how the unequal time correlator for the shear stress (UETC) can be computed from the sound waves in the fluid.
+Let us start by defining the fluid stress-energy tensor $\tau_ij$.
+The $\partial_i \phi \partial_j \phi$ term of eq. \eqref{eq:tau_ij} is non-zero only at the phase bondary,
+which is thin and therefore negligible compared to the fluid shell.
+We also approximate that once the bubbles have collided and merged,
+the enthalpy is constant throughout the fluid shell $w = e + p \approx \bar{w}$
+and that the fluid velocities are non-relativistic, resulting in $\gamma(v) = 1$.
+Therefore eq. \eqref{eq:tau_ij} approximates as
+\cite[eq. 3.12]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\tau_ij \approx \bar{w} v_i v_j.
+\label{eq:tau_ij_approx}
+\end{equation}
+
+\iffalse
+Let us define a couple of mathematical tools and quantities that we will need in this section.
+The difference of the wavevectors $\mathbb{q}$ and $\mathbb{k}$,
+\begin{equation}
+\tilde{\mathbb{q}} = \mathbb{q} - \mathbb{k}.
+\label{eq:tilde_q}
+\end{equation}
+Using this their product can be expressed as
+\begin{equation}
+\mu \equiv \hat{\mathbb{q}} \cdot \hat{\mathbb{k}} = \frac{q^2 + k^2 - \tilde{q}^2}{2kq}.
+\label{eq:mu}
+\end{equation}
+The length of a vector is denoted as
+\begin{equation}
+q \equiv |\mathbb{q}|
+\end{equation}
+The unit vectors are defined as
+\begin{equation}
+\hat{\mathbb{q}} \equiv \frac{\mathbb{q}}{|\mathbb{q}|} \Rightarrow
+\hat{q}^i \equiv \frac{q^i}{q}
+\end{equation}
+The angular frequencies $\omega$ and $\tilde{\omega}$ are defined as
+\cite[p. 10]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\omega = c_s q, \quad \tilde{\omega} = c_s \tilde{q}.
+\end{equation}
+The $\Lambda$ tensor of eq. \eqref{eq:Lambda} has the property that
+\cite[eq. 3.17]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\Lambda_{ij,kl}(\mathbb{k}) \hat{q}^i \hat{\tilde{q}}^j \hat{\tilde{q}}^k \hat{q}^l = \frac{1}{2}(1 - \mu^2)^2 \frac{q^2}{\tilde{q}^2}.
+\end{equation}
+For later use let us also define
+\cite[p. 11]{hindmarsh_gw_pt_2019}
+\begin{equation}
+t_+ \equiv \frac{t_1 + t_2}{2}, \quad t_- \equiv t_1 - t_2.
+\label{eq:t_plus_minus}
+\end{equation}
+
+The Fourier transformation of the velocity field can be denoted as
+\cite[eq. 3.13]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\tilde{v}_\mathbb{q}^i(t) = \int d^3 xv^i (\mathbb{x},t) e^{-i \mathbb{q} \cdot \mathbb{x}}.
+\end{equation}
+We use the same result as in \cite{hindmarsh_gw_pt_2019} that the velocity field is irrotational and statistically homogenous,
+and the two-point function $G$ can therefore be written as
+\begin{equation}
+\langle \tilde{v}_{\mathbb{q}_1}^i (t_1) \tilde{v}_{\mathbb{q}_2}^{*j} (t2) \rangle = \hat{q}_1^i \hat{q}_2^j G(q_1, t_1, t_2) (2\pi)^3 \delta(\mathbb{q_1} - \mathbb{q_2}).
+\end{equation}
+The leading term for the shear stress UETC of eq. \eqref{eq:uetc_final} is therefore
+
+\cite[eq. 3.32]{hindmarsh_gw_pt_2019}
+\begin{equation}
+U_\Pi(k, t_1, t_2) = 4 \bar{w}^2 \int \frac{d^3 q}{(2\pi)^3} \frac{q^2}{\tilde{q}^2} (1 - \mu^2) P_v(q) P_v(\tilde{q}) \cos (\omega t_-) \cos (\tilde{\omega} t_-)
+\end{equation}
+\fi
+
+Using the result from
+\cite[eq. 3.34]{hindmarsh_gw_pt_2019}
+\begin{equation}
+U_\Pi (k, t_1, t_2) = \frac{4 \bar{w}^2}{4 \pi^2 k} \int_0^\infty \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q}
+\frac{q^2}{\tilde{q}^2} (1-\mu^2)^2
+P_v(q) P_v(\tilde{q})
+\cos (\omega t_-) \cos (\tilde{\omega} t_-)
+\label{eq:uetc_final}
+\end{equation}
+The contents of $P_v(q)$ will be defined later in eq. \eqref{eq:spec_den_v}.
+
+
+\section{Gravitational wave power spectrum from sound waves}
+In this section we derive the gravitational wave spectrum from the unequal time correlator (UETC).
+The UETC of eq. \eqref{eq:uetc_final} can be substituted to \eqref{eq:p_dot_h_avg},
+resulting in
+\cite[eq. 3.35]{hindmarsh_gw_pt_2019}
+\begin{equation}
+P_\dot{h} (k,t) = (16 \pi G)^2 \frac{4 \bar{w}}{4\pi^2 k}
+\int_0^\infty dq \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q} \frac{q^2}{\tilde{q}^2} (1-\mu^2)^2
+P_v(q) P_v(\tilde{q}) \Delta(t,k,q,\tilde{q}),
+\end{equation}
+where
+\begin{equation}
+\Delta(t,k,q,\tilde{q}) \approx \frac{1}{2} \int_0^t dt_1 \int_0^t dt_2 \cos(kt_-)\cos(\omega t_-)\cos(\tilde{\omega}t_-).
+\end{equation}
+The approximation comes from the averaging over the number of oscillations at wavenumber $k$ in eq. \eqref{eq:p_dot_h_avg},
+and $t_-$ is defined in eq. \eqref{eq:t_plus_minus}.
+Using eq. \eqref{eq:t_plus_minus} one can also change the integration variable to $t_0$, resulting in
+\begin{equation}
+\Delta(t,k,q,\tilde{q}) = \frac{1}{2} \int_0^t dt_+ \int_{-2t_+}^{2t_+} dt_- \cos(kt_-) \cos(\omega t_-) \cos(\tilde{omega} t_-).
+\end{equation}
+Therefore its growth rate is
+\begin{equation}
+\dot{\Delta}(t,k,q,\tilde{q}) \equiv \frac{d}{dt} \Delta(t,k,q,\tilde{q}) = \frac{1}{2} \int_{-2t}^{2t} dt_- \cos(kt_-) \cos(\omega t_-) \cos(\tilde{\omega} t_-).
+\label{eq:delta_dot}
+\end{equation}
+Using the trigonometric identity for arbitrary angles $\theta$ and $\phi$,
+\begin{equation}
+\cos \theta \cos \phi = \frac{1}{2} \left( \cos(\theta + \phi) + \cos(\theta - \phi) \right),
+\end{equation}
+at large eq. \eqref{deq:delta_dot} asymptotes to a $\delta$-function as
+\begin{equation}
+\lim_{t\rightarrow\infty} \dot{\Delta}(t,k,q,\tilde{q}) = \frac{\pi}{8} \Sigma_{\pm\pm\pm} \delta(\pm k \pm \omega \pm \tilde{\omega}).
+\end{equation}
+\iffalse
 \begin{align}
-\tilde{q} &= \frac{k}{c_s} - q, \\
-q_\pm &= \frac{k(1 \pm c_s)}{2 c_s}, \\
-\mu &= \frac{2qc_s - k(1 - c_s^2)}{2qc_s^2}.
+k - \omega - \tilde{\omega} \\
+= k - c_s q - c_s \tilde{q} \\
 \end{align}
-Using these the the growth rate of the spectral density of $\dot{h}$ can be written as
+\fi
+Of these combinations, only $k - \omega - \tilde{\omega}$ and $-(k - \omega - \tilde{\omega})$ can vanish,
+and therefore
 \begin{equation}
-\dot{P}_{\dot{h}} (k) = (16 \pi G)^2 \frac{\bar{w}^2}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
-\label{eq:dot_p_dot_h}
+\lim_{t\rightarrow\infty} \dot{\Delta}(t,k,q,\tilde{q}) = \frac{\pi}{4} \delta (k - \omega - \tilde{\omega}).
+\label{eq:delta_dot_lim}
+\end{equation}
+Inserting this to eq. \eqref{eq:p_dot_h_avg} gives us the asymptotic growth rate of the spectral density
+\begin{equation}
+\lim_{t \rightarrow \infty} \dot{P}_\dot{h}(k,t)
+= (16 \pi G)^2 \frac{4 \bar{w}^2}{4 \pi^2 k} \int_0^\infty dq \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q} \frac{q^2}{\tilde{q}^2} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}) \frac{\pi}{4}(k - \omega - \tilde{\omega}).
+\end{equation}
+The $\delta$-function of eq. \eqref{eq:delta_dot_lim} has restricted us to
+\begin{equation}
+k - \omega - \tilde{\omega} = k - c_s (q - \tilde{q}) = 0,
+\end{equation}
+and therefore we have
+\begin{equation}
+\tilde{q} = \frac{k}{c_s} - q.
+\label{eq:tilde_q2}
+\end{equation}
+Using this we can define
+\begin{equation}
+q_\pm \equiv \frac{k(1 \pm c_s)}{2 c_s}.
+\end{equation}
+Inserting eq. \eqref{eq:tilde_q2} to \eqref{eq:mu} gives
+\begin{equation}
+\mu &= \frac{2qc_s - k(1 - c_s^2)}{2qc_s^2}.
+\end{equation}
+We can now integrate over $q$. Since the expression is no longer time-dependent,
+we can denote it as
+\begin{equation}
+\dot{P}_\dot{h}(k) = (16 \pi G)^2 \frac{\bar{w}}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
+% \label{eq:dot_p_dot_h}
 \end{equation}
 
-Let us introduce the scaled velocity spectral density $\tilde{P}_v$ as
+We can now define the scaled velocity spectral density $\tilde{P}_v$ as
 \begin{equation}
-\tilde{P}_v(qL_f) \equiv \frac{P_v(q)}{L_f^3} \bar{U}_f^2,
+\tilde{P}_v (qL_f) \equiv \frac{P_v(q)}{L_f^3 \bar{U}_f^2}
 \label{eq:tilde_p_v}
 \end{equation}
 where $L_f$ is a length scale in the velocity field, and $\bar{U}_f$ is the RMS fluid velocity.
@@ -185,13 +348,6 @@ Let us also define the additional quantities
 y = kL_f, \quad z = qL_f, \quad z_\pm = y \frac{1 \pm c_s}{2 c_s}.
 \label{eq:gw_yz}
 \end{equation}
-From these we get the intermediate results
-\begin{align}
-\tilde{q}L_f &= \frac{y}{c_s} - z, \\
-\frac{y}{c_s} - z &= z_+ + z_- - z, \\
-1 - \mu^2 &= \frac{a}{z^2}(z-z_+)(z-z_-)
-\label{eq:gw_mu_z}
-\end{align}
 Therefore the asymptotic growth rate of the spectral density can be written as
 \begin{equation}
 \dot{P}_{\dot{h}}(y) =
@@ -202,17 +358,18 @@ Therefore the asymptotic growth rate of the spectral density can be written as
 (1 - \mu^2)^2
 \tilde{P}_v (z) \tilde{P}_v \left( \frac{y}{c_s} - z \right).
 \end{equation}
-The growth rate of the gravitational wave spectrum relative to the Hubble rate is defined as below,
-and using \eqref{eq:gw_pow_spec} can be expressed as
+The growth rate of the gravitational wave spectrum of eq. \eqref{eq:gw_pow_spec2} relative to the Hubble rate is
 \cite[eq. 3.46]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \mathcal{P}'_{\text{gw}} \equiv \frac{1}{H} \frac{d}{dt} \mathcal{P}_{\text{gw}}
 = 3 \left( \Gamma \bar{U}_f^2 \right)^2 (HL_f) \frac{(kL_f)^3}{2 \pi^2} \tilde{P}_{\text{gw}} (kL_f),
 \label{eq:pow_gw_prime}
 \end{equation}
-where using \eqref{eq:gw_mu_z} we have $\tilde{P}_{\text{gw}}$,the dimensionless spectral density function
+where we have used the $\Gamma$ of eq. \eqref{eq:mean_adiabatic_index} and $e_c$ of eq. eq. \eqref{eq:e_crit} and approximated that $\bar{e} = e_c$.
+We have also used the $y$ and $z$ of eq. \eqref{eq:gw_yz}, and using these we have defined $\tilde{P}_{\text{gw}}$,
+the dimensionless spectral density function
 \cite[eq. 3.47]{hindmarsh_gw_pt_2019}
-\footnote{In \cite{hindmarsh_gw_pt_2019} the $\tilde{P}_v$ is denoted as $\bar{P}_v$ by mistake.}
+\footnote{In \cite{hindmarsh_gw_pt_2019} the $\bar{P}_v$ is a typo and should be $\tilde{P}_v$.}
 \begin{equation}
 \tilde{P}_\text{gw} (y) = \frac{1}{4\pi yc_s} \left(\frac{1-c_s^2}{c_s^2}\right)^2
 \int_{z_-}^{z_+} \frac{dz}{z}
@@ -220,18 +377,84 @@ where using \eqref{eq:gw_mu_z} we have $\tilde{P}_{\text{gw}}$,the dimensionless
 \tilde{P}_v (z) \tilde{P}_v (z_+ + z_- z).
 \label{eq:spectral_density}
 \end{equation}
-To get the total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v$ is given by
+To get the total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v = t - t_0$ is given by
+\cite[eq. 3.48]{hindmarsh_gw_pt_2019}
+\footnote{In \cite{hindmarsh_gw_pt_2019} the $\tilde{P}_{GW}$ is a typo and should be $\tilde{P}_\text{gw}$.}
 \begin{equation}
 \mathcal{P}_\text{gw}(k)
-= \int_{t_0}^{t} H \mathcal{P}'_\text{gw}
+= \int_{t_0}^{t} dt H \mathcal{P}'_\text{gw}
 = 3 \left( \Gamma \bar{U}_f^2 \right)^2 (H \tau_v)(H L_f) \frac{(kL_f)^3}{2\pi^2} \tilde{P}_\text{gw} (kL_f).
-\label{eq:pow_gw}
+\label{eq:gw_pow_spec2}
 \end{equation}
 This is the equation used by PTtools to compute the gravitational wave spectrum.
-\todo{Check if this is really "the" equation}
+% \cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}
 
-\cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}
 
+\section{Sound Shell Model}
+TODO write more in this section
+
+\begin{equation}
+f(z) = \int d^3\xi \frac{1}{\xi} v_\text{ip}(\xi) e^{-iz^i \xi^i}
+= \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi)
+\end{equation}
+
+\begin{equation}
+l(z) = \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \sin(z\xi).
+\end{equation}
+
+\begin{equation}
+A(z) \equiv \frac{1}{2} \left( f'(z) + i c_s l(z) \right).
+\end{equation}
+
+\begin{equation}
+|A(z)|^2 = \frac{1}{4} \left( f'(z)^2 + (c_s l(z))^2 \right).
+\end{equation}
+
+Mean bubble separation $R_*$
+
+Spectral density of the plane wave components of the velocity field is given as
+\cite[eq. 4.17]{hindmarsh_gw_pt_2019}
+\begin{equation}
+P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+\label{eq:spec_den_v}
+\end{equation}
+
+\begin{equation}
+\tilde{T} = \beta T_i
+\end{equation}
+
+Using eq. \eqref{eq:pow_spec} we can convert this to the velocity power spectrum
+\cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}_\tilde{v}(q)
+= 2 \frac{q^3}{2\pi^2} P_v(q)
+= \frac{2}{(\beta R_*)^3} \frac{1}{2\pi^2} \left(\frac{1}{\beta}\right)^3
+\int d \tilde{T} \eta(\tilde{T}) \tilde{T}^6 \left| A \left( \frac{\tilde{T} q}{\beta} \right) \right|^2.
+\end{equation}
+
+
+% Here we jump to ch. 4 for defining the different P's
+The spectral density of the velocity power spectrum is given by
+\begin{equation}
+P_{\tilde{v}} (q) = 2 P_v (q).
+\label{eq:p_tilde_v}
+\end{equation}
+ASDFASDF
+Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec}
+\cite[eq. 4.18]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
+\label{eq:pow_v}
+\end{equation}
+
+
+\begin{equation}
+\bar{U}_f^2 = \int \frac{dq}{q} \mathcal{P}_\tilde{v}(q)
+= \frac{2}{(\beta R_*)^3} \int TODO
+\end{equation}
+
+
+\section{Gravitational wave power spectra today}
 In addition to these Sound Shell Model calculations, PTtools applies a few correction factors.
 For these we need to define a few additional quantities.
 
@@ -262,9 +485,12 @@ The corrected spectral density is defined as
 \end{equation}
 
 
+\section{Instrument noise}
+
 LISA instrument noise
 \begin{equation}
 ASDF
 \end{equation}
 
-
+There are also other noise sources such as ASDF and ASDF.
+These are left out from this thesis for simplicity, but are included in PTtools \cite{pttools}.
