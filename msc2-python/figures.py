@@ -26,13 +26,16 @@ def gen_const_cs_gw_figs():
     save(gw_figs[0], os.path.join(const.FIG_DIR, "const_cs_gw_v"))
     save(gw_figs[1], os.path.join(const.FIG_DIR, "const_cs_gw"))
     save(gw_figs[2], os.path.join(const.FIG_DIR, "const_cs_gw_omgw0"))
-
+    with open(os.path.join(const.FIG_DIR, "const_cs_gw_snr.tex"), "w") as file:
+        file.write(gw_figs[3])
 
 def gen_giese_lisa_fig2():
     print("Generating Giese LISA figure 2")
-    fig1, fig2 = giese_lisa_fig2()
-    save(fig2, os.path.join(const.FIG_DIR, "giese_lisa_fig2"))
-    save(fig2, os.path.join(const.FIG_DIR, "giese_lisa_fig2_diff"))
+    figs = giese_lisa_fig2()
+    save(figs[0], os.path.join(const.FIG_DIR, "giese_lisa_fig2"))
+    save(figs[1], os.path.join(const.FIG_DIR, "giese_lisa_fig2_diff"))
+    save(figs[2], os.path.join(const.FIG_DIR, "giese_lisa_fig2_alpha_n"))
+    save(figs[3], os.path.join(const.FIG_DIR, "giese_lisa_fig2_alpha_n_diff"))
 
 
 def main():
