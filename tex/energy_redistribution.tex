@@ -11,15 +11,20 @@ is a constant for $R$ larger than the fluid velocity profile.
 It should be noted that this energy conservation applies only to the total energy system,
 and not the energy of the fluid, as there is energy transfer from the field to the fluid.
 \cite[p. 21]{lecture_notes}
-Correspondingly the average energy density $\bar{e}$ is defined as \cite[p. 39]{lecture_notes}
+Correspondingly the mean energy density $\bar{e}$ is defined as \cite[p. 39]{lecture_notes}
 \begin{equation}
 \bar{e} = \frac{3}{\xi_\text{max}^3} \int_0^{\xi_\text{max}} d\xi \xi^2 e = e(w_n, \phi_s).
 \label{eq:e_conservation}
 \end{equation}
-The average enthalpy density $\bar{w}$ is defined as
+The mean enthalpy density $\bar{w}$ is defined as
 \begin{equation}
 \bar{w} = \frac{3}{\xi_\text{max}^3} \int_0^{\xi_\text{max}} d\xi \xi^2 w
 \label{eq:wbar}
+\end{equation}
+Using these we can define the energy fluctuation variable
+\begin{equation}
+\lambda(x) = \frac{e(x) - \bar{e}}{\bar{w}}.
+\label{eq:lambda}
 \end{equation}
 
 For an ideal fluid of eq. \eqref{eq:ep_tensor} \cite[eq. B.23]{hindmarsh_gw_pt_2019}
@@ -114,9 +119,10 @@ and $c_V$ is the specific heat capacity at constant volume.
 For a classical monoatomic fluid $\gamma = \frac{5}{3}$,
 and for an ultrarelativistic fluid $\gamma = \frac{4}{3}$.
 
-The enthalpy-weighted mean square fluid 4-velocity around the bubble and the kinetic energy density fraction are linked by
+The enthalpy-weighted mean square fluid 4-velocity around the bubble and the kinetic energy density fraction of eq. \eqref{eq:kinetic_energy_fraction} are linked by
 \begin{equation}
 K = \Gamma \bar{U}_f^2,
+\label{eq:kinetic_energy_fraction2}
 \end{equation}
 where
 \begin{equation}

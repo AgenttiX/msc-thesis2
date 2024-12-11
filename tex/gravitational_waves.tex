@@ -1,11 +1,23 @@
 In this thesis the gravitational wave spectrum from the first order phase transition is calculated using the Sound Shell Model.
-Let us start by rigorously deriving the necessary equations based on the section 3 of \cite{hindmarsh_gw_pt_2019}.
+The conversion from the fluid velocity and enthalpy profiles of chapter \ref{ch:phase_transitions} to the gravitational wave spectra
+is a process that involves multiple steps.
+First in section \ref{gw_production} we investigate how the gravitational wave spectrum is produced by the shear stress.
+Then in section \ref{shear_stress} we investigate how the shear stress is produced by the sound waves.
+We combine these results in section \ref{gw_from_sound_waves} to see how the gravitational wave spectrum is produced by sound waves.
+Then in section \ref{sound_shell_model} we introduce the Sound Shell model to generate the sound waves from the fluid velocity profiles of chapter \ref{ch:phase_transitions}.
+Combining these, we have the gravitational wave spectra.
+These four sections follow the contents and structure in the article \cite{hindmarsh_gw_pt_2019} that introduces the Sound Shell Model.
+In section \ref{omgw0} we convert these to the frequencies today.
+Then in section \ref{correction_factors} we apply correction factors to improve upon the results of the previous chapters.
+Finally in section \ref{noise} we define the LISA instrument noise to compare the signal-to-noise ratios of the gravitational wave spectra to the LISA instrument noise.
+
 
 \section{Gravitational wave production from shear stress}
-In this section we derive how the gravitational wave spectrum is produced by the shear stress correlator.
+\label{gw_production}
+In this section we derive how the gravitational wave spectrum $\mathcal{P}_\text{gw}$ is produced by the shear stress correlator $U_\pi$.
 First of all we assume that the time scale of the phase transition is much shorter than the Hubble time.
 Therefore we can neglect the expansion of the universe and assume that the background is Minkowski spacetime.
-On top of this the fluid and the scalar field are a source of metric perturbations.
+The fluid and the scalar field are sources of metric perturbations for the spacetime.
 In the synchronous gauge these produce a change in the space-time interval
 \cite[p. 7]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -21,7 +33,7 @@ This results in a wave equation for $h_{ij}$ with a source term,
 \end{equation}
 The energy-momentum tensor $T_{ij}$ consists of contributions from the fluid and the scalar field \cite[p. 7]{hindmarsh_gw_pt_2019}
 \begin{align}
-T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij} \\
+T^f_{ij}    &= (e+p) \gamma^2 v_i v_j + p \delta_{ij}, \\
 T^\phi_{ij} &= \delta_i \phi \delta_j \phi - \frac{1}{2}(\delta \phi)^2 \delta_{ij}.
 \end{align}
 
@@ -31,8 +43,8 @@ Let us introduce the tensor
 \begin{equation}
 P_{ij}(\bm{k}) = \delta_{ij} - \hat{k}_i \hat{k}_j.
 \end{equation}
-This tensor is symmetric, transverse ($\hat{k}_i P_{ij}(\bm{k}) = 0$) and a projector ($P_{ik}P_{kj} = P_{ij}$), and its trace is $P_{ii} = 2$.
-Using $P_{ij}$ we can construct another tensor that we call Lambda tensor
+This tensor is symmetric, transverse ($\hat{k}_i P_{ij}(\bm{k}) = 0$) and a projector ($P_{ik}P_{kj} = P_{ij}$), and its trace $P_{ii} = 2$.
+Using $P_{ij}$ we can construct another tensor that we call the $\Lambda$ tensor
 \cite[eq. 1.36]{maggiore_gw_2008}
 \begin{equation}
 \Lambda_{ij,kl}(\bm{k}) = P_{ik}(\bm{k}) P_{jl}(\bm{k}) - \frac{1}{2} P_{ij}(\bm{k}) P_{kl}(\bm{k}).
@@ -49,17 +61,16 @@ It is traceless with respect to the ($i,j$) and ($k,l$) index pairs,
 \Lambda_{ii,kl} = \Lambda_{ij,kk} = 0.
 \end{equation}
 \fi
-For further details on the Lambda tensor, please see
+For further details on the $\Lambda$ tensor, please see
 \cite[ch. 1.2]{maggiore_gw_2008}.
 
 % Defining P_\dot{h}
 The spectral density of the time derivative of the perturbations, $P_{\dot{h}}(\bm{k},t)$, is defined by
 \cite[eq. 3.4]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\langle \dot{h}_{\bm{k}}^{ij}(t) \dot{h}_{\bm{k}}^{ij}(t) \rangle = P_{\dot{h}}(\bm{k},t) (2\pi)^3 \delta (\bm{k} + \bm{k}').
+\langle \dot{h}_{\bm{k}}^{ij}(t) \dot{h}_{\bm{k}'}^{ij}(t) \rangle = P_{\dot{h}}(\bm{k},t) (2\pi)^3 \delta (\bm{k} + \bm{k}').
 \label{eq:hbracket}
 \end{equation}
-\todo{Should the second $k$ be $k'$?}
 
 % Defining e_{gw}, e_c and Omega_gw
 The energy density of gravitational waves is given by
@@ -105,11 +116,11 @@ A spectral density can be converted to a power spectrum with
 \label{eq:pow_spec}
 \end{equation}
 The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.
-(See also \cite[p. 338]{maggiore_gw_2008}.)
+\footnote{See also \cite[p. 338]{maggiore_gw_2008}.}
 Whether it's included or not is dependent on the context.
 Therefore, the gravitational wave power spectrum can be obtained from the spectral density $P_\dot{h}$ as
 \begin{equation}
-\mathcal{P}_{gw}(k) = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_\dot{h}.
+\mathcal{P}_{gw}(k) = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_{\dot{h}}.
 \label{eq:gw_pow_spec2}
 \end{equation}
 To obtain the gravitational wave spectrum $\mathcal{P}_{gw}(k)$,
@@ -125,7 +136,7 @@ Symbol & Explanation & Eq.\\
 \hline
 $P_{\dot{h}}$ & Spectral density of $\dot{h}$ & \eqref{eq:p_dot_h} \\
 $P_v$ & Spec. den. of the plane wave components of the velocity field & \eqref{eq:spec_den_v} \\
-$P_{\tilde{v}}$ & Spec. den. of the Fourier transformation of the velocity field & \eqref{eq:p_tilde_v} \\
+% $P_{\tilde{v}}$ & Spec. den. of the Fourier transformation of the velocity field & \eqref{eq:p_tilde_v} \\
 $\tilde{P}_v$ & Scaled velocity spectral density & \eqref{eq:tilde_p_v} \\
 $\mathcal{P}_{\tilde{v}}$ & Velocity power spectrum & \eqref{eq:pow_v} \\
 $\tilde{P}_\text{gw}$ & Spectral density of the gravitational wave power spectrum & \eqref{eq:spectral_density} \\
@@ -150,7 +161,7 @@ Since we are operating in the transverse-traceless gauge, it is sufficient to re
 \label{eq:tau_ij}
 \end{equation}
 This will be approximated in eq. \eqref{eq:tau_ij_approx}.
-Therefore, using eq. \eqref{eq:h_ij} and \eqref{eq:tau_ij} we have
+Using eq. \eqref{eq:h_ij} and \eqref{eq:tau_ij} we have
 \cite[eq. 3.8]{hindmarsh_gw_pt_2019}
 \begin{multline}
 \langle \dot{h}_{\bm{k}_1}^{ij}(t) \dot{h}_{\bm{k}_2}^{ij}(t) \rangle \\
@@ -172,15 +183,15 @@ P_{\dot{h}} (k,t) = (16 \pi G)^2 \int_0^t dt_1 \int_0^t dt_2 \cos [k(t-t_1)] \co
 \label{eq:p_dot_h}
 \end{equation}
 Averaging over oscillations at wavenumber $k$,
-\todo{How?}
 \begin{equation}
 P_{\dot{h}} (k,t) = (16 pi G)^2 \frac{1}{2} \int_0^t dt_1 \int_0^t dt_2 \cos \left( k(t_1 - t_2) \right) U_\Pi (k, t_1, t_2).
 \label{eq:p_dot_h_avg}
 \end{equation}
-This way we can compute the gravitational wave spectrum from the fluid shear stress UETC $U_\Pi$.
+This way we can compute the gravitational wave spectrum $\mathcal{P}_\text{gw}$ from the fluid shear stress UETC $U_\Pi$.
 
 
 \section{Shear stress from sound waves}
+\label{shear_stress}
 In this section we investigate how the unequal time correlator for the shear stress (UETC) can be computed from the sound waves in the fluid.
 Let us start by defining the fluid stress-energy tensor $\tau_ij$.
 The $\partial_i \phi \partial_j \phi$ term of eq. \eqref{eq:tau_ij} is non-zero only at the phase bondary,
@@ -191,12 +202,11 @@ and that the fluid velocities are non-relativistic, resulting in $\gamma(v) = 1$
 Therefore eq. \eqref{eq:tau_ij} approximates as
 \cite[eq. 3.12]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\tau_ij \approx \bar{w} v_i v_j.
+\tau_{ij} \approx \bar{w} v_i v_j.
 \label{eq:tau_ij_approx}
 \end{equation}
 
-\iffalse
-Let us define a couple of mathematical tools and quantities that we will need in this section.
+Let us define a couple of mathematical tools and quantities.
 The difference of the wavevectors $\mathbb{q}$ and $\mathbb{k}$,
 \begin{equation}
 \tilde{\mathbb{q}} = \mathbb{q} - \mathbb{k}.
@@ -209,12 +219,12 @@ Using this their product can be expressed as
 \end{equation}
 The length of a vector is denoted as
 \begin{equation}
-q \equiv |\mathbb{q}|
+q \equiv |\mathbb{q}|.
 \end{equation}
 The unit vectors are defined as
 \begin{equation}
 \hat{\mathbb{q}} \equiv \frac{\mathbb{q}}{|\mathbb{q}|} \Rightarrow
-\hat{q}^i \equiv \frac{q^i}{q}
+\hat{q}^i \equiv \frac{q^i}{q}.
 \end{equation}
 The angular frequencies $\omega$ and $\tilde{\omega}$ are defined as
 \cite[p. 10]{hindmarsh_gw_pt_2019}
@@ -233,6 +243,7 @@ t_+ \equiv \frac{t_1 + t_2}{2}, \quad t_- \equiv t_1 - t_2.
 \label{eq:t_plus_minus}
 \end{equation}
 
+\iffalse
 The Fourier transformation of the velocity field can be denoted as
 \cite[eq. 3.13]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -244,14 +255,14 @@ and the two-point function $G$ can therefore be written as
 \langle \tilde{v}_{\mathbb{q}_1}^i (t_1) \tilde{v}_{\mathbb{q}_2}^{*j} (t2) \rangle = \hat{q}_1^i \hat{q}_2^j G(q_1, t_1, t_2) (2\pi)^3 \delta(\mathbb{q_1} - \mathbb{q_2}).
 \end{equation}
 The leading term for the shear stress UETC of eq. \eqref{eq:uetc_final} is therefore
+\fi
 
+Using these tools Hindmarsh et al. have derived in \cite{hindmarsh_gw_pt_2019} that the UETC can be given as
 \cite[eq. 3.32]{hindmarsh_gw_pt_2019}
 \begin{equation}
 U_\Pi(k, t_1, t_2) = 4 \bar{w}^2 \int \frac{d^3 q}{(2\pi)^3} \frac{q^2}{\tilde{q}^2} (1 - \mu^2) P_v(q) P_v(\tilde{q}) \cos (\omega t_-) \cos (\tilde{\omega} t_-)
 \end{equation}
-\fi
-
-Using the result from
+Further by performing an angular integration and changing the integration variable using eq. \eqref{eq:mu} we have
 \cite[eq. 3.34]{hindmarsh_gw_pt_2019}
 \begin{equation}
 U_\Pi (k, t_1, t_2) = \frac{4 \bar{w}^2}{4 \pi^2 k} \int_0^\infty \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q}
@@ -264,12 +275,13 @@ The contents of $P_v(q)$ will be defined later in eq. \eqref{eq:spec_den_v}.
 
 
 \section{Gravitational wave power spectrum from sound waves}
+\section{gw_from_sound_waves}
 In this section we derive the gravitational wave spectrum from the unequal time correlator (UETC).
 The UETC of eq. \eqref{eq:uetc_final} can be substituted to \eqref{eq:p_dot_h_avg},
 resulting in
 \cite[eq. 3.35]{hindmarsh_gw_pt_2019}
 \begin{equation}
-P_\dot{h} (k,t) = (16 \pi G)^2 \frac{4 \bar{w}}{4\pi^2 k}
+P_{\dot{h}} (k,t) = (16 \pi G)^2 \frac{4 \bar{w}}{4\pi^2 k}
 \int_0^\infty dq \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q} \frac{q^2}{\tilde{q}^2} (1-\mu^2)^2
 P_v(q) P_v(\tilde{q}) \Delta(t,k,q,\tilde{q}),
 \end{equation}
@@ -277,11 +289,11 @@ where
 \begin{equation}
 \Delta(t,k,q,\tilde{q}) \approx \frac{1}{2} \int_0^t dt_1 \int_0^t dt_2 \cos(kt_-)\cos(\omega t_-)\cos(\tilde{\omega}t_-).
 \end{equation}
-The approximation comes from the averaging over the number of oscillations at wavenumber $k$ in eq. \eqref{eq:p_dot_h_avg},
+The approximation comes from averaging over the number of oscillations at wavenumber $k$ in eq. \eqref{eq:p_dot_h_avg},
 and $t_-$ is defined in eq. \eqref{eq:t_plus_minus}.
 Using eq. \eqref{eq:t_plus_minus} one can also change the integration variable to $t_0$, resulting in
 \begin{equation}
-\Delta(t,k,q,\tilde{q}) = \frac{1}{2} \int_0^t dt_+ \int_{-2t_+}^{2t_+} dt_- \cos(kt_-) \cos(\omega t_-) \cos(\tilde{omega} t_-).
+\Delta(t,k,q,\tilde{q}) = \frac{1}{2} \int_0^t dt_+ \int_{-2t_+}^{2t_+} dt_- \cos(kt_-) \cos(\omega t_-) \cos(\tilde{\omega} t_-).
 \end{equation}
 Therefore its growth rate is
 \begin{equation}
@@ -292,7 +304,7 @@ Using the trigonometric identity for arbitrary angles $\theta$ and $\phi$,
 \begin{equation}
 \cos \theta \cos \phi = \frac{1}{2} \left( \cos(\theta + \phi) + \cos(\theta - \phi) \right),
 \end{equation}
-at large eq. \eqref{deq:delta_dot} asymptotes to a $\delta$-function as
+at large $t$, eq. \eqref{eq:delta_dot} asymptotes to a $\delta$-function as
 \begin{equation}
 \lim_{t\rightarrow\infty} \dot{\Delta}(t,k,q,\tilde{q}) = \frac{\pi}{8} \Sigma_{\pm\pm\pm} \delta(\pm k \pm \omega \pm \tilde{\omega}).
 \end{equation}
@@ -310,7 +322,7 @@ and therefore
 \end{equation}
 Inserting this to eq. \eqref{eq:p_dot_h_avg} gives us the asymptotic growth rate of the spectral density
 \begin{equation}
-\lim_{t \rightarrow \infty} \dot{P}_\dot{h}(k,t)
+\lim_{t \rightarrow \infty} \dot{P}_{\dot{h}}(k,t)
 = (16 \pi G)^2 \frac{4 \bar{w}^2}{4 \pi^2 k} \int_0^\infty dq \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q} \frac{q^2}{\tilde{q}^2} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}) \frac{\pi}{4}(k - \omega - \tilde{\omega}).
 \end{equation}
 The $\delta$-function of eq. \eqref{eq:delta_dot_lim} has restricted us to
@@ -333,8 +345,8 @@ Inserting eq. \eqref{eq:tilde_q2} to \eqref{eq:mu} gives
 We can now integrate over $q$. Since the expression is no longer time-dependent,
 we can denote it as
 \begin{equation}
-\dot{P}_\dot{h}(k) = (16 \pi G)^2 \frac{\bar{w}}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
-% \label{eq:dot_p_dot_h}
+\dot{P}_{\dot{h}}(k) = (16 \pi G)^2 \frac{\bar{w}}{4 \pi k c_s} \int_{q_-}^{q_+} \frac{q^3}{\tilde{q}} (1 - \mu^2)^2 P_v(q) P_v(\tilde{q}).
+\label{eq:dot_p_dot_h}
 \end{equation}
 
 We can now define the scaled velocity spectral density $\tilde{P}_v$ as
@@ -381,116 +393,234 @@ To get the total gravitational wave power spectrum for a stationary velocity pow
 \cite[eq. 3.48]{hindmarsh_gw_pt_2019}
 \footnote{In \cite{hindmarsh_gw_pt_2019} the $\tilde{P}_{GW}$ is a typo and should be $\tilde{P}_\text{gw}$.}
 \begin{equation}
-\mathcal{P}_\text{gw}(k)
+\Omega_\text{gw}^\text{ssm}
+\equiv \mathcal{P}_\text{gw}(k)
 = \int_{t_0}^{t} dt H \mathcal{P}'_\text{gw}
-= 3 \left( \Gamma \bar{U}_f^2 \right)^2 (H \tau_v)(H L_f) \frac{(kL_f)^3}{2\pi^2} \tilde{P}_\text{gw} (kL_f).
-\label{eq:gw_pow_spec2}
+= 3 \left( \Gamma \bar{U}_f^2 \right)^2 (H \tau_v)(H L_f) \frac{(kL_f)^3}{2\pi^2} \tilde{P}_\text{gw} (kL_f),
+\label{eq:gw_pow_spec3}
 \end{equation}
+where $\Gamma$ is the mean adiabatic index of eq. \eqref{eq:mean_adiabatic_index}.
 This is the equation used by PTtools to compute the gravitational wave spectrum.
-% \cites{hindmarsh_gw_pt_2019}[ch. 8]{lecture_notes}
+The choice of $c_s$ in eq. \eqref{eq:spectral_density} is important and non-trivial,
+since beyond the bag model $c_s = c_s(T(w(\xi),\phi(\xi)))$.
+Therefore for an enthalpy-dependent sound speed the formula is not exact.
+We approximate $c_s$ here as $c_s(T(\bar{w},\phi_b),\phi_b)$,
+as $\bar{w}$, the mean enthalpy after the phase transition of eq. \eqref{eq:wbar},
+gives a reasonable estimate on the temperature of the fluid.
+For the constant sound speed model of section \ref{const_cs} this gives simply $c_{s,b}$.
 
 
 \section{Sound Shell Model}
-TODO write more in this section
-
+\label{sound_shell_model}
+The Sound Shell Model is the set of equations that enables the conversion from the fluid shell profile to the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
+The derivation of the Sound Shell Model is beyond the scope of this thesis and available in \cite{hindmarsh_gw_pt_2019},
+but we will quote here the results necessary for computing the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
+The auxiliary quantity $f(z)$ is defined by
+\cite[eq. 4.5]{hindmarsh_gw_pt_2019}
+\iffalse
 \begin{equation}
 f(z) = \int d^3\xi \frac{1}{\xi} v_\text{ip}(\xi) e^{-iz^i \xi^i}
 = \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi)
 \end{equation}
-
+\fi
 \begin{equation}
-l(z) = \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \sin(z\xi).
+f(z) = \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi),
 \end{equation}
-
+where $v_\text{ip}$ is the velocity profile of a single bubble.
+Similarly the auxiliary quantity $l(z)$ is defined by
+\cite[eq. 4.8]{hindmarsh_gw_pt_2019}
+\begin{align}
+l(z) = \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \sin(z\xi),
+\end{align}
+where $\lambda_\text{ip}$ is the energy fluctuation variable $\lambda$ of eq. \eqref{eq:lambda} for a single bubble.
+The integrations over the sines in these functions is the sine transformation of the Sound Shell Model.
+These can be combined to
+\cite[eq. 4.10]{hindmarsh_gw_pt_2019}
 \begin{equation}
-A(z) \equiv \frac{1}{2} \left( f'(z) + i c_s l(z) \right).
+A(z) \equiv \frac{1}{2} \left( f'(z) + i c_s l(z) \right),
 \end{equation}
-
+where $f'(z) = \frac{d}{dz}f(z)$.
+Since $f'$ and $\lambda$ are real,
+\cite[eq. 4.11]{hindmarsh_gw_pt_2019}
 \begin{equation}
 |A(z)|^2 = \frac{1}{4} \left( f'(z)^2 + (c_s l(z))^2 \right).
 \end{equation}
-
-Mean bubble separation $R_*$
-
 Spectral density of the plane wave components of the velocity field is given as
 \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
-P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2.
+P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2,
 \label{eq:spec_den_v}
 \end{equation}
-
-\begin{equation}
-\tilde{T} = \beta T_i
-\end{equation}
-
+where $R_*$ is the mean bubble separation,
+$\beta$ is the nucleation rate parameter,
+$\eta(\beta T)$ is the bubble lifetime distribution function,
+and $\tilde{T} = \beta T_i$.
 Using eq. \eqref{eq:pow_spec} we can convert this to the velocity power spectrum
 \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\mathcal{P}_\tilde{v}(q)
+\mathcal{P}_{\tilde{v}}(q)
 = 2 \frac{q^3}{2\pi^2} P_v(q)
 = \frac{2}{(\beta R_*)^3} \frac{1}{2\pi^2} \left(\frac{1}{\beta}\right)^3
 \int d \tilde{T} \eta(\tilde{T}) \tilde{T}^6 \left| A \left( \frac{\tilde{T} q}{\beta} \right) \right|^2.
-\end{equation}
-
-
-% Here we jump to ch. 4 for defining the different P's
-The spectral density of the velocity power spectrum is given by
-\begin{equation}
-P_{\tilde{v}} (q) = 2 P_v (q).
-\label{eq:p_tilde_v}
-\end{equation}
-ASDFASDF
-Therefore, the velocity power spectrum is given by eq. \eqref{eq:pow_spec}
-\cite[eq. 4.18]{hindmarsh_gw_pt_2019}
-\begin{equation}
-\mathcal{P}_{\tilde{v}} (q) = 2 \frac{q^3}{2\pi^2} P_{\tilde{v}} (q)
 \label{eq:pow_v}
 \end{equation}
+This can be inserted to eq. \ref{eq:gw_pow_spec3} to get the gravitational wave spectrum.
 
 
+\section{Correction factors}
+\label{correction_factors}
+The Sound Shell Model is an approximation, even though it is a highly useful one.
+To improve upon its results, several correction factors can be applied.
+Giombi et al. have investigated the effects of changing the sound speed on the gravitational wave power spectrum using analytical calculations.
+To implement these corrections, we need the barotropic equation of state parameter
+\cite[p. 3]{giombi_cs_2024}
 \begin{equation}
-\bar{U}_f^2 = \int \frac{dq}{q} \mathcal{P}_\tilde{v}(q)
-= \frac{2}{(\beta R_*)^3} \int TODO
+\omega(T,\phi) \equiv \frac{p(T,\phi)}{e(T,\phi)}.
 \end{equation}
+Giombi et al. define the quantity $\nu$, which we shall call as $\nu_\text{gdh2024}$, as
+\cite[eq. 2.11]{giombi_cs_2024}
+\begin{equation}
+\nu_\text{gdh2024} = \frac{1 - 3\omega}{1 + 3\omega}.
+\label{eq:nu_gdh2024}
+\end{equation}
+Giombi et al. use $\frac{\Delta \eta_v}{\eta_*}$ as the source duration,
+whereas the flow lifetime $\tau_v$ is a more commonly known quantity.
+It is proportional to known quantities as
+\cites[p. 3]{hindmarsh_gw_pt_2019}[p. 6]{gowling_lisa_2021}
+\begin{equation}
+\tau_v \sim \frac{R_*}{\bar{U}_f} \sim \frac{R_*}{\sqrt{K}},
+\end{equation}
+where $R_*$ is the mean bubble separation, and
+$K$ is the kinetic energy fraction of eq. \eqref{eq:kinetic_energy_fraction2},
+which can be computed from the fluid shell.
+The Hubble-scaled mean bubble spacing is defined as
+\cite[eq. 2.2]{gowling_lisa_2021}
+\begin{equation}
+r_* \equiv H_n R_*.
+\end{equation}
+To convert between $r_*$ and the source duration by Giombi et al.,
+we define the source lifetime multiplier $\lambda$ as
+\begin{equation}
+\frac{\Delta \eta}{\eta_*} = \lambda \frac{2 r_*}{\sqrt{K}}.
+\end{equation}
+We define the source lifetime factor $\Lambda$
+\cite[eq. 3.13]{giombi_cs_2024}
+\begin{equation}
+\Lambda \equiv \frac{1}{1 + 2\nu} \left(1 - \left(1 + \frac{\Delta \eta}{\eta_*} \right) \right)^{-1-2\nu},
+\end{equation}
+where $\nu = \nu_\text{gdh2024}$ of eq. \eqref{eq:nu_gdh2024}.
+With this we can describe the corrected spectral density by Giombi et al. simply as
+\begin{equation}
+\tilde{P}_\text{gw,corr.}(k)
+\equiv \Lambda \tilde{P}_\text{gw}(k)
+\end{equation}
+% 3 \Gamma^2
+
+Another thing that we need to take into account is that the Sound Shell Model is an approximation even for the bag model,
+and to get more accurate results,
+we need to apply a suppression factor $\Sigma(v_\text{w},\alpha_n)$ derived from comparing Sound Shell Model results to 3D hydrodynamic simulations,
+\cite[eq. 2.9]{gowling_lisa_2021}
+\begin{equation}
+\Omega_\text{gw}(z) = \Omega_\text{gw}^\text{ssm}(z) \Sigma(v_\text{w},\alpha_n),
+\end{equation}
+where $\Omega_\text{gw}^\text{ssm}(z)$ is the Sound Shell Model prediction from eq. \eqref{eq:gw_pow_spec3}.
+The results in ch. \ref{ch:results} implement both the source lifetime factor $\Lambda$ and the suppression factor $\Sigma$.
 
 
 \section{Gravitational wave power spectra today}
-In addition to these Sound Shell Model calculations, PTtools applies a few correction factors.
-For these we need to define a few additional quantities.
-
-Barotropic equation of state parameter
+\label{omgw0}
+Inserting the result \eqref{eq:pow_v} from the Sound Shell Model to eq. \eqref{eq:gw_pow_spec3} gives the gravitational wave spectrum $\mathcal{P}_\text{gw}(k)$.
+In this section we convert this to the gravitational wave spectrum today, $\Omega_{\text{gw},0}$, which is an observable quantity.
+The power attenuation following the end of the radiation era is given by
+\cites[eq. 2.11]{gowling_lisa_2021}[eq. 19]{caprini_detecting_2020}
+\footnote{In \cite[eq. 2.11]{gowling_lisa_2021} the $\frac{4}{9}$ is a typo and should be $\frac{4}{3}$ as in \cite[eq. 19]{caprini_detecting_2020}.}
 \begin{equation}
-\omega(T,\phi) \equiv \frac{p(T,\phi)}{e(T,\phi)}
+F_{\text{gw},0} = \Omega_{\gamma,0} \left( \frac{g_{s0}}{g_{s*}} \right)^\frac{4}{3} \frac{g_*}{g_0}.
 \end{equation}
-
-The $\nu$ term of \cite[eq. 2.11]{giombi_cs_2024}
+Here the density parameter of photons today, $\Omega_{\gamma,0} \approx 1.0995 \cdot 10^{-4}$.
+The degrees of freedom today are $g_0 = 2, g_{s0} \approx 3.91$.
+In the Standard Model $g_{s*} = g_*$ for $T > 0.1 \text{MeV}$,
+and in PTtools these can be extracted from the given equation of state or specified by the user.
+The Hubble rate at the phase transition redshifted to today is given by
+\cites[eq. 2.13]{gowling_lisa_2021}[eq. 31]{caprini_detecting_2020}
 \begin{equation}
-\nu_\text{gdh2024} = \frac{1 - 3\omega}{1 + 3\omega}
+f_{*,0} = 2.6 \cdot 10^{-6} \text{Hz} \left( \frac{T_n}{100 \text{GeV}} \right) \left( \frac{g_*}{100} \right)^\frac{1}{6}.
 \end{equation}
-
-We define the source lifetime multiplier $\lambda$ as
+Using this we can convert from the dimensionless wavenumber $z$ to frequency today by taking into account the redshift
+\cite[eq. 2.12]{gowling_lisa_2021}
 \begin{equation}
-\frac{\Delta \eta}{\eta_*} = \lambda \frac{2 r_*}{\sqrt{K}}
+f = \frac{z}{r_*} f_{*,0}.
 \end{equation}
-
-Source lifetime factor \cite[eq. 3.13]{giombi_cs_2024}
+The power spectrum today at the physical frequency f is
+\cite[eq. 2.10]{gowling_lisa_2021}
 \begin{equation}
-X_s \equiv \frac{1}{1 + 2\nu} \left(1 - \left(1 + \frac{\Delta \eta}{\eta_*} \right) \right)^{-1-2\nu}
+\Omega_{\text{gw},0}(f) = F_{\text{gw},0} \Omega_\text{gw}(z(f)).
 \end{equation}
-
-The corrected spectral density is defined as
-\begin{equation}
-\mathcal{P}_\text{gw,corr.}(k)
-\equiv 3 \Gamma^2 X_s \mathcal{P}_\text{gw,corr.}(k)
-\end{equation}
+Now we have defined the complete process from converting the fluid shell profile to the observable gravitational wave spectrum today.
 
 
 \section{Instrument noise}
+\label{noise}
+To determine whether a phase transition can be resolved by LISA,
+we need to compare its gravitational wave power spectrum to the power spectrum of the noise.
+The LISA noise consists of the instrument noise and noise from the astrophysical foreground.
+The most notable astrophysical noise sources are the extragalactic compact binaries and unresolved galactic compact binaries.
+These have been left out from this thesis for simplicity, but are included in PTtools \cite{pttools}.
+\cite{gowling_lisa_2021}
 
-LISA instrument noise
+The LISA instrument noise is expected to consist primarily by two main sources: the test mass acceleration noise (acc), and the optical metrology noise (oms).
+The optical metrology noise is caused by single link optical path-length fluctuations.
+Their noise target for LISA is
+\cites[eq. 3.2]{gowling_lisa_2021}[eq. 54]{smith_lisa_2019}
 \begin{equation}
-ASDF
+P_\text{oms} = \left( \frac{1.5 \cdot 10^{-11} \text{m}}{L} \right)^2 \text{Hz}^{-1},
+\end{equation}
+where $L = 2.5 \cdot 10^9 m$
+\footnote{In \cite[p. 12]{gowling_lisa_2021} there is a typo in the value of $L$. This thesis uses the correct value.}
+is the LISA constellation arm length.
+The single test mass acceleration noise target for LISA is
+\cites[eq. 3.3]{gowling_lisa_2021}[eq. 52-53]{smith_lisa_2019}
+\begin{equation}
+P_\text{acc} = \left( \frac{3 \cdot 10^{-15} \frac{m}{s^2}}{(2\pi f)^2 L} \right)^2 \left( 1 + \left( \frac{0.4 \text{mHz}}{f} \right)^2 \right) \text{Hz}^{-1}.
+\end{equation}
+The transfer frequency is the inverse of the time it takes for light to be sent between the LISA satellites,
+\begin{equation}
+f_t \equiv \frac{c}{2 \pi L},
+\end{equation}
+where $c$ is the speed of light.
+The modulation caused by one round trip of a signal along a link is given by
+\cite[p. 12]{gowling_lisa_2021}
+\begin{equation}
+W(f,f_t) = 1 - \exp \left( \frac{-2if}{f_t} \right).
+\end{equation}
+Using these we can express the instrument noise in the A and E channels of LISA as
+\cites[eq. 3.4]{gowling_lisa_2021}[eq. 57]{smith_lisa_2019}
+\begin{equation}
+N_A = N_E = \left(
+\left(4 + 2 \cos \left( \frac{f}{f_t} \right) \right) P_\text{oms} +
+8 \left( 1 + \cos \left( \frac{f}{f_t} \right) + \cos^2 \left( \frac{f}{f_t} \right) \right) P_\text{acc}
+\right) |W|^2.
+\end{equation}
+The gravitational wave response function for the A and E channels is known only numerically, but can be approximated as
+\cites[eq. 3.6]{gowling_lisa_2021}[eq. 32]{smith_lisa_2019}
+\begin{equation}
+\mathcal{R}_A^\text{Fit} = \mathcal{R}_E^\text{Fit} \approx \frac{9}{20} |W|^2 \left( 1 + \left( \frac{3f}{4f_t} \right)^2 \right)^{-1}.
 \end{equation}
 
-There are also other noise sources such as ASDF and ASDF.
-These are left out from this thesis for simplicity, but are included in PTtools \cite{pttools}.
+The noise power spectral density (PSD) is defined as
+\cite[eq. 3.1]{gowling_lisa_2021}
+\begin{equation}
+S(f) \equiv \frac{N(f)}{\mathcal{R}(f)}.
+\end{equation}
+This can be converted to the fractional energy density power spectrum with
+\cites[eq. 3.8]{gowling_lisa_2021}[eq. 59]{smith_lisa_2019}
+\begin{equation}
+\Omega_\text{ins} = \left( \frac{4 \pi^2}{3 H_0^2} \right) f^3 S_A(f)
+\end{equation}
+Now that we know the power spectra for both the GW signal and noise, we can compute the signal-to-noise ratio can be computed with
+\cites[eq. 50]{smith_lisa_2019}[eq. 33]{caprini_detecting_2020}
+\begin{equation}
+\text{SNR} = \sqrt{t_\text{meas} \int_{f_\text{min}}^{f_\text{max}} df \frac{\Omega_\text{signal}(f)^2}{\Omega_\text{noise}(f)^2}},
+\end{equation}
+where $t_\text{meas}$ is the total measurement time.
+Now we have the means to determine whether a phase transition with a particular fluid profile can be detected by LISA.
