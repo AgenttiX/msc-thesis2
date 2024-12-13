@@ -301,10 +301,11 @@ Therefore its growth rate is
 \dot{\Delta}(t,k,q,\tilde{q}) \equiv \frac{d}{dt} \Delta(t,k,q,\tilde{q}) = \frac{1}{2} \int_{-2t}^{2t} dt_- \cos(kt_-) \cos(\omega t_-) \cos(\tilde{\omega} t_-).
 \label{eq:delta_dot}
 \end{equation}
-Using the trigonometric identity for arbitrary angles $\theta$ and $\phi$,
-\begin{equation}
-\cos \theta \cos \phi = \frac{1}{2} \left( \cos(\theta + \phi) + \cos(\theta - \phi) \right),
-\end{equation}
+% Using the trigonometric identity for arbitrary angles $\theta$ and $\phi$,
+% \begin{equation}
+% \cos \theta \cos \phi = \frac{1}{2} \left( \cos(\theta + \phi) + \cos(\theta - \phi) \right),
+% \end{equation}
+Using a trigonometric identity for the product of cosines,
 at large $t$, eq. \eqref{eq:delta_dot} asymptotes to a $\delta$-function as
 \begin{equation}
 \lim_{t\rightarrow\infty} \dot{\Delta}(t,k,q,\tilde{q}) = \frac{\pi}{8} \Sigma_{\pm\pm\pm} \delta(\pm k \pm \omega \pm \tilde{\omega}).
@@ -321,6 +322,8 @@ and therefore
 \lim_{t\rightarrow\infty} \dot{\Delta}(t,k,q,\tilde{q}) = \frac{\pi}{4} \delta (k - \omega - \tilde{\omega}).
 \label{eq:delta_dot_lim}
 \end{equation}
+Beyond these approximations, these two terms are dominant,
+but the other terms do have a finite contribution as well \cite{sharma_shallow_2023}{pol_characterization_2023}.
 Inserting this to eq. \eqref{eq:p_dot_h_avg} gives us the asymptotic growth rate of the spectral density
 \begin{equation}
 \lim_{t \rightarrow \infty} \dot{P}_{\dot{h}}(k,t)
