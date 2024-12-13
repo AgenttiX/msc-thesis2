@@ -118,27 +118,27 @@ The fluid inside the fixed point is stationary.
 There is also another fixed point at $(\xi=1, v=1)$, but we choose the direction of $\tau$ in eq. \eqref{eq:hydro_param1}, \eqref{eq:hydro_param2} and \eqref{eq:hydro_param3} so that we integrate in the correct direction.
 
 Subsonic deflagrations are more complicated,
-as we cannot compute $v_{-,sh}, w_{-,sh}$ from $v_{+,sh}=0, w_{+,sh}=w_n$ using the junction conditions,
+as we cannot compute $v_{-,\text{sh}}, w_{-,\text{sh}}$ from $v_{+,\text{sh}}=0, w_{+,\text{sh}}=w_n$ using the junction conditions,
 since we don't know the shock speed beforehand.
 For some deflagrations, the shock can also be too small for the numerical accuracy of the junction solver,
-since when $v_{sh}$ is close to $c_{s,s}$, the fluid profile can vary significantly with small changes of $v_{sh}$.
+since when $v_\text{sh}$ is close to $c_{s,s}$, the fluid profile can vary significantly with small changes of $v_\text{sh}$.
 Therefore, we have to start by guessing a $w_-$.
 Since the fluid inside the wall is stationary, we know that $\tilde{v}_- = v_{\text{wall}}$.
 For a given $(v_-, w_-)$ we can solve the junction conditions, giving $(v_+, w_+)$.
 From these we can integrate until we encounter the shock.
-However, we cannot directly compute $v_{sh}(\xi_{sh})$, as it's dependent on $w_{-,sh}$.
-Therefore we have to evaluate $v_{sh}(\xi_{sh}, w_{-,sh})$ for each $(\xi, w)$ on the integrated curve to see
+However, we cannot directly compute $v_\text{sh}(\xi_\text{sh})$, as it's dependent on $w_{-,\text{sh}}$.
+Therefore we have to evaluate $v_\text{sh}(\xi_\text{sh}, w_{-,\text{sh}})$ for each $(\xi, w)$ on the integrated curve to see
 when the curve encounters the shock.
 This is accomplished by a binary search.
-Once we know $\xi_{sh}$, we can solve the junction conditions with $v_{+,sh} = 0$, giving us a $w_{+,sh}$.
+Once we know $\xi_\text{sh}$, we can solve the junction conditions with $v_{+,\text{sh}} = 0$, giving us a $w_{+,\text{sh}}$.
 Then we compare this to the given $w_n$.
-If they don't match, we adjust our guess for $w_-$ and start again until we have $w_{+,sh} = w_n$.
+If they don't match, we adjust our guess for $w_-$ and start again until we have $w_{+,\text{sh}} = w_n$.
 
 Hybrids are the most complicated case, as neither $v_+$ nor $v_-$ is known beforehand.
 Therefore we start by guessing a $w_-$, and we know that $\tilde{v}_- = c_s(w_-, \phi_-)$.
 Then we can solve the junction conditions to get $(v_+, w_+)$.
 With these we can integrate until we encounter the shock.
-Then we perform the rest of the steps as for deflagrations, and iterate until we have $w_{+,sh} = w_n$.
+Then we perform the rest of the steps as for deflagrations, and iterate until we have $w_{+,\text{sh}} = w_n$.
 Once this is found, we integrate from our starting point $(v_-, w_-)$ to the fixed point to get the detonation-like tail,
 resulting in the full hybrid solution.
 

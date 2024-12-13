@@ -6,7 +6,7 @@ Figure \ref{fig:fluid_profiles} demonstrates solutions for three different wall 
 Instead of using only the bag model which has the squared sound speeds $c_{s,s}^2 = c_{s,b}^2 = \frac{1}{3}$,
 each plot has four curves, each corresponding to a different combination of the squared sound speeds
 $c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}$.
-The corresponding gravitational wave spectra are plotted in \ref{fig:gw_spectra}.
+The corresponding gravitational wave spectra are plotted in figure \ref{fig:gw_spectra}.
 Converting these to the frequencies and amplitudes today results in the figure \ref{fig:omgw0},
 which also contains the LISA instrument noise spectrum as a reference.
 
@@ -39,14 +39,14 @@ These figures demonstrate that the sound speed can have a profound effect on the
 To understand how the sound speed affects the gravitational wave spectrum,
 we have to first study the fluid shells of figure \ref{fig:fluid_profiles}.
 There are two curves that constrain the shape of the fluid shells.
-The solid black curves are the shock velocities $v_{sh}(\xi,c_{s,s})$ that are determined by $c_{s,s}$.
+The solid black curves are the shock velocities $v_\text{sh}(\xi,c_{s,s})$ that are determined by $c_{s,s}$.
 In general the shock velocity is also dependent on $w$, since $c_s = c_s(w,\phi)$,
 but in the constant sound speed model the sound speed is independent of the enthalpy,
 as it is a constant for each phase.
 Therefore we can plot the shock velocities as curves in the 2D plots instead of having to plot them as surfaces as functions of $(\xi,w)$ in a 3D plot.
 The dotted black curves are the $\mu(\xi,c_{s,b})$ curves of eq. \eqref{eq:mu} that constrain the maximum fluid velocity inside the bubble.
 They are dependent on the choice of $c_{s,b}$.
-The $v_{sh}$ curves encounter $v=0$ at $\xi = c_{s,s}$ and the $\mu$ curves at $\xi = c_{s,b}$.
+The $v_\text{sh}$ curves encounter $v=0$ at $\xi = c_{s,s}$ and the $\mu$ curves at $\xi = c_{s,b}$.
 
 For all solution types, adjusting either of the sound speeds affects the degrees of freedom and therefore the pressure $p$ and enthalpy $w$ for that phase.
 This affects the solution of the bubble wall junction conditions of eq. \eqref{eq:junction_condition_1}, \eqref{eq:junction_condition_2} and therefore $v(\xi_\text{wall})$,
@@ -81,6 +81,14 @@ which distinguishes them from the detonations and deflagrations.
 Outside the region of the peak, the gravitational wave spectra follow a $k^9$ power law at low $z$,
 and $k^{-3}$ at high $z$.
 
+The signal-to-noise ratios of the example spectra in figure \ref{fig:omgw0} and table \ref{table:const_cs_gw_snr}
+are entirely below the LISA noise curve except for the one curve with
+$c_{s,s} = \frac{1}{4}, c_{s,b} = \frac{1}{3}, \alpha_n = 0.2, v_\text{wall} = 0.68$,
+but the signal-to-noise ratios above unity by an order of magnitude or two for many of the curves.
+This is thanks to the integrated nature of the signal,
+which makes the overall signal distinguishable from the noise power spectrum even though the power at individual frequencies is below the noise.
+\cite{thrane_sensitivity_2013}
+
 % -----
 % Giese comparison
 % -----
@@ -101,14 +109,14 @@ and the dot-dashed line has $c_{s,s}^2 = \frac{1}{4} c_{s,b}^2 = \frac{1}{4}$.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{../pttools/examples/fig/giese_lisa_fig2_kappa.eps}
+\includegraphics[width=\textwidth]{msc2-python/fig/giese_lisa_fig2_alpha_n.eps}
 \caption{Comparison of $\kappa$ values by \cite[fig. 2]{giese_2021} and PTtools}
 \label{fig:kappa_giese}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth]{../pttools/examples/fig/giese_lisa_fig2_kappa_diff.eps}
+\includegraphics[width=\textwidth]{msc2-python/fig/giese_lisa_fig2_alpha_n_diff.eps}
 \caption{Relative difference of the $\kappa$ values by \cite[fig. 2]{giese_2021} and PTtools}
 \label{fig:kappa_giese_diff}
 \end{figure}
