@@ -31,7 +31,7 @@ These solutions are classified in table \ref{table:solution_types}.
 \begin{tabular}{r|c|c}
                 & Detonations            & Deflagrations \\
                 & $p_+ < p_-, \tilde{v}_+ > \tilde{v}_-$ & $p_+ > p_-, \tilde{v}_+ < \tilde{v}_-$ \\ \hline
-Weak            & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$ \\
+Weak            & $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$ & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$ \\
 Chapman-Jouguet & $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ & $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- = c_{s-}(w_-)$ \\
 Strong          & {\color{gray} $\tilde{v}_+ > c_{s+}(w_+), \ \tilde{v}_- < c_{s-}(w_-)$} & {\color{gray} $\tilde{v}_+ < c_{s+}(w_+), \ \tilde{v}_- > c_{s-}(w_-)$} \\
 \end{tabular}
@@ -42,19 +42,17 @@ The solutions with $\tilde{v}_+ > \tilde{v}_-$ are known as detonations.
 % In this case there is no way for the front to influence the fluid ahead,
 % and the outermost front is a shock.
 Detonations are further characterised by the scale of their $\tilde{v}_-$.
-In weak detonations $\tilde{v}_- > c_{s-}(w_-)$.
-However, weak detonations are not possible in an exothermic reaction such as a cosmological phase transition.
-\cite[p. 265]{rezzolla_relativistic_2013}
-\todo{According to Hindmarsh weak detonations could exist. Check whether this is possible!}
-\todo{How should we modify the $(\xi,v)$ plot for weak detonations to appear?}
+In weak detonations $\tilde{v}_- > c_{s-}(w_-)$.%
+\footnote{The note in Rezzolla's book \cite[p. 265]{rezzolla_relativistic_2013} that weak detonations are not possible in an exothermic reaction does not apply to cosmological phase transitions, since in them the number of particles is not conserved.}
 Correspondingly, detonations with $\tilde{v}_- < c_{s-}(w_-)$ are known as strong detonations.
 However, they are unstable and will naturally evolve into the third class of detonations,
 the Chapman-Jouguet detonations, for which $\tilde{v}_- = c_{s-}(w_-)$.
 \cite[p. 279]{rezzolla_relativistic_2013}
 Since we are investigating a self-similar bubble that has already evolved for some time,
-all our detonations of interest are Chapman-Jouguet detonations.
-\todo{What would a strong detonation look like in the $(\xi,v)$ plot?}
-In Chapman-Jouguet detonations the shock and phase boundary fronts are unified to a single front.
+the most of our detonations are weak detonations,
+and those at the detonation-hybrid boundary are Chapman-Jouguet detonations.
+In detonations the shock and phase boundary fronts are unified to a single front.
+\cite{kurki-suonio_supersonic_1995}
 
 The solutions where $\tilde{v}_+ < \tilde{v}_-$ are known as deflagrations.
 In them the phase front can influence the fluid ahead, and the wall is preceded by an accelerating fluid and a shock.
@@ -64,18 +62,17 @@ Therefore only weak and Chapman-Jouguet deflagrations are possible.
 In weak detonations the fluid inside the phase boundary is still, and the preceding shock is weak and
 known as the precompression front.
 
-In several articles \cites[p. 37]{lecture_notes}[p. 35]{hindmarsh_gw_pt_2019}
-Chapman-Jouguet deflagrations are known as supersonic deflagrations or hybrids,
-\todo{Chapman-Jouguet detonations are the fastest, but the relation between hybrids and C-J is not one-to-one. Fix this}
-as in them the wall speed exceeds the speed of sound in the broken phase $c_{s-}$,
+The third class of solutions are the supersonic deflagrations, also known as hybrids.
+They consists of a Chapman-Jouguet deflagration followed by a detonation-like rarefaction wave.
+\cites{kurki-suonio_supersonic_1995}[p. 37]{lecture_notes}[p. 35]{hindmarsh_gw_pt_2019}
+In hybrids the wall speed exceeds the speed of sound in the broken phase $c_{s-}$,
 and the fluid is moving inside the phase boundary as well, as in a detonation.
-\todo{Investigate what a strong detonation looks like.}
 The three solution types: subsonic deflagrations, supersonic deflagrations aka. hybrids and detonations are illustrated in figure \ref{fig:solution_types}.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=\textwidth]{msc2-python/fig/relativistic_combustion.eps}
-\caption{Three different types of relativistic combustion. Generated with PTtools. See also \cite[fig. 14]{lecture_notes}.}
+\caption{Three different types of relativistic combustion. Generated with PTtools. See also \cites[fig. 14]{lecture_notes}[fig. 14]{mazumdar_review_2019}.}
 \label{fig:solution_types}
 \end{figure}
 
