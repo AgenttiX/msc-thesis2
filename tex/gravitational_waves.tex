@@ -413,38 +413,98 @@ For the constant sound speed model of section \ref{const_cs} this gives simply $
 \section{Sound Shell Model}
 \label{sound_shell_model}
 The Sound Shell Model is the set of equations that enables the conversion from the fluid shell profile to the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
-The derivation of the Sound Shell Model is beyond the scope of this thesis and available in \cite{hindmarsh_gw_pt_2019},
-but we will quote here the results necessary for computing the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
-The auxiliary quantity $f(z)$ is defined by
+It is based on the concept that the velocity field arises from the superposition of fields produced by $N_b$ individual bubbles.
+% The derivation of the Sound Shell Model is beyond the scope of this thesis and available in \cite{hindmarsh_gw_pt_2019},
+% but we will quote here the results necessary for computing the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
+\cite[eq. 4.1]{hindmarsh_gw_pt_2019}
+\begin{equation}
+v_i(\mathbf{x],t) = \sum_{n=1}^{N_b} v_i^{(n)} (\mathbf{x},t).
+\end{equation}
+The dimensionless coordinate $\xi$ is defined as in eq. \eqref{eq:xi},
+\begin{equation}
+\xi = \frac{R^{(n)}{T^{(n)}},
+\end{equation}
+where $T^{(n})$ is the time since the nucleation of the $n$th bubble, given by
+\begin{equation}
+T^{(n)} = t - t^{(n)}.
+\label{eq:bubble_lifetime}
+\end{equation}
+The velocity field of each bubble is radial with respect to its center $\mathbf{x}_n$, it can be writen as
+\cite[eq. 4.2]{hindmarsh_gw_pt_2019}
+\begin{equation}
+v_i^{(n)}(\mathbf{x},t}) = \frac{R_i^{(n)}}{R^{(n)} v_\text{ip}(\xi},
+\end{equation}
+where $R_i^{(n)} = \x_i - x_i^{(n)}$ is the distance from the bubble surface from its centre.
+The Fourier transform of the velocity field of a single bubble is given by
+\cite[eq. 4.3]{hindmarsh_gw_pt_2019}
+\begin{align}
+\tilde{v}_i^{(n)} (\mathbf{q},t)
+&= \int d^3 x v_i^{(n)} (\mathbf{x},t) e^{-i \mathbf{q} \cdot \mathbf{x}}
+&= \int d^3 R^{(n)} \frac{R_i^{(n)}}{R^{(n)}} v_\text{ip}(\xi) e^{-i \mathbf{q} \cdot \mathbf{R}^{(n)}}.
+\end{align}
+Let us define the dimensionless wavenumber $z$ as
+\begin{equation}
+z^i = q^i T^{(n)}.
+\end{equation}
+By changing the integration variable from $R^{(n)}$ to $\xi$ we get
+\cite[eq. 4.4, eq. 4.6]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\tilde{v}_i^{(n)} (\mathbf{q},t)
+&= e^{-i \mathbf{q} \cdot x^{(n)}} i (T^{(n)})^3 \frac{\partial}{\partial z_i} \left(
+\int d^3 \xi \frac{1}{\xi} v_\text{ip}(\xi) e^{-i z^i \xi^i} \\
+&= e^{-i \mathbf{q} \cdot x^{(n)}} i (T^{(n)})^3 \hat{z}^i f'(z),
+\end{equation}
+where we have denoted the part in the parentheses as $f(z)$, and $f'(z) = \frac{d}{dz}f(z)$.
+Performing the angular integration in $f(z)$ results in
 \cite[eq. 4.5]{hindmarsh_gw_pt_2019}
-\iffalse
 \begin{equation}
 f(z) = \int d^3\xi \frac{1}{\xi} v_\text{ip}(\xi) e^{-iz^i \xi^i}
-= \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi)
+= \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi).
 \end{equation}
-\fi
+% where $v_\text{ip}$ is the velocity profile of a single bubble.
+Performing similar steps for the energy perturbation variable $\lambda$ of eq. \eqref{eq:lambda}, we get its Fourier transformation
 \begin{equation}
-f(z) = \frac{4\pi}{z} \int_0^\infty d\xi v_\text{ip}(\xi) \sin(z\xi),
+\tilde{\lambda}^{(n)}(\mathbf{q},t) = e^{-i \mathbf{q} \cdot \mathbf{x}} (T^{(n)})^3 l(z),
 \end{equation}
-where $v_\text{ip}$ is the velocity profile of a single bubble.
-Similarly the auxiliary quantity $l(z)$ is defined by
+where similar to $f(z)$ we have $l(z)$ given by
 \cite[eq. 4.8]{hindmarsh_gw_pt_2019}
 \begin{align}
 l(z) = \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \sin(z\xi),
 \end{align}
 where $\lambda_\text{ip}$ is the energy fluctuation variable $\lambda$ of eq. \eqref{eq:lambda} for a single bubble.
 The integrations over the sines in these functions is the sine transformation of the Sound Shell Model.
-These can be combined to
+Assuming that the entire fluid perturbation characterised by $f(z)$ and $l(z)$ becomes the initial condition for a sound wave at the collision time $t_i^{(n)}$,
+its contribution to the plane wave is
+\begin{equation}
+v_{\mathbb{q},i}^{(n)} = i (T_i^{(n)})^3 \hat{z}_i e^{i \omega t_i - i \mathbf{q} \cdot \mathbf{x}^{(n)}} A(z).
+\end{equation}
+These can be combined to the wavefunction launched by a single bubble,
 \cite[eq. 4.10]{hindmarsh_gw_pt_2019}
 \begin{equation}
-A(z) \equiv \frac{1}{2} \left( f'(z) + i c_s l(z) \right),
+A(z) \equiv \frac{1}{2} \left( f'(z) + i c_s l(z) \right).
 \end{equation}
-where $f'(z) = \frac{d}{dz}f(z)$.
 Since $f'$ and $\lambda$ are real,
 \cite[eq. 4.11]{hindmarsh_gw_pt_2019}
 \begin{equation}
 |A(z)|^2 = \frac{1}{4} \left( f'(z)^2 + (c_s l(z))^2 \right).
 \end{equation}
+
+Now that we have the plane wave created by a single bubble,
+we can combine these to get the overall velocity power spectrum.
+The plane wave correlation function for $N_b$ randomly-placed bubbles in a volume $\mathcal{V}$ is given by
+\cite[eq. 4.12]{hindmarsh_gw_pt_2019}
+\begin{equation}
+\lbracket v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rbracket
+= \sum_{m=1}^N_b \sum_{n=1}^{N_b} \lbracket
+(T_i^{(m)})^3 (T_i^{(n)})^3 \hat{z}^i \hat{z}'^{j} A(z) A^*(z')
+e^{-i \mathbf{q_1} \cdot \mathbf{x}^{(m)} + i \mathbf{q}_2 \cdot \mathbf{x}^{(n)}}
+e^{i (\omega_1 - \omega_2) t_i
+\rbracket.
+\end{equation}
+The averaging $\lbracket \rbracket$ is over the ensemble of bubble locations $\mathbf{x}^{(n)}$, nucleation times $t^{(n)}$ and collision times $t_i^{(n)}$.
+
+ASDFASDFASDF
+
 Spectral density of the plane wave components of the velocity field is given as
 \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -618,7 +678,7 @@ This can be converted to the fractional energy density power spectrum with
 \Omega_\text{ins} = \left( \frac{4 \pi^2}{3 H_0^2} \right) f^3 S_A(f)
 \end{equation}
 Now that we know the power spectra for both the GW signal and noise, we can compute the signal-to-noise ratio can be computed with
-\cites[eq. 50]{smith_lisa_2019}[eq. 33]{caprini_detecting_2020}
+\cites[eq. 50]{smith_lisa_2019}[eq. 33]{caprini_detecting_2020}[eq. 21]{thrane_sensitivity_2013}
 \begin{equation}
 \text{SNR} = \sqrt{t_\text{meas} \int_{f_\text{min}}^{f_\text{max}} df \frac{\Omega_\text{signal}(f)^2}{\Omega_\text{noise}(f)^2}},
 \end{equation}
