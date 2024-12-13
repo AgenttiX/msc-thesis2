@@ -61,6 +61,8 @@ PTtools also checks the validity of the solution.
 Further details on PTtools are subject to change as the library is being developed.
 Please see the PTtools documentation for the latest information.
 An example on the Python code required for creating the gravitational wave power spectrum from the phase transition parameters is below.
+
+\lstset{breaklines=true}
 \begin{lstlisting}[language=Python]
 import matplotlib.pyplot as plt
 
@@ -77,7 +79,7 @@ const_cs = ConstCSModel(
 bubble = Bubble(const_cs, v_wall=0.5, alpha_n=0.2)
 bubble.plot()
 
-# Compute gravitational wave spectrum for the bubble
+# Compute gravitational wave velocity and power spectra for the bubble
 spectrum = Spectrum(bubble)
 spectrum.plot_multi()
 

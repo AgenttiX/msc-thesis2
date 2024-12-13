@@ -21,7 +21,7 @@ and therefore results in a gravitational wave signal that can be measured today.
 This makes LISA a direct experiment that can distinguish between different extensions of the Standard Model.
 The temperatures in the early universe were so extreme that they are difficult to replicate in particle colliders,
 and therefore LISA is capable of probing conditions beyond the scope of existing particle colliders.
-\cite{lecture_notes}
+\cites{lecture_notes}{kajantie_is_1996}{caprini_detecting_2020}
 
 First-order phase transitions proceed by the nucleation, expansion and collision of bubbles.
 The situation is quite similar to that of a water kettle,
@@ -29,7 +29,7 @@ except that the phase transition occurs when the temperature is decreasing.
 As the universe cools down,
 it becomes energetically favourable for the field to change its phase.
 However, in first-order phase transitions there is a potential barrier which prevents the field from transitioning to the new phase immediately.
-Eventually this barrier is overcome by spontaneous quantum tunneling at random locations.
+Eventually this barrier is overcome by spontaneous quantum tunneling or thermal activation at random locations.
 This releases energy, which pushes the nearby regions to the new phase as well.
 This creates spherically expanding regions of the new phase surrounded by a phase boundary.
 These are known as bubbles.
@@ -38,12 +38,12 @@ However, this is not the end of the story,
 as the expanding domain walls have caused the fluid to move with them,
 and these waves persist beyond the end of the phase transition.
 These waves are strong enough to cause the space-time itself to ripple with them,
-and these are the gravitational waves that, if they have occurred, have persisted to the present day.
-However, since they have occurred in the very early universe, they have redshifted to much longer wavelengths in the millihertz regime.
-This is why the existing LIGO and Virgo gravitational wave detectors have been insufficient.
-They are ground-based detectors, and their arms have been too short to detect these long-wavelength gravitational waves.
-To detect the millihertz-range gravitational waves of cosmological origin, the 2.5 million kilometer long lasers of the LISA are required.
-\cite{lecture_notes}
+and these are the gravitational waves that, if they occurred, have persisted to the present day.
+However, since they occurred in the very early universe, they have redshifted to much longer wavelengths in the millihertz regime.
+The existing LIGO and Virgo gravitational wave detectors are ground-based detectors,
+and their arms have been too short to detect these long-wavelength gravitational waves.
+To detect the millihertz-range gravitational waves of cosmological origin, the much longer lasers of the LISA are required.
+\cites{lecture_notes}{hindmarsh_gw_pt_2019}{mazumdar_review_2019}
 
 The spectrum of the gravitational waves is characterised by five key parameters.
 These are the nucleation temperature $T_n$,
@@ -54,7 +54,7 @@ and the sound speed $c_s$.
 \cite{lecture_notes}
 The effects of the first four parameters have been studied extensively in the literature,
 but in the vast majority of the studies so far with a few exceptions
-\cites{giese_2020}{giese_2021}{tenkanen_speed_2022}{tian_gw_2024}
+\cites{leitao_hydrodynamics_2015}{giese_2020}{giese_2021}{tenkanen_speed_2022}{tian_gw_2024}
 the sound speed $c_s$ has been assumed to be that of ultrarelativistic plasma: $c_s = \frac{1}{\sqrt{3}}$.
 In this thesis I investigate more realistic scenarios, where the plasma is not fully ultrarelativistic,
 but instead it has degrees of freedom $g(T,\phi)$ that are dependent on the temperature (and depending on the definition of the model, also the phase) and the potential of the field $V(T,\phi)$,
@@ -62,6 +62,7 @@ which depends on the temperature and the phase.
 The speed of sound $c_s(T,\phi)$ is dependent on these quantities,
 and therefore it's dependent on the temperature and the phase.
 This complicates the numerical simulation of the fluid profile of the bubbles significantly.
+\cites{leitao_hydrodynamics_2015}{giese_2020}{giese_2021}
 This thesis is based on the phase transition simulation framework PTtools originally developed by Hindmarsh et al.
 In this thesis it has been extended to account for these more complex models.
 This updated version of PTtools and its documentation are available on GitHub \cite{pttools}.
