@@ -1,14 +1,14 @@
 In this thesis the gravitational wave spectrum from the first order phase transition is calculated using the Sound Shell Model.
-The conversion from the fluid velocity and enthalpy profiles of chapter \ref{ch:pt} to the gravitational wave spectra
-is a process that involves multiple steps.
+The Sound Shell Model is the process that converts the fluid velocity and enthalpy profiles of chapter \ref{ch:pt} to the gravitational wave spectra.
+This process involves multiple steps.
 First in section \ref{gw_production} we investigate how the gravitational wave spectrum is produced by the shear stress.
 Then in section \ref{shear_stress} we investigate how the shear stress is produced by the sound waves.
 We combine these results in section \ref{gw_from_sound_waves} to see how the gravitational wave spectrum is produced by sound waves.
-Then in section \ref{sound_shell_model} we introduce the Sound Shell model to generate the sound waves from the fluid velocity profiles of chapter \ref{ch:pt}.
+Then in section \ref{velocity_field} we convert the sound waves the fluid velocity profiles of chapter \ref{ch:pt}.
 Combining these, we have the gravitational wave spectra.
 These four sections follow the contents and structure in the article \cite{hindmarsh_gw_pt_2019} that introduces the Sound Shell Model.
 In section \ref{omgw0} we convert these to the frequencies today.
-Then in section \ref{correction_factors} we apply correction factors to improve upon the results of the previous chapters.
+Then in section \ref{correction_factors} we extend the process beyond the base Sound Shell Model of the previous chapters.
 Finally in section \ref{noise} we define the LISA instrument noise to compare the signal-to-noise ratios of the gravitational wave spectra to the LISA instrument noise.
 
 
@@ -414,12 +414,12 @@ gives a reasonable estimate on the temperature of the fluid.
 For the constant sound speed model of section \ref{const_cs} this gives simply $c_{s,b}$.
 
 
-\section{Sound Shell Model}
-\label{sound_shell_model}
-The Sound Shell Model is the set of equations that enables the conversion from the fluid shell profile to the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
-It is based on the concept that the velocity field arises from the superposition of fields produced by $N_b$ individual bubbles.
-% The derivation of the Sound Shell Model is beyond the scope of this thesis and available in \cite{hindmarsh_gw_pt_2019},
-% but we will quote here the results necessary for computing the fluid velocity power spectrum $\mathcal{P}_\tilde{v}$.
+\section{Velocity field from superposition of single-bubble fluid shells}
+\label{velocity_field}
+Now in the equations \ref{eq:tilde_p_v}, \ref{eq:spectral_density} and \ref{eq:gw_pow_spec3} we have a system that takes in the velocity spectral density $P_v$ and outputs the gravitational wave spectrum.
+Therefore, the missing piece is to compute the velocity spectral density $P_v$ from the fluid shell profile.
+The Sound Shell Model does not account for the collision dynamics, but approximates that the bubble completely disappears when half of it has merged with another advancing region of the stable phase.
+The velocity field arises from the superposition of fields produced by $N_b$ individual bubbles,
 \cite[eq. 4.1]{hindmarsh_gw_pt_2019}
 \begin{equation}
 v_i(\mathbf{x},t) = \sum_{n=1}^{N_b} v_i^{(n)} (\mathbf{x},t).
@@ -509,18 +509,51 @@ e^{i (\omega_1 - \omega_2) t_i
 \end{equation}
 The averaging $\lbracket \rbracket$ is over the ensemble of bubble locations $\mathbf{x}^{(n)}$, nucleation times $t^{(n)}$ and collision times $t_i^{(n)}$.
 
-ASDFASDFASDF
-
-Spectral density of the plane wave components of the velocity field is given as
+First averaging over bubbles nucleated between $t'$ and $t' + dt'$, and colliding between $t_i$ and $t_i + dt_i$, we have
+\begin{equation}
+\sum_{m=1}^{N_b} \sum_{n=1}^{N_b} \lbracket e^{-i \mathbf{q}_1 \cdot \mathbf{x}^{(m)} + i \mathbf{q}_2 \cdot \mathbf{x}^{(n)}} \rbracket
+= d^2 P \frac{N_b}{\mathcal{V}} (2\pi)^3 \delta(\mathbf{q}_1 \mathbf{q}_2),
+\label{eq:bubble_average}
+\end{equation}
+where $d^2 P(t', t_i)$ is the joint probability for nucleating and colliding in the given time ranges.
+The $\delta$-function results in $\omega_1 = \omega_2$, which removes the $e^i{\omega_1 - \omega_2)t_i}$ term.
+Therefore, the result is not dependent on the absolute collision time $t_i$,
+but only on the average over the bubble lifetimes $T_i$.
+Let us denote the probability density distribution of lifetimes as
+\begin{equation}
+n(T_i) = \frac{N_b}{\mathcal{V}} \frac{dP(T_i)}{dT_i}.
+\end{equation}
+Using these we can rewrite eq. \eqref{eq:bubble_average} as
+\begin{equation}
+\lbracket v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rbracket = \int dT_i n(T_i) T_i^6 \hat{z}^i \hat{z}^j |A(z)|^2 (2\pi)^2 \delta(\mathbf{q}_1 - \mathbf{q}_2).
+\end{equation}
+Let us define the mean bubble separation $R_*$, for which
+\begin{equation}
+\lim_{\mathcal{V}\rightarrow\infty} R_*^3 = \frac{N_b}{\mathcal{V}}.
+\end{equation}
+Therefore,
+\begin{equation}
+\int n(T_i) dT_i = \frac{1}{R_*^3}.
+\end{equation}
+These result in
+\begin{equation}
+n(T_i) dT_i = \frac{\beta}{R_*^3} \nu(\beta T_i) dT_i,
+\end{equation}
+where $\nu (\beta T)$ is the bubble lifetime distribution function, which is normalised so that $\int \nu(x) dx = 1$.
+The rate $\beta$ is the nucleation rate parameter, for which
+\begin{equation}
+\beta = (8 \pi)^{\frac{1}{3}} \frac{v_\text{wall}}{R_*}
+\end{equation}
+This is the definition of $\beta$ in the case of simultaneous nucleation.
+For the case of exponential nucleation and further information on the nucleation rate in general,
+please see \cite[section 4.2]{hindmarsh_gw_pt_2019}.
+Similarly as in eq. \eqref{eq:hbracket}, we can now derive the spectral density of the plane wave components of the velocity field as
 \cite[eq. 4.17]{hindmarsh_gw_pt_2019}
 \begin{equation}
 P_v(q) = \frac{1}{\beta^6}{R_*^3} \int d\tilde{T} \nu(\tilde{T}) \tilde{T}^6 |A(\frac{\tilde{T}q}{\beta})|^2,
 \label{eq:spec_den_v}
 \end{equation}
-where $R_*$ is the mean bubble separation,
-$\beta$ is the nucleation rate parameter,
-$\eta(\beta T)$ is the bubble lifetime distribution function,
-and $\tilde{T} = \beta T_i$.
+where $\tilde{T} \equiv \beta T_i$.
 Using eq. \eqref{eq:pow_spec} we can convert this to the velocity power spectrum
 \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -531,7 +564,7 @@ Using eq. \eqref{eq:pow_spec} we can convert this to the velocity power spectrum
 \label{eq:pow_v}
 \end{equation}
 This can be inserted to eq. \ref{eq:gw_pow_spec3} to get the gravitational wave spectrum.
-
+Now we have the full Sound Shell Model to convert from the fluid velocity profile to the gravitational wave spectrum.
 
 \section{Correction factors}
 \label{correction_factors}
