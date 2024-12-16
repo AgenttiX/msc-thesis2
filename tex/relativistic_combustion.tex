@@ -34,14 +34,33 @@ w_- = \frac{\tilde{\gamma}_+^2 \tilde{v}_+}{\tilde{\gamma}_-^2 \tilde{v}_-} w_+,
 \label{eq:wm_junction}
 \end{equation}
 which we will need later.
-
-The junction conditions can be rearranged as
+Let us now define two intermediate quantities,
+\begin{equation}
+x \equiv \tilde{v}_+ \tilde{v}_-, \quad y \equiv \frac{\tilde{v}_+}{\tilde{v_-}}.
+\end{equation}
+Using these we can rearrange the first junction condition of eq. \eqref{eq:junction_condition_1} as
+\begin{equation}
+\frac{w_-}{w_+} = \frac{y-x}{1-xy},
+\label{eq:junction_step1}
+\end{equation}
+and the second junction condition of eq. \eqref{eq:junction_condition_2} as
+\begin{equation}
+\frac{\Delta p}{w_+} (y-x) - \frac{w_-}{w_+} x + \frac{y-x}{1-xy} + (x-y) = 0.
+\label{eq:junction_step2}
+\end{equation}
+Inserting eq. \eqref{eq:junction_step1} to \eqref{eq:junction_step2} we get
+\begin{equation}
+y = \frac{x \Delta e + w_-}{e_+ + p_-}.
+\end{equation}
+Inserting this back to eq. \eqref{eq:junction_step1} results in the quadratic equation
+\begin{equation}
+(\Delta e) x^2 - (\Delta w) x + \Delta p = 0.
+\end{equation}
+Solving this and discarding the unphysical solution $x = 1$ results in
 \cites[eq. 7.32]{lecture_notes}[eq. 4.134]{rezzolla_relativistic_2013}
-\todo{According to Giese these are from Landau \& Lifschitz, Fluid Mechanics}
-\todo{How to prove this step? My attempts of manual proof have failed.}
 \begin{align}
-\tilde{v}_+ \tilde{v}_- = \frac{p_+ - p_-}{e_+ - e_-} \\
-\frac{\tilde{v}_+}{\tilde{v}_-} = \frac{e_- + p_+}{e_+ + p_-}
+x &= \tilde{v}_+ \tilde{v}_- = \frac{p_+ - p_-}{e_+ - e_-} \\
+y &= \frac{\tilde{v}_+}{\tilde{v}_-} = \frac{e_- + p_+}{e_+ + p_-}
 \label{eq:junction_ep}
 \end{align}
 Further simplification of these requires additional definitions
