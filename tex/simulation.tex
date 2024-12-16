@@ -186,7 +186,7 @@ The spectrum computation is based on the Sound Shell Model \cite{hindmarsh_gw_pt
 First, the spectral density of the plane wave components of the velocity field $P_v(q)$ is computed using eq. \eqref{eq:spec_den_v}.
 This is converted to the velocity power spectrum $\mathcal{P}_{\tilde{v}}$ using eq. \eqref{eq:pow_v}.
 The spectral density of the plane wave components of the velocity field $P_v(q)$ is also used to compute the spectral density of gravitational waves $\tilde{P}_{\text{gw}}(y)$ of eq. \eqref{eq:spectral_density}.
-This is converted to the gravitational wave power spectrum $\mathcal{P}_{\text{gw}}$ using \eqref{eq:pow_gw}.
+This is converted to the gravitational wave power spectrum $\mathcal{P}_{\text{gw}}$ using \eqref{eq:gw_pow_spec3}.
 
 
 \section{Parallel computing}
@@ -195,6 +195,7 @@ despite being Python-based software.
 This is made possible by the
 \href{https://docs.python.org/3/library/multiprocessing.html}{\texttt{multiprocessing}}
 module of the Python standard library.
+The spectrum computation of a single bubble can also take advantage of multiple CPU cores thanks to Numba parallelism.
 PTtools has various utilities built on top of this that simplify the parallel generation of bubbles.
 An example of a parallel program is provided below.
 
@@ -222,5 +223,3 @@ bubbles = grid.bubbles
 kappas = grid.data[0]
 omegas = grid.data[1]
 \end{lstlisting}
-
-The spectrum computation of a single bubble can also take advantage of multiple CPU cores thanks to Numba parallelism.
