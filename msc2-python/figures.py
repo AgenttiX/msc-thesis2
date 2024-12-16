@@ -29,6 +29,7 @@ def gen_const_cs_gw_figs():
     with open(os.path.join(const.FIG_DIR, "const_cs_gw_snr.tex"), "w") as file:
         file.write(gw_figs[3])
 
+
 def gen_giese_lisa_fig2():
     print("Generating Giese LISA figure 2")
     figs = giese_lisa_fig2()

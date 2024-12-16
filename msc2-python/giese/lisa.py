@@ -32,12 +32,12 @@ def getwow(v1, v2):
 
 
 def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
-    """Fluid velocity behind the wall, $v_-$, and the expansion mode
+    r"""Fluid velocity behind the wall, $\tilde{v}_-$, and the expansion mode
     0 = deflagration
     1 = hybrid
     2 = detonation
 
-    :return: $\alpha_{\bar{\theta}n}$, sol_type (0-2)
+    :return: $\tilde{v}_-$, sol_type (0-2)
     """
     # If the wall velocity is smaller than the speed of sound in the broken phase, it's a subsonic deflagration.
     if vw**2 < cs2b:
@@ -45,6 +45,7 @@ def getvm(al: float, vw: float, cs2b: float) -> tp.Tuple[float, int]:
     cc = 1. - 3. * al + vw**2 * (1./cs2b + 3.*al)
     # Discriminant
     disc = -4.*vw**2/cs2b + cc**2
+    # If there is no detonation solution, then it's a hybrid.
     if disc < 0. or cc < 0.:
         return np.sqrt(cs2b), 1
     return (cc + np.sqrt(disc))/2.*cs2b/vw, 2
@@ -70,6 +71,10 @@ def getKandWow(vw: float, v0: float, cs2: float) -> tp.Tuple[np.ndarray, np.ndar
 
     For the shocks the end is in the phase in front of the shock
     For the rarefaction wave, the enthalpy density is normalized to 1 behind the wall and has to be rescaled in the other part of the code.
+
+    :param vw: wall velocity
+    :param v0: starting point of the integration (?)
+    :param cs2: speed of sound in the phase of interest
     """
     if v0 == 0:
         arr = np.array([])
