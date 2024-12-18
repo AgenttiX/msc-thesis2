@@ -10,18 +10,17 @@ g_{p\pm} = \frac{90}{\pi^2} a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4},
 \end{equation}
 where $\mu_\pm$ are constants.
 This results in the equation of state
-\cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}
+\cites[eq. 15]{giese_2021}[eq. 38]{giese_2020}%
+\footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
 \begin{equation}
-p_\pm = a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 - V_\pm,
+p_\pm = a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 - V_\pm.
 % {\color{gray} \approx a_\pm T^{\mu_\pm} - V_\pm }
 \end{equation}
 The reference temperature $T_0$ is introduced for the consistency of the units.
 For simplicity it can be set to 1 GeV, or whichever unit one is using for the temperature.
 Several articles use a version with $T^{\mu_\pm}$, which is easier to read but has inconsistent units.
-The greyed-out version is commonly seen in articles and useful, but has inconsistent units.
 The parameters $\mu_\pm$ are determined by the sound speeds in the symmetric and broken phases with
 \cites[eq. 16]{giese_2021}[eq. 39]{giese_2020}
-\footnote{Please note that there is a typo in \cite[eq. 15]{giese_2021}. There the 4 should be a $\mu$.}
 \begin{equation}
 \mu_\pm \equiv 1 + \frac{1}{c_{s\pm}^2},
 \end{equation}
@@ -36,7 +35,7 @@ s_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^3,
 \end{equation}
 and from it the enthalpy density
 \begin{equation}
-w_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4
+w_\pm = \mu_\pm a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4,
 \label{eq:w_const_cs}
 \end{equation}
 and finally the energy density
@@ -45,7 +44,7 @@ e_\pm = (\mu_\pm - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\
 \end{equation}
 The equation for enthalpy density \eqref{eq:w_const_cs} can be inverted to give the temperature as a function of enthalpy
 \begin{equation}
-T_\pm = \left( \frac{w}{\mu_\pm a_\pm T_0^4} \right)^\frac{1}{\mu_\pm} T_0,
+T_\pm = \left( \frac{w}{\mu_\pm a_\pm T_0^4} \right)^\frac{1}{\mu_\pm} T_0.
 \end{equation}
 Therefore the effective degrees of freedom are
 \begin{align}
@@ -55,14 +54,14 @@ g_{e\pm} &= \frac{30}{\pi^2} (\mu - 1) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\
 \end{align}
 
 
-The trace anomaly of \eqref{eq:theta} simplifies to
+The trace anomaly of eq. \eqref{eq:theta} simplifies to
 \begin{align}
 \theta_\pm(w)
 &= \left( \frac{\mu_\pm}{4} - 1 \right) a_\pm \left( \frac{T}{T_0} \right)^{\mu_\pm - 4} T^4 + V_\pm \\
 &= \left( \frac{1}{4} - \frac{1}{\mu_\pm} \right) w_\pm + V_\pm
 \label{eq:theta_const_cs}
 \end{align}
-The transition strength of \eqref{eq:alpha_plus} simplifies to
+The transition strength of eq. \eqref{eq:alpha_plus} simplifies to
 \begin{equation}
 \alpha_+ = \frac{1}{3} \left( 1 - \frac{4}{\mu_+} \right) - \frac{1}{3} \left(1 - \frac{4}{\mu_-} \right) \frac{w_-}{w_+} + \alpha_{+,\text{bag}}.
 \label{eq:alpha_plus_const_cs}
@@ -74,39 +73,22 @@ The transition strength at nucleation temperature of \eqref{eq:alpha_n} is corre
 \left( 1 - \frac{\mu_- a_-}{\mu_+ a_+} \left( \frac{T_n}{T_0} \right)^{\mu_- - \mu_+} \right) + \alpha_{n,\text{bag}}
 \label{eq:alpha_n_const_cs}
 \end{align}
-\iffalse
-%% This is wrong
-Inverting this gives the enthalpy at the nucleation temperature
-\begin{equation}
-w_n = \frac{V_+ - V_-}{ \frac{3}{4} \alpha_n + \frac{1}{\mu_+} - \frac{1}{\mu_-} }.
-\label{eq:wn_const_cs}
-\end{equation}
-\fi
-When $\mu_- = 4$, $\alpha_n$ of \eqref{eq:alpha_n_const_cs} becomes independent of $w_-$, resulting in
+When $\mu_- = 4$, $\alpha_n$ of eq. \eqref{eq:alpha_n_const_cs} becomes independent of $w_-$, resulting in
 \begin{equation}
 w_n = \frac{4 (V_+ - V_-)}{3 \alpha_n + \frac{4}{\mu_+} - 1}.
 \label{eq:wn_const_cs_mu4}
 \end{equation}
 In this case we can obtain $v_{CJ}(\alpha_n, c_{s+})$ analytically.
-First we insert $\alpha_n$ to \eqref{eq:wn_const_cs_mu4} to get $w_n$,
-and then insert $w_n$ to \eqref{eq:alpha_plus_const_cs} to get $\alpha_+$,
+First we insert $\alpha_n$ to eq. \eqref{eq:wn_const_cs_mu4} to get $w_n$,
+and then insert $w_n$ to eq. \eqref{eq:alpha_plus_const_cs} to get $\alpha_+$,
 since in this case $\alpha_+$ is independent of $w_-$.
-Then we can insert $c_{s-}$ and $\alpha_+$ to \eqref{eq:v_tilde_plus} to get $\tilde{v}_+ = v_{CJ}$.
+Then we can insert $c_{s-}$ and $\alpha_+$ to eq. \eqref{eq:v_tilde_plus} to get $\tilde{v}_+ = v_{CJ}$.
 
-\iffalse
-Now we have everything necessary to compute $\alpha_+$ and the Chapman-Jouguet speed $v_{CJ}$ analytically from $c_{s+}$, $c_{s-}$ and $\alpha_n$.
-From these we get $w_n$ with \eqref{eq:wn_const_cs}, and for a detonation $w_+=w_n$.
-This we can insert to \eqref{eq:wm_const_cs}, giving us $w_-$.
-Now we have all the variables necessary to compute $\alpha_+$ with \eqref{eq:alpha_plus}.
-Then we insert $\tilde{v}_- = c_{s-}$ to \eqref{eq:v_tilde_plus}, giving us the Chapman-Jouguet speed $v_{CJ} = v_+$.
-\todo{This is wrong! We have a circular dependency and must solve the equation group at once.}
-\fi
-
-The pseudotrace of \eqref{eq:theta_bar} is given by
+The pseudotrace of eq. \eqref{eq:theta_bar} is given by
 \begin{align}
 \bar{\Theta} = (\mu_\pm - \mu_-) a \left(\frac{T}{T_0}\right)^{\mu_\pm - 4} T_0^4 + \mu_- V_\pm.
 \end{align}
-Therefore the corresponding transition strengths of \eqref{eq:alpha_theta_bar_plus} and \eqref{eq:alpha_theta_bar_n} become
+Therefore the corresponding transition strengths of eq. \eqref{eq:alpha_theta_bar_plus} and \eqref{eq:alpha_theta_bar_n} become
 \begin{align}
 \alpha_{\bar{\Theta}_+} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{+,\text{bag}}, \\
 \alpha_{\bar{\Theta}_n} &= \frac{1}{3} \left(1 - \frac{\mu_-}{\mu_+}\right) + \frac{\mu_-}{4} \alpha_{n,\text{bag}}.
@@ -118,12 +100,12 @@ If we set $T_0 = T_c$, eq. \eqref{eq:critical_temp} results in
 \begin{equation}
 \Delta V = (a_+ - a_-) T_c^4.
 \end{equation}
-Using this the "bag" part in eq. \eqref{eq:alpha_plus_const_cs} and \eqref{eq:alpha_n_const_cs} becomes
+Using this the ``bag'' part in eq. \eqref{eq:alpha_plus_const_cs} and \eqref{eq:alpha_n_const_cs} becomes
 \begin{align}
 \alpha_{+,\text{bag}} &= \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T_+}{T_c} \right)^{-\mu_+}, \\
 \alpha_{n,\text{bag}} &= \frac{4}{3 \mu_+} \left( 1 - \frac{a_-}{a_+} \right) \left( \frac{T_n}{T_c} \right)^{-\mu_+}.
 \end{align}
-Using this we can reorder \eqref{eq:alpha_n_const_cs} to
+Using this we can reorder eq. \eqref{eq:alpha_n_const_cs} to
 \begin{equation}
 \frac{a_-}{a_+} = \frac{4 + \left( \mu_+ - 4 - 3 \mu_+ \alpha_n \right) \left(\frac{T_n}{T_c}\right)^{\mu_+}}{4 + \left( \mu_- - 4 \right) \left(\frac{T_n}{T_c}\right)^{\mu_-}}.
 \end{equation}
@@ -175,9 +157,7 @@ Eq. \eqref{eq:const_cs_vp_vm} can be rearranged to
 \end{equation}
 which is a basic second-order equation for $\tilde{v}_- ( \tilde{v}_+, \alpha_{\bar{\Theta}_+} )$.
 Since $\tilde{v}_+ = v_w$ for all detonations, and $\alpha_{\bar{\Theta}_+} = \alpha_{\bar{\Theta}_n}$ for all detonations in the constant sound speed model, this gives $\tilde{v}_- ( v_w, \alpha_{\bar{\Theta}_n} )$.
-And since \eqref{eq:alpha_n_const_cs} gives $\alpha_n(\mu_+, \mu_-, \alpha_{n,\text{bag}}$, we have $\tilde{v}_- (v_w,
-$
-TODO
+% And since \eqref{eq:alpha_n_const_cs} gives $\alpha_n(\mu_+, \mu_-, \alpha_{n,\text{bag}})$, we have $\tilde{v}_- (v_w, ...)$
 Eq. \eqref{eq:const_cs_vp_vm} can also be rearranged to
 \begin{equation}
 \left( \frac{1}{c_{s,b}^2} + 3\alpha_{\bar{\Theta}_+} \right) \tilde{v}_+^2

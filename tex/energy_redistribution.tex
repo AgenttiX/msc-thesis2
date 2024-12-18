@@ -55,6 +55,10 @@ The trace anomaly difference is given by
 \Delta e_\theta \equiv 4 \pi \int_0^{\xi_\text{max}} d\xi \xi^2 (\theta - \theta_n).
 \end{equation}
 It can be considered as the potential energy available for transformation.
+We can obtain the volume-average entropy density difference similarly as the energy density, with
+\begin{equation}
+\Delta s_\text{avg} = 4\pi \int_0^{\xi_\text{max}} d\xi \xi^2 \left( s(w,\phi) - s(w_n, \phi_s) \right).
+\end{equation}
 The upper integration limit $\xi_\text{max}$ can be chosen arbitrarily as long as it's outside the bubble, as outside the bubble all three quantities go to zero outside the fluid shell due to $v=0$, $w=w_n$ and $\theta = \theta_n$.
 A convenient choice is $\xi_\text{max} = \max (v_w, \xi_{sh})$.
 \cite[eq. B.25]{hindmarsh_gw_pt_2019}
@@ -91,11 +95,6 @@ use different definitions for $\kappa$:
 \label{eq:kappa_thetabar_n}
 \end{align}
 
-We can obtain the volume-average entropy density difference similarly as the energy density, with
-\begin{equation}
-\Delta s_\text{avg} = 4\pi \int_0^{\xi_\text{max}} d\xi \xi^2 \left( s(w,\phi) - s(w_n, \phi_s) \right).
-\end{equation}
-
 The enthalpy-weighted mean square fluid 4-velocity around the bubble is defined by
 \begin{equation}
 \bar{U}_f^2 = \frac{\Delta e_Q}{w_n}.
@@ -109,7 +108,6 @@ where $c_P$ is the specific heat capacity at constant pressure,
 and $c_V$ is the specific heat capacity at constant volume.
 For a classical monoatomic fluid $\gamma = \frac{5}{3}$,
 and for an ultrarelativistic fluid $\gamma = \frac{4}{3}$.
-
 The enthalpy-weighted mean square fluid 4-velocity around the bubble and the kinetic energy density fraction of eq. \eqref{eq:kinetic_energy_fraction} are linked by
 \begin{equation}
 K = \Gamma \bar{U}_f^2,

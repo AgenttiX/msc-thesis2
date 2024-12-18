@@ -20,7 +20,7 @@ govern the evolution of the fluid: the relativistic Euler equation, the energy-c
 Section \ref{relativistic_combustion} proceeds to the process of relativistic combustion and derives the bubble wall junction conditions
 that define the behaviour of the fluid velocities and thermodynamic quantities at the bubble wall.
 It then defines various equations and quantities that will be of use in the simulations,
-including the transition strength $\alpha$ and a ordinary differential equation group that determines the fluid velocity profile of the bubble.
+including the transition strength $\alpha$ and an ordinary differential equation group that determines the fluid velocity profile of the bubble.
 Section \ref{solution_types} investigates the different types of solutions that these equations allow,
 and the speed limits associated with these solutions.
 Section \ref{general_eq} derives the general equation of state,
@@ -39,7 +39,7 @@ Finally section \ref{energy_redistribution} investigates how the phase transitio
 
 Our system of interest is an ultrarelativistic plasma.
 This means, that the energy of the particles is much higher than their rest mass.
-Therefore there is sufficient energy for new particles to be created,
+Therefore, there is sufficient energy for new particles to be created,
 and similarly existing particles will annihilate all the time.
 Treating this kind of a system as a classical fluid is not sufficient,
 and we need the mathematical machinery of general relativity.
@@ -81,9 +81,9 @@ p = \frac{1}{3} T^i_i.
 % https://physics.stackexchange.com/a/412067/298623
 In our case we assume the energy-matter content to be an ideal fluid in thermal equilibrium.
 There is no energy transfer to or from the fluid, and therefore
-$\forall j=1,2,3: \quad T^{0j} = 0$.
+$\forall j=1,2,3: \ T^{0j} = 0$.
 As the fluid has no viscosity, it does not experience any shear stress, and therefore
-$\forall i,j=1,2,3, \quad i \neq j: \quad T^{ij} = 0$.
+$\forall i,j=1,2,3, \ i \neq j: \ T^{ij} = 0$.
 This does not depend on the reference frame, so the tensor is diagonal in the rest frame of the fluid.
 Therefore $T^{ij} = p \delta^{ij}$, which means that
 $\forall i,j: \Pi_{ij} = 0$.
@@ -175,7 +175,7 @@ For a one-dimensional flow in Cartesian coordinates the energy-momentum conserva
 \label{eq:ep_conservation_1d_2}
 \end{align}
 by simply inserting \eqref{eq:ep_tensor} and using the normalisation of four-velocity $u_\mu u^\mu = -1$.
-Let's then analyse a perturbation on a fluid that is at rest with $e_0, p_0$ and $v_0 = 0$.
+Let us then analyse a perturbation on a fluid that is at rest with $e_0, p_0$ and $v_0 = 0$.
 To first order
 \begin{equation}
 e = e_0 + \delta e, \quad p=p_0 + \delta p, \quad v = v_0 + \delta v = \delta v.
@@ -218,24 +218,26 @@ The
 
 Proper discussion of relativistic fluids also requires various thermodynamic quantities.
 % Let us start from the thermodynamic identity of classical thermal physics
-Perturbing around a constant $U$ (effectively setting $dU=0$) gives the entropy density
+Perturbing around a constant internal energy $U$,
+effectively setting $dU=0$,
+gives the entropy density
 \cite[p. 23]{lecture_notes}
 \begin{equation}
-s \equiv \frac{dS}{dV} = \frac{dp}{dT}.
+s \equiv \frac{dS}{dV} = \frac{dp}{dT},
 \label{eq:entropy_density}
 \end{equation}
-
+where $S$ is entropy, $V$ is volume and $T$ is temperature.
 Useful formulas for other thermodynamic quantities can be obtained from the thermodynamic identity of classical thermal physics.
 \cites[eq. 2.136]{rezzolla_relativistic_2013}[eq. 3.68]{schroeder_thermal_2000}
 \begin{equation}
-dU = TdS - pdV, % + \mu dN,
+dU = TdS - pdV, % + \mu dN.
 \label{eq:thermodynamic_identity}
 \end{equation}
-where $U$ is internal energy, $T$ is temperature, $p$ is pressure, $V$ is volume.
 % $\mu$ is chemical potential and $N$ is the number of particles.
-The fluids in our case are ultrarelativistic, and therefore effectively $T >> \mu$,
-and we can neglect $dN$.
-
+The fluids in our case are ultrarelativistic,
+and therefore effectively the temperature is much higher than the chemical potential $\mu$,
+$T >> \mu$,
+which means that can neglect $dN$.
 Inserting \eqref{eq:entropy_density} to \eqref{eq:thermodynamic_identity} gives the energy density
 \begin{equation}
 e \equiv \frac{dU}{dV} = T \frac{\partial p}{\partial T} - p.
@@ -271,12 +273,13 @@ Additionally we need to define the entropy current
 \begin{equation}
 S^\mu \equiv su^\mu.
 \end{equation}
+These thermodynamic quantities are actively used in the following sections.
 
 
 \section{Field-fluid system}
 Our system of interest consists of a relativistic fluid of particles and the scalar field $\phi$,
 which are coupled to each other.
-The fluid is governed by the energy-momentum tensor of \eqref{eq:ep_tensor},
+The fluid is governed by the energy-momentum tensor of eq. \eqref{eq:ep_tensor},
 and the scalar field is governed by the energy momentum tensor
 \cites[eq. 5.12]{lecture_notes}[eq. 2.9]{hindmarsh_gw_pt_2019}
 \begin{equation}
@@ -285,19 +288,19 @@ T_\phi^{\mu \nu}
 - g^{\mu \nu} \left(\frac{1}{2} (\partial \phi)^2 + V_0 (\phi) \right).
 \label{eq:ep_tensor_field}
 \end{equation}
-The total energy-momentum is conserved, and \ref{eq:ep_conservation} can therefore be decomposed as
+The total energy-momentum is conserved, and eq. \ref{eq:ep_conservation} can therefore be decomposed as
 \cite[eq. 5.17]{lecture_notes}
 \begin{equation}
 \partial_\mu T^{\mu \nu} = \partial_\mu (T_f^{\mu \nu} + T_\phi^{\mu \nu}) = 0.
 \label{eq:ep_conservation_total}
 \end{equation}
 For further details on how the field-fluid system dynamics arise from the underlying particle physics,
-please see \cite{moore_pt_1995}.
+please see \cites{lecture_notes}{moore_pt_1995}.
 
 Figure \ref{fig:potential} illustrates the temperature-dependent shape of the thermally corrected potential $V_T$.
 For temperatures $T > T_c$ (red) the minimum of the potential is at $\phi = 0$, and the ground state is symmetric.
 As the temperature decreases below $T_1$ (dark green), a second minimum develops, but its potential is higher than that of the ground state.
-At the critical temperature $T_c$ both minima have the same potential and are therefore degenrate.
+At the critical temperature $T_c$ both minima have the same potential and are therefore degenerate.
 Below the critical temperature, the minimum at $\phi > 0$ becomes the global minimum and therefore the new stable ground state.
 This results in eventual overcoming of the potential barrier by quantum tunneling or thermal activation from the $\phi = 0$ state to the $|\phi| = v$ state,
 and therefore the spontaneous nucleation of bubbles.
@@ -309,6 +312,9 @@ and therefore the spontaneous nucleation of bubbles.
 \label{fig:potential}
 \end{figure}
 
+The pressure is dependent on the field,
+since the field gives the particles their masses.
+For the bubble to expand, the interior pressure has to be higher than the exterior one.
 At the critical temperature $T_c$ of a phase transition the pressures on both sides of the wall are equal
 \begin{equation}
 p_+(T_c) = p_-(T_c),
@@ -316,15 +322,25 @@ p_+(T_c) = p_-(T_c),
 \end{equation}
 where $+$ refers to the symmetric phase in front of the bubble wall,
 and the $-$ refers to the broken phase behind the bubble wall.
-
-
-
-For a description on the equation of state, please see the section \ref{general_eq}.
-
-
+For a more comprehensive description on the pressure, please see the section \ref{general_eq}.
 The nucleation temperature $T_n$ has to be below the critical temperature for the phase transition to occur: $T_n < T_c$.
 The nucleation enthalpy $w_n$ is related to the nucleation temperature $T_n$ as
 \begin{equation}
 w_n = w(T_n,\phi_s).
 \label{eq:wn}
 \end{equation}
+Below the critical temperature, the bubble expands to the surrounding plasma.
+The dynamics of the field $\phi$ driving the phase transition are given by
+\cite[eq. 7.2]{lecture_notes}
+\begin{equation}
+\square \phi - V'_T(\phi) = - \eta_T(\phi) u^\mu \partial_\mu \phi,
+\end{equation}
+where $\eta$ determines the strength of the friction due to the interaction of the bubble with the plasma.
+The pressure difference between the symmetric and broken phases drives the expansion of the bubble,
+and would lead to continued acceleration if not counteracted by the friction $\eta_T$.
+In some cases the friction is not sufficient to slow the expansion down,
+resulting in $v_\text{wall} \rightarrow 1$,
+which is known as a runaway solution \cites{bodeker_can_2009}{bodeker_electroweak_2017}.
+However, if $\gamma_\text{wall} \eta_T$ does not decrease with $\gamma_\text{wall}$,
+then there always exists a solution with a constant $v_\text{wall}$ \cites{bodeker_electroweak_2017}{hoche_towards_2021}.
+The wall speed is further investigated in section \ref{solution_types}.

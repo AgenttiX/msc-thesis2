@@ -7,7 +7,7 @@ Instead of using only the bag model which has the squared sound speeds $c_{s,s}^
 each plot has four curves, each corresponding to a different combination of the squared sound speeds
 $c_{s,s}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}, c_{s,b}^2 \in \{ \frac{1}{3}, \frac{1}{4} \}$.
 The corresponding gravitational wave spectra are plotted in figure \ref{fig:gw_spectra}.
-Converting these to the frequencies and amplitudes today results in the figure \ref{fig:omgw0},
+Converting these to the frequencies and amplitudes today results in figure \ref{fig:omgw0},
 which also contains the LISA instrument noise spectrum as a reference.
 
 \begin{figure}[ht!]
@@ -35,14 +35,12 @@ which also contains the LISA instrument noise spectrum as a reference.
 \input{msc2-python/fig/const_cs_gw_snr.tex}
 \fi
 
-% Todo: change the right column to be just detonations
-
 These figures demonstrate that the sound speed can have a profound effect on the resulting gravitational wave spectrum.
 To understand how the sound speed affects the gravitational wave spectrum,
 we have to first study the fluid shells of figure \ref{fig:fluid_profiles}.
 There are two curves that constrain the shape of the fluid shells.
 The solid black curves are the shock velocities $v_\text{sh}(\xi,c_{s,s})$ that are determined by $c_{s,s}$.
-In general the shock velocity is also dependent on $w$, since $c_s = c_s(w,\phi)$,
+In general the shock velocity is also dependent on the enthalpy density $w$, since $c_s = c_s(w,\phi)$,
 but in the constant sound speed model the sound speed is independent of the enthalpy,
 as it is a constant for each phase.
 Therefore we can plot the shock velocities as curves in the 2D plots instead of having to plot them as surfaces as functions of $(\xi,w)$ in a 3D plot.
@@ -50,13 +48,12 @@ The dotted black curves are the $\mu(\xi,c_{s,b})$ curves of eq. \eqref{eq:mu} t
 They are dependent on the choice of $c_{s,b}$.
 The $v_\text{sh}$ curves encounter $v=0$ at $\xi = c_{s,s}$ and the $\mu$ curves at $\xi = c_{s,b}$.
 
-For all solution types, adjusting either of the sound speeds affects the degrees of freedom and therefore the pressure $p$ and enthalpy $w$ for that phase.
+For all solution types, adjusting either of the sound speeds affects the degrees of freedom and therefore the pressure $p$ and enthalpy density $w$ for that phase.
 This affects the solution of the bubble wall junction conditions of eq. \eqref{eq:junction_condition_1}, \eqref{eq:junction_condition_2} and therefore $v(\xi_\text{wall})$,
 which is also the peak of the fluid velocity profile.
 This effect can be seen at the top-left figure, where all four fluid shells have different $v(\xi_\text{wall})$.
 The change caused by adjusting the sound speed is the most profound for deflagrations when $c_{s,s}$ is decreased below $v_\text{wall}$, as it causes them to become hybrids, and vice versa.
 Similarly changing $c_{s,b}$ so that the Chapman-Jouguet speed of \eqref{eq:chapman_jouguet} is decreased below $v_\text{wall}$ converts a hybrid to a detonation, and vice versa.
-This can be seen at the top-right figure.
 
 For deflagrations and hybrids, adjusting $c_{s,s}$ affects the location of the shock and therefore the thickness of the fluid shell.
 It also affects the ODE group of eq. \eqref{eq:hydro_param1}, \eqref{eq:hydro_param2}, \eqref{eq:hydro_param3} and therefore the shape of the fluid shell in front of the bubble wall.
@@ -68,13 +65,13 @@ And for both detonations and hybrids, adjusting $c_{s,b}$ affects the shape of t
 
 These differences in the shapes of the fluid shells carry over to the gravitational wave spectra of fig. \ref{fig:gw_spectra} and eventually of the gravitational wave spectra today in fig. \ref{fig:omgw0}.
 The sine transformation of eq. \eqref{eq:ssm_f} and \eqref{eq:ssm_l} in the process converts the fluid shells of fig. \ref{fig:fluid_profiles} to the gravitational wave spectra of \ref{fig:gw_spectra} has the same basic properties as a Fourier transform.
-Therefore by comparing the fluid velocity profiles and the gravitational wave spectra we can identify a few general correlations.
+Therefore, by comparing the fluid velocity profiles and the gravitational wave spectra we can identify a few general correlations.
 The thinner the fluid shell is, the broader the gravitational wave spectrum.
 And the higher the fluid velocities are in the fluid shell, the higher is the intensity of the gravitational waves.
 Thin shells also have more of the higher frequencies.
 These effects can be seen in the case of thin hybrids of the middle figures.
 Hybrids consist of two sections with significantly differing characteristics.
-Therefore the hybrids and especially the thin hybrids with high fluid velocities in front of the wall have a gravitational wave spectrum with two distinct contributions.
+Therefore, the hybrids and especially the thin hybrids with high fluid velocities in front of the wall have a gravitational wave spectrum with two distinct contributions.
 This results in a significantly higher gravitational wave spectrum in the higher frequencies resulting in a significantly higher signal-to-noise ratio (SNR),
 which distinguishes them from the detonations and deflagrations.
 % However, regarding hybrids and especially these thin hybrids
@@ -83,7 +80,7 @@ which distinguishes them from the detonations and deflagrations.
 Outside the region of the peak, the gravitational wave spectra follow a $k^9$ power law at low $z$,
 and $k^{-3}$ at high $z$.
 
-The signal-to-noise ratios of the example spectra in figure \ref{fig:omgw0} and table \ref{table:const_cs_gw_snr}
+The signal-to-noise ratios of the example spectra in figure \ref{fig:omgw0}
 are entirely below the LISA noise curve except for the one curve with
 $c_{s,s} = \frac{1}{4}, c_{s,b} = \frac{1}{3}, \alpha_n = 0.2, v_\text{wall} = 0.68$,
 but the signal-to-noise ratios above unity by an order of magnitude or two for many of the curves.
@@ -102,8 +99,6 @@ and the $\kappa$ of eq. \eqref{eq:kappa_omega} is computed by PTtools.
 The resulting $\kappa$ values are in fig. \ref{fig:kappa_giese},
 and the relative differences in fig. \ref{fig:kappa_giese_diff}
 The colors from blue to gray correspond to $\alpha = 0.01, 0.03, 0.1, 0.3, 1, 3$.
-The figures on the left have $\alpha = \alpha_{\bar{\theta}_n}$
-and the figures on the right have $\alpha = \alpha_n$.
 For each color, the solid line has $c_{s,s}^2 = \frac{1}{3}, c_{s,b}^2 = \frac{1}{3}$,
 the dashed line has $c_{s,s}^2 = \frac{1}{3}, c_{s,b}^2 = \frac{1}{4}$,
 the dotted line has $c_{s,s}^2 = \frac{1}{4}, c_{s,b}^2 = \frac{1}{3}$

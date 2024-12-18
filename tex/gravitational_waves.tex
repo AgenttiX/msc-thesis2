@@ -7,8 +7,8 @@ We combine these results in section \ref{gw_from_sound_waves} to see how the gra
 Then in section \ref{velocity_field} we convert the sound waves the fluid velocity profiles of chapter \ref{ch:pt}.
 Combining these, we have the gravitational wave spectra.
 These four sections follow the contents and structure in the article \cite{hindmarsh_gw_pt_2019} that introduces the Sound Shell Model.
-In section \ref{omgw0} we convert these to the frequencies today.
-Then in section \ref{correction_factors} we extend the process beyond the base Sound Shell Model of the previous chapters.
+In section \ref{correction_factors} we extend the process beyond the base Sound Shell Model of the previous sections.
+Then in section \ref{omgw0} we convert the results to the frequencies today.
 Finally in section \ref{noise} we define the LISA instrument noise to compare the signal-to-noise ratios of the gravitational wave spectra to the LISA instrument noise.
 
 
@@ -108,7 +108,7 @@ The gravitational wave power spectrum is defined by
 = \frac{1}{12 H^2} \mathcal{P}_{\dot{h}}(k),
 \label{eq:gw_pow_spec}
 \end{equation}
-where the first step comes directly using the equations above.
+where the first step is a direct result from the equations above.
 It should be noted that in \cite[eq. 3.6, eq. 3.46]{hindmarsh_gw_pt_2019} it is presumed that $\bar{\rho}=e_c$.
 A spectral density can be converted to a power spectrum with
 \cite[eq. 4.18]{hindmarsh_gw_pt_2019}
@@ -118,14 +118,14 @@ A spectral density can be converted to a power spectrum with
 \end{equation}
 The factor of two is due to the fact that the velocity Fourier transform includes waves moving in both directions.%
 \footnote{See also \cite[p. 338]{maggiore_gw_2008}.}
-Whether it's included or not is dependent on the context.
-Therefore, the gravitational wave power spectrum can be obtained from the spectral density $P_\dot{h}$ as
+Whether it is included or not is dependent on the context.
+Therefore, the gravitational wave power spectrum can be obtained from the spectral density $P_{\dot{h}}$ as
 \begin{equation}
 \mathcal{P}_{gw}(k) = \frac{1}{12 H^2} \frac{k^3}{2\pi^2} P_{\dot{h}}.
 \label{eq:gw_pow_spec2}
 \end{equation}
 To obtain the gravitational wave spectrum $\mathcal{P}_{gw}(k)$,
-we therefore need to obtain an expression for $P_\dot{h}$ that we can compute from the fluid shell profile.
+we therefore need to obtain an expression for $P_{\dot{h}}$ that we can compute from the fluid shell profile.
 For this we will need quite a few similar intermediate quantities.
 To avoid confusion, their symbols and names are listed in table \ref{table:symbols}.
 
@@ -194,11 +194,11 @@ This way we can compute the gravitational wave spectrum $\mathcal{P}_\text{gw}$ 
 \section{Shear stress from sound waves}
 \label{shear_stress}
 In this section we investigate how the unequal time correlator for the shear stress (UETC) can be computed from the sound waves in the fluid.
-Let us start by defining the fluid stress-energy tensor $\tau_ij$.
+Let us start by defining the fluid stress-energy tensor $\tau_{ij}$.
 The $\partial_i \phi \partial_j \phi$ term of eq. \eqref{eq:tau_ij} is non-zero only at the phase bondary,
 which is thin and therefore negligible compared to the fluid shell.
 We also approximate that once the bubbles have collided and merged,
-the enthalpy is constant throughout the fluid shell $w = e + p \approx \bar{w}$
+the enthalpy is constant throughout the fluid shell: $w = e + p \approx \bar{w}$,
 and that the fluid velocities are non-relativistic, resulting in $\gamma(v) = 1$.
 Therefore eq. \eqref{eq:tau_ij} approximates as
 \cite[eq. 3.12]{hindmarsh_gw_pt_2019}
@@ -216,7 +216,7 @@ The difference of the wavevectors $\mathbf{q}$ and $\mathbf{k}$,
 Using this their product can be expressed as
 \begin{equation}
 \mu \equiv \hat{\mathbf{q}} \cdot \hat{\mathbf{k}} = \frac{q^2 + k^2 - \tilde{q}^2}{2kq}.
-\label{eq:mu}
+\label{eq:mu_ssm}
 \end{equation}
 The length of a vector is denoted as
 \begin{equation}
@@ -244,26 +244,12 @@ t_+ \equiv \frac{t_1 + t_2}{2}, \quad t_- \equiv t_1 - t_2.
 \label{eq:t_plus_minus}
 \end{equation}
 
-\iffalse
-The Fourier transformation of the velocity field can be denoted as
-\cite[eq. 3.13]{hindmarsh_gw_pt_2019}
-\begin{equation}
-\tilde{v}_\mathbb{q}^i(t) = \int d^3 xv^i (\mathbb{x},t) e^{-i \mathbb{q} \cdot \mathbb{x}}.
-\end{equation}
-We use the same result as in \cite{hindmarsh_gw_pt_2019} that the velocity field is irrotational and statistically homogenous,
-and the two-point function $G$ can therefore be written as
-\begin{equation}
-\langle \tilde{v}_{\mathbb{q}_1}^i (t_1) \tilde{v}_{\mathbb{q}_2}^{*j} (t2) \rangle = \hat{q}_1^i \hat{q}_2^j G(q_1, t_1, t_2) (2\pi)^3 \delta(\mathbb{q_1} - \mathbb{q_2}).
-\end{equation}
-The leading term for the shear stress UETC of eq. \eqref{eq:uetc_final} is therefore
-\fi
-
 Using these tools Hindmarsh et al. have derived in \cite{hindmarsh_gw_pt_2019} that the UETC can be given as
 \cite[eq. 3.32]{hindmarsh_gw_pt_2019}
 \begin{equation}
 U_\Pi(k, t_1, t_2) = 4 \bar{w}^2 \int \frac{d^3 q}{(2\pi)^3} \frac{q^2}{\tilde{q}^2} (1 - \mu^2) P_v(q) P_v(\tilde{q}) \cos (\omega t_-) \cos (\tilde{\omega} t_-)
 \end{equation}
-Further by performing an angular integration and changing the integration variable using eq. \eqref{eq:mu} we have
+Further by performing an angular integration and changing the integration variable using eq. \eqref{eq:mu_ssm} we have
 \cite[eq. 3.34]{hindmarsh_gw_pt_2019}
 \begin{equation}
 U_\Pi (k, t_1, t_2) = \frac{4 \bar{w}^2}{4 \pi^2 k} \int_0^\infty \int_{|q-k|}^{q+k} d\tilde{q} q \tilde{q}
@@ -342,9 +328,9 @@ Using this we can define
 \begin{equation}
 q_\pm \equiv \frac{k(1 \pm c_s)}{2 c_s}.
 \end{equation}
-Inserting eq. \eqref{eq:tilde_q2} to \eqref{eq:mu} gives
+Inserting eq. \eqref{eq:tilde_q2} to \eqref{eq:mu_ssm} gives
 \begin{equation}
-\mu &= \frac{2qc_s - k(1 - c_s^2)}{2qc_s^2}.
+\mu = \frac{2qc_s - k(1 - c_s^2)}{2qc_s^2}.
 \end{equation}
 We can now integrate over $q$. Since the expression is no longer time-dependent,
 we can denote it as
@@ -355,7 +341,7 @@ we can denote it as
 
 We can now define the scaled velocity spectral density $\tilde{P}_v$ as
 \begin{equation}
-\tilde{P}_v (qL_f) \equiv \frac{P_v(q)}{L_f^3 \bar{U}_f^2}
+\tilde{P}_v (qL_f) \equiv \frac{P_v(q)}{L_f^3 \bar{U}_f^2},
 \label{eq:tilde_p_v}
 \end{equation}
 where $L_f$ is a length scale in the velocity field, and $\bar{U}_f$ is the RMS fluid velocity.
@@ -364,7 +350,7 @@ Let us also define the additional quantities
 y = kL_f, \quad z = qL_f, \quad z_\pm = y \frac{1 \pm c_s}{2 c_s}.
 \label{eq:gw_yz}
 \end{equation}
-Therefore the asymptotic growth rate of the spectral density can be written as
+Therefore, the asymptotic growth rate of the spectral density can be written as
 \begin{equation}
 \dot{P}_{\dot{h}}(y) =
 \left( 16 \pi G \bar{w} \bar{U}_f^2 \right)^2
@@ -393,7 +379,7 @@ the dimensionless spectral density function
 \tilde{P}_v (z) \tilde{P}_v (z_+ + z_- z).
 \label{eq:spectral_density}
 \end{equation}
-To get the total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v = t - t_0$ is given by
+The total gravitational wave power spectrum for a stationary velocity power spectrum with a lifetime $\tau_v = t - t_0$ is given by
 \cite[eq. 3.48]{hindmarsh_gw_pt_2019}%
 \footnote{In \cite{hindmarsh_gw_pt_2019} the $\tilde{P}_{GW}$ is a typo and should be $\tilde{P}_\text{gw}$.}
 \begin{equation}
@@ -407,7 +393,7 @@ where $\Gamma$ is the mean adiabatic index of eq. \eqref{eq:mean_adiabatic_index
 This is the equation used by PTtools to compute the gravitational wave spectrum.
 The choice of $c_s$ in eq. \eqref{eq:spectral_density} is important and non-trivial,
 since beyond the bag model $c_s = c_s(T(w(\xi),\phi(\xi)))$.
-Therefore for an enthalpy-dependent sound speed the formula is not exact.
+Therefore, for an enthalpy-dependent sound speed the formula is not exact.
 We approximate $c_s$ here as $c_s(T(\bar{w},\phi_b),\phi_b)$,
 as $\bar{w}$, the mean enthalpy after the phase transition of eq. \eqref{eq:wbar},
 gives a reasonable estimate on the temperature of the fluid.
@@ -416,7 +402,7 @@ For the constant sound speed model of section \ref{const_cs} this gives simply $
 
 \section{Velocity field from superposition of single-bubble fluid shells}
 \label{velocity_field}
-Now in the equations \ref{eq:tilde_p_v}, \ref{eq:spectral_density} and \ref{eq:gw_pow_spec3} we have a system that takes in the velocity spectral density $P_v$ and outputs the gravitational wave spectrum.
+Now in the equations \eqref{eq:tilde_p_v}, \eqref{eq:spectral_density} and \eqref{eq:gw_pow_spec3} we have a system that takes in the velocity spectral density $P_v$ and outputs the gravitational wave spectrum.
 Therefore, the missing piece is to compute the velocity spectral density $P_v$ from the fluid shell profile.
 The Sound Shell Model does not account for the collision dynamics, but approximates that the bubble completely disappears when half of it has merged with another advancing region of the stable phase.
 The velocity field arises from the superposition of fields produced by $N_b$ individual bubbles,
@@ -452,12 +438,12 @@ z^i = q^i T^{(n)}.
 \end{equation}
 By changing the integration variable from $R^{(n)}$ to $\xi$ we get
 \cite[eq. 4.4, eq. 4.6]{hindmarsh_gw_pt_2019}
-\begin{equation}
+\begin{align}
 \tilde{v}_i^{(n)} (\mathbf{q},t)
 &= e^{-i \mathbf{q} \cdot x^{(n)}} i (T^{(n)})^3 \frac{\partial}{\partial z_i} \left(
 \int d^3 \xi \frac{1}{\xi} v_\text{ip}(\xi) e^{-i z^i \xi^i} \right) \\
 &= e^{-i \mathbf{q} \cdot x^{(n)}} i (T^{(n)})^3 \hat{z}^i f'(z),
-\end{equation}
+\end{align}
 where we have denoted the part in the parentheses as $f(z)$, and $f'(z) = \frac{d}{dz}f(z)$.
 Performing the angular integration in $f(z)$ results in
 \cite[eq. 4.5]{hindmarsh_gw_pt_2019}
@@ -475,14 +461,15 @@ where similar to $f(z)$ we have $l(z)$ given by
 \cite[eq. 4.8]{hindmarsh_gw_pt_2019}
 \begin{align}
 l(z) = \frac{4 \pi}{z} \int_0^\infty d\xi \lambda_\text{ip}(\xi) \sin(z\xi),
-\label{eq:ssm_e}
+\label{eq:ssm_l}
 \end{align}
 where $\lambda_\text{ip}$ is the energy fluctuation variable $\lambda$ of eq. \eqref{eq:lambda} for a single bubble.
-The integrations over the sines in these functions is the sine transform of the Sound Shell Model.
+The integrations over the sines in these functions are the sine transform of the Sound Shell Model.
 Assuming that the entire fluid perturbation characterised by $f(z)$ and $l(z)$ becomes the initial condition for a sound wave at the collision time $t_i^{(n)}$,
 its contribution to the plane wave is
+\cite[eq. 4.9]{hindmarsh_gw_pt_2019}
 \begin{equation}
-v_{\mathbb{q},i}^{(n)} = i (T_i^{(n)})^3 \hat{z}_i e^{i \omega t_i - i \mathbf{q} \cdot \mathbf{x}^{(n)}} A(z).
+v_{\mathbf{q},i}^{(n)} = i (T_i^{(n)})^3 \hat{z}_i e^{i \omega t_i - i \mathbf{q} \cdot \mathbf{x}^{(n)}} A(z).
 \end{equation}
 These can be combined to the wavefunction launched by a single bubble,
 \cite[eq. 4.10]{hindmarsh_gw_pt_2019}
@@ -500,32 +487,33 @@ we can combine these to get the overall velocity power spectrum.
 The plane wave correlation function for $N_b$ randomly-placed bubbles in a volume $\mathcal{V}$ is given by
 \cite[eq. 4.12]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\lbracket v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rbracket
-= \sum_{m=1}^{N_b} \sum_{n=1}^{N_b} \lbracket
+\langle v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rangle
+= \sum_{m=1}^{N_b} \sum_{n=1}^{N_b} \langle
 (T_i^{(m)})^3 (T_i^{(n)})^3 \hat{z}^i \hat{z}'^{j} A(z) A^*(z')
 e^{-i \mathbf{q_1} \cdot \mathbf{x}^{(m)} + i \mathbf{q}_2 \cdot \mathbf{x}^{(n)}}
-e^{i (\omega_1 - \omega_2) t_i
-\rbracket.
+e^{i (\omega_1 - \omega_2) t_i}
+\rangle.
 \end{equation}
-The averaging $\lbracket \rbracket$ is over the ensemble of bubble locations $\mathbf{x}^{(n)}$, nucleation times $t^{(n)}$ and collision times $t_i^{(n)}$.
+The averaging $\langle \rangle$ is over the ensemble of bubble locations $\mathbf{x}^{(n)}$, nucleation times $t^{(n)}$ and collision times $t_i^{(n)}$.
 
 First averaging over bubbles nucleated between $t'$ and $t' + dt'$, and colliding between $t_i$ and $t_i + dt_i$, we have
+\cite[eq. 4.13]{hindmarsh_gw_pt_2019}
 \begin{equation}
-\sum_{m=1}^{N_b} \sum_{n=1}^{N_b} \lbracket e^{-i \mathbf{q}_1 \cdot \mathbf{x}^{(m)} + i \mathbf{q}_2 \cdot \mathbf{x}^{(n)}} \rbracket
+\sum_{m=1}^{N_b} \sum_{n=1}^{N_b} \langle e^{-i \mathbf{q}_1 \cdot \mathbf{x}^{(m)} + i \mathbf{q}_2 \cdot \mathbf{x}^{(n)}} \rangle
 = d^2 P \frac{N_b}{\mathcal{V}} (2\pi)^3 \delta(\mathbf{q}_1 \mathbf{q}_2),
 \label{eq:bubble_average}
 \end{equation}
 where $d^2 P(t', t_i)$ is the joint probability for nucleating and colliding in the given time ranges.
-The $\delta$-function results in $\omega_1 = \omega_2$, which removes the $e^i{\omega_1 - \omega_2)t_i}$ term.
+The $\delta$-function results in $\omega_1 = \omega_2$, which removes the $e^{i(\omega_1 - \omega_2)t_i}$ term.
 Therefore, the result is not dependent on the absolute collision time $t_i$,
 but only on the average over the bubble lifetimes $T_i$.
 Let us denote the probability density distribution of lifetimes as
 \begin{equation}
-n(T_i) = \frac{N_b}{\mathcal{V}} \frac{dP(T_i)}{dT_i}.
+n(T_i) \equiv \frac{N_b}{\mathcal{V}} \frac{dP(T_i)}{dT_i}.
 \end{equation}
 Using these we can rewrite eq. \eqref{eq:bubble_average} as
 \begin{equation}
-\lbracket v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rbracket = \int dT_i n(T_i) T_i^6 \hat{z}^i \hat{z}^j |A(z)|^2 (2\pi)^2 \delta(\mathbf{q}_1 - \mathbf{q}_2).
+\langle v_{\mathbf{q}_1}^i v_{\mathbf{q}_2}^{*j} \rangle = \int dT_i n(T_i) T_i^6 \hat{z}^i \hat{z}^j |A(z)|^2 (2\pi)^2 \delta(\mathbf{q}_1 - \mathbf{q}_2).
 \end{equation}
 Let us define the mean bubble separation $R_*$, for which
 \begin{equation}
@@ -536,11 +524,13 @@ Therefore,
 \int n(T_i) dT_i = \frac{1}{R_*^3}.
 \end{equation}
 These result in
+\cite[eq. 4.15]{hindmarsh_gw_pt_2019}
 \begin{equation}
 n(T_i) dT_i = \frac{\beta}{R_*^3} \nu(\beta T_i) dT_i,
 \end{equation}
 where $\nu (\beta T)$ is the bubble lifetime distribution function, which is normalised so that $\int \nu(x) dx = 1$.
 The rate $\beta$ is the nucleation rate parameter, for which
+\cite[eq. 4.16]{hindmarsh_gw_pt_2019}
 \begin{equation}
 \beta = (8 \pi)^{\frac{1}{3}} \frac{v_\text{wall}}{R_*}
 \end{equation}
@@ -579,7 +569,7 @@ To implement this extension, we need the barotropic equation of state parameter
 Giombi et al. define the quantity $\nu$, which we shall call as $\nu_\text{gdh2024}$, as
 \cite[eq. 2.11]{giombi_cs_2024}
 \begin{equation}
-\nu_\text{gdh2024} = \frac{1 - 3\omega}{1 + 3\omega}.
+\nu_\text{gdh2024} \equiv \frac{1 - 3\omega}{1 + 3\omega}.
 \label{eq:nu_gdh2024}
 \end{equation}
 Giombi et al. use $\frac{\Delta \eta_v}{\eta_*}$ as the source duration,
@@ -666,7 +656,7 @@ we need to compare its gravitational wave power spectrum to the power spectrum o
 The LISA noise consists of the instrument noise and noise from the astrophysical foreground.
 The most notable astrophysical noise sources are the extragalactic compact binaries and unresolved galactic compact binaries.
 These have been left out from this thesis for simplicity, but are included in PTtools.
-\cite{gowling_lisa_2021}{pttools}
+\cites{gowling_lisa_2021}{pttools}
 
 The LISA instrument noise is expected to consist primarily by two main sources: the test mass acceleration noise (acc), and the optical metrology noise (oms).
 The optical metrology noise is caused by single link optical path-length fluctuations.
@@ -717,7 +707,7 @@ This can be converted to the fractional energy density power spectrum with
 \begin{equation}
 \Omega_\text{ins} = \left( \frac{4 \pi^2}{3 H_0^2} \right) f^3 S_A(f).
 \end{equation}
-Now that we know the power spectra for both the GW signal and noise, we can compute the signal-to-noise ratio can be computed with
+Now that we know the power spectra for both the GW signal and noise, we can compute the signal-to-noise ratio with
 \cites[eq. 50]{smith_lisa_2019}[eq. 33]{caprini_detecting_2020}[eq. 21]{thrane_sensitivity_2013}
 \begin{equation}
 \text{SNR} = \sqrt{t_\text{meas} \int_{f_\text{min}}^{f_\text{max}} df \frac{\Omega_\text{signal}(f)^2}{\Omega_\text{noise}(f)^2}},
