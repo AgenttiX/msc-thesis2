@@ -19,6 +19,7 @@
 *.snm
 *.tdo
 *.toc
+*-eps-converted-to.pdf
 __pycache__
 .idea
 msc2-python/**/*.html
