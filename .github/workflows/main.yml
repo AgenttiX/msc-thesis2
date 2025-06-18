@@ -24,6 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+      - name: Print Python version
+        run: python -V
       - name: Checkout
         uses: actions/checkout@v4
         # The full PTtools repository is needed for the example scripts
@@ -36,10 +42,6 @@ jobs:
           # which prevents the example scripts from being imported.
           ref: da50329beba788803ba6bee2b497a89a98bea53d
           path: pttools
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.13
       - name: Load pip cache
         uses: actions/cache@v4
         with:
@@ -58,7 +60,7 @@ jobs:
         run: python3 -c "from pttools.bubble.fluid_reference import ref; ref()"
         env:
           PYTHONPATH: ${{ github.workspace }}/pttools
-      - name: Run tests
+      - name: Generate figures
         run: python3 ./msc2-python/figures.py
         env:
             PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2-python
