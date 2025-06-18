@@ -31,7 +31,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: CFT-HY/pttools
-          ref: v0.9.0
+          # A specific commit is used instead of the 0.9.0 release,
+          # as the release is missing some __init__.py files in the example folders,
+          # which prevents the example scripts from being imported.
+          ref: da50329beba788803ba6bee2b497a89a98bea53d
           path: pttools
       - name: Setup Python
         uses: actions/setup-python@v5
