@@ -22,7 +22,7 @@ jobs:
           if-no-files-found: error
   gen_figures:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Setup Python
         uses: actions/setup-python@v5
