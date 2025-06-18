@@ -1,6 +1,7 @@
 import os.path
 import time
 
+from docs.fig.potential import main as potential
 from docs.fig.relativistic_combustion import main as rel_combustion
 from examples.const_cs_gw import main as const_cs_gw
 from examples.giese_lisa_fig2 import main as giese_lisa_fig2
@@ -39,12 +40,19 @@ def gen_giese_lisa_fig2():
     save(figs[3], os.path.join(const.FIG_DIR, "giese_lisa_fig2_alpha_n_diff"))
 
 
+def gen_potential_fig():
+    print("Generating potential figure")
+    fig = potential()
+    save(fig, path=os.path.join(const.FIG_DIR, "potential"))
+
+
 def main():
     start_time = time.perf_counter()
     gen_vm_vp_fig()
     gen_rel_combustion_fig()
     gen_const_cs_gw_figs()
     gen_giese_lisa_fig2()
+    gen_potential_fig()
     print(f"Generating the figures took {time.perf_counter() - start_time:.2f} s.")
 
 
