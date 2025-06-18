@@ -4,6 +4,9 @@ Model-independent energy budget for Lisa
 by Giese et al.
 https://arxiv.org/abs/2010.09744
 
+The original code is published on arXiv with the arXiv.org perpetual, non-exclusive license 1.0:
+https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html
+
 Commented for better readability.
 """
 
