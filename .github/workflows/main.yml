@@ -48,7 +48,7 @@ jobs:
       - name: Install requirements
         run: |
           pip --cache-dir=.pip install --upgrade pip wheel
-          pip --cache-dir=.pip install -r requirements.txt -r ${{ github.workspace }}/pttools/requirements.txt
+          pip --cache-dir=.pip install -r msc2-python/requirements.txt -r ${{ github.workspace }}/pttools/requirements.txt
       - name: Print Numba sysinfo
         run: numba --sysinfo | tee numba-sysinfo.txt
       - name: Generate PTtools reference data
