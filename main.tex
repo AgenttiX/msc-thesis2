@@ -92,7 +92,9 @@
 % The thesis year has to be updated also at:
 % - tex/references.bib
 % - Project readme
-\date{\today}
+% The \today macro should not be used on arXiv.
+% https://info.arxiv.org/help/faq/today.html
+\date{18th December 2024}
 \prof{Professor Mark Hindmarsh}
 \censors{Professor Mark Hindmarsh}{Professor Kari Rummukainen}{}
 \keywords{phase transitions, gravitational waves, sound speed}
@@ -223,3 +225,7 @@
 
 
 \end{document}
+
+% This is for ensuring that arXiv runs pdflatex at least 4 times.
+% https://trevorcampbell.me/html/arxiv.html
+\typeout{get arXiv to do 4 passes: Label(s) may have changed. Rerun}

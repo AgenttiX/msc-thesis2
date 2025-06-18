@@ -22,6 +22,7 @@
 *-eps-converted-to.pdf
 __pycache__
 .idea
+arxiv
 msc2-python/**/*.html
 msc2-python/logs
 main.pdf
