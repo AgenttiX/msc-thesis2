@@ -3,10 +3,10 @@ import time
 
 from docs.fig.potential import main as potential
 from docs.fig.relativistic_combustion import main as rel_combustion
-from examples.const_cs_gw import main as const_cs_gw
-from examples.giese_lisa_fig2 import main as giese_lisa_fig2
+from examples.const_cs.const_cs_gw import main as const_cs_gw
+from examples.giese.giese_lisa_fig2 import main as giese_lisa_fig2
 from examples.utils import save
-from examples.vm_vp_plane import main as vm_vp_plane
+from examples.props.vm_vp_plane import main as vm_vp_plane
 import const
 
 
