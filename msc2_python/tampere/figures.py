@@ -1,4 +1,4 @@
-import os.path
+import os
 
 from matplotlib import rc_context
 import matplotlib.pyplot as plt
@@ -13,6 +13,8 @@ from pttools.analysis.plot_entropy_grid import EntropyPlot, compute
 import const
 
 FIG_DIR = os.path.join(const.FIG_DIR, "tampere")
+if not os.path.exists(FIG_DIR):
+    os.mkdir(FIG_DIR)
 
 
 def main():
