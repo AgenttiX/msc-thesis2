@@ -18,11 +18,11 @@ echo "Creating the arxiv folder and adding files."
 mkdir arxiv
 mkdir arxiv/anc
 # Rsync is used to enable excluding
-rsync -av --exclude=fig/*-converted-to.pdf --exclude=fig/lecture_notes \
+rsync -av --exclude=fig/*-converted-to.pdf --exclude=fig/lecture_notes --exclude=fig/tampere \
   fig tex \
   .latexmkrc babelbst.tex englbst.tex finnbst.tex LICENSE main.bbl main.tex Makefile swedbst.tex tktl.bst UH-logo.png UH_TCM_MSc.cls \
   arxiv
-rsync -av --exclude msc2_python/logs \
+rsync -av --exclude msc2_python/logs --exclude msc2_python/tampere \
   msc2_python create_arxiv.sh arxiv/anc
 cp -r .github arxiv/anc/github
 

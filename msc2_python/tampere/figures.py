@@ -10,6 +10,8 @@ from pttools.analysis.plot_entropy_grid import EntropyPlot, compute
 
 import const
 
+FIG_DIR = os.path.join(const.FIG_DIR, "tampere")
+
 
 def main():
     n_points = 100
@@ -41,7 +43,7 @@ def main():
         ax = fig.add_subplot()
         EntropyPlot(grid, s_total_rel, min_level, max_level, diff_level, fig, ax)
         fig.tight_layout()
-        path = os.path.join(const.FIG_DIR, f"entropy_{model.name}")
+        path = os.path.join(FIG_DIR, f"entropy_{model.name}")
         fig.savefig(f"{path}.png", bbox_inches='tight', pad_inches=0)
         # fig.savefig(f"{path}.png")
         plt.close(fig)
@@ -51,7 +53,7 @@ def main():
         # ax = fig.add_subplot()
         # KappaPlot(grid, fig, ax)
         # fig.tight_layout()
-        # path = os.path.join(const.FIG_DIR, f"kappa_{model.name}")
+        # path = os.path.join(FIG_DIR, f"kappa_{model.name}")
         # fig.savefig(f"{path}.png", bbox_inches='tight', pad_inches=0)
         # # fig.savefig(f"{path}.png")
         # plt.close(fig)
