@@ -1,9 +1,9 @@
 import os
 
 
-PROJECT_DIR: str = os.path.dirname(os.path.abspath(__file__))
-FIG_DIR: str = os.path.join(PROJECT_DIR, "fig")
-LOG_DIR: str = os.path.join(PROJECT_DIR, "logs")
+REPO_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FIG_DIR: str = os.path.join(REPO_DIR, "fig")
+LOG_DIR: str = os.path.join(REPO_DIR, "logs")
 
 if not os.path.exists(FIG_DIR):
     os.mkdir(FIG_DIR)

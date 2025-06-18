@@ -73,5 +73,6 @@ jobs:
         with:
           name: Figures
           path: |
-            msc2-python/fig
+            fig
+            !fig/lecture_notes
           if-no-files-found: error
