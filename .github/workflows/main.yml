@@ -57,7 +57,7 @@ jobs:
       - name: Install requirements
         run: |
           pip --cache-dir=.pip install --upgrade pip wheel
-          pip --cache-dir=.pip install -r msc2-python/requirements.txt -r ${{ github.workspace }}/pttools/requirements.txt
+          pip --cache-dir=.pip install -r msc2_python/requirements.txt -r ${{ github.workspace }}/pttools/requirements.txt
       - name: Print Numba sysinfo
         run: numba --sysinfo | tee numba-sysinfo.txt
       - name: Generate PTtools reference data
@@ -65,9 +65,9 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}/pttools
       - name: Generate figures
-        run: python3 ./msc2-python/figures.py
+        run: python3 ./msc2_python/figures.py
         env:
-            PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2-python
+            PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2_python
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:

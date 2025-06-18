@@ -22,8 +22,8 @@ rsync -av --exclude=fig/*-converted-to.pdf --exclude=fig/lecture_notes \
   fig tex \
   .latexmkrc babelbst.tex englbst.tex finnbst.tex LICENSE main.bbl main.tex Makefile swedbst.tex tktl.bst UH-logo.png UH_TCM_MSc.cls \
   arxiv
-rsync -av --exclude msc2-python/logs \
-  msc2-python create_arxiv.sh arxiv/anc
+rsync -av --exclude msc2_python/logs \
+  msc2_python create_arxiv.sh arxiv/anc
 cp -r .github arxiv/anc/github
 
 echo "Creating arxiv.tar.gz"
