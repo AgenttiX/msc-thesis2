@@ -56,6 +56,8 @@ jobs:
         run: numba --sysinfo | tee numba-sysinfo.txt
       - name: Generate PTtools reference data
         run: python3 -c "from pttools.bubble.fluid_reference import ref; ref()"
+        env:
+          PYTHONPATH: ${{ github.workspace }}/pttools
       - name: Run tests
         run: python3 ./msc2-python/figures.py
         env:
