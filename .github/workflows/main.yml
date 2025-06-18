@@ -68,6 +68,10 @@ jobs:
         run: python3 ./msc2_python/figures.py
         env:
             PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2_python
+      - name: Generate Tampere figures
+        run: python3 ./msc2_python/tampere/figures.py
+        env:
+            PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2_python
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
