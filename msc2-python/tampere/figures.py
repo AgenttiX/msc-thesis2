@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from pttools.logging import setup_logging
-from pttools.models import BagModel, ConstCSModel
+from pttools.models import ConstCSModel
 from pttools.analysis.bubble_grid import BubbleGridVWAlpha
-from pttools.analysis.plot_entropy_grid import EntropyPlot, KappaPlot, compute
+from pttools.analysis.plot_entropy_grid import EntropyPlot, compute
 
 import const
 
@@ -46,14 +46,15 @@ def main():
         # fig.savefig(f"{path}.png")
         plt.close(fig)
 
-        fig = plt.figure(figsize=figsize)
-        ax = fig.add_subplot()
-        KappaPlot(grid, fig, ax)
-        fig.tight_layout()
-        path = os.path.join(const.FIG_DIR, f"kappa_{model.name}")
-        fig.savefig(f"{path}.png", bbox_inches='tight', pad_inches=0)
-        # fig.savefig(f"{path}.png")
-        plt.close(fig)
+        # KappaPlot is no longer available in PTtools
+        # fig = plt.figure(figsize=figsize)
+        # ax = fig.add_subplot()
+        # KappaPlot(grid, fig, ax)
+        # fig.tight_layout()
+        # path = os.path.join(const.FIG_DIR, f"kappa_{model.name}")
+        # fig.savefig(f"{path}.png", bbox_inches='tight', pad_inches=0)
+        # # fig.savefig(f"{path}.png")
+        # plt.close(fig)
 
 
 if __name__ == "__main__":
