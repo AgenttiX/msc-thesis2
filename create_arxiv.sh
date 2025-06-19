@@ -4,11 +4,6 @@
 # https://info.arxiv.org/help/submit_tex.html
 # https://trevorcampbell.me/html/arxiv.html
 
-if command -v 7z &> /dev/null; then :; else
-  echo "7-Zip was not found. Installing."
-  sudo apt-get update
-  sudo apt-get install 7zip
-fi
 if command -v rsync &> /dev/null; then :; else
   echo "rsync was not found. Installing."
   sudo apt-get update
