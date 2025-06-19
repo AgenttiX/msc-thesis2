@@ -26,7 +26,17 @@
 % programme specific content ends
 
 \RequirePackage{lastpage}
-\RequirePackage{nomencl}
+
+% Requiring nomencl results in duplicate definitions of these commands,
+% and therefore return code 12 for the LaTeX compiler.
+% Unfortunately, this fix did not help.
+% https://texfaq.org/FAQ-alreadydef
+% \RequirePackage{savesym}
+% \savesymbol{\@pnumwidth}
+% \savesymbol{\@tocrmarg}
+% \savesymbol{\@dotsep}
+% \RequirePackage{nomencl}
+
 \RequirePackage{emptypage}
 \RequirePackage{perpage}
 
@@ -230,6 +240,10 @@
 
 %--------------------------------------------------------------------------
 % Nomenclature: titles and unit space
+
+% Disabled due to issues in importing the nomencl package.
+% See the comments at \RequirePackage{nomencl}.
+\iffalse
 \makenomenclature
 \if@finnish
 	\renewcommand{\nomname}{Symboliluettelo}
@@ -243,6 +257,7 @@
 \fi
 \newcommand{\nomunit}[1]{%
 \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\fi
 
 \newcommand{\mynomenclature}{%
 % \ifnum0\pdffilesize{\jobname.nls}>0
