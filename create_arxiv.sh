@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# This script creates a tar.gz file suitable for submission to arXiv.
+# https://info.arxiv.org/help/submit_tex.html
+# https://trevorcampbell.me/html/arxiv.html
+
 if command -v 7z &> /dev/null; then :; else
   echo "7-Zip was not found. Installing."
   sudo apt-get update
@@ -25,7 +29,7 @@ mkdir arxiv/anc
 # Rsync is used to enable excluding.
 rsync -av --exclude=fig/*-converted-to.pdf --exclude=fig/lecture_notes --exclude=fig/tampere --exclude=tex/other_models.tex \
   fig tex \
-  .latexmkrc babelbst.tex englbst.tex finnbst.tex LICENSE main.bbl main.tex Makefile swedbst.tex tktl.bst UH-logo.png UH_TCM_MSc.cls \
+  .latexmkrc babelbst.tex biblatex-dm.cfg englbst.tex finnbst.tex LICENSE main.bbl main.tex Makefile swedbst.tex tktl.bst UH-logo.png UH_TCM_MSc.cls \
   arxiv
 # Ancillary files are placed in the anc directory.
 # https://info.arxiv.org/help/ancillary_files.html
