@@ -4,14 +4,16 @@ with temperature- and phase-dependent speeds of sound $c_s(T,\phi)$,
 and their gravitational wave spectra based on the Sound Shell Model,
 including the conversion to the gravitational spectra today.
 
-PTtools was tested with the constant sound speed model due to the availability of reference data by Giese et al. \cite{giese_2021},
+PTtools was tested with the constant sound speed model due to the availability of reference data by Giese et al.~\cite{giese_2021},
 and it was shown to work reliably for a broad range of the combinations of the sound speeds $c_{s,s}$ and $c_{s,b}$, the phase transition strength $\alpha_n$ and the wall speed $v_\text{wall}$.
 The PTtools fluid velocity profile solver has been updated beyond that of the available references in such a way
 that it supports arbitrary particle physics models with a temperature-dependent sound speed $c_s(T,\phi)$,
 as long as they provide $V_s(T,\phi), V_b(T,\phi)$ and two of $g_p(T,\phi), g_e(T,\phi), g_s(T,\phi)$ or two of $p(T,\phi), e(T,\phi), s(T,\phi)$, but preferably all three for numerical precision.
 This enables the easy integration of models developed by other researchers,
 and therefore the comparison of the gravitational wave spectra of these models.
-This is also to the author's best knowledge the first time that phase transitions in the early universe have been simulated with temperature-dependent speeds of sound without resorting to time-consuming 3D simulations.
+This is also to the author's best knowledge the first time
+that phase transitions in the early universe have been simulated with temperature-dependent speeds of sound
+without resorting to time-consuming 3D simulations.
 
 The numerical results of the fluid shell solver have been demonstrated to be consistent with a reference
 for a broad range of parameters.
@@ -31,15 +33,20 @@ This demonstrates that the Sound Shell Model is an essential tool in investigati
 the effects of the phase transition parameters on the resulting gravitational wave spectrum.
 
 This master's thesis lays the groundwork for the author's PhD thesis on the topic.
-Now there is a framework for determining the gravitational wave spectrum from the phase transition parameters, including temperature-dependent speed of sound.
-Determining the parameters of a phase transition from LISA data will require solving the inverse problem: what are the phase transition parameters based on the gravitational wave spectrum?
+Now there is a framework for determining the gravitational wave spectrum from the phase transition parameters,
+including temperature-dependent speed of sound.
+Determining the parameters of a phase transition from LISA data will require solving the inverse problem:
+what are the phase transition parameters based on the gravitational wave spectrum?
 This will require novel tools such as machine learning or Markov chain Monte Carlo simulations.
-There is also potential for integrating PTtools with the existing web-based simulation utility PTPlot \cites{ptplot}{hindmarsh_shape_2017}{caprini_detecting_2020} to create a comprehensive but easy-to-use web-based utility for researchers to simulate phase transitions with various parameters.
-Further possibilities for extending PTtools itself include integrating the low frequency spectral density function by Giombi et al. \cite[eq. 3.6]{giombi_cs_2024}.
+There is also potential for integrating PTtools with the existing web-based simulation utility
+PTPlot~\cites{ptplot}{hindmarsh_shape_2017}{caprini_detecting_2020}
+to create a comprehensive but easy-to-use web-based utility for researchers to simulate phase transitions with various parameters.
+Further possibilities for extending PTtools itself include integrating
+the low frequency spectral density function by Giombi et al.~\cite[eq. 3.6]{giombi_cs_2024}.
 These topics will be investigated in the author's PhD studies.
 
-PTtools will be published as open source soon after the publication of this thesis on GitHub at \cite{pttools}.
-This will enable the research community to integrate their various particle physics models,
+PTtools is available as open source on GitHub at~\cite{pttools}.
+This enables the research community to integrate their various particle physics models,
 and to simulate the resulting gravitational wave spectra.
 This will provide the LISA simulation pipeline with various waveforms of interest,
 and if one of them is eventually found in LISA data,

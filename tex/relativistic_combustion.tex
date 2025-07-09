@@ -12,13 +12,13 @@ and the evolution of the fluid in front and behind of the wall.
 % According to Hindmarsh, abbreviating "references" as "refs" is OK in the thesis.
 \cites[appendix B]{hindmarsh_gw_pt_2019}{espinosa_energy_2010}{rezzolla_relativistic_2013}[ch. 6]{mazumdar_review_2019}.
 
-If the wall velocity is constant, \eqref{eq:ep_conservation_total} also holds in the wall frame.
+If the wall velocity is constant,~\eqref{eq:ep_conservation_total} also holds in the wall frame.
 Therefore, for a wall moving in the z-direction
 \cite[eq. 7]{espinosa_energy_2010}
 \begin{equation}
 \partial_z T^{zz} = \partial_z T^{z0} = 0.
 \end{equation}
-Inserting the definition of $T$ from \eqref{eq:ep_tensor} results in the
+Inserting the definition of $T$ from~\eqref{eq:ep_tensor} results in the
 bubble wall junction conditions
 \cites[eq. 7.22]{lecture_notes}[eq. 135.2, 135.3]{landau_fluid_1987}
 % This is almost trivial.
@@ -38,21 +38,21 @@ Let us now define two intermediate quantities,
 \begin{equation}
 x \equiv \tilde{v}_+ \tilde{v}_-, \quad y \equiv \frac{\tilde{v}_+}{\tilde{v}_-}.
 \end{equation}
-Using these we can rearrange the first junction condition of eq. \eqref{eq:junction_condition_1} as
+Using these we can rearrange the first junction condition of eq.~\eqref{eq:junction_condition_1} as
 \begin{equation}
 \frac{w_-}{w_+} = \frac{y-x}{1-xy},
 \label{eq:junction_step1}
 \end{equation}
-and the second junction condition of eq. \eqref{eq:junction_condition_2} as
+and the second junction condition of eq.~\eqref{eq:junction_condition_2} as
 \begin{equation}
 \frac{\Delta p}{w_+} (y-x) - \frac{w_-}{w_+} x + \frac{y-x}{1-xy} + (x-y) = 0.
 \label{eq:junction_step2}
 \end{equation}
-Inserting eq. \eqref{eq:junction_step1} to \eqref{eq:junction_step2} we get
+Inserting eq.~\eqref{eq:junction_step1} to~\eqref{eq:junction_step2} we get
 \begin{equation}
 y = \frac{x \Delta e + w_-}{e_+ + p_-}.
 \end{equation}
-Inserting this back to eq. \eqref{eq:junction_step1} results in the quadratic equation
+Inserting this back to eq.~\eqref{eq:junction_step1} results in the quadratic equation
 \begin{equation}
 (\Delta e) x^2 - (\Delta w) x + \Delta p = 0.
 \end{equation}
@@ -70,7 +70,7 @@ that we will now introduce.
 % Transition strength
 % -----
 
-The trace of the energy-momentum tensor of \eqref{eq:ep_tensor} is
+The trace of the energy-momentum tensor of~\eqref{eq:ep_tensor} is
 % The tr() notation is not correct, as it does not account for the metric.
 \begin{align}
 % \text{tr} (T^{\mu \nu})
@@ -94,7 +94,7 @@ To alleviate this confusion, we introduce the trace anomaly without the factor o
 The difference of a quantity $X$ just ahead and behind the wall is denoted as
 \begin{equation}
 \Delta X
-\equiv X_+(T_+) - X_-(T_-) % \\
+\equiv X_+(T_+) - X_-(T_-). % \\
 % &= \theta_s(w_s) - \theta_b(w_b).
 \end{equation}
 The difference of a quantity $X$ in both phases at the same temperature is denoted as
@@ -118,7 +118,7 @@ With these we can define the transition strength
 \begin{equation}
 \alpha_+
 \equiv \frac{4 \Delta \theta}{3 w_+}
-= \frac{4}{3} \frac{\theta_+(T_+) - \theta_-(T_-)}{w_+}.
+= \frac{4}{3} \frac{\theta_+(T_+) - \theta_-(T_-)}{w_+}
 \label{eq:alpha_plus}
 \end{equation}
 and the transition strength at nucleation temperature
@@ -135,16 +135,16 @@ A quantity similar to the trace anomaly is the pseudotrace
 \bar{\Theta} \equiv e - \frac{p}{c_{s,b}^2}.
 \label{eq:theta_bar}
 \end{equation}
-It is defined with respect to $c_{s,b}^2$ in both phases so that eq. \ref{eq:junction_conditions_simplified} can be simplified.
+It is defined with respect to $c_{s,b}^2$ in both phases so that eq.~\eqref{eq:junction_conditions_simplified} can be simplified.
 It should be noted that the articles \cites{giese_2020}{giese_2021} denote this pseudotrace as $\bar{\theta}$,
-but we have chosen the symbol $\bar{\Theta}$ in accordance with \eqref{eq:theta_big} to highlight that it doesn't have the factor of $\frac{1}{4}$ as eq. \eqref{eq:theta} does.
+but we have chosen the symbol $\bar{\Theta}$ in accordance with~\eqref{eq:theta_big} to highlight that it doesn't have the factor of $\frac{1}{4}$ as eq.~\eqref{eq:theta} does.
 Using it we can define the transition strength for the pseudotrace,
 sometimes denoted as $\alpha_{\bar{\Theta}}$, as
 \cites[eq. 34]{giese_2020}[eq. 1]{giese_2021}
 \begin{equation}
 \alpha_{\bar{\Theta}_+}
 \equiv \frac{D \bar{\Theta}(T_+)}{3w_+}
-= \frac{\bar{\Theta}_+(T_+) - \bar{\Theta}_-(T_+)}{3w_+}
+= \frac{\bar{\Theta}_+(T_+) - \bar{\Theta}_-(T_+)}{3w_+}.
 \label{eq:alpha_theta_bar_plus}
 \end{equation}
 The transition strength for the pseudotrace at the nucleation temperature is given as
@@ -154,14 +154,15 @@ The transition strength for the pseudotrace at the nucleation temperature is giv
 = \frac{\bar{\Theta}_+(T_n) - \bar{\Theta}_-(T_n)}{3w_n}.
 \label{eq:alpha_theta_bar_n}
 \end{equation}
-Note that these equations differ from the regular transition strength by a factor of $\frac{1}{4}$ due to different conventions, but this is canceled by the lack of $\frac{1}{4}$ in $\bar{\Theta}$.
+Note that these equations differ from the regular transition strength by a factor of $\frac{1}{4}$ due to different conventions,
+but this is cancelled by the lack of $\frac{1}{4}$ in $\bar{\Theta}$.
 These also use $D$ instead of $\Delta$,
 and will prove out to be convenient with the constant sound speed model of section \ref{const_cs}.
 We can also define the enthalpy ratio
 \begin{equation}
 r \equiv \frac{w_+}{w_-}.
 \end{equation}
-With these definitions the junction conditions of \eqref{eq:junction_ep} can be simplified as
+With these definitions the junction conditions of~\eqref{eq:junction_ep} can be simplified as
 \begin{equation}
 \tilde{v}_+ \tilde{v}_- = \frac{1-(1-3\alpha_+)r}{3-3(1+\alpha_+)r},
 \quad
@@ -183,10 +184,10 @@ This is of second order in both $\tilde{v}_+$ and $\tilde{v}_-$ and can be solve
 \tilde{v}_- &= \frac{1}{2} \left[ \left( (1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right) \pm \sqrt{\left((1+\alpha_+)\tilde{v}_+ + \frac{1-3\alpha_+}{3\tilde{v}_+} \right)^2 - \frac{4}{3}} \right].
 \label{eq:v_tilde_minus}
 \end{align}
-Both of these are basic second-order solutions, but in eq. \eqref{eq:v_tilde_plus} the discriminant has been simplified.
+Both of these are basic second-order solutions, but in eq.~\eqref{eq:v_tilde_plus} the discriminant has been simplified.
 
-It should be noted that the equations \ref{eq:junction_condition_1} and \ref{eq:junction_condition_2} are symmetric with respect to the indices $+$ and $-$.
-We can define another transition strength by inverting the indices of $\alpha_+$ in \ref{eq:alpha_plus} as
+It should be noted that the equations~\eqref{eq:junction_condition_1} and~\eqref{eq:junction_condition_2} are symmetric with respect to the indices $+$ and $-$.
+We can define another transition strength by inverting the indices of $\alpha_+$ in~\eqref{eq:alpha_plus} as
 \begin{equation}
 \alpha_- \equiv - \frac{4 \Delta \theta}{3 w_-}.
 \end{equation}
