@@ -8,10 +8,10 @@ This thesis is a part of PTtools documentation, and will therefore be updated af
 You can find the latest version of the pdf in
 [GitHub actions](https://github.com/AgenttiX/msc-thesis2/actions/workflows/main.yml)
 by clicking the name of the latest workflow run and going to Artifacts -> Thesis pdf.
-The submitted version of the thesis is available in [Helda](http://hdl.handle.net/10138/591514).
+The submitted version of the thesis is available in [Helda](https://hdl.handle.net/10138/591514).
 
 For my first master's thesis, see [here](https://urn.fi/URN:NBN:fi:tuni-202010277540),
-and for my bachelor's thesis, see [here](http://urn.fi/URN:NBN:fi:tuni-201909103227).
+and for my bachelor's thesis, see [here](https://urn.fi/URN:NBN:fi:tuni-201909103227).
 
 
 ### License notes
