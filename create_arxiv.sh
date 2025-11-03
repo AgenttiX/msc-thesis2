@@ -30,6 +30,7 @@ rsync -av --exclude='fig/*-converted-to.pdf' --exclude='fig/lecture_notes' --exc
 # Ancillary files are placed in the anc directory.
 # https://info.arxiv.org/help/ancillary_files.html
 rsync -av --exclude='**/__pycache__' --exclude='*.pyc' --exclude=msc2_python/logs --exclude=msc2_python/tampere \
+  --exclude msc2_python/comparison.py \
   msc2_python create_arxiv.sh arxiv/anc
 cp -r .github arxiv/anc/github
 

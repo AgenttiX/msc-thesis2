@@ -1,26 +1,29 @@
+"""Old script for comparing between the PTtools and Giese et al. 2021 solvers"""
+
 import concurrent.futures as fut
 import logging
 import matplotlib.pyplot as plt
+import os.path
 import time
 import typing as tp
 
 import numpy as np
 import plotly.graph_objects as go
 
-# import loader
-# loader.load()
-
-from pttools.bubble.quantities import get_kappa
+from examples.utils import save
+# from pttools.bubble.quantities import get_kappa
 from pttools.bubble.bubble import Bubble
+from pttools.bubble.gksvdv import kappaNuMuModel
 from pttools.logging import setup_logging
-from pttools.models import BagModel, ConstCSModel, Model
-from giese import lisa
+from pttools.models import ConstCSModel, Model
+
+import const
 
 setup_logging()
 logger = logging.getLogger(__name__)
 
 
-class GieseComparison:
+class GKSVDVComparison:
     def __init__(
             self,
             models: tp.List[Model], v_walls: np.ndarray, alpha_ns: np.ndarray,
@@ -35,11 +38,14 @@ class GieseComparison:
     def compute_bubble(self, model: ConstCSModel, v_wall: float, alpha_n: float):
         bubble = Bubble(model, v_wall, alpha_n) # , n_points=100000)
         bubble.solve()
-        alpha_n_bar = model.alpha_n_bar(alpha_n)
+        alpha_theta_bar_n = model.alpha_theta_bar_n(alpha_n)
         # kappa_old = get_kappa(v_wall, alpha_n) if model.css2 == 1/3 and model.csb2 == 1/3 else None
         kappa_old = None
-        giese_params = lisa.kappaNuMuModel(model.csb2, model.css2, alpha_n_bar, v_wall)
-        return bubble, kappa_old, giese_params
+        try:
+            gksvdv_params = kappaNuMuModel(model.csb2, model.css2, alpha_theta_bar_n, v_wall)
+        except ValueError:
+            gksvdv_params = None
+        return bubble, kappa_old, gksvdv_params
 
     def process(self):
         start_time = time.perf_counter()
@@ -64,7 +70,7 @@ class GieseComparison:
             for i_model, model in enumerate(self.models):
                 data_new = np.zeros((self.v_walls.size, self.alpha_ns.size))
                 data_old = np.zeros_like(data_new)
-                data_giese = np.zeros_like(data_new)
+                data_gksvdv = np.zeros_like(data_new)
                 for i_v_wall, v_wall in enumerate(self.v_walls):
                     i_v_wall_fig_arr = np.argwhere(i_v_wall == self.i_v_walls_fig)
                     i_v_wall_fig = i_v_wall_fig_arr[0, 0] if i_v_wall_fig_arr.size else None
@@ -74,15 +80,18 @@ class GieseComparison:
                         i_alpha_n_fig_arr = np.argwhere(i_alpha_n == self.i_alpha_ns_fig)
                         i_alpha_n_fig = i_alpha_n_fig_arr[0, 0] if i_alpha_n_fig_arr.size else None
 
-                        bubble, kappa_old, giese_params = futs[i_model, i_v_wall, i_alpha_n].result()
+                        bubble, kappa_old, gksvdv_params = futs[i_model, i_v_wall, i_alpha_n].result()
 
                         # Plotly plot
-                        if bubble.no_solution_found or bubble.numerical_error or bubble.unphysical:
+                        if bubble.no_solution_found or bubble.numerical_error or bubble.unphysical_alpha_plus:
                             data_new[i_v_wall, i_alpha_n] = np.nan
                         else:
                             data_new[i_v_wall, i_alpha_n] = bubble.kappa
                         data_old[i_v_wall, i_alpha_n] = kappa_old
-                        data_giese[i_v_wall, i_alpha_n] = giese_params[0]
+                        if gksvdv_params is None:
+                            data_gksvdv[i_v_wall, i_alpha_n] = np.nan
+                        else:
+                            data_gksvdv[i_v_wall, i_alpha_n] = gksvdv_params[0]
 
                         # For debugging the axes
                         # if i_alpha_n == 0:
@@ -92,14 +101,16 @@ class GieseComparison:
                         if i_v_wall_fig is not None and i_alpha_n_fig is not None:
                             ax: plt.Axes = axs[i_v_wall_fig, i_alpha_n_fig]
                             ax.plot(bubble.xi, bubble.v)
-                            ax.plot(giese_params[3], giese_params[1])
+                            if gksvdv_params is not None:
+                                ax.plot(gksvdv_params[3], gksvdv_params[1])
                             ax.set_xlim(0, 1)
                             ax.set_ylim(0, 1)
                             ax.set_xlabel(r"$\xi$")
                             ax.set_ylabel("$v$")
                             ax.set_title(
                                 rf"$v_w={v_wall:.3f}, \alpha_n={alpha_n:.3f}, "
-                                rf"\kappa_{{new}}={bubble.kappa:.3f}, \kappa_G={giese_params[0]:.3f}$")
+                                rf"\kappa_{{new}}={bubble.kappa:.3f}, "
+                                rf"\kappa_G={np.nan if gksvdv_params is None else gksvdv_params[0]:.3f}$")
 
                 # https://plotly.com/python/builtin-colorscales/
                 colors = ["viridis", "YlOrRd"]
@@ -120,8 +131,8 @@ class GieseComparison:
                     #     showscale=False
                     # ),
                     go.Surface(
-                        x=self.alpha_ns, y=self.v_walls, z=data_giese,
-                        name=f"Giese {i_model+1}",
+                        x=self.alpha_ns, y=self.v_walls, z=data_gksvdv,
+                        name=f"GKSVDV {i_model+1}",
                         opacity=0.5,
                         colorscale=colors[i_model],
                         showscale=False
@@ -156,7 +167,7 @@ class GieseComparison:
 
 
 def main():
-    plot = GieseComparison(
+    plot = GKSVDVComparison(
         models=[
             # ConstCSModel(css2=1/3, csb2=1/3, a_s=1.5, a_b=1, V_s=1),
             ConstCSModel(css2=1/3 - 0.01, csb2=1/3 - 0.02, a_s=1.5, a_b=1, V_s=1)
@@ -167,10 +178,9 @@ def main():
         i_v_walls_fig=np.array([0, 10, 15]),
     )
     fig_3d, fig = plot.process()
-    fig_3d.write_html("test.html")
-    fig_3d.write_image("test.png")
-
-    fig.savefig("test2.png")
+    fig_3d.write_html(os.path.join(const.FIG_DIR, "comparison.html"))
+    fig_3d.write_image(os.path.join(const.FIG_DIR, "comparison.png"))
+    save(fig, os.path.join(const.FIG_DIR, "comparison2"))
 
     fig_3d.show()
     plt.show()

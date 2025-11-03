@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
-from giese.lisa import kappaNuMuModel
+from pttools.bubble.gksvdv.gksvdv21 import kappaNuMuModel
 
 
-kappa, v, wow, xi, mode = kappaNuMuModel(cs2b=1/3, cs2s=1/3, al=0.1, vw=0.75)
+kappa, v, wow, xi, mode, vp, vm = kappaNuMuModel(cs2b=1/3, cs2s=1/3, al=0.1, vw=0.75)
 print(mode)
 
 fig: plt.Figure = plt.figure()

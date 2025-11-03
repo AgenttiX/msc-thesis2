@@ -23,6 +23,7 @@
 __pycache__
 .idea
 arxiv
+fig/comparison*
 msc2_python/**/*.html
 msc2_python/logs
 main.pdf
