@@ -313,11 +313,13 @@
 
 \vspace{14pt}
 \begin{large}
-\@date
+\@date\\
+\dateupdated
 \end{large}
 
 % \vspace{2cm}
-\vspace{1.5cm}
+% \vspace{1.5cm}
+\vspace{1cm}
 
 \begin{large}
 
@@ -364,7 +366,8 @@
         \fi
       \fi
 
-\vspace{20pt}
+% \vspace{20pt}
+\vspace{10pt}
 
 {\rm\sc
 \uh
