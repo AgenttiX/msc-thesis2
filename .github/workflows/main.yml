@@ -46,7 +46,8 @@ jobs:
           # In addition to this, the Giese et al. bubble solver has since been included in PTtools
           # and removed from this repository.
           # Both of these changes necessitate the use of a newer PTtools version than 0.9.0.
-          ref: 3a7decd9dc9ba70e8ad6f7b63d5a54edafdec9fc
+          # When updating the version here, also update it in references.bib.
+          ref: v0.10.0
           path: pttools
       - name: Load pip cache
         uses: actions/cache@v4
