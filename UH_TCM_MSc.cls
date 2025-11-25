@@ -313,7 +313,11 @@
 
 \vspace{14pt}
 \begin{large}
-\@date\\
+\@date
+\end{large}
+
+\vspace{4pt}
+\begin{large}
 \dateupdated
 \end{large}
 
