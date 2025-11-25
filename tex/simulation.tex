@@ -82,7 +82,7 @@ bubble = Bubble(const_cs, v_wall=0.5, alpha_n=0.2)
 bubble.plot()
 
 # Compute gravitational wave velocity and power spectra for the bubble
-spectrum = Spectrum(bubble)
+spectrum = Spectrum(bubble, r_star=0.1)
 spectrum.plot_multi()
 
 plt.show()
