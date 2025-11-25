@@ -22,6 +22,7 @@
 *-eps-converted-to.pdf
 __pycache__
 .idea
+abstract.pdf
 arxiv
 fig/comparison*
 msc2_python/**/*.html
