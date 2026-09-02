@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   compile_pdf:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 10
     container:
       image: ghcr.io/agenttix/docker-latex:master
