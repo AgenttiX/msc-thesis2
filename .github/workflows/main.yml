@@ -9,13 +9,13 @@ jobs:
       image: ghcr.io/agenttix/docker-latex:master
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Compile pdf
         run: make
       - name: Rename pdf
         run: mv "main.pdf" "MSc thesis 2 Mika Mäki.pdf"
       - name: Upload pdf
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Thesis pdf
           path: "MSc thesis 2 Mika Mäki.pdf"
@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: 3.13
       - name: Print Python version
@@ -35,10 +35,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cm-super dvipng fontconfig texlive-latex-extra
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         # The full PTtools repository is needed for the example scripts
       - name: Checkout PTtools
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: CFT-HY/pttools
           # The 0.9.0 release was missing some __init__.py files in the example folders,
@@ -50,7 +50,7 @@ jobs:
           ref: v0.10.0
           path: pttools
       - name: Load pip cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .pip
           key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
@@ -76,7 +76,7 @@ jobs:
         env:
             PYTHONPATH: ${{ github.workspace }}/pttools:${{ github.workspace }}/msc2_python
       - name: Upload results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Figures
           path: |
