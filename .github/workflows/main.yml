@@ -3,7 +3,8 @@ on:
   push:
 jobs:
   compile_pdf:
-    runs-on: ubuntu-slim
+    # ubuntu-slim does not support running in a custom container.
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     container:
       image: ghcr.io/agenttix/latex:main
@@ -27,7 +28,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
-          python-version: 3.14
+          # PTtools 0.10.0 requirements.txt specifies package versions that are not available for Python 3.14.
+          python-version: 3.13
       - name: Print Python version
         run: python -V
       - name: Install LaTeX
